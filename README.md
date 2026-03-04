@@ -122,4 +122,4 @@ During signup, the system generates a unique **Master Access Code** (e.g., `AI-X
 └── README.md         # You are here
 ```
 
-Created with ❤️ by [ambujraj2001](https://github.com/ambujraj2001)
+Created with ❤️
