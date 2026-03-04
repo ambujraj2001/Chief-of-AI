@@ -6,6 +6,7 @@
 - **Frontend Dashboard (Vercel):** [https://vercel.com/ambujraj2001s-projects/chief-of-ai/DSuBykqhJfEuGQki9tsrrEBjj1Y4](https://vercel.com/ambujraj2001s-projects/chief-of-ai/DSuBykqhJfEuGQki9tsrrEBjj1Y4)
 - **Backend API:** [https://chief-of-ai.onrender.com](https://chief-of-ai.onrender.com)
 - **Backend Dashboard (Render):** [https://dashboard.render.com/web/srv-d6k9venkijhs73bltrqg](https://dashboard.render.com/web/srv-d6k9venkijhs73bltrqg)
+- **UX Design (Stitch):** [https://stitch.withgoogle.com/projects/1326706984944929208](https://stitch.withgoogle.com/projects/1326706984944929208)
 
 ## Project Overview
 
