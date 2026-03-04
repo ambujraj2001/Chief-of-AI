@@ -1,8 +1,18 @@
 # Chief of AI - Enterprise Operations Hub
 
+> [!IMPORTANT]
+> **Live Application**: [chief-of-ai.vercel.app](https://chief-of-ibuq9baba-ambujraj2001s-projects.vercel.app/login)  
+> **Backend Service**: [chief-of-ai.onrender.com](https://chief-of-ai.onrender.com)
+
+### 🔗 Dashboards
+
+- **Vercel (Frontend)**: [Deployment Dashboard](https://vercel.com/ambujraj2001s-projects/chief-of-ai/DSuBykqhJfEuGQki9tsrrEBjj1Y4)
+- **Render (Backend)**: [Service Dashboard](https://dashboard.render.com/web/srv-d6k9venkijhs73bltrqg)
+
+---
+
 Chief of AI is a premium, enterprise-grade AI assistant platform designed to streamline operations through a unified, secure interface. It features a modern design focused on high-performance task management and AI personalization.
 
-![Dashboard Preview](https://img.shields.io/badge/UI-Modern%20Enterprise-blue?style=for-the-badge)
 ![Tech Stack](https://img.shields.io/badge/Stack-React%20%7C%20Node%20%7C%20Supabase-success?style=for-the-badge)
 
 ## 🚀 Features
