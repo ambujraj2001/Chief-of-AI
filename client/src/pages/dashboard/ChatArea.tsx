@@ -294,7 +294,7 @@ const ChatArea = () => {
           <div className="flex justify-center gap-6">
             <p className="text-[11px] text-slate-400 flex items-center gap-1.5">
               <span className="material-symbols-outlined text-[14px]">bolt</span>
-              GPT-4 Omni Powered
+              Supercharged by Advanced Intelligence
             </p>
             <p className="text-[11px] text-slate-400 flex items-center gap-1.5">
               <span className="material-symbols-outlined text-[14px]">shield_person</span>
