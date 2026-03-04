@@ -39,9 +39,16 @@ const App = () => {
               <Route path="/dashboard" element={<DashboardLayout />}>
                 <Route index element={<DashboardPage />} />
                 <Route path="settings" element={<SettingsPage />} />
-                <Route path="recent" element={<ComingSoonPage title="Recent Chats" />} />
-                <Route path="history" element={<ComingSoonPage title="History" />} />
-                <Route path="prompts" element={<ComingSoonPage title="Prompt Library" />} />
+                <Route path="memories" element={<ComingSoonPage title="Memories" />} />
+                <Route path="tasks" element={<ComingSoonPage title="Tasks" />} />
+                <Route path="reminders" element={<ComingSoonPage title="Reminders" />} />
+                <Route path="calendar" element={<ComingSoonPage title="Calendar" />} />
+                <Route path="files" element={<ComingSoonPage title="Files" />} />
+                <Route path="journal" element={<ComingSoonPage title="Journal" />} />
+                <Route path="knowledge" element={<ComingSoonPage title="Knowledge" />} />
+                <Route path="expenses" element={<ComingSoonPage title="Expenses" />} />
+                <Route path="activity" element={<ComingSoonPage title="Activity" />} />
+                <Route path="integrations" element={<ComingSoonPage title="Integrations" />} />
               </Route>
 
               <Route path="*" element={<Navigate to="/login" replace />} />

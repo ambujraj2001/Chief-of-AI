@@ -10,10 +10,17 @@ type NavItem = {
 };
 
 const NAV_ITEMS: NavItem[] = [
-  { icon: 'add_box', label: 'New Conversation', path: '/dashboard' },
-  { icon: 'chat_bubble', label: 'Recent Chats', path: '/dashboard/recent' },
-  { icon: 'history', label: 'History', path: '/dashboard/history' },
-  { icon: 'lightbulb', label: 'Prompt Library', path: '/dashboard/prompts' },
+  { icon: 'chat', label: 'Chat', path: '/dashboard' },
+  { icon: 'psychology', label: 'Memories', path: '/dashboard/memories' },
+  { icon: 'task_alt', label: 'Tasks', path: '/dashboard/tasks' },
+  { icon: 'notifications', label: 'Reminders', path: '/dashboard/reminders' },
+  { icon: 'calendar_today', label: 'Calendar', path: '/dashboard/calendar' },
+  { icon: 'folder', label: 'Files', path: '/dashboard/files' },
+  { icon: 'auto_stories', label: 'Journal', path: '/dashboard/journal' },
+  { icon: 'school', label: 'Knowledge', path: '/dashboard/knowledge' },
+  { icon: 'payments', label: 'Expenses', path: '/dashboard/expenses' },
+  { icon: 'insights', label: 'Activity', path: '/dashboard/activity' },
+  { icon: 'hub', label: 'Integrations', path: '/dashboard/integrations' },
   { icon: 'settings', label: 'Settings', path: '/dashboard/settings' },
 ];
 
@@ -31,7 +38,7 @@ const Sidebar = ({ collapsed, onToggle, isMobile, onCloseMobile }: SidebarProps)
 
   const [showLogout, setShowLogout] = useState(false);
 
-  const activeItem = NAV_ITEMS.find(item => item.path === location.pathname)?.label || 'Recent Chats';
+  const activeItem = NAV_ITEMS.find(item => item.path === location.pathname)?.label || 'Chat';
 
   const handleLogout = () => {
     localStorage.removeItem('accessCode');
