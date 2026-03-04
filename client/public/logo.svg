@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+  <!-- Font Awesome Free 6.x - fa-robot (solid) -->
+  <!-- License: https://fontawesome.com/license/free (Icons: CC BY 4.0) -->
+  <rect width="640" height="512" rx="80" fill="#137fec"/>
+  <path fill="#ffffff" d="M320 0a40 40 0 1 1 0 80 40 40 0 1 1 0-80zm-160 96h320a96 96 0 0 1 96 96v32h16a48 48 0 0 1 0 96h-16v32a96 96 0 0 1-96 96H160a96 96 0 0 1-96-96v-32H48a48 48 0 0 1 0-96h16v-32a96 96 0 0 1 96-96zm0 64a32 32 0 0 0-32 32v192a32 32 0 0 0 32 32h320a32 32 0 0 0 32-32V192a32 32 0 0 0-32-32H160zm48 72a40 40 0 1 1 80 0 40 40 0 1 1-80 0zm152 0a40 40 0 1 1 80 0 40 40 0 1 1-80 0zM216 320h208a8 8 0 0 1 0 16H216a8 8 0 0 1 0-16z"/>
+</svg>
