@@ -14,22 +14,28 @@ const allowedOrigins = (process.env.CLIENT_ORIGIN ?? 'http://localhost:5173')
 app.use(
   cors({
     origin: (origin, cb) => {
-      // Allow requests with no origin (curl, Postman, etc.)
+      // Allow requests with no origin (curl, etc.)
       if (!origin) return cb(null, true);
 
-      // In development, allow any localhost/127.0.0.1 origin automatically
+      // In development, allow any localhost/127.0.0.1
       if (origin.startsWith('http://localhost:') || origin.startsWith('http://127.0.0.1:')) {
         return cb(null, true);
       }
 
-      const allowedOrigins = (process.env.CLIENT_ORIGIN ?? 'http://localhost:5173')
-        .split(',')
-        .map((o) => o.trim());
+      // Allow Vercel preview domains if you want
+      if (origin.endsWith('.vercel.app')) {
+        return cb(null, true);
+      }
 
-      if (allowedOrigins.includes(origin)) {
+      const originsVar = process.env.CLIENT_ORIGIN ?? 'http://localhost:5173';
+      const allowed = originsVar.split(',').map((o) => o.trim());
+
+      if (allowed.includes(origin)) {
         cb(null, true);
       } else {
-        cb(new Error(`CORS: origin "${origin}" not allowed`));
+        console.warn(`⚠️  CORS blocked for origin: ${origin}`);
+        // Rejecting origin by passing false, avoiding throwing internal error
+        cb(null, false);
       }
     },
     credentials: true,
