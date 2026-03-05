@@ -6,13 +6,15 @@
 
 ## 🔗 Project Ecosystem
 
-| Module                | Link                                                                           |
-| :-------------------- | :----------------------------------------------------------------------------- |
-| **🚀 Production App** | [chief-of-ai.vercel.app](https://chief-of-ai.vercel.app/login)                 |
-| **⚡ Backend API**    | [chief-of-ai.onrender.com](https://chief-of-ai.onrender.com)                   |
-| **📊 Axiom Logs**     | [Real-time Stream](https://app.axiom.co/ambuj-amwx/stream/chief-of-ai-logs)    |
-| **🧪 LangSmith**      | [smith.langchain.com](https://smith.langchain.com/)                            |
-| **🎨 UX Design**      | [Stitch Workspace](https://stitch.withgoogle.com/projects/1326706984944929208) |
+| Module                | Link                                                                                    |
+| :-------------------- | :-------------------------------------------------------------------------------------- |
+| **🚀 Production App** | [chief-of-ai.vercel.app](https://chief-of-ai.vercel.app/login)                          |
+| **⚡ Backend API**    | [chief-of-ai.onrender.com](https://chief-of-ai.onrender.com)                            |
+| **📊 Axiom Logs**     | [Real-time Stream](https://app.axiom.co/ambuj-amwx/stream/chief-of-ai-logs)             |
+| **🧪 LangSmith**      | [smith.langchain.com](https://smith.langchain.com/)                                     |
+| **🎨 UX Design**      | [Stitch Workspace](https://stitch.withgoogle.com/projects/1326706984944929208)          |
+| **✉️ Brevo SMTP**     | [Real-time SMTP Logs](https://app-smtp.brevo.com/real-time)                             |
+| **💾 Upstash Redis**  | [Redis Console](https://console.upstash.com/redis/bdfb762f-b708-40d2-920d-c4102ca0a9e5) |
 
 ---
 

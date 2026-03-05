@@ -109,3 +109,22 @@ export const updateUserByAccessCode = async (accessCode: string, updates: Partia
   if (error) throw new Error(error.message);
   return data as UserRow;
 };
+
+/**
+ * Looks up a user by their email.
+ * Returns null if not found.
+ */
+export const findUserByEmail = async (email: string): Promise<UserRow | null> => {
+  const { data, error } = await supabase
+    .from('users')
+    .select('*')
+    .eq('email', email.toLowerCase())
+    .single();
+
+  if (error) {
+    if (error.code === 'PGRST116') return null;
+    throw new Error(error.message);
+  }
+
+  return data as UserRow;
+};

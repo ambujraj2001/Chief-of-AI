@@ -15,12 +15,15 @@
     "@langchain/google-genai": "^2.1.24",
     "@langchain/openai": "^1.2.12",
     "@supabase/supabase-js": "^2.98.0",
+    "@types/nodemailer": "^7.0.11",
+    "@upstash/redis": "^1.36.3",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.1",
     "express": "^4.18.2",
     "langchain": "^1.2.29",
     "nanoid": "^3.3.7",
+    "nodemailer": "^8.0.1",
     "zod": "^4.3.6"
   },
   "devDependencies": {
