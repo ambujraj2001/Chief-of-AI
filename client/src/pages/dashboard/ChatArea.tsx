@@ -86,12 +86,11 @@ const AgentThinkingLog = () => {
           />
         </div>
 
-        <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-2 mb-1">
+        <div className="flex items-center border-b border-slate-100 dark:border-slate-800 pb-2 mb-1">
           <div className="flex items-center gap-2">
             <div className="size-1.5 rounded-full bg-primary animate-ping" />
             <span className="text-[10px] font-black text-slate-800 dark:text-slate-200 uppercase tracking-[0.2em] font-mono">Agent Reasoning Engine</span>
           </div>
-          <span className="text-[9px] font-mono text-slate-400 dark:text-slate-500">v1.2.43_stable</span>
         </div>
 
         <div className="flex flex-col gap-2.5">
