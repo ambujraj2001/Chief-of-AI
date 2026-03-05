@@ -54,48 +54,79 @@ const AgentThinkingLog = () => {
   const [step, setStep] = useState(0);
 
   useEffect(() => {
-    // Simulate progression through steps while waiting for the actual response
     const timers = [
-      setTimeout(() => setStep(1), 1000),
-      setTimeout(() => setStep(2), 2200),
-      setTimeout(() => setStep(3), 3500),
+      setTimeout(() => setStep(1), 800),
+      setTimeout(() => setStep(2), 1600),
+      setTimeout(() => setStep(3), 2400),
+      setTimeout(() => setStep(4), 3200),
     ];
     return () => timers.forEach(clearTimeout);
   }, []);
 
   const steps = [
-    "Thinking...",
-    "Searching memory vault...",
-    "Delegating to Task Agent...",
-    "Generating response..."
+    { label: "Initializing Agent Intelligence", icon: "memory" },
+    { label: "Analyzing reasoning patterns", icon: "psychology" },
+    { label: "Scanning tool capabilities", icon: "terminal" },
+    { label: "Optimizing workflow strategy", icon: "account_tree" },
+    { label: "Constructing final response", icon: "auto_awesome" }
   ];
 
   return (
-    <div className="flex gap-4 group animate-in fade-in slide-in-from-bottom-2 duration-500">
-      <div className="size-8 rounded-lg bg-primary flex items-center justify-center shrink-0 mt-1 shadow-lg shadow-primary/10">
-        <span className="material-symbols-outlined text-white text-lg">smart_toy</span>
+    <div className="flex gap-4 group animate-in fade-in slide-in-from-bottom-2 duration-700">
+      <div className="size-8 rounded-lg bg-slate-900 flex items-center justify-center shrink-0 mt-1 shadow-lg border border-slate-700">
+        <span className="material-symbols-outlined text-primary text-lg animate-pulse">hub</span>
       </div>
-      <div className="flex flex-col gap-2 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800 max-w-[85%]">
-        <div className="flex items-center gap-2 border-b border-slate-200 dark:border-slate-700 pb-2 mb-1">
-          <div className="size-2 rounded-full bg-primary animate-pulse" />
-          <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">Agent Processing Log</span>
+      
+      <div className="flex flex-col gap-3 p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none max-w-[85%] relative overflow-hidden">
+        {/* Progress Background */}
+        <div className="absolute top-0 left-0 h-0.5 bg-primary/20 w-full">
+          <div 
+            className="h-full bg-primary transition-all duration-1000 ease-out" 
+            style={{ width: `${(step / (steps.length - 1)) * 100}%` }}
+          />
         </div>
-        <div className="flex flex-col gap-2">
+
+        <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-2 mb-1">
+          <div className="flex items-center gap-2">
+            <div className="size-1.5 rounded-full bg-primary animate-ping" />
+            <span className="text-[10px] font-black text-slate-800 dark:text-slate-200 uppercase tracking-[0.2em] font-mono">Agent Reasoning Engine</span>
+          </div>
+          <span className="text-[9px] font-mono text-slate-400 dark:text-slate-500">v1.2.43_stable</span>
+        </div>
+
+        <div className="flex flex-col gap-2.5">
           {steps.map((s, idx) => (
             <div 
               key={idx} 
-              className={`flex items-center gap-2 text-xs transition-colors duration-300 ${
-                idx <= step ? 'text-slate-600 dark:text-slate-300' : 'text-slate-400 dark:text-slate-600'
+              className={`flex items-center gap-3 text-[11px] font-mono transition-all duration-500 ${
+                idx <= step ? 'text-slate-700 dark:text-slate-200' : 'text-slate-400 dark:text-slate-700'
               }`}
             >
-              {idx < step ? (
-                <span className="material-symbols-outlined text-sm text-emerald-500">check_circle</span>
-              ) : idx === step ? (
-                <div className="size-2 bg-primary rounded-full animate-pulse-subtle" />
-              ) : (
-                <div className="size-1.5 bg-slate-300 dark:bg-slate-700 rounded-full ml-0.5" />
-              )}
-              <span className={idx === step ? 'font-bold' : 'font-medium opacity-80'}>{s}</span>
+              <div className="relative">
+                {idx < step ? (
+                  <span className="material-symbols-outlined text-sm text-primary">done_all</span>
+                ) : idx === step ? (
+                  <span className="material-symbols-outlined text-sm text-primary animate-spin-slow">sync</span>
+                ) : (
+                  <span className="material-symbols-outlined text-sm opacity-30">{s.icon}</span>
+                )}
+              </div>
+              
+              <div className="flex flex-col">
+                <span className={`${idx === step ? 'font-bold' : 'font-medium'}`}>
+                  {s.label}
+                  {idx === step && <span className="animate-pulse inline-block ml-1">_</span>}
+                </span>
+                {idx === step && (
+                  <span className="text-[9px] text-slate-400 dark:text-slate-500 animate-pulse transition-opacity">
+                    {idx === 0 && "> mounting modules..."}
+                    {idx === 1 && "> tokenizing intent vectors..."}
+                    {idx === 2 && "> verifying middleware permissions..."}
+                    {idx === 3 && "> selecting optimal response format..."}
+                    {idx === 4 && "> finalizing cognitive stream..."}
+                  </span>
+                )}
+              </div>
             </div>
           ))}
         </div>
