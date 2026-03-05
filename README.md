@@ -1,33 +1,62 @@
-# Chief of AI
+# 🤖 Chief of AI
 
-## Deployment & Dashboard Links
+**Chief of AI** is a professional, enterprise-grade AI assistant platform designed to orchestrate complex operations through a unified, high-performance interface. Managed with precision, secured by zero-knowledge architecture, and observed with state-of-the-art telemetry.
 
-- **Frontend App:** [https://chief-of-ai.vercel.app/login](https://chief-of-ai.vercel.app/login)
-- **Frontend Dashboard (Vercel):** [https://vercel.com/ambujraj2001s-projects/chief-of-ai/DSuBykqhJfEuGQki9tsrrEBjj1Y4](https://vercel.com/ambujraj2001s-projects/chief-of-ai/DSuBykqhJfEuGQki9tsrrEBjj1Y4)
-- **Backend API:** [https://chief-of-ai.onrender.com](https://chief-of-ai.onrender.com)
-- **Backend Dashboard (Render):** [https://dashboard.render.com/web/srv-d6k9venkijhs73bltrqg](https://dashboard.render.com/web/srv-d6k9venkijhs73bltrqg)
-- **UX Design (Stitch):** [https://stitch.withgoogle.com/projects/1326706984944929208](https://stitch.withgoogle.com/projects/1326706984944929208)
+---
 
-## Project Overview
+## 🔗 Project Ecosystem
 
-Chief of AI is a powerful enterprise-grade AI assistant platform designed to streamline operations through a unified, secure interface. It features a modern design focused on high-performance task management and AI personalization.
+| Module                | Link                                                                           |
+| :-------------------- | :----------------------------------------------------------------------------- |
+| **🚀 Production App** | [chief-of-ai.vercel.app](https://chief-of-ai.vercel.app/login)                 |
+| **⚡ Backend API**    | [chief-of-ai.onrender.com](https://chief-of-ai.onrender.com)                   |
+| **📊 Axiom Logs**     | [Real-time Stream](https://app.axiom.co/ambuj-amwx/stream/chief-of-ai-logs)    |
+| **🧪 LangSmith**      | [smith.langchain.com](https://smith.langchain.com/)                            |
+| **🎨 UX Design**      | [Stitch Workspace](https://stitch.withgoogle.com/projects/1326706984944929208) |
 
-![Tech Stack](https://img.shields.io/badge/Stack-React%20%7C%20Node%20%7C%20Supabase-success?style=for-the-badge)
+---
 
-## 🚀 Features
+## ✨ Core Capabilities
 
-- **Strategic AI Dashboard**: A central hub for real-time AI operations and task tracking.
-- **Deep Personalization**: Fine-tune the AI's interaction tone, response complexity (from Simple to Expert), and voice models.
-- **Security-First Onboarding**: Multi-step protected signup with unique master access code generation for zero-knowledge security.
-- **Persistent Operations**: Seamless navigation between chats, settings, and upcoming feature modules.
-- **Micro-interactions**: Glassmorphism UI, smooth transitions, and real-time state management via Redux.
+- **Strategic AI Orchestration**: Centralized command center for real-time AI operations and task delegation.
+- **Deep Personalization Engine**: Fine-tune interaction tone, response complexity (Simple to Expert), and cognitive behavioral patterns.
+- **Zero-Knowledge Security**: Multi-step onboarding with unique `AI-XXXX-XXXX` master access code generation for maximum privacy.
+- **Persistent Cognitive Context**: Seamlessly maintains user state across sessions via optimized Redux management.
+- **Premium UI/UX**: Modern glassmorphism design, fluid micro-interactions, and real-time state visualization.
 
-## 🛠 Tech Stack
+---
 
-- **Frontend**: React 18, TypeScript, Vite, Tailwind CSS, Ant Design, Redux Toolkit.
-- **Backend**: Node.js, Express, TypeScript.
-- **Database**: Supabase (PostgreSQL).
-- **Authentication**: Access Code based security model.
+## 🛠 Advanced Tech Stack
+
+### Frontend Architecture
+
+- **Framework**: React 18 & TypeScript (Vite)
+- **Styling**: Tailwind CSS & Ant Design
+- **State**: Redux Toolkit & Persistence
+- **Voice**: Web Speech API for persistent voice-to-text.
+
+### Backend Infrastructure
+
+- **Runtime**: Node.js & Express (TypeScript)
+- **Intelligence**: Mistral AI (Small/Latest) via LangChain
+- **Storage**: Supabase (PostgreSQL) & Edge Functions
+- **Observability**: Axiom & LangSmith
+
+---
+
+## 👁️ Observability & Monitoring
+
+We employ a robust observability strategy to ensure maximum reliability and transparency.
+
+### **Distributed Tracing**
+
+- **LangSmith Integration**: Full agent reasoning path tracing, tool execution metrics, and latency analysis.
+- **X-Trace-ID Service**: End-to-end trace propagation from frontend to backend for precise request debugging.
+
+### **Centralized Logging**
+
+- **Axiom Cloud Logging**: Structured JSON logs streamed directly to Axiom for advanced analysis and dashboarding.
+- **Log Stream**: [Chief of AI Axiom Dashboard](https://app.axiom.co/ambuj-amwx/stream/chief-of-ai-logs)
 
 ---
 
@@ -36,79 +65,51 @@ Chief of AI is a powerful enterprise-grade AI assistant platform designed to str
 ### 1. Prerequisites
 
 - Node.js (v18+)
-- A Supabase project and API keys.
+- Mistral AI API Key
+- Supabase Project
+- Axiom & LangSmith API Keys
 
-### 2. Environment Setup
-
-#### Backend (`/biz-flow`)
-
-Create a `.env` file in the `biz-flow` directory:
-
-```env
-PORT=5000
-SUPABASE_URL=your_supabase_url
-SUPABASE_KEY=your_supabase_anon_key
-```
-
-#### Frontend (`/client`)
-
-Create a `.env` file in the `client` directory:
-
-```env
-VITE_API_BASE_URL=http://localhost:5000
-```
-
-### 3. Installation
-
-From the project root:
+### 2. Installation
 
 ```bash
-# Install backend dependencies
-cd biz-flow && npm install
+# Clone the repository
+git clone https://github.com/ambujraj2001/Chief-of-AI.git
+cd Chief-of-AI
 
-# Install frontend dependencies
+# Install Workspace Dependencies
+cd biz-flow && npm install
 cd ../client && npm install
 ```
 
-### 4. Running the Project
+### 3. Environment Configuration
 
-Open two terminal windows/tabs:
+Copy the legacy example files and fill in your secrets:
 
-**Terminal 1: Backend**
-
-```bash
-cd biz-flow
-npm run dev
-```
-
-**Terminal 2: Frontend**
+**Backend (`/biz-flow`):**
 
 ```bash
-cd client
-npm run dev
+cp .env.example .env
 ```
 
-The application will be available at `http://localhost:5173`.
+_Required: MISTRAL_API_KEY, SUPABASE_URL, AXIOM_TOKEN, LANGCHAIN_API_KEY_
 
----
+**Frontend (`/client`):**
 
-## 📖 Main Modules
+```bash
+cp .env.example .env
+```
 
-### **New Conversation**
+_Required: VITE_API_URL_
 
-The core interaction area. Type or use **Voice Input** (WebSpeech API) to communicate with your AI assistant.
+### 4. Local Development
 
-### **Settings (Profile & AI)**
+```bash
+# Terminal 1: Backend
+cd biz-flow && npm run dev
 
-A comprehensive module to manage your identity and AI behavior:
-
-- **Tone**: Professional, Casual, Technical, or Concise.
-- **Complexity**: 5 levels of response depth (Simple → Expert).
-- **Security**: Manage your identity and clear context memory.
-
-### **Security Model**
-
-During signup, the system generates a unique **Master Access Code** (e.g., `AI-XXXX-XXXX`). This code is your only way to login. **Store it safely!**
+# Terminal 2: Frontend
+cd client && npm run dev
+```
 
 ---
 
@@ -118,8 +119,12 @@ During signup, the system generates a unique **Master Access Code** (e.g., `AI-X
 .
 ├── client/           # React Frontend (Vite)
 ├── biz-flow/         # Node.js Backend (Express)
-├── .gitignore        # Root level ignore (Monorepo)
-└── README.md         # You are here
+├── .gitignore        # Monorepo ignore configuration
+└── README.md         # Documentation Hub
 ```
 
-Created with ❤️
+---
+
+<p align="center">
+  Built with precision for the next generation of AI Operations. 🚀
+</p>
