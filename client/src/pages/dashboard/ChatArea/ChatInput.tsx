@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import { message } from 'antd';
 import type { SpeechRecognition, SpeechRecognitionEvent, SpeechRecognitionErrorEvent } from './types';
 
@@ -120,21 +120,21 @@ const ChatInput: React.FC<ChatInputProps> = ({
     };
   }, [isListening, setIsListening, onInputChange]);
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       onSend();
     }
-  };
+  }, [onSend]);
 
-  const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleInput = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
     onInputChange(e.target.value);
     const el = e.target;
     el.style.height = 'auto';
     el.style.height = `${Math.min(el.scrollHeight, 160)}px`;
-  };
+  }, [onInputChange]);
 
-  const toggleListening = () => {
+  const toggleListening = useCallback(() => {
     const win = window as unknown as Window & {
       SpeechRecognition?: SpeechRecognitionConstructor;
       webkitSpeechRecognition?: SpeechRecognitionConstructor;
@@ -145,7 +145,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
       return;
     }
     setIsListening(!isListening);
-  };
+  }, [isListening, setIsListening]);
 
   return (
     <footer className="p-4 sm:p-6 shrink-0 bg-white dark:bg-background-dark border-t border-slate-100 dark:border-slate-800 lg:border-none">

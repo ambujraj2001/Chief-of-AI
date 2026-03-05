@@ -169,9 +169,9 @@ export const forgotAccessCode = async (
     }
 
     const otp = generateOTP();
-    const redisKey = `accesscode:${email.toLowerCase()}`;
+    const redisKey = `accesscode:${email.toLowerCase().trim()}`;
     
-    // Store OTP in Redis with 10-minute TTL (600 seconds)
+    // Store OTP in Redis with 12-hour TTL (43200 seconds)
     await redis.set(redisKey, otp, { ex: 600 });
 
     // Send OTP via email
@@ -203,15 +203,16 @@ export const verifyOTP = async (
       return;
     }
 
-    const redisKey = `accesscode:${email.toLowerCase()}`;
-    const storedOTP = await redis.get<string>(redisKey);
+    const redisKey = `accesscode:${email.toLowerCase().trim()}`;
+    const storedOTP = await redis.get<string | number>(redisKey);
 
     if (!storedOTP) {
       res.status(400).json({ error: 'OTP expired or not found' });
       return;
     }
 
-    if (storedOTP !== otp) {
+    if (String(storedOTP) !== String(otp).trim()) {
+     
       res.status(400).json({ error: 'Invalid OTP' });
       return;
     }

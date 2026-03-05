@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProgressBar from '../components/ProgressBar';
 import { useSignup } from '../context/useSignup';
@@ -13,31 +13,30 @@ const SignupStep3Page = ({ onBack }: { onBack: () => void }) => {
   const [accessCode, setAccessCode] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
-  const handleSubmit = async () => {
+  const handleSubmit = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
       const result = await apiSignup(combined());
-      // Removed auto-login to force manual entry of access code
       setAccessCode(result.accessCode);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong');
     } finally {
       setLoading(false);
     }
-  };
+  }, [combined]);
 
-  const handleCopy = () => {
+  const handleCopy = useCallback(() => {
     if (!accessCode) return;
     navigator.clipboard.writeText(accessCode).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
-  };
+  }, [accessCode]);
 
-  const handleLogin = () => {
+  const handleLogin = useCallback(() => {
     navigate('/login');
-  };
+  }, [navigate]);
 
   return (
     <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display antialiased">
@@ -106,7 +105,7 @@ const SignupStep3Page = ({ onBack }: { onBack: () => void }) => {
                   <span className="material-symbols-outlined text-amber-600 dark:text-amber-400 shrink-0 text-[18px] sm:text-[24px]">warning</span>
                   <div className="text-xs sm:text-sm leading-relaxed text-amber-800 dark:text-amber-200">
                     <span className="font-bold uppercase text-[10px] sm:text-xs block mb-1">Crucial Information</span>
-                    Store this code in a secure location. We do not store this code for your security, and it cannot be recovered if lost.
+                    Keep this code in a secure location. While we prioritize your privacy, you can recover this code via the "Forgot Access Code" flow if lost.
                   </div>
                 </div>
               </div>

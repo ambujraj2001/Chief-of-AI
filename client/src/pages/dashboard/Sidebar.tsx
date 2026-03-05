@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { type RootState } from '../../store';
@@ -38,18 +38,30 @@ const Sidebar = ({ collapsed, onToggle, isMobile, onCloseMobile }: SidebarProps)
 
   const [showLogout, setShowLogout] = useState(false);
 
-  const activeItem = NAV_ITEMS.find(item => item.path === location.pathname)?.label || 'Chat';
+  const activeItem = useMemo(() => 
+    NAV_ITEMS.find(item => item.path === location.pathname)?.label || 'Chat',
+    [location]
+  );
 
-  const handleLogout = () => {
+  const handleLogout = useCallback(() => {
     localStorage.removeItem('accessCode');
     sessionStorage.removeItem('chief_user');
     navigate('/login');
-  };
+  }, [navigate]);
 
-  const handleNav = (item: NavItem) => {
+  const handleNav = useCallback((item: NavItem) => {
     navigate(item.path);
-    if (onCloseMobile) onCloseMobile(); // Close mobile menu after navigation
-  };
+    if (onCloseMobile) onCloseMobile();
+  }, [navigate, onCloseMobile]);
+
+  const handleOpenDashboard = useCallback(() => {
+    navigate('/dashboard');
+    if (onCloseMobile) onCloseMobile();
+  }, [navigate, onCloseMobile]);
+
+  const handleToggleLogout = useCallback(() => {
+    setShowLogout(prev => !prev);
+  }, []);
 
   return (
     <aside
@@ -86,10 +98,7 @@ const Sidebar = ({ collapsed, onToggle, isMobile, onCloseMobile }: SidebarProps)
           className={`flex flex-col overflow-hidden whitespace-nowrap transition-all duration-200 ${
             collapsed && !isMobile ? 'opacity-0 w-0 text-transparent' : 'opacity-100 w-full'
           }`}
-          onClick={() => {
-            navigate('/dashboard');
-            if (onCloseMobile) onCloseMobile();
-          }}
+          onClick={handleOpenDashboard}
           style={{ cursor: 'pointer' }}
         >
           <h1 className="text-sm font-bold tracking-tight">CHIEF OF AI</h1>
@@ -150,7 +159,7 @@ const Sidebar = ({ collapsed, onToggle, isMobile, onCloseMobile }: SidebarProps)
         <div className={`flex items-center w-full rounded-xl p-2 ${collapsed && !isMobile ? 'justify-center' : 'gap-2 sm:gap-3'}`}>
           <div
             className="size-8 sm:size-9 rounded-full bg-slate-100 dark:bg-slate-800 shrink-0 cursor-pointer hover:opacity-80 transition-opacity border border-slate-200 dark:border-slate-700"
-            onClick={() => setShowLogout(!showLogout)}
+            onClick={handleToggleLogout}
             title={collapsed && !isMobile ? (showLogout ? 'Close Menu' : 'Open Menu') : undefined}
             style={{
               backgroundImage:

@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ConfigProvider, theme as antTheme } from 'antd';
 import { AuthBootstrap } from './components/AuthBootstrap';
@@ -8,6 +9,7 @@ import SettingsPage from './pages/dashboard/SettingsPage';
 import DashboardLayout from './layouts/DashboardLayout';
 import ComingSoonPage from './pages/dashboard/ComingSoonPage';
 import { SignupProvider } from './context/SignupContext.tsx';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
 
 import { Provider } from 'react-redux';
 import { store } from './store';
@@ -15,18 +17,18 @@ import { store } from './store';
 const PRIMARY = '#137fec';
 
 const App = () => {
+  const themeConfig = useMemo(() => ({
+    algorithm: antTheme.defaultAlgorithm,
+    token: {
+      colorPrimary: PRIMARY,
+      fontFamily: 'Inter, sans-serif',
+      borderRadius: 8,
+    },
+  }), []);
+
   return (
     <Provider store={store}>
-      <ConfigProvider
-      theme={{
-        algorithm: antTheme.defaultAlgorithm,
-        token: {
-          colorPrimary: PRIMARY,
-          fontFamily: 'Inter, sans-serif',
-          borderRadius: 8,
-        },
-      }}
-    >
+      <ConfigProvider theme={themeConfig}>
       <SignupProvider>
         <BrowserRouter>
           <AuthBootstrap>
@@ -34,6 +36,7 @@ const App = () => {
               <Route path="/" element={<Navigate to="/login" replace />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />
+              <Route path="/forgot-access-code" element={<ForgotPasswordPage />} />
               
               {/* Dashboard Nested Routes */}
               <Route path="/dashboard" element={<DashboardLayout />}>

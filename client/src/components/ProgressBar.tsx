@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 interface ProgressBarProps {
   step: number;
   totalSteps: number;
@@ -5,7 +7,7 @@ interface ProgressBarProps {
 }
 
 const ProgressBar = ({ step, totalSteps, label }: ProgressBarProps) => {
-  const pct = Math.round((step / totalSteps) * 100);
+  const pct = useMemo(() => Math.round((step / totalSteps) * 100), [step, totalSteps]);
 
   return (
     <div className="flex flex-col gap-3 mb-8">

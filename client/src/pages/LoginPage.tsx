@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AppHeader from '../components/AppHeader';
 import { apiBootConfig } from '../services/api';
@@ -10,15 +10,15 @@ const LoginPage = () => {
   const [error, setError] = useState<string | null>(null);
   const [darkMode, setDarkMode] = useState(false);
 
-  const toggleDark = () => {
+  const toggleDark = useCallback(() => {
     setDarkMode((prev) => {
       const next = !prev;
       document.documentElement.classList.toggle('dark', next);
       return next;
     });
-  };
+  }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     if (!userCode.trim()) return;
 
@@ -27,8 +27,6 @@ const LoginPage = () => {
 
     try {
       const result = await apiBootConfig(userCode.trim());
-      // Store user in session storage so the dashboard can read it
-      // Persist access code for auto-login on future visits
       localStorage.setItem('accessCode', userCode.trim().toUpperCase());
       sessionStorage.setItem('chief_user', JSON.stringify(result));
       navigate('/dashboard');
@@ -37,7 +35,20 @@ const LoginPage = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [userCode, navigate]);
+
+  const handleUserCodeChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserCode(e.target.value.toUpperCase());
+    setError(null);
+  }, []);
+
+  const handleForgotAccessCode = useCallback(() => {
+    navigate('/forgot-access-code');
+  }, [navigate]);
+
+  const handleSignup = useCallback(() => {
+    navigate('/signup');
+  }, [navigate]);
 
   return (
     <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
@@ -75,10 +86,7 @@ const LoginPage = () => {
                       name="user-code"
                       type="text"
                       value={userCode}
-                      onChange={(e) => {
-                        setUserCode(e.target.value.toUpperCase());
-                        setError(null);
-                      }}
+                      onChange={handleUserCodeChange}
                       placeholder="AI-XXXX-XXXX"
                       className="block w-full pl-11 pr-4 py-4 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500 font-mono tracking-widest uppercase outline-none"
                       required
@@ -111,13 +119,22 @@ const LoginPage = () => {
                     </>
                   )}
                 </button>
+                <div className="text-center mt-4">
+                  <button
+                    type="button"
+                    onClick={handleForgotAccessCode}
+                    className="text-xs text-slate-500 dark:text-slate-400 hover:text-primary transition-colors decoration-2 underline-offset-4 hover:underline bg-transparent border-none cursor-pointer"
+                  >
+                    Forgot access code?
+                  </button>
+                </div>
               </form>
 
               <div className="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800 text-center">
                 <p className="text-sm text-slate-500 dark:text-slate-400">
                   Don't have an access code?{' '}
                   <button
-                    onClick={() => navigate('/signup')}
+                    onClick={handleSignup}
                     className="text-primary font-semibold hover:underline decoration-2 underline-offset-4 bg-transparent border-none cursor-pointer"
                   >
                     Request a code

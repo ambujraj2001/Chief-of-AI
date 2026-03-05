@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import ProgressBar from '../components/ProgressBar';
 import { useSignup } from '../context/useSignup';
 import type { SignupPayload } from '../services/api';
@@ -34,7 +34,7 @@ const SignupStep2Page = ({ onNext, onBack }: { onNext: () => void; onBack: () =>
   const [responseAlerts, setResponseAlerts] = useState(step2.notifyResponseAlerts);
   const [dailyBriefing, setDailyBriefing] = useState(step2.notifyDailyBriefing);
 
-  const handleNext = (e: React.FormEvent) => {
+  const handleNext = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     setStep2({
       interactionTone: tone,
@@ -44,7 +44,27 @@ const SignupStep2Page = ({ onNext, onBack }: { onNext: () => void; onBack: () =>
       notifyDailyBriefing: dailyBriefing,
     });
     onNext();
-  };
+  }, [tone, complexity, voice, responseAlerts, dailyBriefing, setStep2, onNext]);
+
+  const handleSetTone = useCallback((value: Tone) => {
+    setTone(value);
+  }, []);
+
+  const handleComplexityChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setComplexity(Number(e.target.value));
+  }, []);
+
+  const handleVoiceChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+    setVoice(e.target.value as SignupPayload['voiceModel']);
+  }, []);
+
+  const handleResponseAlertsChange = useCallback(() => {
+    setResponseAlerts((v) => !v);
+  }, []);
+
+  const handleDailyBriefingChange = useCallback(() => {
+    setDailyBriefing((v) => !v);
+  }, []);
 
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
@@ -111,7 +131,7 @@ const SignupStep2Page = ({ onNext, onBack }: { onNext: () => void; onBack: () =>
                         <button
                           key={value}
                           type="button"
-                          onClick={() => setTone(value)}
+                          onClick={() => handleSetTone(value)}
                           className={`flex flex-col items-center justify-center p-3 sm:p-4 border-2 rounded-xl transition-all ${
                             active
                               ? 'border-primary bg-primary/5 text-primary'
@@ -143,7 +163,7 @@ const SignupStep2Page = ({ onNext, onBack }: { onNext: () => void; onBack: () =>
                     min={1}
                     max={5}
                     value={complexity}
-                    onChange={(e) => setComplexity(Number(e.target.value))}
+                    onChange={handleComplexityChange}
                     className="w-full h-2 bg-primary/20 rounded-lg appearance-none cursor-pointer accent-primary"
                   />
                   <div className="flex justify-between text-[10px] text-slate-500 uppercase font-bold px-1">
@@ -160,7 +180,7 @@ const SignupStep2Page = ({ onNext, onBack }: { onNext: () => void; onBack: () =>
                   <div className="relative">
                     <select
                       value={voice}
-                      onChange={(e) => setVoice(e.target.value as SignupPayload['voiceModel'])}
+                      onChange={handleVoiceChange}
                       className="w-full rounded-lg border border-primary/20 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-primary focus:border-primary h-12 px-4 appearance-none outline-none transition-all text-sm"
                     >
                       {VOICE_OPTIONS.map(({ label, value: v }) => (
@@ -201,7 +221,7 @@ const SignupStep2Page = ({ onNext, onBack }: { onNext: () => void; onBack: () =>
                         type="checkbox"
                         className="sr-only peer"
                         checked={responseAlerts}
-                        onChange={() => setResponseAlerts((v) => !v)}
+                        onChange={handleResponseAlertsChange}
                       />
                       <div className="w-11 h-6 bg-slate-200 rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
                     </label>
@@ -222,7 +242,7 @@ const SignupStep2Page = ({ onNext, onBack }: { onNext: () => void; onBack: () =>
                         type="checkbox"
                         className="sr-only peer"
                         checked={dailyBriefing}
-                        onChange={() => setDailyBriefing((v) => !v)}
+                        onChange={handleDailyBriefingChange}
                       />
                       <div className="w-11 h-6 bg-slate-200 rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary" />
                     </label>

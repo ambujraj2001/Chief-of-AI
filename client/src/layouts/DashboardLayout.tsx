@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Outlet } from 'react-router-dom';
 import Sidebar from '../pages/dashboard/Sidebar';
 
@@ -6,7 +6,10 @@ const DashboardLayout = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(window.innerWidth < 1024);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Close mobile menu on resize if screen becomes large
+  const handleToggleSidebar = useCallback(() => setSidebarCollapsed((p) => !p), []);
+  const handleCloseMobileMenu = useCallback(() => setIsMobileMenuOpen(false), []);
+  const handleOpenMobileMenu = useCallback(() => setIsMobileMenuOpen(true), []);
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
@@ -23,7 +26,7 @@ const DashboardLayout = () => {
       {isMobileMenuOpen && (
         <div 
           className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-40 lg:hidden"
-          onClick={() => setIsMobileMenuOpen(false)}
+          onClick={handleCloseMobileMenu}
         />
       )}
 
@@ -34,9 +37,9 @@ const DashboardLayout = () => {
       `}>
         <Sidebar 
           collapsed={sidebarCollapsed} 
-          onToggle={() => setSidebarCollapsed((p) => !p)} 
+          onToggle={handleToggleSidebar} 
           isMobile={true}
-          onCloseMobile={() => setIsMobileMenuOpen(false)}
+          onCloseMobile={handleCloseMobileMenu}
         />
       </div>
 
@@ -45,7 +48,7 @@ const DashboardLayout = () => {
         {/* Mobile Header with Burger Menu */}
         <header className="lg:hidden flex items-center h-14 px-4 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shrink-0">
           <button
-            onClick={() => setIsMobileMenuOpen(true)}
+            onClick={handleOpenMobileMenu}
             className="size-9 flex items-center justify-center rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
           >
             <span className="material-symbols-outlined">menu</span>

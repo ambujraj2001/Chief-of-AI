@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import SignupStep1Page from './SignupStep1Page';
 import SignupStep2Page from './SignupStep2Page';
 import SignupStep3Page from './SignupStep3Page';
@@ -6,8 +6,8 @@ import SignupStep3Page from './SignupStep3Page';
 const SignupPage = () => {
   const [step, setStep] = useState(1);
 
-  const nextStep = () => setStep((s) => s + 1);
-  const prevStep = () => setStep((s) => s - 1);
+  const nextStep = useCallback(() => setStep((s) => s + 1), []);
+  const prevStep = useCallback(() => setStep((s) => s - 1), []);
 
   return (
     <>

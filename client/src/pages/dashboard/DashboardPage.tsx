@@ -1,24 +1,24 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { message } from 'antd';
 import ChatArea from './ChatArea';
 
 const DashboardPage = () => {
   const [darkMode, setDarkMode] = useState(false);
 
-  const toggleDark = () => {
+  const toggleDark = useCallback(() => {
     setDarkMode((prev) => {
       const next = !prev;
       document.documentElement.classList.toggle('dark', next);
       return next;
     });
-  };
+  }, []);
 
-  const handleShare = () => {
+  const handleShare = useCallback(() => {
     const url = window.location.href;
     navigator.clipboard.writeText(url).then(() => {
       message.success('Link copied to clipboard!');
     });
-  };
+  }, []);
 
   return (
     <>

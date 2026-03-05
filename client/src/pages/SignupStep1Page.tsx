@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AppHeader from '../components/AppHeader';
 import ProgressBar from '../components/ProgressBar';
@@ -9,15 +9,17 @@ const SignupStep1Page = ({ onNext }: { onNext: () => void }) => {
   const { step1, setStep1 } = useSignup();
   const [form, setForm] = useState(step1);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+  }, []);
 
-  const handleNext = (e: React.FormEvent) => {
+  const handleNext = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     setStep1(form);
     onNext();
-  };
+  }, [form, setStep1, onNext]);
+
+  const handleGoToLogin = useCallback(() => navigate('/login'), [navigate]);
 
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display antialiased">
@@ -110,7 +112,7 @@ const SignupStep1Page = ({ onNext }: { onNext: () => void }) => {
               <p className="text-slate-500 dark:text-slate-400 text-sm">
                 Already have an account?{' '}
                 <button
-                  onClick={() => navigate('/login')}
+                  onClick={handleGoToLogin}
                   className="text-primary font-semibold hover:underline bg-transparent border-none cursor-pointer"
                 >
                   Log in

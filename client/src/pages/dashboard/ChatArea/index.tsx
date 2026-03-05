@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { type RootState } from '../../../store';
 import { message } from 'antd';
@@ -28,15 +28,15 @@ const ChatArea = () => {
   const chatEndRef = useRef<HTMLDivElement>(null);
 
   const userName = user.fullName;
-  const accessCode = user.accessCode || localStorage.getItem('accessCode') || '';
+  const accessCode = useMemo(() => user.accessCode || localStorage.getItem('accessCode') || '', [user.accessCode]);
 
-  const avatarUrl = `url('https://ui-avatars.com/api/?name=${encodeURIComponent(userName || 'User')}&background=137fec&color=fff&size=64')`;
+  const avatarUrl = useMemo(() => `url('https://ui-avatars.com/api/?name=${encodeURIComponent(userName || 'User')}&background=137fec&color=fff&size=64')`, [userName]);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isTyping]);
 
-  const handleSend = async () => {
+  const handleSend = useCallback(async () => {
     const trimmed = inputValue.trim();
     if (!trimmed) return;
 
@@ -60,7 +60,15 @@ const ChatArea = () => {
     } finally {
       setIsTyping(false);
     }
-  };
+  }, [inputValue, accessCode]);
+
+  const handleInputChange = useCallback((value: string) => {
+    setInputValue(value);
+  }, []);
+
+  const handleSetIsListening = useCallback((value: boolean) => {
+    setIsListening(value);
+  }, []);
 
   return (
     <div className="flex flex-col h-full overflow-hidden bg-white dark:bg-background-dark">
@@ -86,10 +94,10 @@ const ChatArea = () => {
       {/* Input Area */}
       <ChatInput 
         inputValue={inputValue}
-        onInputChange={setInputValue}
+        onInputChange={handleInputChange}
         onSend={handleSend}
         isListening={isListening}
-        setIsListening={setIsListening}
+        setIsListening={handleSetIsListening}
         disabled={isTyping}
       />
     </div>

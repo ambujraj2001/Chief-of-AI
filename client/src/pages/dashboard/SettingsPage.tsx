@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { type RootState } from '../../store';
 import { setUser } from '../../store/userSlice';
 import { apiUpdateProfile } from '../../services/api';
-import { message, Slider, Switch, Radio } from 'antd';
+import { message, Slider, Switch, Radio, type RadioChangeEvent } from 'antd';
 
 const SettingsPage = () => {
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ const SettingsPage = () => {
     });
   }, [user]);
 
-  const handleSave = async () => {
+  const handleSave = useCallback(async () => {
     setLoading(true);
     try {
       const accessCode = localStorage.getItem('accessCode') || '';
@@ -51,7 +51,39 @@ const SettingsPage = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [formData, dispatch]);
+
+  const handleNameChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((prev) => ({ ...prev, fullName: e.target.value }));
+  }, []);
+
+  const handleEmailChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((prev) => ({ ...prev, email: e.target.value }));
+  }, []);
+
+  const handleRoleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((prev) => ({ ...prev, role: e.target.value }));
+  }, []);
+
+  const handleToneChange = useCallback((tone: 'professional' | 'casual' | 'technical' | 'concise') => {
+    setFormData((prev) => ({ ...prev, interactionTone: tone }));
+  }, []);
+
+  const handleComplexityChange = useCallback((val: number) => {
+    setFormData((prev) => ({ ...prev, responseComplexity: val }));
+  }, []);
+
+  const handleAlertsChange = useCallback((checked: boolean) => {
+    setFormData((prev) => ({ ...prev, notifyResponseAlerts: checked }));
+  }, []);
+
+  const handleBriefingChange = useCallback((checked: boolean) => {
+    setFormData((prev) => ({ ...prev, notifyDailyBriefing: checked }));
+  }, []);
+
+  const handleVoiceChange = useCallback((e: RadioChangeEvent) => {
+    setFormData((prev) => ({ ...prev, voiceModel: e.target.value as 'standard' | 'atlas' }));
+  }, []);
 
   return (
     <div className="flex-1 overflow-y-auto bg-slate-50 dark:bg-slate-900/20">
@@ -90,7 +122,7 @@ const SettingsPage = () => {
                     className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-medium text-sm sm:text-base"
                     type="text"
                     value={formData.fullName}
-                    onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                    onChange={handleNameChange}
                   />
                 </div>
                 <div className="space-y-1">
@@ -99,7 +131,7 @@ const SettingsPage = () => {
                     className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-medium text-sm sm:text-base"
                     type="email"
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    onChange={handleEmailChange}
                   />
                 </div>
                 <div className="space-y-1 sm:col-span-2">
@@ -108,7 +140,7 @@ const SettingsPage = () => {
                     className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-medium text-sm sm:text-base"
                     type="text"
                     value={formData.role}
-                    onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                    onChange={handleRoleChange}
                     placeholder="e.g. Chief of AI Operations"
                   />
                 </div>
@@ -129,7 +161,7 @@ const SettingsPage = () => {
                   {['professional', 'casual', 'technical', 'concise'].map((tone) => (
                     <button
                       key={tone}
-                      onClick={() => setFormData({ ...formData, interactionTone: tone as 'professional' | 'casual' | 'technical' | 'concise' })}
+                      onClick={() => handleToneChange(tone as 'professional' | 'casual' | 'technical' | 'concise')}
                       className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all ${
                         formData.interactionTone === tone
                           ? 'bg-primary text-white shadow-md'
@@ -156,7 +188,7 @@ const SettingsPage = () => {
                     min={1}
                     max={5}
                     value={formData.responseComplexity}
-                    onChange={(val) => setFormData({ ...formData, responseComplexity: val })}
+                    onChange={handleComplexityChange}
                     tooltip={{ open: false }}
                   />
                 </div>
@@ -184,7 +216,7 @@ const SettingsPage = () => {
                   <Switch
                     size="small"
                     checked={formData.notifyResponseAlerts}
-                    onChange={(checked) => setFormData({ ...formData, notifyResponseAlerts: checked })}
+                    onChange={handleAlertsChange}
                   />
                 </div>
                 <div className="flex items-center justify-between p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm transition-all hover:shadow-md">
@@ -195,7 +227,7 @@ const SettingsPage = () => {
                   <Switch
                     size="small"
                     checked={formData.notifyDailyBriefing}
-                    onChange={(checked) => setFormData({ ...formData, notifyDailyBriefing: checked })}
+                    onChange={handleBriefingChange}
                   />
                 </div>
               </div>
@@ -211,7 +243,7 @@ const SettingsPage = () => {
                   <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Voice Model</label>
                   <Radio.Group
                     value={formData.voiceModel}
-                    onChange={(e) => setFormData({ ...formData, voiceModel: e.target.value })}
+                    onChange={handleVoiceChange}
                     className="w-full flex flex-col gap-2"
                   >
                     <Radio.Button value="standard" className="text-xs sm:text-sm rounded-lg h-10 flex items-center bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-800">Nova (Standard)</Radio.Button>

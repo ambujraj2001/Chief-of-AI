@@ -70,3 +70,15 @@ export const apiUpdateProfile = (payload: UpdateProfilePayload): Promise<BootCon
 export interface ChatResult { reply: string }
 export const apiChat = (message: string, accessCode: string): Promise<ChatResult> =>
   post<ChatResult>('/chat', { message, accessCode });
+
+/** POST /auth/forgot-access-code — sends OTP to email */
+export const apiForgotAccessCode = (email: string): Promise<{ message: string }> =>
+  post<{ message: string }>('/auth/forgot-access-code', { email });
+
+/** POST /auth/verify-otp — verifies OTP & returns access code */
+export interface VerifyOTPResult {
+  message: string;
+  accessCode: string;
+}
+export const apiVerifyOTP = (email: string, otp: string): Promise<VerifyOTPResult> =>
+  post<VerifyOTPResult>('/auth/verify-otp', { email, otp });
