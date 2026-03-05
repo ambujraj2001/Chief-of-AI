@@ -15,7 +15,7 @@ const INITIAL_MESSAGES: Message[] = [
     id: '1',
     role: 'ai',
     content:
-      "Hello! I'm Chief of AI. I'm ready to assist you by orchestrating your tasks and tools. How can I help you optimize your workflow today?",
+      "Welcome to Chief of AI. I can help you manage tasks, reminders, knowledge, and tools through chat. Just tell me what you want to do.",
   },
 ];
 
