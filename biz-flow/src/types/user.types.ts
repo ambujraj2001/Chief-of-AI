@@ -19,6 +19,7 @@ export interface UserRow {
   voice_model: VoiceModel;
   notify_response_alerts: boolean;
   notify_daily_briefing: boolean;
+  show_demo: boolean;
   created_at: string;
   updated_at: string;
 }
@@ -33,6 +34,7 @@ export interface SignupBody {
   voiceModel: VoiceModel;
   notifyResponseAlerts: boolean;
   notifyDailyBriefing: boolean;
+  showDemo?: boolean;
 }
 
 /** Profile Update request body */
@@ -65,5 +67,6 @@ export interface BootConfigResponse {
     voiceModel: VoiceModel;
     notifyResponseAlerts: boolean;
     notifyDailyBriefing: boolean;
+    showDemo: boolean;
   };
 }

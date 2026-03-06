@@ -121,6 +121,7 @@ export const bootconfig = async (
         voiceModel: user.voice_model,
         notifyResponseAlerts: user.notify_response_alerts,
         notifyDailyBriefing: user.notify_daily_briefing,
+        showDemo: user.show_demo,
       },
     });
   } catch (err) {
@@ -155,9 +156,10 @@ export const updateProfile = async (
       preferences: {
         interactionTone: user.interaction_tone,
         responseComplexity: user.response_complexity,
-        voice_model: user.voice_model,
-        notify_response_alerts: user.notify_response_alerts,
-        notify_daily_briefing: user.notify_daily_briefing,
+        voiceModel: user.voice_model,
+        notifyResponseAlerts: user.notify_response_alerts,
+        notifyDailyBriefing: user.notify_daily_briefing,
+        showDemo: user.show_demo,
       },
     });
   } catch (err) {

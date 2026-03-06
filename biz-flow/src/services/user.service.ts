@@ -34,6 +34,7 @@ export const createUser = async (
       voice_model: voiceModel,
       notify_response_alerts: notifyResponseAlerts,
       notify_daily_briefing: notifyDailyBriefing,
+      show_demo: false, // Default to false (meaning demo NOT yet shown)
     })
     .select("id, access_code")
     .single();
@@ -54,6 +55,7 @@ export const createUser = async (
           voice_model: voiceModel,
           notify_response_alerts: notifyResponseAlerts,
           notify_daily_briefing: notifyDailyBriefing,
+          show_demo: false,
         })
         .select("id, access_code")
         .single();
@@ -109,6 +111,8 @@ export const updateUserByAccessCode = async (
     payload.notify_response_alerts = updates.notifyResponseAlerts;
   if (updates.notifyDailyBriefing !== undefined)
     payload.notify_daily_briefing = updates.notifyDailyBriefing;
+  if (updates.showDemo !== undefined) 
+    payload.show_demo = updates.showDemo;
 
   const { data, error } = await supabase
     .from("users")

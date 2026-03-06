@@ -111,7 +111,7 @@ const Sidebar = ({
 
       {/* ── Nav ───────────────────────────────────────── */}
       <div className="flex flex-col gap-1 grow px-2 py-3 overflow-y-auto">
-        <nav className="flex flex-col gap-1">
+        <nav id="sidebar-main-nav" className="flex flex-col gap-1">
           {NAV_ITEMS.map((item) => {
             const isActive = activeItem === item.label;
             const isCollapsedStyle = collapsed && !isMobile;
@@ -146,7 +146,7 @@ const Sidebar = ({
 
       {/* ── Bottom Nav ────────────────────────────────── */}
       <div className="px-2 py-4 border-t border-slate-200 dark:border-slate-800">
-        <nav className="flex flex-col gap-1">
+        <nav id="sidebar-bottom-nav" className="flex flex-col gap-1">
           {BOTTOM_NAV_ITEMS.map((item) => {
             const isActive = activeItem === item.label;
             const isCollapsedStyle = collapsed && !isMobile;

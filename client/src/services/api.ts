@@ -29,11 +29,13 @@ export interface BootConfigResult {
     voiceModel: string;
     notifyResponseAlerts: boolean;
     notifyDailyBriefing: boolean;
+    showDemo: boolean;
   };
 }
 
 export interface UpdateProfilePayload extends Partial<SignupPayload> {
   accessCode: string;
+  showDemo?: boolean;
 }
 
 const post = async <T>(path: string, body: unknown): Promise<T> => {

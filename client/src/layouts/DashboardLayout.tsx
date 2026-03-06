@@ -5,15 +5,27 @@ import type { MenuProps } from "antd";
 import { useSelector } from "react-redux";
 import { type RootState } from "../store";
 import Sidebar from "../pages/dashboard/Sidebar";
+import Joyride, { STATUS } from "react-joyride";
+import type { Step, CallBackProps } from "react-joyride";
+import { useDispatch } from "react-redux";
+import { setUser } from "../store/userSlice";
+import { apiUpdateProfile } from "../services/api";
 
 const DashboardLayout = () => {
   const navigate = useNavigate();
-  const userName = useSelector((state: RootState) => state.user.fullName);
+  const dispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.user);
+  const userName = user.fullName;
+  const showDemo = user.showDemo;
+  const accessCode =
+    user.accessCode || localStorage.getItem("accessCode") || "";
+
   const [sidebarCollapsed, setSidebarCollapsed] = useState(
     window.innerWidth < 1024,
   );
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [logoutModalVisible, setLogoutModalVisible] = useState(false);
+  const [runTour, setRunTour] = useState(false);
 
   const handleToggleSidebar = useCallback(
     () => setSidebarCollapsed((p) => !p),
@@ -38,6 +50,71 @@ const DashboardLayout = () => {
       return next;
     });
   }, []);
+
+  const tourSteps: Step[] = [
+    {
+      target: "#sidebar-main-nav",
+      content:
+        "Welcome! Here are your specialized modules. You can manage Memories, Tasks, Files, and more from this sidebar.",
+      placement: "right",
+      disableBeacon: true,
+      disableScrolling: true,
+    },
+    {
+      target: "#chat-input",
+      content:
+        "This is your AI Command Center. Type or speak commands to instantly control any of the modules or documents.",
+      placement: "top",
+    },
+    {
+      target: "#send-button",
+      content:
+        "Click here or press Enter to send your commands to the AI assistant.",
+      placement: "left",
+    },
+    {
+      target: "#sidebar-bottom-nav",
+      content:
+        "Configure your personal preferences and connect external tools in Settings and Integrations.",
+      placement: "top",
+      disableScrolling: true,
+    },
+    {
+      target: "#theme-toggle-btn",
+      content:
+        "Switch between high-contrast dark mode and clean light mode to suit your workspace.",
+      placement: "bottom",
+    },
+  ];
+
+  const handleJoyrideCallback = useCallback(
+    async (data: CallBackProps) => {
+      const { status } = data;
+      if (([STATUS.FINISHED, STATUS.SKIPPED] as string[]).includes(status)) {
+        setRunTour(false);
+        try {
+          const response = await apiUpdateProfile({
+            accessCode,
+            showDemo: true, // Marking as done
+          });
+          dispatch(setUser(response));
+        } catch (err) {
+          console.error("Failed to update tour status:", err);
+        }
+      }
+    },
+    [accessCode, dispatch],
+  );
+
+  useEffect(() => {
+    if (user.fullName && showDemo === false) {
+      console.log("Tour trigger conditions met. Starting in 2s...");
+      const timer = setTimeout(() => {
+        setRunTour(true);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [user.fullName, showDemo]);
 
   const handleShare = useCallback(() => {
     const url = window.location.href;
@@ -181,6 +258,7 @@ const DashboardLayout = () => {
 
             {/* Dark mode toggle */}
             <button
+              id="theme-toggle-btn"
               onClick={toggleDark}
               className="size-8 sm:size-9 flex items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
               title="Toggle dark mode"
@@ -211,6 +289,20 @@ const DashboardLayout = () => {
 
         <Outlet context={{ sidebarCollapsed, setSidebarCollapsed }} />
       </main>
+      <Joyride
+        steps={tourSteps}
+        run={runTour}
+        continuous
+        showProgress
+        showSkipButton
+        callback={handleJoyrideCallback}
+        styles={{
+          options: {
+            primaryColor: "#3c83f6",
+            zIndex: 1000,
+          },
+        }}
+      />
     </div>
   );
 };

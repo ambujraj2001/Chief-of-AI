@@ -34,7 +34,7 @@ export const useAuthBootstrap = () => {
       isBooting.current = true;
       try {
         const result = await apiBootConfig(storedCode);
-        dispatch(setUser(result));
+        dispatch(setUser({ ...result, accessCode: storedCode }));
         sessionStorage.setItem("chief_user", JSON.stringify(result));
 
         const publicPaths = ["/", "/login", "/signup"];

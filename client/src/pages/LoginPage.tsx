@@ -2,9 +2,12 @@ import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import AppHeader from "../components/AppHeader";
 import { apiBootConfig } from "../services/api";
+import { useDispatch } from "react-redux";
+import { setUser } from "../store/userSlice";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [userCode, setUserCode] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -28,6 +31,9 @@ const LoginPage = () => {
 
       try {
         const result = await apiBootConfig(userCode.trim());
+        dispatch(
+          setUser({ ...result, accessCode: userCode.trim().toUpperCase() }),
+        );
         localStorage.setItem("accessCode", userCode.trim().toUpperCase());
         sessionStorage.setItem("chief_user", JSON.stringify(result));
         navigate("/dashboard");
@@ -37,7 +43,7 @@ const LoginPage = () => {
         setLoading(false);
       }
     },
-    [userCode, navigate],
+    [userCode, navigate, dispatch],
   );
 
   const handleUserCodeChange = useCallback(
