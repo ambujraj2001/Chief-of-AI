@@ -153,6 +153,7 @@ const Sidebar = ({
             return (
               <button
                 key={item.label}
+                id={`sidebar-item-${item.label.toLowerCase()}`}
                 onClick={() => handleNav(item)}
                 title={isCollapsedStyle ? item.label : undefined}
                 className={`

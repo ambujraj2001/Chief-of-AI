@@ -55,8 +55,8 @@ const DashboardLayout = () => {
     {
       target: "#sidebar-main-nav",
       content:
-        "Welcome! Here are your specialized modules. You can manage Memories, Tasks, Files, and more from this sidebar.",
-      placement: "right",
+        "Welcome! This is your intelligence hub. You can access all your specialized modules like Memories, Tasks, and Files here.",
+      placement: "top", // Changed from right to top as per request
       disableBeacon: true,
       disableScrolling: true,
     },
@@ -73,10 +73,17 @@ const DashboardLayout = () => {
       placement: "left",
     },
     {
-      target: "#sidebar-bottom-nav",
+      target: "#sidebar-item-integrations",
       content:
-        "Configure your personal preferences and connect external tools in Settings and Integrations.",
-      placement: "top",
+        "Connect your favorite tools like Google Calendar, Notion, and Slack to unify your digital workspace.",
+      placement: "right",
+      disableScrolling: true,
+    },
+    {
+      target: "#sidebar-item-settings",
+      content:
+        "Personalize your AI experience, manage your account, and configure security preferences here.",
+      placement: "right",
       disableScrolling: true,
     },
     {
