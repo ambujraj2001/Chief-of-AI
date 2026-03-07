@@ -92,3 +92,46 @@ export const deleteRoutineTool = tool(
     }),
   },
 );
+
+export const updateRoutineTool = tool(
+  async ({
+    accessCode,
+    routineId,
+    name,
+    instruction,
+    cronExpression,
+    isActive,
+  }) => {
+    try {
+      const user = await findUserByAccessCode(accessCode);
+      if (!user) return `Error: Invalid access code.`;
+
+      const updates: any = {};
+      if (name) updates.name = name;
+      if (instruction) updates.instruction = instruction;
+      if (cronExpression) updates.cron_expression = cronExpression;
+      if (isActive !== undefined) updates.is_active = isActive;
+
+      const routine = await updateRoutine(routineId, updates);
+      return `Successfully updated routine: "${routine.name}".`;
+    } catch (err: any) {
+      return `Failed to update routine: ${err.message}`;
+    }
+  },
+  {
+    name: "update_routine",
+    description:
+      "Updates an existing AI routine. Provide the routineId and any fields you want to change.",
+    schema: z.object({
+      accessCode: z.string().describe("System-injected access code"),
+      routineId: z.string().describe("The UUID of the routine to update"),
+      name: z.string().optional().describe("New name for the routine"),
+      instruction: z.string().optional().describe("New AI instruction"),
+      cronExpression: z.string().optional().describe("New cron schedule"),
+      isActive: z
+        .boolean()
+        .optional()
+        .describe("Enable or disable the routine"),
+    }),
+  },
+);

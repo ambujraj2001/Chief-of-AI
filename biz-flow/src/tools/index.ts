@@ -55,6 +55,7 @@ import {
   createRoutineTool,
   listRoutinesTool,
   deleteRoutineTool,
+  updateRoutineTool,
 } from "./routines";
 
 export const tools = [
@@ -98,6 +99,7 @@ export const tools = [
   createRoutineTool,
   listRoutinesTool,
   deleteRoutineTool,
+  updateRoutineTool,
 ];
 
 export type AppTool = (typeof tools)[number];
