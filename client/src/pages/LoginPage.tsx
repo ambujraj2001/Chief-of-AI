@@ -9,6 +9,8 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [userCode, setUserCode] = useState("");
+  const [twoFactorCode, setTwoFactorCode] = useState("");
+  const [step, setStep] = useState<1 | 2>(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [darkMode, setDarkMode] = useState(false);
@@ -24,13 +26,28 @@ const LoginPage = () => {
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
       e.preventDefault();
-      if (!userCode.trim()) return;
+      if (step === 1 && !userCode.trim()) return;
+      if (step === 2 && !twoFactorCode.trim()) return;
 
       setLoading(true);
       setError(null);
 
       try {
-        const result = await apiBootConfig(userCode.trim());
+        const result = await apiBootConfig(
+          userCode.trim(),
+          step === 2 ? twoFactorCode.trim() : undefined,
+        );
+
+        if (result.twoFactorRequired) {
+          setStep(2);
+          setLoading(false);
+          return;
+        }
+
+        if (result.sessionToken) {
+          localStorage.setItem("2fa_session", result.sessionToken);
+        }
+
         dispatch(
           setUser({ ...result, accessCode: userCode.trim().toUpperCase() }),
         );
@@ -43,12 +60,22 @@ const LoginPage = () => {
         setLoading(false);
       }
     },
-    [userCode, navigate, dispatch],
+    [userCode, twoFactorCode, step, navigate, dispatch],
   );
 
   const handleUserCodeChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setUserCode(e.target.value.toUpperCase());
+      setError(null);
+    },
+    [],
+  );
+
+  const handleTwoFactorChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      // Remove any spaces or non-digit characters
+      const val = e.target.value.replace(/[^0-9]/g, "");
+      setTwoFactorCode(val);
       setError(null);
     },
     [],
@@ -82,45 +109,81 @@ const LoginPage = () => {
             {/* Login Card */}
             <div className="bg-white dark:bg-slate-900/50 p-6 sm:p-8 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm mx-2 sm:mx-0">
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-2">
-                  <label
-                    htmlFor="user-code"
-                    className="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1"
-                  >
-                    User Code
-                  </label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
-                      <span className="material-symbols-outlined text-[20px]">
-                        key
-                      </span>
+                {step === 1 ? (
+                  <div className="space-y-2">
+                    <label
+                      htmlFor="user-code"
+                      className="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1"
+                    >
+                      User Code
+                    </label>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                        <span className="material-symbols-outlined text-[20px]">
+                          key
+                        </span>
+                      </div>
+                      <input
+                        id="user-code"
+                        name="user-code"
+                        type="text"
+                        value={userCode}
+                        onChange={handleUserCodeChange}
+                        placeholder="AI-XXXX-XXXX"
+                        className="block w-full pl-11 pr-4 py-4 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500 font-mono tracking-widest uppercase outline-none"
+                        required
+                      />
                     </div>
-                    <input
-                      id="user-code"
-                      name="user-code"
-                      type="text"
-                      value={userCode}
-                      onChange={handleUserCodeChange}
-                      placeholder="AI-XXXX-XXXX"
-                      className="block w-full pl-11 pr-4 py-4 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500 font-mono tracking-widest uppercase outline-none"
-                      required
-                    />
                   </div>
-
-                  {/* Error message */}
-                  {error && (
-                    <div className="flex items-center gap-2 text-red-600 dark:text-red-400 text-sm mt-1">
-                      <span className="material-symbols-outlined text-[16px]">
-                        error
-                      </span>
-                      <span>{error}</span>
+                ) : (
+                  <div className="space-y-2">
+                    <label
+                      htmlFor="2fa-code"
+                      className="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1"
+                    >
+                      Authenticator Code
+                    </label>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                        <span className="material-symbols-outlined text-[20px]">
+                          lock
+                        </span>
+                      </div>
+                      <input
+                        id="2fa-code"
+                        name="2fa-code"
+                        type="text"
+                        value={twoFactorCode}
+                        onChange={handleTwoFactorChange}
+                        placeholder="6-digit code"
+                        maxLength={6}
+                        className="block w-full pl-11 pr-4 py-4 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500 font-mono tracking-[0.5em] text-center outline-none"
+                        required
+                        autoFocus
+                      />
                     </div>
-                  )}
-                </div>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 text-center mt-2">
+                      Enter the 6-digit code from your authenticator app
+                    </p>
+                  </div>
+                )}
+
+                {/* Error message */}
+                {error && (
+                  <div className="flex items-center gap-2 text-red-600 dark:text-red-400 text-sm mt-1">
+                    <span className="material-symbols-outlined text-[16px]">
+                      error
+                    </span>
+                    <span>{error}</span>
+                  </div>
+                )}
 
                 <button
                   type="submit"
-                  disabled={loading || !userCode.trim()}
+                  disabled={
+                    loading ||
+                    (step === 1 ? !userCode.trim() : !twoFactorCode.trim())
+                  }
                   className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 px-6 rounded-lg transition-colors flex items-center justify-center gap-2 group disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {loading ? (
@@ -128,26 +191,43 @@ const LoginPage = () => {
                       <span className="material-symbols-outlined animate-spin text-[18px]">
                         progress_activity
                       </span>
-                      <span>Logging you in...</span>
+                      <span>Verifying...</span>
                     </>
                   ) : (
                     <>
-                      <span>Login to Dashboard</span>
+                      <span>
+                        {step === 1
+                          ? "Login to Dashboard"
+                          : "Verify & Continue"}
+                      </span>
                       <span className="material-symbols-outlined text-[18px]">
                         arrow_forward
                       </span>
                     </>
                   )}
                 </button>
-                <div className="text-center mt-4">
-                  <button
-                    type="button"
-                    onClick={handleForgotAccessCode}
-                    className="text-xs text-slate-500 dark:text-slate-400 hover:text-primary transition-colors decoration-2 underline-offset-4 hover:underline bg-transparent border-none cursor-pointer"
-                  >
-                    Forgot access code?
-                  </button>
-                </div>
+                {step === 1 && (
+                  <div className="text-center mt-4">
+                    <button
+                      type="button"
+                      onClick={handleForgotAccessCode}
+                      className="text-xs text-slate-500 dark:text-slate-400 hover:text-primary transition-colors decoration-2 underline-offset-4 hover:underline bg-transparent border-none cursor-pointer"
+                    >
+                      Forgot access code?
+                    </button>
+                  </div>
+                )}
+                {step === 2 && (
+                  <div className="text-center mt-4">
+                    <button
+                      type="button"
+                      onClick={() => setStep(1)}
+                      className="text-xs text-slate-500 dark:text-slate-400 hover:text-primary transition-colors decoration-2 underline-offset-4 hover:underline bg-transparent border-none cursor-pointer"
+                    >
+                      Return to code entry
+                    </button>
+                  </div>
+                )}
               </form>
 
               <div className="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800 text-center">

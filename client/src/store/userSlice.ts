@@ -10,6 +10,9 @@ interface UserState {
   responseComplexity: number;
   voiceModel: string;
   showDemo: boolean;
+  twoFactorEnabled: boolean;
+  notifyResponseAlerts: boolean;
+  notifyDailyBriefing: boolean;
 }
 
 const initialState: UserState = {
@@ -21,22 +24,37 @@ const initialState: UserState = {
   responseComplexity: 3,
   voiceModel: "atlas",
   showDemo: true,
+  twoFactorEnabled: false,
+  notifyResponseAlerts: true,
+  notifyDailyBriefing: true,
 };
 
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setUser(state, action: PayloadAction<BootConfigResult & { accessCode?: string }>) {
+    setUser(
+      state,
+      action: PayloadAction<BootConfigResult & { accessCode?: string }>,
+    ) {
       const { user, preferences, accessCode } = action.payload;
-      return {
-        ...state,
-        fullName: user.fullName,
-        email: user.email,
-        role: user.role,
-        accessCode: accessCode || state.accessCode,
-        ...preferences,
-      };
+      if (user) {
+        state.fullName = user.fullName;
+        state.email = user.email;
+        state.role = user.role;
+      }
+      if (preferences) {
+        state.interactionTone = preferences.interactionTone;
+        state.responseComplexity = preferences.responseComplexity;
+        state.voiceModel = preferences.voiceModel;
+        state.showDemo = preferences.showDemo;
+        state.twoFactorEnabled = preferences.twoFactorEnabled;
+        state.notifyResponseAlerts = preferences.notifyResponseAlerts;
+        state.notifyDailyBriefing = preferences.notifyDailyBriefing;
+      }
+      if (accessCode) {
+        state.accessCode = accessCode;
+      }
     },
     clearUser() {
       return initialState;

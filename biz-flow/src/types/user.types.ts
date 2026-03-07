@@ -20,6 +20,8 @@ export interface UserRow {
   notify_response_alerts: boolean;
   notify_daily_briefing: boolean;
   show_demo: boolean;
+  two_factor_enabled: boolean;
+  two_factor_secret: string | null;
   created_at: string;
   updated_at: string;
 }
@@ -35,16 +37,22 @@ export interface SignupBody {
   notifyResponseAlerts: boolean;
   notifyDailyBriefing: boolean;
   showDemo?: boolean;
+  twoFactorSecret?: string;
+  twoFactorCode?: string;
 }
 
 /** Profile Update request body */
 export interface UpdateProfileBody extends Partial<SignupBody> {
   accessCode: string;
+  twoFactorEnabled?: boolean;
+  twoFactorSecret?: string;
 }
 
 /** BootConfig request body */
 export interface BootConfigBody {
   accessCode: string;
+  twoFactorCode?: string;
+  sessionToken?: string;
 }
 
 /** Signup response */
@@ -55,18 +63,21 @@ export interface SignupResponse {
 
 /** BootConfig response */
 export interface BootConfigResponse {
-  user: {
+  user?: {
     id: string;
     fullName: string;
     email: string;
     role: string;
   };
-  preferences: {
+  preferences?: {
     interactionTone: InteractionTone;
     responseComplexity: number;
     voiceModel: VoiceModel;
     notifyResponseAlerts: boolean;
     notifyDailyBriefing: boolean;
     showDemo: boolean;
+    twoFactorEnabled: boolean;
   };
+  twoFactorRequired?: boolean;
+  sessionToken?: string;
 }

@@ -14,6 +14,8 @@ import { log } from "../utils/logger";
 import { generateOTP } from "../utils/otp";
 import { redis } from "../config/redis";
 import { sendOTP } from "../services/mail.service";
+import { authenticator } from "otplib";
+import QRCode from "qrcode";
 
 // ─── POST /auth/signup ──────────────────────────────────────────────────────
 
@@ -32,6 +34,8 @@ export const signup = async (
       voiceModel,
       notifyResponseAlerts,
       notifyDailyBriefing,
+      twoFactorSecret,
+      twoFactorCode,
     } = req.body;
 
     // ── Basic validation ─────────────────────────────────────────────────────
@@ -42,6 +46,23 @@ export const signup = async (
     if (!email?.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       res.status(400).json({ error: "A valid email is required" });
       return;
+    }
+
+    // ── 2FA Validation for Compulsory Signup ──────────────────────────────────
+    if (twoFactorSecret) {
+      if (!twoFactorCode) {
+        res.status(400).json({ error: "2FA verification code is required" });
+        return;
+      }
+      const isValid = (authenticator.verify as any)({
+        token: twoFactorCode.replace(/\s+/g, ""),
+        secret: twoFactorSecret,
+        window: 1,
+      });
+      if (!isValid) {
+        res.status(400).json({ error: "Invalid 2FA verification code" });
+        return;
+      }
     }
     const validTones = ["professional", "casual", "technical", "concise"];
     if (!validTones.includes(interactionTone)) {
@@ -87,7 +108,7 @@ export const bootconfig = async (
   next: NextFunction,
 ): Promise<void> => {
   try {
-    const { accessCode } = req.body;
+    const { accessCode, twoFactorCode, sessionToken } = req.body;
 
     if (!accessCode?.trim()) {
       res.status(400).json({ error: "accessCode is required" });
@@ -100,6 +121,49 @@ export const bootconfig = async (
       log({ event: "bootconfig_failed", message: "Invalid access code" });
       res.status(401).json({ error: "Invalid access code" });
       return;
+    }
+
+    // ── Check 2FA ────────────────────────────────────────────────────────────
+    let newSessionToken: string | undefined;
+
+    if (user.two_factor_enabled) {
+      let isVerified = false;
+
+      // 1. Check if we have a valid session token in Redis
+      if (sessionToken) {
+        const storedToken = await redis.get(`2fa_session:${user.id}`);
+        if (storedToken === sessionToken) {
+          isVerified = true;
+        }
+      }
+
+      // 2. If not verified by session token, check the TOTP code
+      if (!isVerified) {
+        if (!twoFactorCode) {
+          res.status(200).json({
+            twoFactorRequired: true,
+            message: "Authenticator code required",
+          });
+          return;
+        }
+
+        const cleanToken = (twoFactorCode || "").replace(/\s+/g, "");
+        const isValid = (authenticator.verify as any)({
+          token: cleanToken,
+          secret: user.two_factor_secret || "",
+          window: 1,
+        });
+
+        if (!isValid) {
+          res.status(401).json({ error: "Invalid authenticator code" });
+          return;
+        }
+
+        // 3. Success! Generate a new session sessionToken
+        newSessionToken = crypto.randomUUID();
+        // Store for 24 hours
+        await redis.set(`2fa_session:${user.id}`, newSessionToken, { ex: 86400 });
+      }
     }
 
     log({
@@ -122,7 +186,9 @@ export const bootconfig = async (
         notifyResponseAlerts: user.notify_response_alerts,
         notifyDailyBriefing: user.notify_daily_briefing,
         showDemo: user.show_demo,
+        twoFactorEnabled: user.two_factor_enabled,
       },
+      sessionToken: newSessionToken,
     });
   } catch (err) {
     next(err);
@@ -257,6 +323,108 @@ export const verifyOTP = async (
       message: "OTP verified successfully",
       accessCode: user.access_code,
     });
+  } catch (err) {
+    next(err);
+  }
+};
+
+// ─── POST /auth/2fa/generate-signup ─────────────────────────────────────────
+export const generateSignup2FA = async (
+  req: Request<object, object, { email: string }>,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    const { email } = req.body;
+
+    if (!email?.trim()) {
+      res.status(400).json({ error: "Email is required" });
+      return;
+    }
+
+    const secret = authenticator.generateSecret();
+    const otpauth = authenticator.keyuri(email, "ChiefOfAI", secret);
+    const qrCodeUrl = await QRCode.toDataURL(otpauth);
+
+    res.status(200).json({ secret, qrCodeUrl });
+  } catch (err) {
+    next(err);
+  }
+};
+
+// ─── POST /auth/2fa/generate ────────────────────────────────────────────────
+export const generate2FA = async (
+  req: Request<object, object, { accessCode: string }>,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    const { accessCode } = req.body;
+    const user = await findUserByAccessCode(accessCode);
+
+    if (!user) {
+      res.status(404).json({ error: "User not found" });
+      return;
+    }
+
+    const secret = authenticator.generateSecret();
+    // Use a clean issuer name and include the email in the label
+    const otpauth = authenticator.keyuri(user.email, "ChiefOfAI", secret);
+    const qrCodeUrl = await QRCode.toDataURL(otpauth);
+
+    res.status(200).json({ secret, qrCodeUrl });
+  } catch (err) {
+    next(err);
+  }
+};
+
+// ─── POST /auth/2fa/enable ──────────────────────────────────────────────────
+export const enable2FA = async (
+  req: Request<object, object, { accessCode: string; secret: string; code: string }>,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    const { accessCode, secret, code } = req.body;
+    const cleanToken = (code || "").replace(/\s+/g, "");
+    const cleanSecret = (secret || "").replace(/\s+/g, "");
+
+    const isValid = (authenticator.verify as any)({ 
+      token: cleanToken, 
+      secret: cleanSecret,
+      window: 1 
+    });
+    if (!isValid) {
+      res.status(400).json({ error: "Invalid verification code" });
+      return;
+    }
+
+    await updateUserByAccessCode(accessCode, {
+      twoFactorEnabled: true,
+      twoFactorSecret: secret,
+    });
+
+    res.status(200).json({ message: "2FA enabled successfully" });
+  } catch (err) {
+    next(err);
+  }
+};
+
+// ─── POST /auth/2fa/disable ──────────────────────────────────────────────────
+export const disable2FA = async (
+  req: Request<object, object, { accessCode: string }>,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    const { accessCode } = req.body;
+
+    await updateUserByAccessCode(accessCode, {
+      twoFactorEnabled: false,
+      twoFactorSecret: null,
+    });
+
+    res.status(200).json({ message: "2FA disabled successfully" });
   } catch (err) {
     next(err);
   }

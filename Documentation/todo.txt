@@ -1,0 +1,14 @@
+shared meomory - mobile recharge , maid ka scnee, rashan- group wise meomory
+custom app use by "/"
+set-up custom cron job
+call a person
+email 
+zerodha integration - get api
+custom app - splitwise type app - share app
+
+
+plug n play model
+zepto/swiggy/amazon
+zerodha integration - post api
+flight booking
+uber/ola integration - post api
