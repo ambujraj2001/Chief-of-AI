@@ -22,7 +22,7 @@ const screens = [
   {
     title: "Knowledge & File Center",
     tag: "Digital Brain",
-    img: "https://images.unsplash.com/photo-1454165833744-96e69663d7b1?auto=format&fit=crop&q=80&w=1200",
+    img: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&q=80&w=1200",
     desc: "A deeply organized system for your tasks, files, and project memory. Everything indexed for the AI.",
   },
 ];
