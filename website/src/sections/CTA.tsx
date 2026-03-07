@@ -23,6 +23,8 @@ const CTA = () => {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
                 href="https://chief-of-ai.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full sm:w-auto bg-primary hover:bg-primary-dark text-white px-10 py-5 rounded-2xl text-lg font-bold transition-all shadow-xl shadow-primary/40 hover:scale-105 active:scale-95 flex items-center justify-center gap-3"
               >
                 Start Using Chief of AI

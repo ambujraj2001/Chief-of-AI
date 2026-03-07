@@ -62,12 +62,16 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-4">
           <a
             href="https://chief-of-ai.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-sm font-semibold text-gray-700 hover:text-primary transition-colors"
           >
             Login
           </a>
           <a
             href="https://chief-of-ai.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-md shadow-primary/20 hover:scale-105 active:scale-95"
           >
             Get Started
@@ -109,6 +113,8 @@ const Navbar = () => {
           </a>
           <a
             href="https://chief-of-ai.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="w-full bg-primary text-white py-4 rounded-xl font-bold mt-2 text-center"
           >
             Get Started

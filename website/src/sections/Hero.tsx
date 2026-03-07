@@ -16,7 +16,7 @@ const Hero = () => {
         >
           <div className="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-100 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-8 animate-float">
             <Sparkles className="w-4 h-4" />
-            <span>Introducing chief.ai 2.0</span>
+            <span>Introducing Your AI Workspace </span>
           </div>
 
           <h1 className="text-5xl md:text-7xl font-extrabold text-gray-900 leading-[1.1] mb-6 max-w-4xl mx-auto tracking-tight">
@@ -35,6 +35,8 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
             <a
               href="https://chief-of-ai.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full sm:w-auto bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-xl text-lg font-bold transition-all shadow-xl shadow-primary/25 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 group"
             >
               Start Using Chief of AI
