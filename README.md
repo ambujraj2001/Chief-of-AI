@@ -8,6 +8,7 @@
 
 | Module                | Link                                                                                    |
 | :-------------------- | :-------------------------------------------------------------------------------------- |
+| **🌐 Landing Page**   | [rad-belekoy-2e127e.netlify.app](https://rad-belekoy-2e127e.netlify.app/)               |
 | **🚀 Production App** | [chief-of-ai.vercel.app](https://chief-of-ai.vercel.app/login)                          |
 | **⚡ Backend API**    | [chief-of-ai.onrender.com](https://chief-of-ai.onrender.com)                            |
 | **📊 Axiom Logs**     | [Real-time Stream](https://app.axiom.co/ambuj-amwx/stream/chief-of-ai-logs)             |
