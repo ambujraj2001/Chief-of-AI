@@ -1,6 +1,6 @@
 import cron from "node-cron";
 import { getDueReminders, updateReminder } from "./reminder.service";
-import { sendReminderEmail } from "./mail.service";
+import { sendReminderEmail, sendRoutineResultEmail } from "./mail.service";
 import {
   getActiveRoutines,
   updateRoutine,
@@ -85,10 +85,21 @@ export const initCronJobs = () => {
 
           await updateRoutine(routine.id, { last_run: now.toISOString() });
 
+          // Send Email Result
+          const userEmail = (routine as any).users?.email;
+          if (userEmail) {
+            try {
+              await sendRoutineResultEmail(userEmail, routine.name, result);
+              console.log(`[ROUTINE] Email sent to ${userEmail}`);
+            } catch (emailErr) {
+              console.error(`[ROUTINE] Failed to send email:`, emailErr);
+            }
+          }
+
           await createNotification({
             user_id: routine.user_id,
             title: `Routine Completed: ${routine.name}`,
-            message: `Your automated routine "${routine.name}" has finished. Check the history for details.`,
+            message: `Your automated routine "${routine.name}" has finished. Check your email for the full report.`,
           });
 
           console.log(`[ROUTINE] Success: ${routine.name}`);
