@@ -5,20 +5,20 @@ const AgentThinkingLog = () => {
 
   useEffect(() => {
     const timers = [
-      setTimeout(() => setStep(1), 800),
-      setTimeout(() => setStep(2), 1600),
-      setTimeout(() => setStep(3), 2400),
-      setTimeout(() => setStep(4), 3200),
+      setTimeout(() => setStep(1), 1200),
+      setTimeout(() => setStep(2), 2400),
+      setTimeout(() => setStep(3), 3600),
+      setTimeout(() => setStep(4), 4800),
     ];
     return () => timers.forEach(clearTimeout);
   }, []);
 
   const steps = [
-    { label: "Initializing Agent Intelligence", icon: "memory" },
-    { label: "Analyzing reasoning patterns", icon: "psychology" },
-    { label: "Scanning tool capabilities", icon: "terminal" },
-    { label: "Optimizing workflow strategy", icon: "account_tree" },
-    { label: "Constructing final response", icon: "auto_awesome" },
+    { label: "Parsing user intent", icon: "manage_search" },
+    { label: "Loading conversation context", icon: "forum" },
+    { label: "Retrieving memory & knowledge", icon: "memory" },
+    { label: "Evaluating available tools", icon: "terminal" },
+    { label: "Synthesizing final response", icon: "auto_awesome" },
   ];
 
   return (

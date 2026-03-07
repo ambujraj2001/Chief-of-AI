@@ -10,6 +10,7 @@ import { subtractNumbersTool } from "./subtractNumbersTool";
 import { randomJokeTool } from "./randomJokeTool";
 import { prettifyResponseTool } from "./prettifyTool";
 import { getChatHistoryTool } from "./getChatHistoryTool";
+import { webSearchTool } from "./webSearchTool";
 
 import {
   addMemoryTool,
@@ -85,6 +86,7 @@ export const tools = [
   listAppsTool,
   safetyTool,
   helpTool,
+  webSearchTool,
 ];
 
 export type AppTool = (typeof tools)[number];
