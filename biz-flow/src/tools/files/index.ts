@@ -76,7 +76,7 @@ export const deleteFileTool = tool(
   {
     name: "delete_file",
     description:
-      "Delete a specific file by its ID. Use list_files first if you do not know the ID.",
+      "Delete a specific file by its ID. IMPORTANT: NEVER call this tool immediately after list_files. After fetching the file list, you MUST first respond with a clarification asking the user which file to delete, then call this tool only after the user confirms. The 'id' parameter must be an exact UUID copied from the list_files result.",
     schema: z.object({
       accessCode: z.string().describe("The user's access code."),
       id: z.string().describe("The ID of the file to delete."),

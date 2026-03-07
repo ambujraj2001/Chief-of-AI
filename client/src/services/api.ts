@@ -397,6 +397,138 @@ export const apiDeleteFile = async (
     throw new Error(data?.error ?? `Request failed with status ${res.status}`);
   return data as { message: string };
 };
+// ─── Apps API ───────────────────────────────────────────────────────────────
+
+export interface AppSchema {
+  layout: Array<{ component: string; [key: string]: unknown }>;
+  [key: string]: unknown;
+}
+
+export interface AppEntry {
+  id: string;
+  name: string;
+  description: string | null;
+  schema: AppSchema;
+  owner_id: string;
+  join_code: string | null;
+  created_at: string;
+}
+
+export interface AppDataEntry {
+  id: string;
+  app_id: string;
+  key: string;
+  value: unknown;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface AppChatMessage {
+  id: string;
+  app_id: string;
+  user_id: string;
+  role: "user" | "ai";
+  message: string;
+  created_at: string;
+}
+
+export interface AppChatResult {
+  reply: string;
+  dataUpdates?: Array<{ key: string; value: unknown }>;
+}
+
+/** POST /apps/join — join an app using a join code */
+export interface JoinAppResult {
+  status: "success" | "already_member";
+  appId: string;
+  appName?: string;
+  message: string;
+}
+export const apiJoinApp = (
+  accessCode: string,
+  joinCode: string,
+): Promise<JoinAppResult> =>
+  post<JoinAppResult>("/apps/join", { accessCode, joinCode });
+
+/** GET /apps — list all apps the user has access to */
+export const apiGetApps = async (
+  accessCode: string,
+): Promise<{ apps: AppEntry[] }> => {
+  const res = await fetch(
+    `${BASE_URL}/apps?accessCode=${encodeURIComponent(accessCode)}`,
+    {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    },
+  );
+  const data = await res.json();
+  if (!res.ok)
+    throw new Error(data?.error ?? `Request failed with status ${res.status}`);
+  return data as { apps: AppEntry[] };
+};
+
+/** GET /apps/:appId — fetch app metadata + schema */
+export const apiGetApp = async (
+  appId: string,
+  accessCode: string,
+): Promise<{ app: AppEntry }> => {
+  const res = await fetch(
+    `${BASE_URL}/apps/${appId}?accessCode=${encodeURIComponent(accessCode)}`,
+    {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    },
+  );
+  const data = await res.json();
+  if (!res.ok)
+    throw new Error(data?.error ?? `Request failed with status ${res.status}`);
+  return data as { app: AppEntry };
+};
+
+/** GET /apps/:appId/data — fetch current app data */
+export const apiGetAppData = async (
+  appId: string,
+  accessCode: string,
+): Promise<{ data: AppDataEntry[] }> => {
+  const res = await fetch(
+    `${BASE_URL}/apps/${appId}/data?accessCode=${encodeURIComponent(accessCode)}`,
+    {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    },
+  );
+  const json = await res.json();
+  if (!res.ok)
+    throw new Error(json?.error ?? `Request failed with status ${res.status}`);
+  return json as { data: AppDataEntry[] };
+};
+
+/** GET /apps/:appId/chats — fetch user's chat history inside app */
+export const apiGetAppChats = async (
+  appId: string,
+  accessCode: string,
+): Promise<{ chats: AppChatMessage[] }> => {
+  const res = await fetch(
+    `${BASE_URL}/apps/${appId}/chats?accessCode=${encodeURIComponent(accessCode)}`,
+    {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    },
+  );
+  const data = await res.json();
+  if (!res.ok)
+    throw new Error(data?.error ?? `Request failed with status ${res.status}`);
+  return data as { chats: AppChatMessage[] };
+};
+
+/** POST /apps/:appId/chat — send message to app AI agent */
+export const apiAppChat = (
+  appId: string,
+  message: string,
+  accessCode: string,
+): Promise<AppChatResult> =>
+  post<AppChatResult>(`/apps/${appId}/chat`, { message, accessCode });
+
 /** Account Lock/Unlock */
 export const apiLockAccount = (
   email: string,

@@ -18,6 +18,7 @@ const NAV_ITEMS: NavItem[] = [
   { icon: "auto_stories", label: "Journal", path: "/dashboard/journal" },
   { icon: "school", label: "Knowledge", path: "/dashboard/knowledge" },
   { icon: "insights", label: "Activity", path: "/dashboard/activity" },
+  { icon: "apps", label: "Apps", path: "/dashboard/apps" },
 ];
 
 const BOTTOM_NAV_ITEMS: NavItem[] = [

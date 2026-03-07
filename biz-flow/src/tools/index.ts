@@ -16,18 +16,21 @@ import {
   updateMemoryTool,
   deleteMemoryTool,
   searchMemoryTool,
+  getMemoriesTool,
 } from "./memory";
 import {
   addJournalTool,
   updateJournalTool,
   deleteJournalTool,
   searchJournalTool,
+  getJournalsTool,
 } from "./journal";
 import {
   addKnowledgeTool,
   updateKnowledgeTool,
   deleteKnowledgeTool,
   searchKnowledgeTool,
+  getKnowledgesTool,
 } from "./knowledge";
 import {
   addTaskTool,
@@ -42,6 +45,7 @@ import {
   deleteReminderTool,
 } from "./reminders";
 import { listFilesTool, deleteFileTool, summarizeFileTool } from "./files";
+import { createAppTool, listAppsTool } from "./apps";
 import { safetyTool } from "./safetyTool";
 import { helpTool } from "./helpTool";
 
@@ -55,14 +59,17 @@ export const tools = [
   updateMemoryTool,
   deleteMemoryTool,
   searchMemoryTool,
+  getMemoriesTool,
   addJournalTool,
   updateJournalTool,
   deleteJournalTool,
   searchJournalTool,
+  getJournalsTool,
   addKnowledgeTool,
   updateKnowledgeTool,
   deleteKnowledgeTool,
   searchKnowledgeTool,
+  getKnowledgesTool,
   addTaskTool,
   updateTaskTool,
   getTasksTool,
@@ -74,6 +81,8 @@ export const tools = [
   listFilesTool,
   deleteFileTool,
   summarizeFileTool,
+  createAppTool,
+  listAppsTool,
   safetyTool,
   helpTool,
 ];

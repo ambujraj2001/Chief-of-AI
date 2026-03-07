@@ -22,6 +22,8 @@ import ActivityPage from "./pages/dashboard/ActivityPage.tsx";
 import CalendarPage from "./pages/dashboard/CalendarPage.tsx";
 import RemindersPage from "./pages/dashboard/RemindersPage.tsx";
 import FilesPage from "./pages/dashboard/FilesPage.tsx";
+import AppPage from "./pages/dashboard/AppPage.tsx";
+import AppsPage from "./pages/dashboard/AppsPage.tsx";
 
 const PRIMARY = "#3c83f6";
 
@@ -69,6 +71,8 @@ const App = () => {
                   <Route path="files" element={<FilesPage />} />
                   <Route path="journal" element={<JournalPage />} />
                   <Route path="knowledge" element={<KnowledgePage />} />
+                  <Route path="apps" element={<AppsPage />} />
+                  <Route path="app/:appId" element={<AppPage />} />
                   <Route path="activity" element={<ActivityPage />} />
                   <Route
                     path="integrations"

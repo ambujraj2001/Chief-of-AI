@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { Spin, message } from "antd";
 import { apiGetKnowledge, type MemoryEntry } from "../../services/api";
 import dayjs from "dayjs";
@@ -9,12 +9,8 @@ dayjs.extend(relativeTime);
 const KnowledgePage: React.FC = () => {
   const [knowledgeList, setKnowledgeList] = useState<MemoryEntry[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const hasFetchedRef = useRef(false);
 
   useEffect(() => {
-    if (hasFetchedRef.current) return;
-    hasFetchedRef.current = true;
-
     const fetchKnowledge = async () => {
       try {
         const accessCode = localStorage.getItem("accessCode") || "";

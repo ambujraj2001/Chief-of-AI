@@ -3,6 +3,23 @@ import { generateEmbedding } from "./embedding.service";
 
 export type EntryType = "memory" | "journal" | "knowledge" | "note";
 
+export const findEntryByTitleAndType = async (
+  userId: string,
+  type: EntryType,
+  title: string,
+) => {
+  const { data, error } = await supabase
+    .from("entries")
+    .select("*")
+    .eq("user_id", userId)
+    .eq("type", type)
+    .ilike("title", title)
+    .maybeSingle();
+
+  if (error) throw new Error(error.message);
+  return data;
+};
+
 export const getUserMemories = async (userId: string) => {
   const { data, error } = await supabase
     .from("entries")

@@ -10,12 +10,8 @@ dayjs.extend(relativeTime);
 const MemoriesPage: React.FC = () => {
   const [memories, setMemories] = useState<MemoryEntry[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const hasFetchedRef = React.useRef(false);
 
   useEffect(() => {
-    if (hasFetchedRef.current) return;
-    hasFetchedRef.current = true;
-
     const fetchMemories = async () => {
       try {
         const accessCode = localStorage.getItem("accessCode") || "";

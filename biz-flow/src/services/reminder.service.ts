@@ -1,5 +1,17 @@
 import { supabase } from "../config/supabase";
 
+export const findReminderByTitle = async (userId: string, title: string) => {
+  const { data, error } = await supabase
+    .from("reminders")
+    .select("*")
+    .eq("user_id", userId)
+    .ilike("title", title)
+    .maybeSingle();
+
+  if (error) throw new Error(error.message);
+  return data;
+};
+
 export interface ReminderRow {
   id?: string;
   user_id: string;

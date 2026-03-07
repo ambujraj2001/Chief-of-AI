@@ -138,8 +138,9 @@ const ChatArea = () => {
   }, [messages, isTyping]);
 
   const handleSend = useCallback(
-    async (attachments?: FileEntry[]) => {
-      let content = inputValue.trim();
+    async (attachments?: FileEntry[], textOverride?: string) => {
+      let content =
+        textOverride !== undefined ? textOverride : inputValue.trim();
 
       if (attachments && attachments.length > 0) {
         const fileLinks = attachments
@@ -157,7 +158,9 @@ const ChatArea = () => {
         content,
       };
       setMessages((prev) => [...prev, userMsg]);
-      setInputValue("");
+      if (textOverride === undefined) {
+        setInputValue("");
+      }
       setIsTyping(true);
 
       try {
@@ -185,6 +188,13 @@ const ChatArea = () => {
     [inputValue, accessCode, sessionConversationId],
   );
 
+  const handleOptionSelect = useCallback(
+    (option: string) => {
+      handleSend(undefined, option);
+    },
+    [handleSend],
+  );
+
   const handleInputChange = useCallback((value: string) => {
     setInputValue(value);
   }, []);
@@ -210,7 +220,11 @@ const ChatArea = () => {
         ) : (
           messages.map((msg) =>
             msg.role === "ai" ? (
-              <AiMessage key={msg.id} content={msg.content} />
+              <AiMessage
+                key={msg.id}
+                content={msg.content}
+                onOptionSelect={handleOptionSelect}
+              />
             ) : (
               <UserMessage
                 key={msg.id}

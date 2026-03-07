@@ -5,6 +5,7 @@ call a person
 email 
 zerodha integration - get api
 custom app - splitwise type app - share app
+unlock / lock - account
 
 
 plug n play model

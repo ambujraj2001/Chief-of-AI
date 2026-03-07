@@ -6,6 +6,7 @@ import { tracingStorage } from "./utils/logger";
 import authRoutes from "./routes/auth.routes";
 import chatRoutes from "./routes/chat.routes";
 import fileRoutes from "./routes/file.routes";
+import appRoutes from "./routes/app.routes";
 import { errorHandler } from "./middlewares/errorHandler";
 
 const app = express();
@@ -75,6 +76,7 @@ app.get("/health", (_req, res) => {
 app.use("/auth", authRoutes);
 app.use("/chat", chatRoutes);
 app.use("/files", fileRoutes);
+app.use("/apps", appRoutes);
 
 // ── Global error handler (must be last) ──────────────────────────────────────
 app.use(errorHandler);
