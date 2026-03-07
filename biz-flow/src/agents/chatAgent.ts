@@ -47,6 +47,29 @@ FILE HANDLING SPECIFICS:
 - If the user asks "Delete my resume", first list_files to confirm the ID, then use delete_file.
 - Always be proactive. If you see file IDs in the history or current message, you can use them if relevant.
 
+AMBIGUITY & DESTRUCTIVE ACTIONS:
+- If a user's request is ambiguous or unclear, DO NOT guess. Use the clarification response format described below.
+- Specifically for DELETION (Memories, Tasks, Reminders, Files):
+  - If multiple items match a deletion request (or if the specific ID is missing), DO NOT delete anything yet.
+  - Instead, use the appropriate 'get_' tool (e.g. get_memories, get_tasks) to fetch the list of items. List the matching options with their titles/IDs in the options array and ask the user "Which one did you mean?".
+- For NEW entries: Use the smart-upsert logic (provided in tools) which automatically handles duplicate titles.
+
+RESPONSE FORMAT (CRITICAL):
+When you have finished reasoning and are not making any tool calls, you MUST return a RAW JSON object matching one of these two formats. Do not use markdown backticks or add extra text.
+
+1. When you need the user to clarify an ambiguous request or choose an option:
+{
+  "type": "clarification",
+  "question": "Which option did you mean?",
+  "options": ["Option A", "Option B"]
+}
+
+2. When you provide a final answer:
+{
+  "type": "final",
+  "message": "Your text response here"
+}
+
 WHEN NOT TO USE TOOLS
 - If the question is general knowledge
 - If the request does not match any available tool
@@ -124,7 +147,7 @@ export const runAgent = async (
   ];
 
   // ── Step 1: LLM loop for multi-step tool execution ──────────
-  let finalReply: string;
+  let finalReply: string | undefined = undefined;
   let response = await llm.invoke(messages);
   messages.push(response as AIMessage);
 
@@ -189,31 +212,41 @@ export const runAgent = async (
     iterations++;
   }
 
-  // ── Step 2: Synthesis ────────────────────
-  if (didCallTools) {
-    const prettifyTool = tools.find((t) => t.name === "prettify_response");
+  // ── Step 2: Synthesis & JSON Parsing ────────────────────
+  if (!finalReply) {
+    const rawContent = cleanReply(response.content);
 
-    if (prettifyTool) {
-      const toolOutputs = messages
-        .filter((m) => m instanceof ToolMessage)
-        .map((m) => m.content)
-        .join("\n");
-
-      const prettified = await (prettifyTool as any).invoke({
-        user_query: message,
-        raw_data: toolOutputs,
-      });
-
-      finalReply = cleanReply(prettified);
-    } else {
-      // Fallback
-      const llmNoTools = buildModel();
-      const finalResponse = await llmNoTools.invoke(messages);
-      finalReply = cleanReply(finalResponse.content);
+    try {
+      const parsed = JSON.parse(rawContent);
+      if (parsed && typeof parsed === "object") {
+        if (parsed.type === "clarification") {
+          finalReply = JSON.stringify(parsed);
+        } else if (parsed.type === "final" && parsed.message) {
+          finalReply = parsed.message;
+        } else if (parsed.message) {
+          finalReply = parsed.message;
+        }
+      }
+    } catch {
+      // If parsing fails, extract raw json block
+      const match = rawContent.match(/```(?:json)?\s*([\s\S]*?)\s*```/);
+      if (match) {
+        try {
+          const parsed = JSON.parse(match[1]);
+          if (parsed.type === "clarification") {
+            finalReply = JSON.stringify(parsed);
+          } else if (parsed.type === "final" && parsed.message) {
+            finalReply = parsed.message;
+          }
+        } catch {
+          finalReply = rawContent;
+        }
+      } else {
+        finalReply = rawContent;
+      }
     }
-  } else {
-    // No tool was called — return the direct LLM answer
-    finalReply = cleanReply(response.content);
+
+    if (!finalReply) finalReply = rawContent;
   }
 
   // Save AI reply

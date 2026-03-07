@@ -7,6 +7,8 @@ import {
   updateEntry,
   deleteEntry,
   searchEntries,
+  findEntryByTitleAndType,
+  getUserMemories,
 } from "../../services/entry.service";
 
 const validateUser = async (accessCode: string) => {
@@ -33,6 +35,20 @@ export const addMemoryTool = tool(
     });
     try {
       const user = await validateUser(accessCode);
+
+      // Smart Upsert: Check if a memory with the same title already exists
+      if (title) {
+        const existing = await findEntryByTitleAndType(
+          user.id,
+          "memory",
+          title,
+        );
+        if (existing) {
+          await updateEntry(existing.id, user.id, title, content);
+          return `Memory "${title}" updated successfully (Existing ID: ${existing.id})`;
+        }
+      }
+
       const data = await addEntry(user.id, "memory", title, content);
       return `Memory added successfully. ID: ${data.id}`;
     } catch (error: any) {
@@ -133,7 +149,7 @@ export const deleteMemoryTool = tool(
   {
     name: "delete_memory",
     description:
-      "Delete a specific memory by its ID. ALWAYS search for memories first to find the ID before deleting.",
+      "Delete a specific memory by its ID. If the exact ID is unknown, ALWAYS run get_memories first to list available memories. DO NOT guess the ID. Ask the user to confirm the specific ID if unclear.",
     schema: z.object({
       accessCode: z.string().describe("The user's access code."),
       id: z.string().describe("The ID of the memory to delete."),
@@ -141,7 +157,45 @@ export const deleteMemoryTool = tool(
   },
 );
 
+// ── GET MEMORIES ──
+export const getMemoriesTool = tool(
+  async ({ accessCode }: { accessCode: string }) => {
+    log({
+      event: "tool_execution_started",
+      toolName: "get_memories",
+    });
+    try {
+      const user = await validateUser(accessCode);
+      const results = await getUserMemories(user.id);
+
+      if (!results || results.length === 0) return "No memories found.";
+      return results
+        .map(
+          (m: any) =>
+            `[ID: ${m.id}] ${m.title ? `(${m.title}) ` : ""}${m.content}`,
+        )
+        .join("\n\n");
+    } catch (error: any) {
+      log({
+        event: "tool_execution_failed",
+        toolName: "get_memories",
+        error: error.message,
+      });
+      return `Error getting memories: ${error.message}`;
+    }
+  },
+  {
+    name: "get_memories",
+    description:
+      "List all memories for the user. Always use this to list memories before deleting if the user does not provide a specific ID, or to see what memories exist.",
+    schema: z.object({
+      accessCode: z.string().describe("The user's access code."),
+    }),
+  },
+);
+
 // ── SEARCH MEMORY ──
+
 export const searchMemoryTool = tool(
   async ({
     accessCode,

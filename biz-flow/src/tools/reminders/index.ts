@@ -5,6 +5,7 @@ import {
   updateReminder,
   deleteReminder,
   getUserReminders,
+  findReminderByTitle,
 } from "../../services/reminder.service";
 import { findUserByAccessCode } from "../../services/user.service";
 
@@ -13,6 +14,15 @@ export const addReminderTool = tool(
     try {
       const user = await findUserByAccessCode(accessCode);
       if (!user) return `Error: Invalid access code.`;
+
+      // Smart Upsert: Check if a reminder with the same title already exists
+      const existing = await findReminderByTitle(user.id, title);
+      if (existing) {
+        await updateReminder(existing.id, user.id, {
+          remind_at: remindAt,
+        });
+        return `Reminder "${title}" updated successfully (Existing ID: ${existing.id})`;
+      }
 
       const reminder = await addReminder({
         user_id: user.id,
@@ -141,7 +151,8 @@ export const deleteReminderTool = tool(
   },
   {
     name: "delete_reminder",
-    description: "Deletes a reminder by ID.",
+    description:
+      "Deletes a reminder by ID. If the exact ID is unknown, ALWAYS run get_reminders first to list available reminders. DO NOT guess the ID. Ask the user to specify which one to delete by ID if unclear.",
     schema: z.object({
       accessCode: z
         .string()

@@ -16,18 +16,21 @@ import {
   updateMemoryTool,
   deleteMemoryTool,
   searchMemoryTool,
+  getMemoriesTool,
 } from "./memory";
 import {
   addJournalTool,
   updateJournalTool,
   deleteJournalTool,
   searchJournalTool,
+  getJournalsTool,
 } from "./journal";
 import {
   addKnowledgeTool,
   updateKnowledgeTool,
   deleteKnowledgeTool,
   searchKnowledgeTool,
+  getKnowledgesTool,
 } from "./knowledge";
 import {
   addTaskTool,
@@ -55,14 +58,17 @@ export const tools = [
   updateMemoryTool,
   deleteMemoryTool,
   searchMemoryTool,
+  getMemoriesTool,
   addJournalTool,
   updateJournalTool,
   deleteJournalTool,
   searchJournalTool,
+  getJournalsTool,
   addKnowledgeTool,
   updateKnowledgeTool,
   deleteKnowledgeTool,
   searchKnowledgeTool,
+  getKnowledgesTool,
   addTaskTool,
   updateTaskTool,
   getTasksTool,

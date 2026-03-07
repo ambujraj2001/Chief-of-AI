@@ -7,6 +7,8 @@ import {
   updateEntry,
   deleteEntry,
   searchEntries,
+  findEntryByTitleAndType,
+  getUserJournal,
 } from "../../services/entry.service";
 
 const validateUser = async (accessCode: string) => {
@@ -33,6 +35,20 @@ export const addJournalTool = tool(
     });
     try {
       const user = await validateUser(accessCode);
+
+      // Smart Upsert: Check if a journal entry with the same title already exists
+      if (title) {
+        const existing = await findEntryByTitleAndType(
+          user.id,
+          "journal",
+          title,
+        );
+        if (existing) {
+          await updateEntry(existing.id, user.id, title, content);
+          return `Journal entry "${title}" updated successfully (Existing ID: ${existing.id})`;
+        }
+      }
+
       const data = await addEntry(user.id, "journal", title, content);
       return `Journal entry added successfully. ID: ${data.id}`;
     } catch (error: any) {
@@ -134,10 +150,48 @@ export const deleteJournalTool = tool(
   },
   {
     name: "delete_journal",
-    description: "Delete a specific journal entry by its ID.",
+    description:
+      "Delete a specific journal entry by its ID. If the exact ID is unknown, ALWAYS run get_journals first to list available journals. DO NOT guess the ID. Ask the user to confirm the specific ID if unclear.",
     schema: z.object({
       accessCode: z.string().describe("The user's access code."),
       id: z.string().describe("The ID of the journal entry to delete."),
+    }),
+  },
+);
+
+// ── GET JOURNALS ──
+export const getJournalsTool = tool(
+  async ({ accessCode }: { accessCode: string }) => {
+    log({
+      event: "tool_execution_started",
+      toolName: "get_journals",
+    });
+    try {
+      const user = await validateUser(accessCode);
+      const results = await getUserJournal(user.id);
+
+      if (!results || results.length === 0) return "No journal entries found.";
+      return results
+        .map(
+          (m: any) =>
+            `[ID: ${m.id}] ${m.title ? `(${m.title}) ` : ""}${m.content}`,
+        )
+        .join("\n\n");
+    } catch (error: any) {
+      log({
+        event: "tool_execution_failed",
+        toolName: "get_journals",
+        error: error.message,
+      });
+      return `Error getting journal entries: ${error.message}`;
+    }
+  },
+  {
+    name: "get_journals",
+    description:
+      "List all journal entries for the user. Always use this to list journals before deleting if the user does not provide a specific ID.",
+    schema: z.object({
+      accessCode: z.string().describe("The user's access code."),
     }),
   },
 );

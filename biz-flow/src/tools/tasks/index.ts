@@ -5,6 +5,7 @@ import {
   updateTask,
   deleteTask,
   getUserTasks,
+  findTaskByTitle,
 } from "../../services/task.service";
 import { findUserByAccessCode } from "../../services/user.service";
 
@@ -13,6 +14,16 @@ export const addTaskTool = tool(
     try {
       const user = await findUserByAccessCode(accessCode);
       if (!user) return `Error: Invalid access code.`;
+
+      // Smart Upsert: Check if a task with the same title already exists
+      const existing = await findTaskByTitle(user.id, title);
+      if (existing) {
+        await updateTask(existing.id, user.id, {
+          priority: priority || "high",
+          due_date: dueDate,
+        });
+        return `Task "${title}" updated successfully (Existing ID: ${existing.id})`;
+      }
 
       const task = await addTask({
         user_id: user.id,
@@ -153,7 +164,7 @@ export const deleteTaskTool = tool(
   {
     name: "delete_task",
     description:
-      "Deletes a task by ID. Using update_task to mark it as completed is usually better.",
+      "Deletes a task by ID. If the exact ID is unknown, ALWAYS run get_tasks first to list available tasks. DO NOT guess the ID. Ask the user to specify which one to delete by ID if unclear. Using update_task to mark it as completed is usually better.",
     schema: z.object({
       accessCode: z
         .string()

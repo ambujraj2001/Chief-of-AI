@@ -7,6 +7,8 @@ import {
   updateEntry,
   deleteEntry,
   searchEntries,
+  findEntryByTitleAndType,
+  getUserKnowledge,
 } from "../../services/entry.service";
 
 const validateUser = async (accessCode: string) => {
@@ -33,6 +35,20 @@ export const addKnowledgeTool = tool(
     });
     try {
       const user = await validateUser(accessCode);
+
+      // Smart Upsert: Check if a knowledge entry with the same title already exists
+      if (title) {
+        const existing = await findEntryByTitleAndType(
+          user.id,
+          "knowledge",
+          title,
+        );
+        if (existing) {
+          await updateEntry(existing.id, user.id, title, content);
+          return `Knowledge entry "${title}" updated successfully (Existing ID: ${existing.id})`;
+        }
+      }
+
       const data = await addEntry(user.id, "knowledge", title, content);
       return `Knowledge article added successfully. ID: ${data.id}`;
     } catch (error: any) {
@@ -134,10 +150,49 @@ export const deleteKnowledgeTool = tool(
   },
   {
     name: "delete_knowledge",
-    description: "Delete a specific knowledge entry by its ID.",
+    description:
+      "Delete a specific knowledge entry by its ID. If the exact ID is unknown, ALWAYS run get_knowledges first to list available knowledge entries. DO NOT guess the ID. Ask the user to confirm the specific ID if unclear.",
     schema: z.object({
       accessCode: z.string().describe("The user's access code."),
       id: z.string().describe("The ID of the knowledge entry to delete."),
+    }),
+  },
+);
+
+// ── GET KNOWLEDGE ──
+export const getKnowledgesTool = tool(
+  async ({ accessCode }: { accessCode: string }) => {
+    log({
+      event: "tool_execution_started",
+      toolName: "get_knowledges",
+    });
+    try {
+      const user = await validateUser(accessCode);
+      const results = await getUserKnowledge(user.id);
+
+      if (!results || results.length === 0)
+        return "No knowledge entries found.";
+      return results
+        .map(
+          (m: any) =>
+            `[ID: ${m.id}] ${m.title ? `(${m.title}) ` : ""}${m.content}`,
+        )
+        .join("\n\n");
+    } catch (error: any) {
+      log({
+        event: "tool_execution_failed",
+        toolName: "get_knowledges",
+        error: error.message,
+      });
+      return `Error getting knowledge entries: ${error.message}`;
+    }
+  },
+  {
+    name: "get_knowledges",
+    description:
+      "List all knowledge entries for the user. Always use this to list knowledge base articles before deleting if the user does not provide a specific ID.",
+    schema: z.object({
+      accessCode: z.string().describe("The user's access code."),
     }),
   },
 );
