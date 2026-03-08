@@ -4,7 +4,7 @@ import { message, Modal, Dropdown } from "antd";
 import type { MenuProps } from "antd";
 import { useSelector } from "react-redux";
 import { type RootState } from "../store";
-import Sidebar from "../pages/dashboard/Sidebar";
+import Sidebar from "../pages/dashboard/layout/Sidebar";
 import Joyride, { STATUS } from "react-joyride";
 import type { Step, CallBackProps } from "react-joyride";
 import { useDispatch } from "react-redux";

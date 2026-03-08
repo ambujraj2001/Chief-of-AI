@@ -5,8 +5,8 @@ import type {
   SpeechRecognitionEvent,
   SpeechRecognitionErrorEvent,
 } from "./types";
-import type { FileEntry } from "../../../services/api";
-import { apiUploadFile } from "../../../services/api";
+import type { FileEntry } from "../../../../services/api";
+import { apiUploadFile } from "../../../../services/api";
 
 interface ChatInputProps {
   inputValue: string;

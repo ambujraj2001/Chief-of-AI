@@ -1,8 +1,8 @@
 import { useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import ProgressBar from "../components/ProgressBar";
-import { useSignup } from "../context/useSignup";
-import { apiSignup, apiGenerateSignup2FA } from "../services/api";
+import ProgressBar from "../../components/ProgressBar";
+import { useSignup } from "../../context/useSignup";
+import { apiSignup, apiGenerateSignup2FA } from "../../services/api";
 
 const SignupStep3Page = ({ onBack }: { onBack: () => void }) => {
   const navigate = useNavigate();

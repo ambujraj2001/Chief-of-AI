@@ -2,29 +2,41 @@ import { useMemo } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ConfigProvider, theme as antTheme } from "antd";
 import { AuthBootstrap } from "./components/AuthBootstrap";
-import LoginPage from "./pages/LoginPage";
-import SignupPage from "./pages/SignupPage";
-import DashboardPage from "./pages/dashboard/DashboardPage";
-import SettingsPage from "./pages/dashboard/SettingsPage";
-import DashboardLayout from "./layouts/DashboardLayout";
-import RecentChatsPage from "./pages/dashboard/RecentChatsPage";
-import MemoriesPage from "./pages/dashboard/MemoriesPage";
-import KnowledgePage from "./pages/dashboard/KnowledgePage";
-import ComingSoonPage from "./pages/dashboard/ComingSoonPage";
-import { SignupProvider } from "./context/SignupContext.tsx";
-import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import LoginPage from "./pages/auth/LoginPage";
+import SignupPage from "./pages/auth/SignupPage";
+import ForgotPasswordPage from "./pages/auth/ForgotPasswordPage";
+
+// Dashboard - Overview
+import DashboardPage from "./pages/dashboard/overview/DashboardPage";
+import ActivityPage from "./pages/dashboard/overview/ActivityPage";
+import RecentChatsPage from "./pages/dashboard/overview/RecentChatsPage";
+
+// Dashboard - Productivity
+import TasksPage from "./pages/dashboard/productivity/TasksPage";
+import RemindersPage from "./pages/dashboard/productivity/RemindersPage";
+import CalendarPage from "./pages/dashboard/productivity/CalendarPage";
+import JournalPage from "./pages/dashboard/productivity/JournalPage";
+
+// Dashboard - Knowledge
+import KnowledgePage from "./pages/dashboard/knowledge/KnowledgePage";
+import FilesPage from "./pages/dashboard/knowledge/FilesPage";
+import MemoriesPage from "./pages/dashboard/knowledge/MemoriesPage";
+
+// Dashboard - Apps
+import AppsPage from "./pages/dashboard/apps/AppsPage";
+import AppPage from "./pages/dashboard/apps/AppPage";
+import AIRoutinesPage from "./pages/dashboard/apps/AIRoutinesPage";
+
+// Dashboard - Settings
+import SettingsPage from "./pages/dashboard/settings/SettingsPage";
+
+// Dashboard - Misc
+import ComingSoonPage from "./pages/dashboard/misc/ComingSoonPage";
 
 import { Provider } from "react-redux";
 import { store } from "./store";
-import JournalPage from "./pages/dashboard/JournalPage.tsx";
-import TasksPage from "./pages/dashboard/TasksPage.tsx";
-import ActivityPage from "./pages/dashboard/ActivityPage.tsx";
-import CalendarPage from "./pages/dashboard/CalendarPage.tsx";
-import RemindersPage from "./pages/dashboard/RemindersPage.tsx";
-import FilesPage from "./pages/dashboard/FilesPage.tsx";
-import AppPage from "./pages/dashboard/AppPage.tsx";
-import AppsPage from "./pages/dashboard/AppsPage.tsx";
-import AIRoutinesPage from "./pages/dashboard/AIRoutinesPage.tsx";
+import DashboardLayout from "./layouts/DashboardLayout";
+import { SignupProvider } from "./context/SignupContext.tsx";
 
 const PRIMARY = "#3c83f6";
 

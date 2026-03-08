@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { type RootState } from "../../store";
+import { type RootState } from "../../../store";
 import { message, Spin, Modal } from "antd";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -13,7 +13,7 @@ import {
   apiAnalyzeApp,
   type AppEntry,
   type AppMemberInfo,
-} from "../../services/api";
+} from "../../../services/api";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 

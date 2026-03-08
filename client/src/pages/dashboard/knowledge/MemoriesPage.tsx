@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Spin, message } from "antd";
-import { apiGetMemories, type MemoryEntry } from "../../services/api";
+import { apiGetMemories, type MemoryEntry } from "../../../services/api";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 

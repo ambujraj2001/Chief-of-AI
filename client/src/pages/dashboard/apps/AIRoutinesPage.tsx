@@ -24,7 +24,7 @@ import {
   ClockCircleOutlined,
 } from "@ant-design/icons";
 import { useSelector } from "react-redux";
-import type { RootState } from "../../store";
+import type { RootState } from "../../../store";
 import {
   apiGetRoutines,
   apiCreateRoutine,
@@ -32,8 +32,8 @@ import {
   apiDeleteRoutine,
   apiGetRoutineRuns,
   apiGenerateCron,
-} from "../../services/api";
-import type { AIRoutineEntry, AIRoutineRunEntry } from "../../services/api";
+} from "../../../services/api";
+import type { AIRoutineEntry, AIRoutineRunEntry } from "../../../services/api";
 import dayjs from "dayjs";
 
 const { Title, Text, Paragraph } = Typography;

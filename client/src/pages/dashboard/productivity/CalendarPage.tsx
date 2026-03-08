@@ -8,12 +8,12 @@ import {
   apiGetTasks,
   apiGetReminders,
   apiGetInsights,
-} from "../../services/api";
+} from "../../../services/api";
 import type {
   TaskEntry,
   ReminderEntry,
   InsightEntry,
-} from "../../services/api";
+} from "../../../services/api";
 
 const localizer = dayjsLocalizer(dayjs);
 

@@ -1,4 +1,4 @@
-import ChatArea from "./ChatArea";
+import ChatArea from "../chat/ChatArea";
 
 const DashboardPage = () => {
   return (

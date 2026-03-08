@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Spin, message, Modal, Input } from "antd";
-import { apiGetApps, apiJoinApp, type AppEntry } from "../../services/api";
+import { apiGetApps, apiJoinApp, type AppEntry } from "../../../services/api";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 

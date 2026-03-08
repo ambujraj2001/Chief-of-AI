@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Spin, message } from "antd";
-import { apiGetJournal, type MemoryEntry } from "../../services/api";
+import { apiGetJournal, type MemoryEntry } from "../../../services/api";
 import dayjs from "dayjs";
 
 const JournalPage: React.FC = () => {

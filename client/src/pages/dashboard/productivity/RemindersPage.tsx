@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { apiGetReminders } from "../../services/api";
-import type { ReminderEntry } from "../../services/api";
+import { apiGetReminders } from "../../../services/api";
+import type { ReminderEntry } from "../../../services/api";
 import dayjs from "dayjs";
 
 const RemindersPage: React.FC = () => {

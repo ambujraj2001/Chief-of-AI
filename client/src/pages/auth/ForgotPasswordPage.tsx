@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
-import EmailStep from "./auth/recovery/EmailStep";
-import OTPStep from "./auth/recovery/OTPStep";
-import SuccessStep from "./auth/recovery/SuccessStep";
+import EmailStep from "./recovery/EmailStep";
+import OTPStep from "./recovery/OTPStep";
+import SuccessStep from "./recovery/SuccessStep";
 
 const ForgotPasswordPage = () => {
   const [step, setStep] = useState(1);

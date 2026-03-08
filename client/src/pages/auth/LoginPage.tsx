@@ -1,15 +1,15 @@
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import AppHeader from "../components/AppHeader";
+import AppHeader from "../../components/AppHeader";
 import {
   apiBootConfig,
   apiLockAccount,
   apiRequestLockOTP,
   apiRequestUnlockOTP,
   apiUnlockAccount,
-} from "../services/api";
+} from "../../services/api";
 import { useDispatch } from "react-redux";
-import { setUser } from "../store/userSlice";
+import { setUser } from "../../store/userSlice";
 import { message } from "antd";
 
 type FormMode = "login" | "lock" | "unlock";

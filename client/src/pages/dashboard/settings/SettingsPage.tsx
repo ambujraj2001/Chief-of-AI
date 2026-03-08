@@ -1,14 +1,14 @@
 import { useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { type RootState } from "../../store";
-import { setUser } from "../../store/userSlice";
+import { type RootState } from "../../../store";
+import { setUser } from "../../../store/userSlice";
 import {
   apiUpdateProfile,
   apiGenerate2FA,
   apiEnable2FA,
   apiDisable2FA,
   type BootConfigResult,
-} from "../../services/api";
+} from "../../../services/api";
 import { message, Slider, Switch, Modal, Input } from "antd";
 
 const SettingsPage = () => {

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Button, List, message, Popconfirm, Empty, Tooltip } from "antd";
 import dayjs from "dayjs";
-import type { FileEntry } from "../../services/api";
-import { apiGetFiles, apiDeleteFile } from "../../services/api";
+import type { FileEntry } from "../../../services/api";
+import { apiGetFiles, apiDeleteFile } from "../../../services/api";
 
 const FilesPage: React.FC = () => {
   const [files, setFiles] = useState<FileEntry[]>([]);

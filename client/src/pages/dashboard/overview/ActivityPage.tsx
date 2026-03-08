@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { apiGetChatHistory } from "../../services/api";
+import { apiGetChatHistory } from "../../../services/api";
 
 const ActivityPage: React.FC = () => {
   const [loading, setLoading] = useState(true);

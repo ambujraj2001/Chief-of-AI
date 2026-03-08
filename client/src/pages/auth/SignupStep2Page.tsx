@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
-import ProgressBar from "../components/ProgressBar";
-import { useSignup } from "../context/useSignup";
-import type { SignupPayload } from "../services/api";
+import ProgressBar from "../../components/ProgressBar";
+import { useSignup } from "../../context/useSignup";
+import type { SignupPayload } from "../../services/api";
 
 type Tone = SignupPayload["interactionTone"];
 

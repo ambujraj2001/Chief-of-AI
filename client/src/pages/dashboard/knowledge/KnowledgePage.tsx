@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Spin, message } from "antd";
-import { apiGetKnowledge, type MemoryEntry } from "../../services/api";
+import { apiGetKnowledge, type MemoryEntry } from "../../../services/api";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 

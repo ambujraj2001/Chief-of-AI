@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { useSelector } from "react-redux";
-import { type RootState } from "../../../store";
+import { type RootState } from "../../../../store";
 import { message, Spin } from "antd";
 import { useParams } from "react-router-dom";
 import {
@@ -8,7 +8,7 @@ import {
   apiGetChatHistory,
   type ChatMessage as ApiChatMessage,
   type FileEntry,
-} from "../../../services/api";
+} from "../../../../services/api";
 import dayjs from "dayjs";
 
 import type { Message } from "./types";

@@ -1,8 +1,8 @@
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import AppHeader from "../components/AppHeader";
-import ProgressBar from "../components/ProgressBar";
-import { useSignup } from "../context/useSignup";
+import AppHeader from "../../components/AppHeader";
+import ProgressBar from "../../components/ProgressBar";
+import { useSignup } from "../../context/useSignup";
 
 const SignupStep1Page = ({ onNext }: { onNext: () => void }) => {
   const navigate = useNavigate();

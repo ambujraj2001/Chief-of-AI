@@ -8,7 +8,7 @@ import {
 } from "antd";
 import { useState, useEffect, useRef, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { apiGetChatHistory, type ChatMessage } from "../../services/api";
+import { apiGetChatHistory, type ChatMessage } from "../../../services/api";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
