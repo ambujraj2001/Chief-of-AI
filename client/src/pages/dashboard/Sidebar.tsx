@@ -7,31 +7,66 @@ type NavItem = {
   path: string;
 };
 
-const NAV_ITEMS: NavItem[] = [
-  { icon: "chat", label: "Chat", path: "/dashboard" },
-  { icon: "history", label: "Recent Chat", path: "/dashboard/chats" },
-  { icon: "psychology", label: "Memories", path: "/dashboard/memories" },
-  { icon: "task_alt", label: "Tasks", path: "/dashboard/tasks" },
-  { icon: "notifications", label: "Reminders", path: "/dashboard/reminders" },
-  { icon: "calendar_today", label: "Calendar", path: "/dashboard/calendar" },
-  { icon: "folder", label: "Files", path: "/dashboard/files" },
-  { icon: "auto_stories", label: "Journal", path: "/dashboard/journal" },
-  { icon: "school", label: "Knowledge", path: "/dashboard/knowledge" },
-  { icon: "insights", label: "Activity", path: "/dashboard/activity" },
-  { icon: "schedule", label: "AI Routines", path: "/dashboard/routines" },
-  { icon: "apps", label: "Apps", path: "/dashboard/apps" },
-];
+type NavGroup = {
+  label: string;
+  items: NavItem[];
+};
 
-const BOTTOM_NAV_ITEMS: NavItem[] = [
-  { icon: "hub", label: "Integrations", path: "/dashboard/integrations" },
-  { icon: "settings", label: "Settings", path: "/dashboard/settings" },
+const NAV_GROUPS: NavGroup[] = [
+  {
+    label: "ASSISTANT",
+    items: [
+      { icon: "chat", label: "Chat", path: "/dashboard" },
+      { icon: "history", label: "Recent Chat", path: "/dashboard/chats" },
+    ],
+  },
+  {
+    label: "WORKSPACE",
+    items: [
+      { icon: "task_alt", label: "Tasks", path: "/dashboard/tasks" },
+      {
+        icon: "notifications",
+        label: "Reminders",
+        path: "/dashboard/reminders",
+      },
+      {
+        icon: "calendar_today",
+        label: "Calendar",
+        path: "/dashboard/calendar",
+      },
+      { icon: "folder", label: "Files", path: "/dashboard/files" },
+    ],
+  },
+  {
+    label: "KNOWLEDGE",
+    items: [
+      { icon: "psychology", label: "Memories", path: "/dashboard/memories" },
+      { icon: "auto_stories", label: "Journal", path: "/dashboard/journal" },
+      { icon: "school", label: "Knowledge", path: "/dashboard/knowledge" },
+    ],
+  },
+  {
+    label: "AUTOMATION",
+    items: [
+      { icon: "schedule", label: "AI Routines", path: "/dashboard/routines" },
+      { icon: "apps", label: "Apps", path: "/dashboard/apps" },
+    ],
+  },
+  {
+    label: "SYSTEM",
+    items: [
+      { icon: "insights", label: "Activity", path: "/dashboard/activity" },
+      { icon: "hub", label: "Integrations", path: "/dashboard/integrations" },
+      { icon: "settings", label: "Settings", path: "/dashboard/settings" },
+    ],
+  },
 ];
 
 type SidebarProps = {
   collapsed: boolean;
   onToggle: () => void;
-  isMobile?: boolean; // New prop
-  onCloseMobile?: () => void; // New prop
+  isMobile?: boolean;
+  onCloseMobile?: () => void;
 };
 
 const Sidebar = ({
@@ -43,12 +78,15 @@ const Sidebar = ({
   const navigate = useNavigate();
   const location = useLocation();
 
+  const allItems = useMemo(
+    () => NAV_GROUPS.flatMap((group) => group.items),
+    [],
+  );
+
   const activeItem = useMemo(
     () =>
-      [...NAV_ITEMS, ...BOTTOM_NAV_ITEMS].find(
-        (item) => item.path === location.pathname,
-      )?.label || "Chat",
-    [location],
+      allItems.find((item) => item.path === location.pathname)?.label || "Chat",
+    [location, allItems],
   );
 
   const handleNav = useCallback(
@@ -75,7 +113,7 @@ const Sidebar = ({
       `}
     >
       {/* ── Logo / Toggle ─────────────────────────────── */}
-      <div className="flex items-center h-16 px-3 gap-3">
+      <div className="flex items-center h-16 px-3 gap-3 border-b border-slate-100 dark:border-slate-800/50">
         <button
           onClick={onToggle}
           title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
@@ -112,73 +150,52 @@ const Sidebar = ({
       </div>
 
       {/* ── Nav ───────────────────────────────────────── */}
-      <div className="flex flex-col gap-1 grow px-2 py-3 overflow-y-auto">
-        <nav id="sidebar-main-nav" className="flex flex-col gap-1">
-          {NAV_ITEMS.map((item) => {
-            const isActive = activeItem === item.label;
-            const isCollapsedStyle = collapsed && !isMobile;
-            return (
-              <button
-                key={item.label}
-                onClick={() => handleNav(item)}
-                title={isCollapsedStyle ? item.label : undefined}
-                className={`
-                  flex items-center rounded-lg font-medium text-sm transition-colors w-full
-                  ${isCollapsedStyle ? "justify-center py-2" : "gap-3 px-3 py-2 text-left"}
-                  ${
-                    isActive
-                      ? "bg-primary/10 text-primary"
-                      : "hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400"
-                  }
-                `}
-              >
-                <span className="material-symbols-outlined text-[20px] shrink-0">
-                  {item.icon}
-                </span>
-                {!isCollapsedStyle && (
-                  <span className="overflow-hidden whitespace-nowrap">
-                    {item.label}
+      <div className="flex flex-col grow px-2 py-4 overflow-y-auto custom-scrollbar">
+        <nav className="flex flex-col gap-6">
+          {NAV_GROUPS.map((group) => (
+            <div key={group.label} className="flex flex-col gap-1">
+              {!collapsed || isMobile ? (
+                <div className="px-3 mb-2">
+                  <span className="text-[11px] font-bold text-slate-400 dark:text-slate-500 tracking-wider uppercase">
+                    {group.label}
                   </span>
-                )}
-              </button>
-            );
-          })}
-        </nav>
-      </div>
-
-      {/* ── Bottom Nav ────────────────────────────────── */}
-      <div className="px-2 py-4 border-t border-slate-200 dark:border-slate-800">
-        <nav id="sidebar-bottom-nav" className="flex flex-col gap-1">
-          {BOTTOM_NAV_ITEMS.map((item) => {
-            const isActive = activeItem === item.label;
-            const isCollapsedStyle = collapsed && !isMobile;
-            return (
-              <button
-                key={item.label}
-                id={`sidebar-item-${item.label.toLowerCase()}`}
-                onClick={() => handleNav(item)}
-                title={isCollapsedStyle ? item.label : undefined}
-                className={`
-                  flex items-center rounded-lg font-medium text-sm transition-colors w-full
-                  ${isCollapsedStyle ? "justify-center py-2" : "gap-3 px-3 py-2 text-left"}
-                  ${
-                    isActive
-                      ? "bg-primary/10 text-primary"
-                      : "hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400"
-                  }
-                `}
-              >
-                <span className="material-symbols-outlined text-[20px] shrink-0">
-                  {item.icon}
-                </span>
-                {!isCollapsedStyle && (
-                  <span className="overflow-hidden whitespace-nowrap">
-                    {item.label}
-                  </span>
-                )}
-              </button>
-            );
-          })}
+                </div>
+              ) : (
+                <div className="h-4" /> // Spacer when collapsed
+              )}
+              {group.items.map((item) => {
+                const isActive = activeItem === item.label;
+                const isCollapsedStyle = collapsed && !isMobile;
+                return (
+                  <button
+                    key={item.label}
+                    onClick={() => handleNav(item)}
+                    title={isCollapsedStyle ? item.label : undefined}
+                    className={`
+                      flex items-center rounded-lg font-medium text-sm transition-all duration-200 w-full
+                      ${isCollapsedStyle ? "justify-center py-2" : "gap-3 px-3 py-2 text-left"}
+                      ${
+                        isActive
+                          ? "bg-primary/10 text-primary"
+                          : "hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400"
+                      }
+                    `}
+                  >
+                    <span
+                      className={`material-symbols-outlined text-[20px] shrink-0 ${isActive ? "font-variation-bold" : ""}`}
+                    >
+                      {item.icon}
+                    </span>
+                    {!isCollapsedStyle && (
+                      <span className="overflow-hidden whitespace-nowrap">
+                        {item.label}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          ))}
         </nav>
       </div>
     </aside>
