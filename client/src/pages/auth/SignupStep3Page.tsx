@@ -198,9 +198,12 @@ const SignupStep3Page = ({ onBack }: { onBack: () => void }) => {
 
                 {use2FA ? (
                   <>
-                    <div className="text-center space-y-2">
+                    <div className="text-center space-y-1">
                       <p className="text-slate-600 dark:text-slate-400 text-[10px] sm:text-xs">
                         Scan the QR code with your authenticator app
+                      </p>
+                      <p className="text-slate-400 dark:text-slate-500 text-[9px] sm:text-[10px]">
+                        (e.g., Google Authenticator, Microsoft Authenticator)
                       </p>
                     </div>
                     {qrCodeUrl ? (
