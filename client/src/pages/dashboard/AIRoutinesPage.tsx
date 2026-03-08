@@ -329,14 +329,6 @@ const AIRoutinesPage = () => {
           <p className="text-sm text-slate-500 mt-4 font-medium">
             Estimated time saved this month
           </p>
-          <div className="absolute top-0 right-0 p-4">
-            <Tag
-              color="blue"
-              className="m-0 border-none rounded-md text-[10px] font-black uppercase tracking-tighter bg-blue-500/10 text-blue-500"
-            >
-              Efficiency
-            </Tag>
-          </div>
         </div>
 
         <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm group hover:border-green-500/30 transition-all">

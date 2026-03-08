@@ -236,6 +236,46 @@ const ChatArea = () => {
         )}
         {isTyping && <AgentThinkingLog />}
         <div ref={chatEndRef} />
+
+        {/* Listening Overlay */}
+        {isListening && (
+          <div className="absolute inset-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md flex flex-col items-center justify-center animate-fade-in">
+            <div className="relative size-32 sm:size-40 flex items-center justify-center">
+              {/* Ripple Rings */}
+              <div
+                className="absolute inset-0 rounded-full bg-primary/20 animate-ripple"
+                style={{ animationDelay: "0s" }}
+              />
+              <div
+                className="absolute inset-0 rounded-full bg-primary/20 animate-ripple"
+                style={{ animationDelay: "0.6s" }}
+              />
+              <div
+                className="absolute inset-0 rounded-full bg-primary/20 animate-ripple"
+                style={{ animationDelay: "1.2s" }}
+              />
+
+              {/* Central Mic Button */}
+              <div className="relative size-20 sm:size-24 rounded-full bg-primary shadow-[0_0_50px_rgba(60,131,246,0.5)] flex items-center justify-center z-10">
+                <span className="material-symbols-outlined text-white text-3xl sm:text-4xl">
+                  mic
+                </span>
+              </div>
+            </div>
+
+            <div className="mt-12 text-center space-y-3">
+              <h3 className="text-xl sm:text-2xl font-bold text-primary animate-pulse tracking-tight">
+                Listening...
+              </h3>
+              <button
+                onClick={() => setIsListening(false)}
+                className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-sm font-bold underline underline-offset-4 decoration-slate-300 transition-colors"
+              >
+                Tap to cancel
+              </button>
+            </div>
+          </div>
+        )}
       </section>
 
       <ChatInput
