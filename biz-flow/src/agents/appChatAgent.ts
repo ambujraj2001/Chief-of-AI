@@ -549,15 +549,15 @@ const buildDeterministicDisplayMarkdown = (
 const messagePromisesInlineContent = (message: string): boolean => {
   const m = message.toLowerCase();
   return (
-    m.includes("here's the updated") ||
-    m.includes("here is the updated") ||
-    m.includes("here's the bill") ||
-    m.includes("here is the bill") ||
-    m.includes("here's the invoice") ||
-    m.includes("here is the invoice") ||
-    m.includes("here's the report") ||
-    m.includes("here is the report") ||
-    m.includes("see below")
+    /\bhere(?:'s| is)\b/.test(m) ||
+    /\bupdated\b.*\b(plan|bill|invoice|report|document|summary|itinerary)\b/.test(
+      m,
+    ) ||
+    /\b(plan|bill|invoice|report|document|summary|itinerary)\b.*\bbelow\b/.test(
+      m,
+    ) ||
+    m.includes("see below") ||
+    m.includes("as follows")
   );
 };
 
