@@ -11,6 +11,7 @@ import {
   addAppMember,
   upsertAppData,
   getAppMembers,
+  deleteApp,
 } from "../services/app.service";
 import { runAppChatAgent } from "../agents/appChatAgent";
 import { log } from "../utils/logger";
@@ -381,6 +382,57 @@ export const analyzeApp = async (
     res.status(200).json({ html });
   } catch (err) {
     console.error("Analysis Error:", err);
+    next(err);
+  }
+};
+
+// ─── DELETE /apps/:appId ───────────────────────────────────────────────────
+
+export const deleteAppEndpoint = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    const { appId } = req.params;
+    const accessCode =
+      (req.query.accessCode as string) || (req.body.accessCode as string);
+
+    if (!accessCode) {
+      res.status(400).json({ error: "accessCode is required" });
+      return;
+    }
+
+    const user = await findUserByAccessCode(accessCode);
+    if (!user) {
+      res.status(401).json({ error: "Invalid access code" });
+      return;
+    }
+
+    const app = await getAppById(appId);
+    if (!app) {
+      res.status(404).json({ error: "App not found" });
+      return;
+    }
+
+    // Only owner can delete
+    if (app.owner_id !== user.id) {
+      res.status(403).json({ error: "Only the app owner can delete this app" });
+      return;
+    }
+
+    await deleteApp(appId);
+
+    log({
+      event: "app_deleted",
+      appId,
+      userId: user.id,
+    });
+
+    res
+      .status(200)
+      .json({ status: "success", message: "App deleted successfully" });
+  } catch (err) {
     next(err);
   }
 };

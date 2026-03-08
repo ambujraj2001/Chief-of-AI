@@ -347,3 +347,28 @@ export const isAppMember = async (
 
   return !!data;
 };
+
+export const deleteApp = async (appId: string): Promise<void> => {
+  const { error: dataErr } = await supabase
+    .from("app_data")
+    .delete()
+    .eq("app_id", appId);
+  if (dataErr) throw new Error(`Failed to delete app data: ${dataErr.message}`);
+
+  const { error: chatErr } = await supabase
+    .from("app_chats")
+    .delete()
+    .eq("app_id", appId);
+  if (chatErr)
+    throw new Error(`Failed to delete app chats: ${chatErr.message}`);
+
+  const { error: memberErr } = await supabase
+    .from("app_members")
+    .delete()
+    .eq("app_id", appId);
+  if (memberErr)
+    throw new Error(`Failed to delete app members: ${memberErr.message}`);
+
+  const { error } = await supabase.from("apps").delete().eq("id", appId);
+  if (error) throw new Error(`Failed to delete app: ${error.message}`);
+};

@@ -11,6 +11,7 @@ import {
   apiGetAppChats,
   apiAppChat,
   apiAnalyzeApp,
+  apiDeleteApp,
   type AppEntry,
   type AppMemberInfo,
 } from "../../../services/api";
@@ -53,6 +54,14 @@ function getComponentIcon(name: string): string {
   if (lower.includes("task")) return "task_alt";
   if (lower.includes("list")) return "list";
   if (lower.includes("chart") || lower.includes("graph")) return "bar_chart";
+  if (
+    lower.includes("markdown") ||
+    lower.includes("md") ||
+    lower.includes("document") ||
+    lower.includes("viewer") ||
+    lower.includes("invoice")
+  )
+    return "description";
   return "widgets";
 }
 
@@ -135,6 +144,14 @@ const FullDataView: React.FC<{ value: unknown }> = ({ value }) => {
             </span>
           </div>
         ))}
+      </div>
+    );
+  }
+
+  if (typeof value === "string") {
+    return (
+      <div className="prose dark:prose-invert max-w-none text-sm bg-slate-50 dark:bg-slate-800 p-4 rounded-xl border border-slate-100 dark:border-slate-700">
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>{value}</ReactMarkdown>
       </div>
     );
   }
@@ -406,6 +423,8 @@ const AppPage = () => {
   const [analysisOpen, setAnalysisOpen] = useState(false);
   const [analyzing, setAnalyzing] = useState(false);
   const [analysisHtml, setAnalysisHtml] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
   const chatEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -602,6 +621,21 @@ const AppPage = () => {
     URL.revokeObjectURL(url);
   };
 
+  const confirmDeleteApp = async () => {
+    if (!app || !appId) return;
+    setIsDeleting(true);
+    try {
+      await apiDeleteApp(appId, accessCode);
+      message.success("App deleted successfully.");
+      setDeleteModalVisible(false);
+      navigate("/dashboard/apps");
+    } catch (err) {
+      message.error("Failed to delete app.");
+      console.error(err);
+      setIsDeleting(false);
+    }
+  };
+
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center h-full gap-3 text-slate-400">
@@ -679,6 +713,22 @@ const AppPage = () => {
                   share
                 </span>
                 Share
+              </button>
+            )}
+            {app.owner_id === user.id && (
+              <button
+                onClick={() => setDeleteModalVisible(true)}
+                disabled={isDeleting}
+                className="shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-xs font-bold hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors shadow-sm disabled:opacity-50"
+              >
+                {isDeleting ? (
+                  <div className="size-3.5 border-2 border-red-500 border-t-transparent rounded-full animate-spin" />
+                ) : (
+                  <span className="material-symbols-outlined text-base">
+                    delete
+                  </span>
+                )}
+                Delete
               </button>
             )}
           </div>
@@ -873,6 +923,52 @@ const AppPage = () => {
                 sandbox="allow-scripts"
               />
             </div>
+          </div>
+        </div>
+      </Modal>
+
+      {/* Delete App Confirmation Modal */}
+      <Modal
+        title={null}
+        open={deleteModalVisible}
+        onCancel={() => !isDeleting && setDeleteModalVisible(false)}
+        footer={null}
+        centered
+        width={400}
+        className="dark-modal"
+        closable={!isDeleting}
+      >
+        <div className="text-center py-6">
+          <div className="size-16 rounded-full bg-rose-50 dark:bg-rose-900/10 text-rose-500 flex items-center justify-center mx-auto mb-4">
+            <span className="material-symbols-outlined text-3xl">delete</span>
+          </div>
+          <h3 className="text-xl font-black text-slate-900 dark:text-white mb-2">
+            Confirm Delete App
+          </h3>
+          <p className="text-slate-500 dark:text-slate-400 mb-8 px-4">
+            Are you sure you want to delete "{app?.name}"? This action cannot be
+            undone. All app data, members, and chat history will be permanently
+            deleted.
+          </p>
+          <div className="flex gap-3 px-4">
+            <button
+              onClick={() => setDeleteModalVisible(false)}
+              disabled={isDeleting}
+              className="flex-1 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-all font-display disabled:opacity-50"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={confirmDeleteApp}
+              disabled={isDeleting}
+              className="flex-1 py-3 rounded-xl bg-rose-500 text-white font-bold hover:bg-rose-600 transition-all shadow-lg shadow-rose-500/20 font-display flex items-center justify-center disabled:opacity-50"
+            >
+              {isDeleting ? (
+                <div className="size-5 border-2 border-white/40 border-t-white rounded-full animate-spin" />
+              ) : (
+                "Delete App"
+              )}
+            </button>
           </div>
         </div>
       </Modal>

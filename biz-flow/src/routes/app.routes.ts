@@ -7,6 +7,7 @@ import {
   getAppDataEndpoint,
   getAppChats,
   analyzeApp,
+  deleteAppEndpoint,
 } from "../controllers/app.controller";
 
 const router = Router();
@@ -31,5 +32,8 @@ router.get("/:appId/chats", getAppChats);
 
 // POST /apps/:appId/chat — send message to app AI agent
 router.post("/:appId/chat", appChat);
+
+// DELETE /apps/:appId — delete app and related records
+router.delete("/:appId", deleteAppEndpoint);
 
 export default router;

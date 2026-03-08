@@ -558,6 +558,24 @@ export const apiAnalyzeApp = async (
   return data as { html: string };
 };
 
+/** DELETE /apps/:appId — delete app */
+export const apiDeleteApp = async (
+  appId: string,
+  accessCode: string,
+): Promise<{ message: string }> => {
+  const res = await fetch(
+    `${BASE_URL}/apps/${appId}?accessCode=${encodeURIComponent(accessCode)}`,
+    {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    },
+  );
+  const data = await res.json();
+  if (!res.ok)
+    throw new Error(data?.error ?? `Request failed with status ${res.status}`);
+  return data as { message: string };
+};
+
 /** Account Lock/Unlock */
 export const apiLockAccount = (
   email: string,

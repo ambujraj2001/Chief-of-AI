@@ -2,6 +2,7 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { BootConfigResult } from "../services/api";
 
 interface UserState {
+  id: string;
   fullName: string;
   email: string;
   role: string;
@@ -16,6 +17,7 @@ interface UserState {
 }
 
 const initialState: UserState = {
+  id: "",
   fullName: "",
   email: "",
   role: "",
@@ -39,6 +41,7 @@ const userSlice = createSlice({
     ) {
       const { user, preferences, accessCode } = action.payload;
       if (user) {
+        state.id = user.id;
         state.fullName = user.fullName;
         state.email = user.email;
         state.role = user.role;
