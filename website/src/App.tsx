@@ -1,31 +1,29 @@
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import Hero from "./sections/Hero";
-import Features from "./sections/Features";
-import HowItWorks from "./sections/HowItWorks";
-import ProductScreens from "./sections/ProductScreens";
-import UseCases from "./sections/UseCases";
-import Automations from "./sections/Automations";
-import CTA from "./sections/CTA";
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Index from "./pages/Index";
+import UseCasesPage from "./pages/UseCasesPage";
+import NotFound from "./pages/NotFound";
 
-function App() {
-  return (
-    <div className="min-h-screen bg-background-light selection:bg-primary/20 selection:text-primary">
-      <Navbar />
+const queryClient = new QueryClient();
 
-      <main>
-        <Hero />
-        <Features />
-        <HowItWorks />
-        <ProductScreens />
-        <UseCases />
-        <Automations />
-        <CTA />
-      </main>
-
-      <Footer />
-    </div>
-  );
-}
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/use-cases" element={<UseCasesPage />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
 
 export default App;

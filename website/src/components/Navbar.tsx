@@ -1,126 +1,47 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Bot } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Bot, ArrowRight } from "lucide-react";
+
+const CTA_URL = "https://chief-of-ai.vercel.app/";
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/80 backdrop-blur-lg shadow-sm py-3"
-          : "bg-transparent py-5"
+        scrolled ? "bg-background/80 backdrop-blur-lg border-b border-border" : ""
       }`}
     >
-      <div className="container mx-auto px-6 flex items-center justify-between">
-        <div className="flex items-center gap-2 cursor-pointer">
-          <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
-            <Bot className="text-white w-6 h-6" />
-          </div>
-          <span className="text-xl font-bold tracking-tight text-gray-900">
-            Chief of AI
-          </span>
-        </div>
+      <div className="container mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="#" className="flex items-center gap-2 font-heading font-bold text-lg">
+          <Bot className="w-6 h-6 text-primary" />
+          Chief of AI
+        </a>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
-          <a
-            href="#features"
-            className="text-sm font-medium text-gray-600 hover:text-primary transition-colors"
-          >
+        <div className="hidden sm:flex items-center gap-8">
+          <a href="#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
             Features
           </a>
+          <Link to="/use-cases" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            Explore
+          </Link>
           <a
-            href="#how-it-works"
-            className="text-sm font-medium text-gray-600 hover:text-primary transition-colors"
-          >
-            How it Works
-          </a>
-          <a
-            href="#use-cases"
-            className="text-sm font-medium text-gray-600 hover:text-primary transition-colors"
-          >
-            Use Cases
-          </a>
-          <a
-            href="#"
-            className="text-sm font-medium text-gray-600 hover:text-primary transition-colors"
-          >
-            Docs
-          </a>
-        </div>
-
-        <div className="hidden md:flex items-center gap-4">
-          <a
-            href="https://chief-of-ai.vercel.app/"
+            href={CTA_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-semibold text-gray-700 hover:text-primary transition-colors"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium transition-all hover:scale-105"
           >
-            Login
-          </a>
-          <a
-            href="https://chief-of-ai.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-md shadow-primary/20 hover:scale-105 active:scale-95"
-          >
-            Get Started
+            Try it <ArrowRight className="w-3.5 h-3.5" />
           </a>
         </div>
-
-        {/* Mobile Toggle */}
-        <button
-          className="md:hidden"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? <X /> : <Menu />}
-        </button>
       </div>
-
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-gray-100 p-6 flex flex-col gap-4 animate-in fade-in slide-in-from-top-4">
-          <a
-            href="#features"
-            className="text-lg font-medium text-gray-800"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Features
-          </a>
-          <a
-            href="#how-it-works"
-            className="text-lg font-medium text-gray-800"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            How it Works
-          </a>
-          <a
-            href="#use-cases"
-            className="text-lg font-medium text-gray-800"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Use Cases
-          </a>
-          <a
-            href="https://chief-of-ai.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full bg-primary text-white py-4 rounded-xl font-bold mt-2 text-center"
-          >
-            Get Started
-          </a>
-        </div>
-      )}
     </nav>
   );
 };
