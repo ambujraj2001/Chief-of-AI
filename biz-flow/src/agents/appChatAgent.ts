@@ -546,6 +546,53 @@ const buildDeterministicDisplayMarkdown = (
   return parts.join("\n").trim();
 };
 
+const messagePromisesInlineContent = (message: string): boolean => {
+  const m = message.toLowerCase();
+  return (
+    m.includes("here's the updated") ||
+    m.includes("here is the updated") ||
+    m.includes("here's the bill") ||
+    m.includes("here is the bill") ||
+    m.includes("here's the invoice") ||
+    m.includes("here is the invoice") ||
+    m.includes("here's the report") ||
+    m.includes("here is the report") ||
+    m.includes("see below")
+  );
+};
+
+const messageAlreadyHasInlineContent = (message: string): boolean =>
+  /\n\s*#\s+/.test(message) || /\n\s*\|.+\|/.test(message);
+
+const getDisplayMarkdownFromUpdates = (
+  updates: DataUpdate[] | undefined,
+  displayComponents: string[],
+): string | null => {
+  if (!updates?.length || displayComponents.length === 0) return null;
+  const displaySet = new Set(displayComponents);
+  const hit = updates.find(
+    (u) => displaySet.has(u.key) && typeof u.value === "string" && u.value.trim(),
+  );
+  return hit ? (hit.value as string).trim() : null;
+};
+
+const normalizeReplyForChat = (
+  message: string,
+  updates: DataUpdate[] | undefined,
+  displayComponents: string[],
+): string => {
+  const base = (message || "I processed your request.").trim();
+  if (!messagePromisesInlineContent(base) || messageAlreadyHasInlineContent(base)) {
+    return base;
+  }
+
+  const markdown = getDisplayMarkdownFromUpdates(updates, displayComponents);
+  if (markdown) return `${base}\n\n${markdown}`;
+
+  // If we don't have inline content, avoid promising "Here's ...".
+  return base.replace(/:\s*$/, ".").replace(/\s{2,}/g, " ").trim();
+};
+
 // ─── Main agent runner ───────────────────────────────────────────────────────
 
 export interface AppChatResult {
@@ -668,7 +715,12 @@ export const runAppChatAgent = async (
     }
   }
 
-  const replyText = parsed.message || "I processed your request.";
+  const displayComponents = getDisplayComponents(app.schema);
+  const replyText = normalizeReplyForChat(
+    parsed.message || "I processed your request.",
+    parsed.dataUpdates,
+    displayComponents,
+  );
 
   await saveAppChatMessage(appId, userId, "ai", replyText);
 
