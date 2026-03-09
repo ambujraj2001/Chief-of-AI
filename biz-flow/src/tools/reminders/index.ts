@@ -60,7 +60,7 @@ export const addReminderTool = tool(
 );
 
 export const updateReminderTool = tool(
-  async ({ accessCode, reminderId, status, title, remindAt }) => {
+  async ({ accessCode, id, status, title, remindAt }) => {
     try {
       const user = await findUserByAccessCode(accessCode);
       if (!user) return `Error: Invalid access code.`;
@@ -70,7 +70,7 @@ export const updateReminderTool = tool(
       if (title) updates.title = title;
       if (remindAt) updates.remind_at = remindAt;
 
-      const reminder = await updateReminder(reminderId, user.id, updates);
+      const reminder = await updateReminder(id, user.id, updates);
       return `Successfully updated reminder: ${reminder.title}`;
     } catch (err: unknown) {
       if (err instanceof Error)
@@ -86,7 +86,7 @@ export const updateReminderTool = tool(
       accessCode: z
         .string()
         .describe("The user access code injected by the system."),
-      reminderId: z.string().describe("The UUID of the reminder to update"),
+      id: z.string().describe("The UUID of the reminder to update"),
       status: z
         .enum(["active", "completed", "dismissed"])
         .optional()
@@ -140,13 +140,13 @@ export const getRemindersTool = tool(
 );
 
 export const deleteReminderTool = tool(
-  async ({ accessCode, reminderId }) => {
+  async ({ accessCode, id }) => {
     try {
       const user = await findUserByAccessCode(accessCode);
       if (!user) return `Error: Invalid access code.`;
 
-      await deleteReminder(reminderId, user.id);
-      return `Successfully deleted reminder ID: ${reminderId}`;
+      await deleteReminder(id, user.id);
+      return `Successfully deleted reminder ID: ${id}`;
     } catch (err: unknown) {
       if (err instanceof Error)
         return `Failed to delete reminder: ${err.message}`;
@@ -161,7 +161,7 @@ export const deleteReminderTool = tool(
       accessCode: z
         .string()
         .describe("The user access code injected by the system."),
-      reminderId: z.string().describe("The UUID of the reminder to delete"),
+      id: z.string().describe("The UUID of the reminder to delete"),
     }),
   },
 );

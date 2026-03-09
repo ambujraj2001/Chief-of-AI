@@ -78,8 +78,16 @@ export const updateRoutine = async (
 };
 
 export const deleteRoutine = async (id: string): Promise<void> => {
-  const { error } = await supabase.from("ai_routines").delete().eq("id", id);
+  const { data, error } = await supabase
+    .from("ai_routines")
+    .delete()
+    .eq("id", id)
+    .select();
+
   if (error) throw error;
+  if (!data || data.length === 0) {
+    throw new Error(`Routine with ID ${id} not found.`);
+  }
 };
 
 export const getRoutineRuns = async (

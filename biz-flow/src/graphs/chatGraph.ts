@@ -7,6 +7,8 @@ import { toolNode } from "../nodes/toolNode";
 import { responseNode } from "../nodes/responseNode";
 import { AIMessage } from "@langchain/core/messages";
 
+import { toolDiscoveryNode } from "../nodes/toolDiscoveryNode";
+
 const shouldContinue = (state: GraphState) => {
   if (state.iterations > 5) {
     return "respond";
@@ -24,6 +26,7 @@ const shouldContinue = (state: GraphState) => {
 const graphBuilder = new StateGraph(GraphStateAnnotation)
   .addNode("router", routerNode)
   .addNode("memory", memoryNode)
+  .addNode("discovery", toolDiscoveryNode)
   .addNode("planner", plannerNode)
   .addNode("tools", toolNode)
   .addNode("respond", responseNode)
@@ -37,30 +40,42 @@ const graphBuilder = new StateGraph(GraphStateAnnotation)
 
       if (state.intent === "general_chat") return "respond";
 
-      if (state.intent === "memory_write") return "planner";
+      if (state.intent === "memory_write") return "discovery";
 
-      if (state.intent === "memory_delete") return "planner";
+      if (state.intent === "memory_delete") return "discovery";
 
       if (state.intent === "memory_query") return "memory";
 
-      return "planner";
+      return "discovery";
     },
     {
       respond: "respond",
       memory: "memory",
-      planner: "planner",
+      discovery: "discovery",
       tools: "tools",
     },
   )
 
-  .addEdge("memory", "planner")
+  .addEdge("memory", "discovery")
+  .addEdge("discovery", "planner")
 
   .addConditionalEdges("planner", shouldContinue, {
     tools: "tools",
     respond: "respond",
   })
 
-  .addEdge("tools", "planner")
+  .addEdge("tools", "discovery") // If tools called, go back to discovery for next step tools?
+  // Actually, go to discovery to find tools for next thought?
+  // User said "BEFORE the LLM node". If tool finishes, it goes back to LLM.
+  // So it should be tools -> discovery -> planner.
   .addEdge("respond", END);
+import { MemorySaver } from "@langchain/langgraph";
 
-export const chatGraph = graphBuilder.compile();
+export const checkpointer = new MemorySaver();
+
+const isLocal = process.env.NODE_ENV !== "production";
+
+export const chatGraph = graphBuilder.compile({
+  checkpointer,
+  interruptBefore: isLocal ? ["tools"] : undefined,
+});

@@ -1,7 +1,11 @@
 import { buildModel } from "../config/model";
 import { GraphState } from "../graphs/state";
 import { tools } from "../tools";
-import { AIMessage, SystemMessage } from "@langchain/core/messages";
+import {
+  AIMessage,
+  SystemMessage,
+  HumanMessage,
+} from "@langchain/core/messages";
 import { log } from "../utils/logger";
 import { debugGraphState } from "../utils/debugGraphState";
 
@@ -38,12 +42,18 @@ export const plannerNode = async (state: GraphState) => {
   });
 
   /**
-   * Build model with tools
+   * Build model with dynamic and static tools
    */
   const agentTools = tools.filter((t) => t.name !== "prettify_response");
+  const retrievedTools = state.retrievedTools || [];
 
-  // @ts-ignore
-  const llm = buildModel(agentTools);
+  // Combine static tools with dynamically retrieved tools
+  const allTools = [...agentTools, ...retrievedTools];
+
+  // @ts-ignore - buildModel might only expect StructuredToolInterface[]
+  const llm = buildModel(allTools).bindTools(allTools, {
+    parallel_tool_calls: false,
+  });
 
   /**
    * Planner system instructions
@@ -53,68 +63,105 @@ export const plannerNode = async (state: GraphState) => {
 You are the planning engine for an AI agent.
 
 CRITICAL OUTPUT RULE:
-You MUST return ONLY valid JSON.
-Never return plain text.
-Never include explanations.
+If you are NOT calling a tool, your response MUST be a JSON object satisfying exactly ONE of the following TypeScript interfaces.
+Do NOT include markdown, explanations, or conversational text.
 
-If asking a question, use the clarification format.
-If you have a plain text question like "When should I remind you?", you MUST convert it into this exact JSON format:
-{
-  "type": "clarification",
-  "question": "Are you sure you want to delete the reminder?",
-  "options": ["Yes, delete it", "No, cancel"]
+\`\`\`typescript
+interface ClarificationResponse {
+  type: "clarification";
+  question: string;
+  options: string[];
 }
 
-Do NOT include:
-- text before JSON
-- text after JSON
-- markdown
-- explanations
+interface FinalResponse {
+  type: "final";
+  message: string;
+}
+\`\`\`
+
+TOOL EXECUTION RULE:
+If you need to call a tool, USE THE NATIVE TOOL CALLING API. DO NOT output JSON text.
+Your tool arguments must strictly match the following TypeScript interfaces.
+The \`accessCode\` parameter is ALWAYS required and must be a string.
+
+\`\`\`typescript
+// Memory Tools
+interface AddMemoryArgs { accessCode: string; content: string; title?: string; }
+interface UpdateMemoryArgs { accessCode: string; id: string; content: string; title?: string; }
+interface DeleteMemoryArgs { accessCode: string; id: string; }
+interface GetMemoriesArgs { accessCode: string; }
+interface SearchMemoryArgs { accessCode: string; query: string; limit?: number; }
+
+// Task Tools
+// Task Tools
+interface AddTaskArgs { accessCode: string; title: string; metadata?: string; }
+interface UpdateTaskArgs { accessCode: string; id: string; title?: string; metadata?: string; }
+interface DeleteTaskArgs { accessCode: string; id: string; }
+interface GetTasksArgs { accessCode: string; }
+
+// Journal Tools
+interface AddJournalArgs { accessCode: string; content: string; title?: string; }
+interface UpdateJournalArgs { accessCode: string; id: string; content: string; title?: string; }
+interface DeleteJournalArgs { accessCode: string; id: string; }
+interface GetJournalArgs { accessCode: string; }
+
+// Reminder Tools
+interface AddReminderArgs { accessCode: string; title: string; due_date: string; }
+interface UpdateReminderArgs { accessCode: string; id: string; title?: string; due_date?: string; }
+interface DeleteReminderArgs { accessCode: string; id: string; }
+interface GetRemindersArgs { accessCode: string; }
+\`\`\`
 
 TOOL PARAMETER RULES:
-If a tool requires parameters that are missing from the user request, you MUST ask a clarification question INSTEAD of calling the tool.
+If a tool requires parameters that are missing from the user request, you MUST output a \`ClarificationResponse\` INSTEAD of calling the tool.
 Never invent dates or times for reminders. If the user did not specify a time, ask a clarification question.
-Do NOT guess required tool parameters like "title".
-
-Allowed formats:
-
-Format 1 — Clarification
-{
-  "type": "clarification",
-  "question": "Which option did you mean?",
-  "options": ["Option A", "Option B"]
-}
-
-Format 2 — Final Response
-{
-  "type": "final",
-  "message": "Response to the user"
-}
-
-TOOL RESULT PARSING RULES:
-When tool results are returned formatted like:
-"[ID: abc123] This is the title"
-You must extract the text after the ID bracket (e.g. "This is the title") to use as the option text.
-
-If a tool result says "Successfully deleted...", you MUST produce:
-{
-  "type": "final",
-  "message": "The item has been deleted."
-}
+Do NOT guess required tool parameters.
 
 DELETION WORKFLOW RULES (CRITICAL):
-Step 1: Call the get/list tool.
-Step 2: Ask which item to delete (Clarification). Never repeat this if the user already selected an option. If the user replied with an option, move to Step 3.
-Step 3: Ask for confirmation (Clarification).
-Step 4: Call the delete tool.
-Step 5: Return a final success message.
+Step 1: If no ID is provided, call the get/list tool natively.
+Step 2: Once you have the ID, call the delete tool natively. The system will handle the confirmation automatically.
 `.trim(),
   );
 
   /**
    * Run planner
+   * Mistral AI API strict schema check: Only exactly one SystemMessage is allowed at the start.
+   * We merge the planner prompt with any existing system prompts from the state.
    */
-  let response: any = await llm.invoke([plannerPrompt, ...state.messages]);
+  const systemMessages = [plannerPrompt, ...state.messages].filter(
+    (m) => m instanceof SystemMessage || m._getType() === "system",
+  );
+  const otherMessages = state.messages.filter(
+    (m) => !(m instanceof SystemMessage || m._getType() === "system"),
+  );
+
+  const mergedSystemContent = systemMessages
+    .map((m) => m.content)
+    .join("\n\n---\n\n");
+  const finalSystemPrompt = new SystemMessage(mergedSystemContent);
+
+  // Mistral requires tool execution chains to be strictly alternating or perfectly mapped.
+  // Instead of risking Mistral rejecting standard Langchain ToolMessages, we format the history
+  // as standard human/AI conversational context.
+  const safeOtherMessages = otherMessages.map((m) => {
+    if (m._getType() === "tool") {
+      return new HumanMessage(
+        `[Tool execution result for ${m.name || "tool"}]:\n${m.content}`,
+      );
+    }
+    if (m._getType() === "ai" && (m as AIMessage).tool_calls?.length) {
+      const calls = (m as AIMessage)
+        .tool_calls!.map((c) => `${c.name}(${JSON.stringify(c.args)})`)
+        .join(", ");
+      return new AIMessage(`[I decided to call tools: ${calls}]`);
+    }
+    return m;
+  });
+
+  let response: any = await llm.invoke([
+    finalSystemPrompt,
+    ...safeOtherMessages,
+  ]);
 
   /**
    * If the response contains tool calls, return immediately
@@ -166,29 +213,24 @@ Step 5: Return a final success message.
     const retryPrompt = new SystemMessage(
       `
 CRITICAL ERROR:
-Your previous response was invalid because it was not JSON. Respond ONLY with valid JSON.
-Your previous response contained plain text or was NOT valid JSON.
+Your previous response contained plain text or was NOT valid JSON parsing safely into the required TypeScript interfaces.
 
-You must ALWAYS return valid JSON.
-Never return plain text.
-Never include explanations.
+You MUST return a JSON object satisfying exactly ONE of these TypeScript interfaces:
 
-If you are asking a question, you MUST use the clarification format.
-
-Allowed formats:
-
-{
- "type": "clarification",
- "question": "text",
- "options": ["option1","option2"]
+\`\`\`typescript
+interface ClarificationResponse {
+  type: "clarification";
+  question: string;
+  options: string[];
 }
 
-or
-
-{
- "type": "final",
- "message": "text"
+interface FinalResponse {
+  type: "final";
+  message: string;
 }
+\`\`\`
+
+If you meant to execute a tool, USE THE NATIVE TOOL API instead of returning JSON text.
 `.trim(),
     );
 

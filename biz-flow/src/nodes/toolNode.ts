@@ -24,7 +24,9 @@ export const toolNode = async (state: GraphState) => {
       throw new Error("Missing tool_call_id from LLM tool call.");
     }
 
-    const matchedTool = tools.find((t) => t.name === toolCall.name);
+    const matchedTool =
+      tools.find((t) => t.name === toolCall.name) ||
+      (state.retrievedTools || []).find((t: any) => t.name === toolCall.name);
 
     if (!matchedTool) {
       toolMessages.push(

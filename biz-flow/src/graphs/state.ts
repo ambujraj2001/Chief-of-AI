@@ -50,6 +50,12 @@ export const GraphStateAnnotation = Annotation.Root({
     },
     default: () => ({}),
   }),
+
+  // Dynamic Tooling
+  retrievedTools: Annotation<any[]>({
+    reducer: (_, y) => y,
+    default: () => [],
+  }),
 });
 
 export type GraphState = typeof GraphStateAnnotation.State;

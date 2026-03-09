@@ -63,7 +63,7 @@ export const addTaskTool = tool(
 );
 
 export const updateTaskTool = tool(
-  async ({ accessCode, taskId, status, priority, title, dueDate }) => {
+  async ({ accessCode, id, status, priority, title, dueDate }) => {
     try {
       const user = await findUserByAccessCode(accessCode);
       if (!user) return `Error: Invalid access code.`;
@@ -74,7 +74,7 @@ export const updateTaskTool = tool(
       if (title) updates.title = title;
       if (dueDate !== undefined) updates.due_date = dueDate;
 
-      const task = await updateTask(taskId, user.id, updates);
+      const task = await updateTask(id, user.id, updates);
       return `Successfully updated task: ${task.title}`;
     } catch (err: unknown) {
       if (err instanceof Error) return `Failed to update task: ${err.message}`;
@@ -89,7 +89,7 @@ export const updateTaskTool = tool(
       accessCode: z
         .string()
         .describe("The user access code injected by the system."),
-      taskId: z.string().describe("The UUID of the task to update"),
+      id: z.string().describe("The UUID of the task to update"),
       status: z
         .enum(["pending", "completed"])
         .optional()
@@ -149,13 +149,13 @@ export const getTasksTool = tool(
 );
 
 export const deleteTaskTool = tool(
-  async ({ accessCode, taskId }) => {
+  async ({ accessCode, id }) => {
     try {
       const user = await findUserByAccessCode(accessCode);
       if (!user) return `Error: Invalid access code.`;
 
-      await deleteTask(taskId, user.id);
-      return `Successfully deleted task ID: ${taskId}`;
+      await deleteTask(id, user.id);
+      return `Successfully deleted task ID: ${id}`;
     } catch (err: unknown) {
       if (err instanceof Error) return `Failed to delete task: ${err.message}`;
       return "Failed to delete task.";
@@ -169,7 +169,7 @@ export const deleteTaskTool = tool(
       accessCode: z
         .string()
         .describe("The user access code injected by the system."),
-      taskId: z.string().describe("The UUID of the task to delete"),
+      id: z.string().describe("The UUID of the task to delete"),
     }),
   },
 );

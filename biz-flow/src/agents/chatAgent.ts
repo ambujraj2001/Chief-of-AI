@@ -17,7 +17,7 @@ import {
 // ─── System prompt ────────────────────────────────────────────────────────────
 
 const buildSystemPrompt = (user: UserRow): string =>
-`
+  `
 You are **Chief of AI**, a personal AI assistant for ${user.full_name}.
 
 Your role is to help the user manage information, tasks, reminders, knowledge, files, and apps through conversation.
@@ -215,65 +215,46 @@ If the user asks to summarize a file → use read_and_summarize_file.
 
 DESTRUCTIVE ACTIONS (STRICT RULES)
 
-For deleting memories, tasks, reminders, or files follow this exact 3-step flow.
+For deleting memories, tasks, reminders, or files:
 
-STEP 1 — User requests deletion
+STEP 1 — If the user hasn't specified an ID, call the appropriate get_ or search_ tool first to find it.
+STEP 2 — Once you have the ID, **directly call the delete tool**. Do NOT ask the user for confirmation manually. The system will automatically pause and prompt the user for confirmation securely before the deletion executes.
 
-Call the appropriate **get_ tool**.
-
-Example:
-
-get_memories
-
-Return the results to the user as a clarification response.
-
-Do NOT delete anything yet.
-
-STEP 2 — User selects item
-
-Ask for confirmation.
-
-Example:
-
-{
-"type": "clarification",
-"question": "Are you sure you want to delete 'Travel to London and Paris'?",
-"options": ["Yes, delete it", "No, cancel"]
-}
-
-STEP 3 — User confirms
-
-Now call the delete tool using the ID from the earlier tool result.
-
-If the user cancels, stop.
+If the user says "No" or "Cancel" when prompted, the tool execution will fail gracefully.
 
 RESPONSE FORMAT (CRITICAL)
 
-When you finish reasoning and are NOT calling tools, return ONLY valid JSON.
+When you finish reasoning and are NOT calling tools, you MUST return a valid JSON object that exactly matches ONE of the following TypeScript interfaces:
 
-Do not include:
-
-* markdown
-* explanations
-* code blocks
-* text before JSON
-* text after JSON
-
-Two response formats are allowed.
-
-Clarification:
-
-{
-"type": "clarification",
-"question": "Which option did you mean?",
-"options": ["Option A", "Option B"]
+\`\`\`typescript
+interface ClarificationResponse {
+  type: "clarification";
+  question: string;
+  options: string[];
 }
 
-Final response:
+interface FinalResponse {
+  type: "final";
+  message: string;
+}
+\`\`\`
 
+Do not include:
+* markdown formatting around the JSON
+* explanations or conversational text
+* text before or after the JSON object
+
+Example of a ClarificationResponse:
 {
-"type": "final",
-"message": "Your response to the user"
+  "type": "clarification",
+  "question": "Which option did you mean?",
+  "options": ["Option A", "Option B"]
+}
+
+Example of a FinalResponse:
+{
+  "type": "final",
+  "message": "Your response to the user"
 }
 
 WHEN NOT TO USE TOOLS
@@ -315,7 +296,6 @@ Confirm actions naturally without exposing internal identifiers.
 
 You are assisting ${user.full_name} inside the Chief of AI assistant application.
 `.trim();
-
 
 // ─── Response cleaner ─────────────────────────────────────────────────────────
 // Qwen sometimes appends residual XML tool-call markers (<tool_call>, </tool_call>,
@@ -389,13 +369,92 @@ export const runAgent = async (
   // ── Step 1: LangGraph Execution ──────────
   const { chatGraph } = await import("../graphs/chatGraph");
 
-  const result = await chatGraph.invoke({
-    userId: user.id,
-    user,
-    messages: messages,
-  });
+  const threadId = conversationId || user.id;
+  const config = { configurable: { thread_id: threadId } };
 
-  let finalReply = result.reply;
+  let result;
+  const state = await chatGraph.getState(config);
+
+  // If the graph is paused before executing "tools" (HITL)
+  if (state?.next?.includes("tools")) {
+    const userText = message.trim().toLowerCase();
+    const isApproval = [
+      "yes",
+      "y",
+      "sure",
+      "do it",
+      "confirm",
+      "proceed",
+      "yes, delete it",
+    ].includes(userText);
+
+    if (isApproval) {
+      // User approved, resume graph
+      result = await chatGraph.invoke(null, config);
+    } else {
+      // User denied the tool call, simulate a failure and resume
+      const lastMsg = state.values.messages[state.values.messages.length - 1];
+      if (lastMsg?.tool_calls?.length > 0) {
+        const toolMessages = lastMsg.tool_calls.map(
+          (t: any) =>
+            new ToolMessage({
+              tool_call_id: t.id,
+              name: t.name,
+              content: "USER CANCELLED ACTION.",
+            }),
+        );
+        await chatGraph.updateState(
+          config,
+          { messages: toolMessages },
+          "tools",
+        );
+      }
+      result = await chatGraph.invoke(null, config);
+    }
+  } else {
+    // Normal graph execution
+    const hasCheckpointHistory = state?.values?.messages?.length > 0;
+    const payload = {
+      userId: user.id,
+      user,
+      messages: hasCheckpointHistory ? [new HumanMessage(message)] : messages,
+    };
+    result = await chatGraph.invoke(payload, config);
+  }
+
+  // After execution, check if it paused
+  const newState = await chatGraph.getState(config);
+  if (newState?.next?.includes("tools")) {
+    const lastMsg =
+      newState.values.messages[newState.values.messages.length - 1];
+    let confirmationQuestion =
+      "Do you want to proceed with this tool execution?";
+    let options = ["Yes", "No"];
+
+    if (lastMsg?.tool_calls?.length > 0) {
+      const call = lastMsg.tool_calls[0];
+      if (call.name.includes("delete")) {
+        confirmationQuestion = `Are you sure you want to run ${call.name} on ID: ${call.args.id || "this item"}?`;
+        options = ["Yes, delete it", "No, cancel"];
+      } else {
+        confirmationQuestion = `The system wants to run '${call.name}'. Do you want to proceed?`;
+      }
+    }
+
+    const clarificationReply = JSON.stringify({
+      type: "clarification",
+      question: confirmationQuestion,
+      options,
+    });
+
+    if (!incognito) {
+      await saveChatMessage(user.id, "ai", clarificationReply, conversationId);
+    }
+
+    return clarificationReply;
+  }
+
+  let finalReply = result?.reply;
 
   if (!finalReply || !finalReply.trim()) {
     finalReply =

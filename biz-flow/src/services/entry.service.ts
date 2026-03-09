@@ -104,13 +104,17 @@ export const updateEntry = async (
 };
 
 export const deleteEntry = async (id: string, userId: string) => {
-  const { error } = await supabase
+  const { data, error } = await supabase
     .from("entries")
     .delete()
     .eq("id", id)
-    .eq("user_id", userId);
+    .eq("user_id", userId)
+    .select();
 
   if (error) throw new Error(error.message);
+  if (!data || data.length === 0) {
+    throw new Error(`Entry with ID ${id} not found or permission denied.`);
+  }
   return true;
 };
 

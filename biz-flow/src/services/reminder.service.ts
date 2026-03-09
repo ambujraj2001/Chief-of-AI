@@ -70,14 +70,21 @@ export const updateReminder = async (
 };
 
 export const deleteReminder = async (reminderId: string, userId: string) => {
-  const { error } = await supabase
+  const { data, error } = await supabase
     .from("reminders")
     .delete()
     .eq("id", reminderId)
-    .eq("user_id", userId);
+    .eq("user_id", userId)
+    .select();
 
   if (error) {
     throw new Error(error.message);
+  }
+
+  if (!data || data.length === 0) {
+    throw new Error(
+      `Reminder with ID ${reminderId} not found or permission denied.`,
+    );
   }
 
   return true;

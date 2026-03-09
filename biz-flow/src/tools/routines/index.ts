@@ -71,13 +71,13 @@ export const listRoutinesTool = tool(
 );
 
 export const deleteRoutineTool = tool(
-  async ({ accessCode, routineId }) => {
+  async ({ accessCode, id }) => {
     try {
       const user = await findUserByAccessCode(accessCode);
       if (!user) return `Error: Invalid access code.`;
 
-      await deleteRoutine(routineId);
-      return `Successfully deleted routine ID: ${routineId}`;
+      await deleteRoutine(id);
+      return `Successfully deleted routine ID: ${id}`;
     } catch (err: any) {
       return `Failed to delete routine: ${err.message}`;
     }
@@ -88,20 +88,13 @@ export const deleteRoutineTool = tool(
       "Deletes an AI routine by its ID. Use get_routines to find IDs first.",
     schema: z.object({
       accessCode: z.string().describe("System-injected access code"),
-      routineId: z.string().describe("The UUID of the routine to delete"),
+      id: z.string().describe("The UUID of the routine to delete"),
     }),
   },
 );
 
 export const updateRoutineTool = tool(
-  async ({
-    accessCode,
-    routineId,
-    name,
-    instruction,
-    cronExpression,
-    isActive,
-  }) => {
+  async ({ accessCode, id, name, instruction, cronExpression, isActive }) => {
     try {
       const user = await findUserByAccessCode(accessCode);
       if (!user) return `Error: Invalid access code.`;
@@ -112,7 +105,7 @@ export const updateRoutineTool = tool(
       if (cronExpression) updates.cron_expression = cronExpression;
       if (isActive !== undefined) updates.is_active = isActive;
 
-      const routine = await updateRoutine(routineId, updates);
+      const routine = await updateRoutine(id, updates);
       return `Successfully updated routine: "${routine.name}".`;
     } catch (err: any) {
       return `Failed to update routine: ${err.message}`;
@@ -121,10 +114,10 @@ export const updateRoutineTool = tool(
   {
     name: "update_routine",
     description:
-      "Updates an existing AI routine. Provide the routineId and any fields you want to change.",
+      "Updates an existing AI routine. Provide the id and any fields you want to change.",
     schema: z.object({
       accessCode: z.string().describe("System-injected access code"),
-      routineId: z.string().describe("The UUID of the routine to update"),
+      id: z.string().describe("The UUID of the routine to update"),
       name: z.string().optional().describe("New name for the routine"),
       instruction: z.string().optional().describe("New AI instruction"),
       cronExpression: z.string().optional().describe("New cron schedule"),

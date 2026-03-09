@@ -71,14 +71,19 @@ export const updateTask = async (
 };
 
 export const deleteTask = async (taskId: string, userId: string) => {
-  const { error } = await supabase
+  const { data, error } = await supabase
     .from("tasks")
     .delete()
     .eq("id", taskId)
-    .eq("user_id", userId);
+    .eq("user_id", userId)
+    .select();
 
   if (error) {
     throw new Error(error.message);
+  }
+
+  if (!data || data.length === 0) {
+    throw new Error(`Task with ID ${taskId} not found or permission denied.`);
   }
 
   return true;
