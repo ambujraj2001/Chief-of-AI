@@ -11,24 +11,49 @@ interface JokeApiResponse {
 
 export const randomJokeTool = tool(
   async (): Promise<string> => {
+    log({
+      event: "tool_execution_started",
+      toolName: "get_joke",
+    });
+
     const url = "https://official-joke-api.appspot.com/random_joke";
     log({ event: "external_api_call", url });
 
-    const response = await fetch(url);
+    try {
+      const response = await fetch(url);
 
-    if (!response.ok) {
+      if (!response.ok) {
+        log({
+          event: "tool_execution_failed",
+          toolName: "get_joke",
+          status: response.status,
+          error: `Joke API returned status ${response.status}`,
+        });
+        throw new Error(`Joke API returned status ${response.status}`);
+      }
+
       log({
         event: "external_api_response",
         status: response.status,
-        ok: false,
+        ok: true,
       });
-      throw new Error(`Joke API returned status ${response.status}`);
+
+      const joke = (await response.json()) as JokeApiResponse;
+
+      log({
+        event: "tool_execution_completed",
+        toolName: "get_joke",
+      });
+
+      return `${joke.setup} ${joke.punchline}`;
+    } catch (error: any) {
+      log({
+        event: "tool_execution_failed",
+        toolName: "get_joke",
+        error: error.message,
+      });
+      throw error;
     }
-
-    log({ event: "external_api_response", status: response.status, ok: true });
-
-    const joke = (await response.json()) as JokeApiResponse;
-    return `${joke.setup} ${joke.punchline}`;
   },
   {
     name: "get_joke",

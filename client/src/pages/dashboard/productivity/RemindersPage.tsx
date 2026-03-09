@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { apiGetReminders } from "../../../services/api";
+import { apiGetReminders, apiDeleteReminder } from "../../../services/api";
 import type { ReminderEntry } from "../../../services/api";
+import { message } from "antd";
 import dayjs from "dayjs";
 
 const RemindersPage: React.FC = () => {
@@ -23,6 +24,22 @@ const RemindersPage: React.FC = () => {
     };
     fetchData();
   }, []);
+
+  const handleDelete = async (id: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    try {
+      const accessCode = localStorage.getItem("accessCode") || "";
+      if (!accessCode) return;
+      await apiDeleteReminder(accessCode, id);
+      setReminders((prev) => prev.filter((r) => r.id !== id));
+      message.success("Reminder deleted.");
+    } catch (err: unknown) {
+      message.error(
+        err instanceof Error ? err.message : "Failed to delete reminder",
+      );
+    }
+  };
 
   const morningReminders = useMemo(
     () => reminders.filter((r) => dayjs(r.remind_at).hour() < 12),
@@ -68,8 +85,15 @@ const RemindersPage: React.FC = () => {
             </span>
           </div>
         </div>
-        <div className="text-slate-300 dark:text-slate-700">
+        <div className="text-slate-300 dark:text-slate-700 flex items-center gap-2">
           <span className="material-symbols-outlined">lock</span>
+          <button
+            onClick={(e) => handleDelete(reminder.id, e)}
+            title="Delete reminder"
+            className="text-slate-300 hover:text-red-500 transition-colors p-1 flex items-center justify-center rounded-full hover:bg-red-50 dark:hover:bg-red-900/20"
+          >
+            <span className="material-symbols-outlined text-sm">delete</span>
+          </button>
         </div>
       </div>
     );

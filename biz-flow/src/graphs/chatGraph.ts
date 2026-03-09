@@ -33,9 +33,15 @@ const graphBuilder = new StateGraph(GraphStateAnnotation)
   .addConditionalEdges(
     "router",
     (state: GraphState) => {
-      if (state?.intent === "general_chat") return "respond";
+      if (state.intent === "bound_action") return "tools";
 
-      if (state?.intent === "memory_query") return "memory";
+      if (state.intent === "general_chat") return "respond";
+
+      if (state.intent === "memory_write") return "planner";
+
+      if (state.intent === "memory_delete") return "planner";
+
+      if (state.intent === "memory_query") return "memory";
 
       return "planner";
     },
@@ -43,6 +49,7 @@ const graphBuilder = new StateGraph(GraphStateAnnotation)
       respond: "respond",
       memory: "memory",
       planner: "planner",
+      tools: "tools",
     },
   )
 

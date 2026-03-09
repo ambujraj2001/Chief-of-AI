@@ -40,6 +40,16 @@ export const GraphStateAnnotation = Annotation.Root({
     },
     default: () => [],
   }),
+  boundActions: Annotation<Record<
+    string,
+    { action: string; id: string }
+  > | null>({
+    reducer: (x, y) => {
+      if (y === null) return {};
+      return { ...(x || {}), ...y };
+    },
+    default: () => ({}),
+  }),
 });
 
 export type GraphState = typeof GraphStateAnnotation.State;

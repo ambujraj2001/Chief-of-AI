@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Spin, message } from "antd";
-import { apiGetKnowledge, type MemoryEntry } from "../../../services/api";
+import {
+  apiGetKnowledge,
+  apiDeleteKnowledge,
+  type MemoryEntry,
+} from "../../../services/api";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
@@ -33,6 +37,22 @@ const KnowledgePage: React.FC = () => {
 
     fetchKnowledge();
   }, []);
+
+  const handleDelete = async (id: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    try {
+      const accessCode = localStorage.getItem("accessCode") || "";
+      if (!accessCode) return;
+      await apiDeleteKnowledge(accessCode, id);
+      setKnowledgeList((prev) => prev.filter((entry) => entry.id !== id));
+      message.success("Knowledge entry deleted.");
+    } catch (err: unknown) {
+      message.error(
+        err instanceof Error ? err.message : "Failed to delete knowledge entry",
+      );
+    }
+  };
 
   const getKnowledgeContext = (title: string | null) => {
     const t = (title || "").toLowerCase();
@@ -196,9 +216,20 @@ const KnowledgePage: React.FC = () => {
                               </p>
                             </div>
                           </div>
-                          <span className="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors cursor-pointer">
-                            visibility
-                          </span>
+                          <div className="flex items-center space-x-2">
+                            <span className="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors cursor-pointer">
+                              visibility
+                            </span>
+                            <button
+                              onClick={(e) => handleDelete(item.id, e)}
+                              title="Delete knowledge"
+                              className="text-slate-300 hover:text-red-500 transition-colors p-1 flex items-center justify-center rounded-full hover:bg-red-50 dark:hover:bg-red-900/20"
+                            >
+                              <span className="material-symbols-outlined text-sm">
+                                delete
+                              </span>
+                            </button>
+                          </div>
                         </div>
 
                         <div className="mt-auto flex flex-wrap gap-2 pt-4 border-t border-slate-50 dark:border-slate-800">

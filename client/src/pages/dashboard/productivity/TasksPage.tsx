@@ -1,7 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Spin, message } from "antd";
-import { apiGetTasks, type TaskEntry } from "../../../services/api";
+import {
+  apiGetTasks,
+  apiDeleteTask,
+  type TaskEntry,
+} from "../../../services/api";
 import dayjs from "dayjs";
 import isToday from "dayjs/plugin/isToday";
 import isTomorrow from "dayjs/plugin/isTomorrow";
@@ -42,6 +46,22 @@ const TasksPage: React.FC = () => {
 
     fetchTasks();
   }, []);
+
+  const handleDelete = async (id: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    try {
+      const accessCode = localStorage.getItem("accessCode") || "";
+      if (!accessCode) return;
+      await apiDeleteTask(accessCode, id);
+      setTasks((prev) => prev.filter((t) => t.id !== id));
+      message.success("Task deleted.");
+    } catch (err: unknown) {
+      message.error(
+        err instanceof Error ? err.message : "Failed to delete task",
+      );
+    }
+  };
 
   const pendingTasks = tasks.filter((t) => t.status !== "completed");
   const completedTasks = tasks.filter((t) => t.status === "completed");
@@ -189,9 +209,15 @@ const TasksPage: React.FC = () => {
                             {getPriorityTag(task.priority)}
                           </div>
                         </div>
-                        <span className="material-symbols-outlined text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity hidden sm:block shrink-0">
-                          more_horiz
-                        </span>
+                        <button
+                          onClick={(e) => handleDelete(task.id, e)}
+                          title="Delete task"
+                          className="opacity-0 group-hover:opacity-100 transition-opacity text-slate-300 hover:text-red-500 rounded-full hover:bg-red-50 dark:hover:bg-red-900/20 p-1 flex items-center justify-center shrink-0"
+                        >
+                          <span className="material-symbols-outlined text-sm">
+                            delete
+                          </span>
+                        </button>
                       </div>
                     </div>
                   ))}
@@ -228,6 +254,15 @@ const TasksPage: React.FC = () => {
                           </span>
                         </div>
                       </div>
+                      <button
+                        onClick={(e) => handleDelete(task.id, e)}
+                        title="Delete task"
+                        className="opacity-0 group-hover:opacity-100 transition-opacity text-slate-300 hover:text-red-500 rounded-full hover:bg-red-50 dark:hover:bg-red-900/20 p-1 flex items-center justify-center shrink-0 ml-2"
+                      >
+                        <span className="material-symbols-outlined text-sm">
+                          delete
+                        </span>
+                      </button>
                     </div>
                   ))}
                 </div>

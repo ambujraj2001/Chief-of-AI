@@ -168,13 +168,15 @@ export const getMemoriesTool = tool(
       const user = await validateUser(accessCode);
       const results = await getUserMemories(user.id);
 
-      if (!results || results.length === 0) return "No memories found.";
-      return results
+      if (!results || results.length === 0)
+        return { content: "No memories found." };
+      const content = results
         .map(
           (m: any) =>
             `[ID: ${m.id}] ${m.title ? `(${m.title}) ` : ""}${m.content}`,
         )
         .join("\n\n");
+      return { content };
     } catch (error: any) {
       log({
         event: "tool_execution_failed",

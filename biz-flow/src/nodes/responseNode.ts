@@ -2,6 +2,12 @@ import { GraphState } from "../graphs/state";
 import { AIMessage, HumanMessage } from "@langchain/core/messages";
 import { buildModel } from "../config/model";
 import { log } from "../utils/logger";
+import { debugGraphState } from "../utils/debugGraphState";
+
+const extractJSON = (text: string): string | null => {
+  const match = text.match(/\{[\s\S]*?\}/);
+  return match ? match[0] : null;
+};
 
 const cleanReply = (raw: unknown): string => {
   const text = typeof raw === "string" ? raw : JSON.stringify(raw);
@@ -16,6 +22,7 @@ const cleanReply = (raw: unknown): string => {
 };
 
 export const responseNode = async (state: GraphState) => {
+  debugGraphState("responseNode_start", state);
   let finalReply: string | undefined = undefined;
 
   let lastMessage = state.messages[state.messages.length - 1];
@@ -40,73 +47,37 @@ export const responseNode = async (state: GraphState) => {
   }
 
   const rawContent = cleanReply(lastMessage.content);
+  const jsonString = extractJSON(rawContent);
 
-  try {
-    const parsed = JSON.parse(rawContent);
-    if (parsed && typeof parsed === "object") {
-      if (parsed.type === "clarification") {
-        finalReply = JSON.stringify(parsed);
-      } else if (parsed.type === "final" && parsed.message) {
-        finalReply = parsed.message;
-      } else if (parsed.message) {
-        finalReply = parsed.message;
-      }
-    }
-  } catch {
-    // LLM sometimes returns a JSON object followed by trailing text.
-    if (rawContent.trimStart().startsWith("{")) {
-      let braceIdx = rawContent.indexOf("}");
-      while (braceIdx !== -1) {
-        try {
-          const candidate = rawContent.substring(0, braceIdx + 1);
-          const parsed = JSON.parse(candidate);
-          const trailing = rawContent.substring(braceIdx + 1).trim();
-
-          if (parsed.type === "clarification") {
-            if (trailing) {
-              parsed.question = parsed.question
-                ? `${parsed.question}\n\n${trailing}`
-                : trailing;
-            }
-            finalReply = JSON.stringify(parsed);
-          } else if (parsed.message) {
-            finalReply = trailing
-              ? `${parsed.message}\n\n${trailing}`
-              : parsed.message;
-          }
-          break;
-        } catch {
-          braceIdx = rawContent.indexOf("}", braceIdx + 1);
+  if (jsonString) {
+    try {
+      const parsed = JSON.parse(jsonString);
+      if (parsed && typeof parsed === "object") {
+        if (parsed.type === "clarification") {
+          finalReply = JSON.stringify(parsed);
+        } else if (parsed.type === "final" && parsed.message) {
+          finalReply = parsed.message;
+        } else if (parsed.message) {
+          finalReply = parsed.message;
         }
       }
-    }
-
-    // Fallback: extract JSON from fenced code block
-    if (!finalReply) {
-      const match = rawContent.match(/```(?:json)?\s*([\s\S]*?)\s*```/);
-      if (match) {
-        try {
-          const parsed = JSON.parse(match[1]);
-          if (parsed.type === "clarification") {
-            finalReply = JSON.stringify(parsed);
-          } else if (parsed.type === "final" && parsed.message) {
-            finalReply = parsed.message;
-          }
-        } catch {
-          finalReply = rawContent;
-        }
-      } else {
-        finalReply = rawContent;
-      }
+    } catch {
+      // JSON parse failed
     }
   }
 
-  if (!finalReply) finalReply = rawContent;
+  if (!finalReply) {
+    finalReply = rawContent;
+  }
 
   if (!finalReply || !finalReply.trim()) {
     finalReply =
       "I'm sorry, I wasn't able to process that request. Could you try again?";
   }
+
+  debugGraphState("responseNode", state, {
+    finalReply,
+  });
 
   return { reply: finalReply };
 };

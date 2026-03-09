@@ -142,9 +142,11 @@ import {
   getUserMemories,
   getUserKnowledge,
   getUserJournal,
+  deleteEntry,
 } from "../services/entry.service";
-import { getUserReminders } from "../services/reminder.service";
+import { getUserReminders, deleteReminder } from "../services/reminder.service";
 import { generateInsights } from "../services/insights.service";
+import { deleteTask } from "../services/task.service";
 
 export const getMemories = async (
   req: Request,
@@ -169,6 +171,32 @@ export const getMemories = async (
     const memories = await getUserMemories(user.id);
 
     res.status(200).json({ memories });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const deleteMemory = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    const accessCode = req.query.accessCode as string;
+    const { id } = req.params;
+
+    if (!accessCode) {
+      res.status(400).json({ error: "accessCode is required" });
+      return;
+    }
+    const user = await findUserByAccessCode(accessCode);
+    if (!user) {
+      res.status(401).json({ error: "Invalid access code" });
+      return;
+    }
+
+    await deleteEntry(id, user.id);
+    res.status(200).json({ message: "Memory deleted successfully" });
   } catch (err) {
     next(err);
   }
@@ -204,6 +232,32 @@ export const getJournal = async (
   }
 };
 
+export const deleteJournal = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    const accessCode = req.query.accessCode as string;
+    const { id } = req.params;
+
+    if (!accessCode) {
+      res.status(400).json({ error: "accessCode is required" });
+      return;
+    }
+    const user = await findUserByAccessCode(accessCode);
+    if (!user) {
+      res.status(401).json({ error: "Invalid access code" });
+      return;
+    }
+
+    await deleteEntry(id, user.id);
+    res.status(200).json({ message: "Journal deleted successfully" });
+  } catch (err) {
+    next(err);
+  }
+};
+
 // ─── GET /chat/knowledge ──────────────────────────────────────────────────────
 
 export const getKnowledge = async (
@@ -229,6 +283,32 @@ export const getKnowledge = async (
     const knowledge = await getUserKnowledge(user.id);
 
     res.status(200).json({ knowledge });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const deleteKnowledge = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    const accessCode = req.query.accessCode as string;
+    const { id } = req.params;
+
+    if (!accessCode) {
+      res.status(400).json({ error: "accessCode is required" });
+      return;
+    }
+    const user = await findUserByAccessCode(accessCode);
+    if (!user) {
+      res.status(401).json({ error: "Invalid access code" });
+      return;
+    }
+
+    await deleteEntry(id, user.id);
+    res.status(200).json({ message: "Knowledge deleted successfully" });
   } catch (err) {
     next(err);
   }
@@ -264,6 +344,32 @@ export const getTasks = async (
   }
 };
 
+export const deleteTaskById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    const accessCode = req.query.accessCode as string;
+    const { id } = req.params;
+
+    if (!accessCode) {
+      res.status(400).json({ error: "accessCode is required" });
+      return;
+    }
+    const user = await findUserByAccessCode(accessCode);
+    if (!user) {
+      res.status(401).json({ error: "Invalid access code" });
+      return;
+    }
+
+    await deleteTask(id, user.id);
+    res.status(200).json({ message: "Task deleted successfully" });
+  } catch (err) {
+    next(err);
+  }
+};
+
 // ─── GET /chat/reminders ──────────────────────────────────────────────────────
 
 export const getReminders = async (
@@ -289,6 +395,32 @@ export const getReminders = async (
     const reminders = await getUserReminders(user.id);
 
     res.status(200).json({ reminders });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const deleteReminderById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    const accessCode = req.query.accessCode as string;
+    const { id } = req.params;
+
+    if (!accessCode) {
+      res.status(400).json({ error: "accessCode is required" });
+      return;
+    }
+    const user = await findUserByAccessCode(accessCode);
+    if (!user) {
+      res.status(401).json({ error: "Invalid access code" });
+      return;
+    }
+
+    await deleteReminder(id, user.id);
+    res.status(200).json({ message: "Reminder deleted successfully" });
   } catch (err) {
     next(err);
   }

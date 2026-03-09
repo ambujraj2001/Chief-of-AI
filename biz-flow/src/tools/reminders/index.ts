@@ -45,10 +45,16 @@ export const addReminderTool = tool(
       accessCode: z
         .string()
         .describe("The user access code injected by the system."),
-      title: z.string().describe("The title or description of the reminder"),
+      title: z
+        .string()
+        .describe(
+          "The title or description of the reminder. Do NOT guess or auto-generate this if missing.",
+        ),
       remindAt: z
         .string()
-        .describe("ISO date string for when the reminder should trigger"),
+        .describe(
+          "ISO date string for when the reminder should trigger. Never invent dates or times for reminders. If the user did not specify a time, do not call this tool. Ask a clarification question instead.",
+        ),
     }),
   },
 );
@@ -106,14 +112,11 @@ export const getRemindersTool = tool(
         reminders = reminders.filter((r) => r.status === status);
       }
 
+      reminders = reminders.filter((r) => r.title !== "Add a reminder");
+
       if (reminders.length === 0) return "No reminders found.";
 
-      return reminders
-        .map(
-          (r) =>
-            `ID: ${r.id}\nTitle: ${r.title}\nStatus: ${r.status}\nRemind At: ${r.remind_at}`,
-        )
-        .join("\n\n");
+      return reminders.map((r) => `[ID: ${r.id}] ${r.title}`).join("\n\n");
     } catch (err: unknown) {
       if (err instanceof Error)
         return `Failed to get reminders: ${err.message}`;

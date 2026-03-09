@@ -1,7 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Spin, message } from "antd";
-import { apiGetJournal, type MemoryEntry } from "../../../services/api";
+import {
+  apiGetJournal,
+  apiDeleteJournal,
+  type MemoryEntry,
+} from "../../../services/api";
 import dayjs from "dayjs";
 
 const JournalPage: React.FC = () => {
@@ -35,6 +39,22 @@ const JournalPage: React.FC = () => {
 
     fetchJournal();
   }, []);
+
+  const handleDelete = async (id: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    try {
+      const accessCode = localStorage.getItem("accessCode") || "";
+      if (!accessCode) return;
+      await apiDeleteJournal(accessCode, id);
+      setJournalEntries((prev) => prev.filter((entry) => entry.id !== id));
+      message.success("Journal entry deleted.");
+    } catch (err: unknown) {
+      message.error(
+        err instanceof Error ? err.message : "Failed to delete journal entry",
+      );
+    }
+  };
 
   return (
     <main className="flex-1 overflow-y-auto p-6 md:p-10 max-w-6xl mx-auto w-full bg-background-light dark:bg-background-dark">
@@ -107,11 +127,22 @@ const JournalPage: React.FC = () => {
                 <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed flex-grow whitespace-pre-wrap line-clamp-4">
                   {entry.content}
                 </p>
-                <div className="mt-auto flex items-center gap-2 text-[10px] text-slate-400 font-medium pt-4 border-t border-slate-100 dark:border-slate-800">
-                  <span className="material-symbols-outlined text-xs">
-                    auto_fix
-                  </span>
-                  <span>Saved by AI</span>
+                <div className="mt-auto flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
+                  <div className="flex items-center gap-2 text-[10px] text-slate-400 font-medium">
+                    <span className="material-symbols-outlined text-xs">
+                      auto_fix
+                    </span>
+                    <span>Saved by AI</span>
+                  </div>
+                  <button
+                    onClick={(e) => handleDelete(entry.id, e)}
+                    title="Delete journal entry"
+                    className="text-slate-300 hover:text-red-500 transition-colors p-1 flex items-center justify-center rounded-full hover:bg-red-50 dark:hover:bg-red-900/20"
+                  >
+                    <span className="material-symbols-outlined text-sm">
+                      delete
+                    </span>
+                  </button>
                 </div>
               </div>
             ))}

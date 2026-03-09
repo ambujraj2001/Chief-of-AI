@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Spin, message } from "antd";
-import { apiGetMemories, type MemoryEntry } from "../../../services/api";
+import {
+  apiGetMemories,
+  apiDeleteMemory,
+  type MemoryEntry,
+} from "../../../services/api";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
@@ -34,6 +38,22 @@ const MemoriesPage: React.FC = () => {
 
     fetchMemories();
   }, []);
+
+  const handleDelete = async (id: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    try {
+      const accessCode = localStorage.getItem("accessCode") || "";
+      if (!accessCode) return;
+      await apiDeleteMemory(accessCode, id);
+      setMemories((prev) => prev.filter((m) => m.id !== id));
+      message.success("Memory deleted.");
+    } catch (err: unknown) {
+      message.error(
+        err instanceof Error ? err.message : "Failed to delete memory",
+      );
+    }
+  };
 
   const getIcon = (title: string | null) => {
     const defaultIcon = "neurology";
@@ -161,11 +181,24 @@ const MemoriesPage: React.FC = () => {
               <p className="text-slate-600 dark:text-slate-400 text-sm mb-4 leading-relaxed line-clamp-4">
                 {memory.content}
               </p>
-              <div className="mt-auto flex items-center gap-2 text-[10px] text-slate-400 font-medium pt-3 border-t border-slate-100 dark:border-slate-800">
-                <span className="material-symbols-outlined text-xs">
-                  auto_fix
-                </span>
-                <span>Saved by AI • {dayjs(memory.created_at).fromNow()}</span>
+              <div className="mt-auto flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800">
+                <div className="flex items-center gap-2 text-[10px] text-slate-400 font-medium">
+                  <span className="material-symbols-outlined text-xs">
+                    auto_fix
+                  </span>
+                  <span>
+                    Saved by AI • {dayjs(memory.created_at).fromNow()}
+                  </span>
+                </div>
+                <button
+                  onClick={(e) => handleDelete(memory.id, e)}
+                  title="Delete memory"
+                  className="text-slate-300 hover:text-red-500 transition-colors p-1 flex items-center justify-center rounded-full hover:bg-red-50 dark:hover:bg-red-900/20"
+                >
+                  <span className="material-symbols-outlined text-sm">
+                    delete
+                  </span>
+                </button>
               </div>
             </div>
           ))}

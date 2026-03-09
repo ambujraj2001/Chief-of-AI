@@ -222,6 +222,20 @@ export const apiGetMemories = async (
   return data as MemoriesResponse;
 };
 
+export const apiDeleteMemory = async (
+  accessCode: string,
+  id: string,
+): Promise<{ message: string }> => {
+  const res = await fetch(
+    `${BASE_URL}/chat/memories/${id}?accessCode=${encodeURIComponent(accessCode)}`,
+    { method: "DELETE" },
+  );
+  const data = await res.json();
+  if (!res.ok)
+    throw new Error(data?.error ?? `Request failed with status ${res.status}`);
+  return data;
+};
+
 export interface KnowledgeResponse {
   knowledge: MemoryEntry[]; // Reusing MemoryEntry since it shares same fields.
 }
@@ -243,6 +257,20 @@ export const apiGetKnowledge = async (
   return data as KnowledgeResponse;
 };
 
+export const apiDeleteKnowledge = async (
+  accessCode: string,
+  id: string,
+): Promise<{ message: string }> => {
+  const res = await fetch(
+    `${BASE_URL}/chat/knowledge/${id}?accessCode=${encodeURIComponent(accessCode)}`,
+    { method: "DELETE" },
+  );
+  const data = await res.json();
+  if (!res.ok)
+    throw new Error(data?.error ?? `Request failed with status ${res.status}`);
+  return data;
+};
+
 export interface JournalResponse {
   journal: MemoryEntry[]; // Reusing MemoryEntry since it shares same fields.
 }
@@ -262,6 +290,20 @@ export const apiGetJournal = async (
   if (!res.ok)
     throw new Error(data?.error ?? `Request failed with status ${res.status}`);
   return data as JournalResponse;
+};
+
+export const apiDeleteJournal = async (
+  accessCode: string,
+  id: string,
+): Promise<{ message: string }> => {
+  const res = await fetch(
+    `${BASE_URL}/chat/journal/${id}?accessCode=${encodeURIComponent(accessCode)}`,
+    { method: "DELETE" },
+  );
+  const data = await res.json();
+  if (!res.ok)
+    throw new Error(data?.error ?? `Request failed with status ${res.status}`);
+  return data;
 };
 
 export interface TaskEntry {
@@ -295,6 +337,20 @@ export const apiGetTasks = async (
   return data as TasksResponse;
 };
 
+export const apiDeleteTask = async (
+  accessCode: string,
+  id: string,
+): Promise<{ message: string }> => {
+  const res = await fetch(
+    `${BASE_URL}/chat/tasks/${id}?accessCode=${encodeURIComponent(accessCode)}`,
+    { method: "DELETE" },
+  );
+  const data = await res.json();
+  if (!res.ok)
+    throw new Error(data?.error ?? `Request failed with status ${res.status}`);
+  return data;
+};
+
 export interface ReminderEntry {
   id: string;
   user_id: string;
@@ -323,6 +379,20 @@ export const apiGetReminders = async (
   if (!res.ok)
     throw new Error(data?.error ?? `Request failed with status ${res.status}`);
   return data as RemindersResponse;
+};
+
+export const apiDeleteReminder = async (
+  accessCode: string,
+  id: string,
+): Promise<{ message: string }> => {
+  const res = await fetch(
+    `${BASE_URL}/chat/reminders/${id}?accessCode=${encodeURIComponent(accessCode)}`,
+    { method: "DELETE" },
+  );
+  const data = await res.json();
+  if (!res.ok)
+    throw new Error(data?.error ?? `Request failed with status ${res.status}`);
+  return data;
 };
 
 export interface InsightEntry {
