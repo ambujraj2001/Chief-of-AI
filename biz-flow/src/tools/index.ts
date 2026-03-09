@@ -59,47 +59,70 @@ import {
 } from "./routines";
 
 export const tools = [
+  // Math Tools
   addNumbersTool,
   subtractNumbersTool,
-  randomJokeTool,
+
+  // Conversation Tools
   prettifyResponseTool,
   getChatHistoryTool,
+
+  // Memory Tools
   addMemoryTool,
   updateMemoryTool,
   deleteMemoryTool,
   searchMemoryTool,
   getMemoriesTool,
+
+  // Journal Tools
   addJournalTool,
   updateJournalTool,
   deleteJournalTool,
   searchJournalTool,
   getJournalsTool,
+
+  // Knowledge Tools
   addKnowledgeTool,
   updateKnowledgeTool,
   deleteKnowledgeTool,
   searchKnowledgeTool,
   getKnowledgesTool,
+
+  // Task Tools
   addTaskTool,
   updateTaskTool,
-  getTasksTool,
   deleteTaskTool,
+  getTasksTool,
+
+  // Reminder Tools
   addReminderTool,
   updateReminderTool,
-  getRemindersTool,
   deleteReminderTool,
+  getRemindersTool,
+
+  // File Tools
   listFilesTool,
   deleteFileTool,
   summarizeFileTool,
+
+  // App Tools
   createAppTool,
   listAppsTool,
-  safetyTool,
-  helpTool,
-  webSearchTool,
-  sendEmailTool,
+
+  // Routine Tools
   createRoutineTool,
   listRoutinesTool,
-  deleteRoutineTool,
   updateRoutineTool,
+  deleteRoutineTool,
+
+  // External Tools
+  webSearchTool,
+  sendEmailTool,
+  randomJokeTool,
+
+  // Safety Tools
+  safetyTool,
+  helpTool,
 ];
 
 export type AppTool = (typeof tools)[number];

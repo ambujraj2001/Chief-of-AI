@@ -31,7 +31,7 @@ export const randomJokeTool = tool(
     return `${joke.setup} ${joke.punchline}`;
   },
   {
-    name: "get_random_joke",
+    name: "get_joke",
     description:
       "Fetches a random joke and returns it. Use this when the user asks for a joke, wants to laugh, or wants something funny.",
     schema: z.object({}),

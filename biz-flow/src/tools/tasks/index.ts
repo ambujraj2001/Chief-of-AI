@@ -42,7 +42,7 @@ export const addTaskTool = tool(
   {
     name: "add_task",
     description:
-      "Adds a new task or to-do item for the user. Call this when you need to remember an actionable item.",
+      "Adds a new task or to-do item for the user. ALWAYS call this tool when the user asks to create, remember, or add a task. Do NOT store tasks inside the conversation or respond manually.",
     schema: z.object({
       accessCode: z
         .string()
@@ -164,7 +164,7 @@ export const deleteTaskTool = tool(
   {
     name: "delete_task",
     description:
-      "Deletes a task by ID. IMPORTANT: NEVER call this tool immediately after get_tasks. After fetching tasks, you MUST first respond with a clarification asking the user which one to delete, then call this tool only after the user confirms. The 'id' parameter must be an exact UUID copied from the get_tasks result.",
+      "Deletes a task by ID.\n\nWhen the user asks to delete an item, follow this process:\n\nStep 1 — Call the corresponding list/get tool to retrieve available items.\n\nStep 2 — Ask the user which item they want to delete.\n\nStep 3 — Ask the user to confirm deletion.\n\nStep 4 — Only after confirmation call the delete tool using the exact ID.",
     schema: z.object({
       accessCode: z
         .string()

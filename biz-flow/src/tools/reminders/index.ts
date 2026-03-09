@@ -39,7 +39,8 @@ export const addReminderTool = tool(
   },
   {
     name: "add_reminder",
-    description: "Adds a new reminder for the user at a specific time.",
+    description:
+      "Adds a new reminder for the user at a specific time. ALWAYS call this tool when the user asks to create, remember, or add a reminder. Do NOT store reminders inside the conversation or respond manually.",
     schema: z.object({
       accessCode: z
         .string()
@@ -152,7 +153,7 @@ export const deleteReminderTool = tool(
   {
     name: "delete_reminder",
     description:
-      "Deletes a reminder by ID. IMPORTANT: NEVER call this tool immediately after get_reminders. After fetching reminders, you MUST first respond with a clarification asking the user which one to delete, then call this tool only after the user confirms. The 'id' parameter must be an exact UUID copied from the get_reminders result.",
+      "Deletes a reminder by ID.\n\nWhen the user asks to delete an item, follow this process:\n\nStep 1 — Call the corresponding list/get tool to retrieve available items.\n\nStep 2 — Ask the user which item they want to delete.\n\nStep 3 — Ask the user to confirm deletion.\n\nStep 4 — Only after confirmation call the delete tool using the exact ID.",
     schema: z.object({
       accessCode: z
         .string()

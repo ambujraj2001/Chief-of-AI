@@ -25,5 +25,6 @@ export const plannerNode = async (state: GraphState) => {
 
   return {
     messages: [response],
+    iterations: state.iterations + 1,
   };
 };

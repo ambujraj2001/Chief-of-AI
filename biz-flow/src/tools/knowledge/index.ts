@@ -63,7 +63,7 @@ export const addKnowledgeTool = tool(
   {
     name: "add_knowledge",
     description:
-      "Save a new piece of knowledge, fact, or documentation. Use when user wants you to store objective information, links, or facts.",
+      "Save a new piece of knowledge, fact, or documentation. ALWAYS call this tool when the user asks to explicitly store, remember, or add objective information, links, or facts. Do NOT store knowledge manually.",
     schema: z.object({
       accessCode: z.string().describe("The user's access code."),
       content: z.string().describe("The knowledge content to store."),
@@ -151,7 +151,7 @@ export const deleteKnowledgeTool = tool(
   {
     name: "delete_knowledge",
     description:
-      "Delete a specific knowledge entry by its ID. IMPORTANT: NEVER call this tool immediately after get_knowledges. After fetching entries, you MUST first respond with a clarification asking the user which one to delete, then call this tool only after the user confirms. The 'id' parameter must be an exact UUID copied from the get_knowledges result.",
+      "Delete a specific knowledge entry by its ID.\n\nWhen the user asks to delete an item, follow this process:\n\nStep 1 — Call the corresponding list/get tool to retrieve available items.\n\nStep 2 — Ask the user which item they want to delete.\n\nStep 3 — Ask the user to confirm deletion.\n\nStep 4 — Only after confirmation call the delete tool using the exact ID.",
     schema: z.object({
       accessCode: z.string().describe("The user's access code."),
       id: z.string().describe("The ID of the knowledge entry to delete."),

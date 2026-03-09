@@ -9,23 +9,30 @@ const cleanReply = (raw: unknown): string => {
     .replace(/<\/?tool_call>/gi, "")
     .replace(/<\/?tool_response>/gi, "")
     .replace(/<\/?function_calls>/gi, "")
+    .replace(/[a-zA-Z_]+\{[^}]*\}/g, "")
+    .replace(/[a-zA-Z_]+\([^)]*\)/g, "")
+    .replace(/^(add_|get_|delete_|update_|search_|web_)[a-zA-Z_]+$/gm, "")
     .trim();
 };
 
 export const responseNode = async (state: GraphState) => {
   let finalReply: string | undefined = undefined;
 
-  let lastMessage = state.messages[state.messages.length - 1] as AIMessage;
+  let lastMessage = state.messages[state.messages.length - 1];
 
-  // If the last response was a tool call (no text), force one final text-only LLM call
-  // This shouldn't normally happen if routing is planner -> tools -> planner
-  if (lastMessage.tool_calls?.length && !cleanReply(lastMessage.content)) {
+  // If the last response was a tool call (no text) OR if we skipped planner entirely (last message is Human),
+  // force one final text-only LLM call
+  if (
+    lastMessage._getType() === "human" ||
+    ((lastMessage as AIMessage).tool_calls?.length &&
+      !cleanReply(lastMessage.content))
+  ) {
     log({ event: "forcing_text_response", userId: state.userId });
-    const textOnlyLlm = buildModel();
+    const textOnlyLlm = buildModel([]);
     const forcedResponse = await textOnlyLlm.invoke([
       ...state.messages,
       new HumanMessage(
-        "Based on the tool results above, provide your response to the user. " +
+        "Based on the tool results or the conversation above, provide your response to the user. " +
           "Return a raw JSON object in the required response format (clarification or final). Do not call any more tools.",
       ),
     ]);

@@ -64,7 +64,7 @@ Direct API hookups to your favorite external apps.
     `.trim();
   },
   {
-    name: "help_capabilities",
+    name: "get_capabilities",
     description:
       'Call this tool when the user asks "what can you do", "how can you help", or asks for a list of features or capabilities.',
     schema: z.object({}),

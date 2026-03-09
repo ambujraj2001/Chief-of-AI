@@ -59,7 +59,7 @@ export const webSearchTool = tool(
   {
     name: "web_search",
     description:
-      "Search the web for up-to-date information, news, current events, or explanations (e.g., about quantum mechanics). Provide a clear, natural language query.",
+      "Search the web for up-to-date information, news, current events, or information that may not exist in the model's training data.\n\nIMPORTANT:\nIf the user's question requires recent information, external knowledge, or facts you cannot confidently answer from memory, ALWAYS call this tool instead of answering directly.",
     schema: webSearchSchema,
   },
 );

@@ -21,6 +21,16 @@ export const GraphStateAnnotation = Annotation.Root({
   }),
   reply: Annotation<string>(),
 
+  // New Intent & Safety Annotations
+  intent: Annotation<string>({
+    reducer: (_, y) => y,
+    default: () => "general_chat",
+  }),
+  iterations: Annotation<number>({
+    reducer: (_, y) => y,
+    default: () => 0,
+  }),
+
   // App graph state specific fields
   appId: Annotation<string>(),
   dataUpdates: Annotation<any[]>({

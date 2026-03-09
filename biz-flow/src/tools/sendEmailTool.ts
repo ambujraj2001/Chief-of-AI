@@ -5,7 +5,7 @@ import nodemailer from "nodemailer";
 export const sendEmailTool = new DynamicStructuredTool({
   name: "send_email",
   description:
-    "Send an email to a specific address with a subject and message. Use this only when the user explicitly asks to send information via email.",
+    "Send an email to a specific address with a subject and message. ALWAYS call this tool when the user explicitly asks to send an email. Do NOT reply manually or confirm without actually using the tool.",
   schema: z.object({
     to: z.string().describe("The recipient's email address"),
     subject: z.string().describe("The subject of the email"),

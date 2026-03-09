@@ -126,7 +126,7 @@ export const createAppTool = tool(
   {
     name: "create_app",
     description:
-      'Create a new mini-app for the user. Use this when the user asks to create, build, or make an app (e.g. "create an expense splitter", "build a task board", "make a poll app"). You MUST generate a suitable JSON schema with a layout array defining the UI components, and optionally provide initial data.',
+      "Create a new mini-app for the user. ALWAYS call this tool when the user asks to create, build, or make an app. Do NOT store apps inside the conversation or respond manually. You MUST generate a suitable JSON schema with a layout array defining the UI components, and optionally provide initial data.",
     schema: z.object({
       accessCode: z.string().describe("The user's access code."),
       name: z.string().describe("The name of the app to create."),

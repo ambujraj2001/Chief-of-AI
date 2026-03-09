@@ -63,7 +63,7 @@ export const addMemoryTool = tool(
   {
     name: "add_memory",
     description:
-      "Save a new memory about the user. Use this when the user asks you to remember something personal or important about them.",
+      "Save a new memory about the user. ALWAYS call this tool when the user asks to explicitly save, remember, or add a personal memory. Do NOT store memories inside the conversation or respond manually.",
     schema: z.object({
       accessCode: z.string().describe("The user's access code."),
       content: z.string().describe("The content of the memory to save."),
@@ -149,7 +149,7 @@ export const deleteMemoryTool = tool(
   {
     name: "delete_memory",
     description:
-      "Delete a specific memory by its ID. IMPORTANT: NEVER call this tool immediately after get_memories. After fetching memories, you MUST first respond with a clarification asking the user which memory to delete, then call this tool only after the user confirms. The 'id' parameter must be an exact UUID copied from the get_memories result.",
+      "Delete a specific memory by its ID.\n\nWhen the user asks to delete an item, follow this process:\n\nStep 1 — Call the corresponding list/get tool to retrieve available items.\n\nStep 2 — Ask the user which item they want to delete.\n\nStep 3 — Ask the user to confirm deletion.\n\nStep 4 — Only after confirmation call the delete tool using the exact ID.",
     schema: z.object({
       accessCode: z.string().describe("The user's access code."),
       id: z.string().describe("The ID of the memory to delete."),

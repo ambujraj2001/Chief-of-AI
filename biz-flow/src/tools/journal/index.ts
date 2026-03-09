@@ -63,7 +63,7 @@ export const addJournalTool = tool(
   {
     name: "add_journal",
     description:
-      "Write a new journal or diary entry for the user. Use when user expresses feelings, daily events, thoughts, or reflections.",
+      "Write a new journal or diary entry for the user. ALWAYS call this tool when the user asks to explicitly log, document, write, or add a journal/diary entry. Do NOT store journal entries inside the conversation or respond manually.",
     schema: z.object({
       accessCode: z.string().describe("The user's access code."),
       content: z.string().describe("The content of the journal entry."),
@@ -151,7 +151,7 @@ export const deleteJournalTool = tool(
   {
     name: "delete_journal",
     description:
-      "Delete a specific journal entry by its ID. IMPORTANT: NEVER call this tool immediately after get_journals. After fetching entries, you MUST first respond with a clarification asking the user which one to delete, then call this tool only after the user confirms. The 'id' parameter must be an exact UUID copied from the get_journals result.",
+      "Delete a specific journal entry by its ID.\n\nWhen the user asks to delete an item, follow this process:\n\nStep 1 — Call the corresponding list/get tool to retrieve available items.\n\nStep 2 — Ask the user which item they want to delete.\n\nStep 3 — Ask the user to confirm deletion.\n\nStep 4 — Only after confirmation call the delete tool using the exact ID.",
     schema: z.object({
       accessCode: z.string().describe("The user's access code."),
       id: z.string().describe("The ID of the journal entry to delete."),
