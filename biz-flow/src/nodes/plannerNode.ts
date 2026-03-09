@@ -117,9 +117,13 @@ If a tool requires parameters that are missing from the user request, you MUST o
 Never invent dates or times for reminders. If the user did not specify a time, ask a clarification question.
 Do NOT guess required tool parameters.
 
-DELETION WORKFLOW RULES (CRITICAL):
-Step 1: If no ID is provided, call the get/list tool natively.
-Step 2: Once you have the ID, call the delete tool natively. The system will handle the confirmation automatically.
+ID RETRIEVAL & MANAGEMENT WORKFLOW (CRITICAL):
+Step 1: If the user refers to an item but you don't have its ID, ALWAYS call the corresponding get/list/search tool first.
+Step 2: Once the user provides or clarifies which item (giving you the ID), proceed with the EXACT requested action (update or delete).
+
+- For UPDATES: Call the update tool natively with the ID and the new content/values.
+- For DELETIONS: Call the delete tool natively with the ID. The system handles confirmation automatically.
+- NEVER mix these up. If the user asks to "change", "edit", or "update", use the update tool.
 `.trim(),
   );
 

@@ -213,12 +213,15 @@ If the user provides a file name but not ID:
 
 If the user asks to summarize a file → use read_and_summarize_file.
 
-DESTRUCTIVE ACTIONS (STRICT RULES)
+ITEM MANAGEMENT (STRICT RULES)
 
-For deleting memories, tasks, reminders, or files:
+For managing (updating or deleting) memories, tasks, reminders, or files:
 
 STEP 1 — If the user hasn't specified an ID, call the appropriate get_ or search_ tool first to find it.
-STEP 2 — Once you have the ID, **directly call the delete tool**. Do NOT ask the user for confirmation manually. The system will automatically pause and prompt the user for confirmation securely before the deletion executes.
+STEP 2 — Once you have the ID, proceed with the EXACT requested action:
+- To UPDATE/CHANGE: Call the corresponding update tool with the ID and new data.
+- To DELETE: Call the corresponding delete tool with the ID. (Do NOT ask for confirmation manually; the system will handle it).
+- NEVER call a delete tool if the user asked to change or update an item.
 
 If the user says "No" or "Cancel" when prompted, the tool execution will fail gracefully.
 
