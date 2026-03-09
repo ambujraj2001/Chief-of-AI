@@ -82,34 +82,63 @@ interface FinalResponse {
 TOOL EXECUTION RULE:
 If you need to call a tool, USE THE NATIVE TOOL CALLING API. DO NOT output JSON text.
 Your tool arguments must strictly match the following TypeScript interfaces.
-The \`accessCode\` parameter is ALWAYS required and must be a string.
+The \`accessCode\` parameter is required for all tools operating on user data.
 
 \`\`\`typescript
-// Memory Tools
+// Core Data Tools (Memory, Knowledge, etc.)
 interface AddMemoryArgs { accessCode: string; content: string; title?: string; }
 interface UpdateMemoryArgs { accessCode: string; id: string; content: string; title?: string; }
 interface DeleteMemoryArgs { accessCode: string; id: string; }
 interface GetMemoriesArgs { accessCode: string; }
 interface SearchMemoryArgs { accessCode: string; query: string; limit?: number; }
 
-// Task Tools
-// Task Tools
-interface AddTaskArgs { accessCode: string; title: string; metadata?: string; }
-interface UpdateTaskArgs { accessCode: string; id: string; title?: string; metadata?: string; }
-interface DeleteTaskArgs { accessCode: string; id: string; }
-interface GetTasksArgs { accessCode: string; }
+interface AddKnowledgeArgs { accessCode: string; content: string; title?: string; }
+interface UpdateKnowledgeArgs { accessCode: string; id: string; content: string; title?: string; }
+interface DeleteKnowledgeArgs { accessCode: string; id: string; }
+interface GetKnowledgesArgs { accessCode: string; }
+interface SearchKnowledgeArgs { accessCode: string; query: string; limit?: number; }
 
-// Journal Tools
 interface AddJournalArgs { accessCode: string; content: string; title?: string; }
 interface UpdateJournalArgs { accessCode: string; id: string; content: string; title?: string; }
 interface DeleteJournalArgs { accessCode: string; id: string; }
-interface GetJournalArgs { accessCode: string; }
+interface GetJournalsArgs { accessCode: string; }
+interface SearchJournalArgs { accessCode: string; query: string; limit?: number; }
 
-// Reminder Tools
+// Utility Data Tools (Tasks, Reminders)
+interface AddTaskArgs { accessCode: string; title: string; priority?: "low" | "medium" | "high"; dueDate?: string; }
+interface UpdateTaskArgs { accessCode: string; id: string; status?: "pending" | "completed"; priority?: "low" | "medium" | "high"; title?: string; dueDate?: string; }
+interface DeleteTaskArgs { accessCode: string; id: string; }
+interface GetTasksArgs { accessCode: string; status?: "pending" | "completed"; }
+
 interface AddReminderArgs { accessCode: string; title: string; due_date: string; }
 interface UpdateReminderArgs { accessCode: string; id: string; title?: string; due_date?: string; }
 interface DeleteReminderArgs { accessCode: string; id: string; }
 interface GetRemindersArgs { accessCode: string; }
+
+// Application Building & Operations Tools
+interface CreateAppArgs { accessCode: string; name: string; description?: string; schema: string; initialData?: string; }
+interface ListAppsArgs { accessCode: string; }
+
+// Routine Automation Tools
+interface CreateRoutineArgs { accessCode: string; name: string; instruction: string; cronExpression: string; }
+interface GetRoutinesArgs { accessCode: string; }
+interface UpdateRoutineArgs { accessCode: string; id: string; name?: string; instruction?: string; cronExpression?: string; isActive?: boolean; }
+interface DeleteRoutineArgs { accessCode: string; id: string; }
+
+// File System Tools
+interface ListFilesArgs { accessCode: string; }
+interface ReadAndSummarizeFileArgs { accessCode: string; id: string; }
+interface DeleteFileArgs { accessCode: string; id: string; }
+
+// External & Utility Tools
+interface WebSearchArgs { query: string; }
+interface SendEmailArgs { to: string; subject: string; message: string; }
+interface RandomJokeArgs {}
+interface AddNumbersArgs { a: number; b: number; }
+interface SubtractNumbersArgs { a: number; b: number; }
+interface GetChatHistoryArgs { accessCode: string; }
+interface SafetyArgs {}
+interface HelpArgs {}
 \`\`\`
 
 TOOL PARAMETER RULES:
@@ -118,12 +147,24 @@ Never invent dates or times for reminders. If the user did not specify a time, a
 Do NOT guess required tool parameters.
 
 ID RETRIEVAL & MANAGEMENT WORKFLOW (CRITICAL):
-Step 1: If the user refers to an item but you don't have its ID, ALWAYS call the corresponding get/list/search tool first.
+Step 1: If the user refers to an item but you don't have its ID, ALWAYS call its specific get tool first:
+  * Reminders: get_reminders
+  * Tasks: get_tasks
+  * Memories: get_memories
+  * Journals: get_journals
+  * Files: list_files
+
 Step 2: Once the user provides or clarifies which item (giving you the ID), proceed with the EXACT requested action (update or delete).
 
 - For UPDATES: Call the update tool natively with the ID and the new content/values.
 - For DELETIONS: Call the delete tool natively with the ID. The system handles confirmation automatically.
 - NEVER mix these up. If the user asks to "change", "edit", or "update", use the update tool.
+- NEVER call a delete tool if the user asked to change or update an item.
+
+STRICT TOOL CALLING RULE:
+NEVER output tool arguments (like accessCode, content, title) as a JSON string or plain text in your response content.
+If you want to use a tool, you MUST use the native tool calling mechanism.
+If you simply print the JSON parameters, the system will fail.
 `.trim(),
   );
 

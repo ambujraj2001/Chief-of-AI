@@ -63,7 +63,7 @@ export const addKnowledgeTool = tool(
   {
     name: "add_knowledge",
     description:
-      "Save a new piece of knowledge, fact, or documentation. ALWAYS call this tool when the user asks to explicitly store, remember, or add objective information, links, or facts. Do NOT store knowledge manually.",
+      "Save a new piece of knowledge, fact, or documentation (also known as 'kb' or knowledge base article). ALWAYS call this tool when the user asks to explicitly store, remember, or add objective information, links, or facts. Do NOT store knowledge manually.",
     schema: z.object({
       accessCode: z.string().describe("The user's access code."),
       content: z.string().describe("The knowledge content to store."),
