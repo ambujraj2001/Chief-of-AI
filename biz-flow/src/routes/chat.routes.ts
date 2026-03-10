@@ -14,6 +14,8 @@ import {
   deleteKnowledge,
   deleteTaskById,
   deleteReminderById,
+  shareMemory,
+  joinMemory,
 } from "../controllers/chat.controller";
 
 const router = Router();
@@ -32,6 +34,12 @@ router.get("/memories", getMemories);
 
 // DELETE /chat/memories/:id
 router.delete("/memories/:id", deleteMemory);
+
+// POST /chat/memories/:id/share
+router.post("/memories/:id/share", shareMemory);
+
+// POST /chat/memories/join
+router.post("/memories/join", joinMemory);
 
 // GET /chat/journal
 router.get("/journal", getJournal);

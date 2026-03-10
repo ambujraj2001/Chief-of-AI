@@ -195,10 +195,13 @@ export const apiDeleteChatHistory = async (
 
 export interface MemoryEntry {
   id: string;
+  user_id: string;
   type: string;
   title: string | null;
   content: string;
   created_at: string;
+  shared_by?: { full_name: string; email: string } | null;
+  shared_with?: { full_name: string; email: string }[];
 }
 
 export interface MemoriesResponse {
@@ -234,6 +237,38 @@ export const apiDeleteMemory = async (
   if (!res.ok)
     throw new Error(data?.error ?? `Request failed with status ${res.status}`);
   return data;
+};
+
+export const apiShareMemory = async (
+  accessCode: string,
+  memoryId: string,
+): Promise<{ shareCode: string }> => {
+  const res = await fetch(
+    `${BASE_URL}/chat/memories/${memoryId}/share?accessCode=${encodeURIComponent(accessCode)}`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    },
+  );
+  const data = await res.json();
+  if (!res.ok)
+    throw new Error(data?.error ?? `Request failed with status ${res.status}`);
+  return data as { shareCode: string };
+};
+
+export const apiJoinMemory = async (
+  accessCode: string,
+  code: string,
+): Promise<{ message: string }> => {
+  const res = await fetch(`${BASE_URL}/chat/memories/join`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ accessCode, code }),
+  });
+  const data = await res.json();
+  if (!res.ok)
+    throw new Error(data?.error ?? `Request failed with status ${res.status}`);
+  return data as { message: string };
 };
 
 export interface KnowledgeResponse {

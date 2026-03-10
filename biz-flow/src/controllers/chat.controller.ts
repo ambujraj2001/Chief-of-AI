@@ -143,6 +143,8 @@ import {
   getUserKnowledge,
   getUserJournal,
   deleteEntry,
+  createMemoryShareCode,
+  joinSharedMemory,
 } from "../services/entry.service";
 import { getUserReminders, deleteReminder } from "../services/reminder.service";
 import { generateInsights } from "../services/insights.service";
@@ -197,6 +199,62 @@ export const deleteMemory = async (
 
     await deleteEntry(id, user.id);
     res.status(200).json({ message: "Memory deleted successfully" });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const shareMemory = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    const accessCode = req.query.accessCode as string;
+    const { id } = req.params;
+
+    if (!accessCode) {
+      res.status(400).json({ error: "accessCode is required" });
+      return;
+    }
+    const user = await findUserByAccessCode(accessCode);
+    if (!user) {
+      res.status(401).json({ error: "Invalid access code" });
+      return;
+    }
+
+    const shareCode = await createMemoryShareCode(user.id, id);
+    res.status(200).json({ shareCode });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const joinMemory = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    const { accessCode, code } = req.body;
+
+    if (!accessCode) {
+      res.status(400).json({ error: "accessCode is required" });
+      return;
+    }
+    const user = await findUserByAccessCode(accessCode);
+    if (!user) {
+      res.status(401).json({ error: "Invalid access code" });
+      return;
+    }
+
+    if (!code) {
+      res.status(400).json({ error: "code is required" });
+      return;
+    }
+
+    await joinSharedMemory(user.id, code);
+    res.status(200).json({ message: "Successfully joined memory" });
   } catch (err) {
     next(err);
   }
