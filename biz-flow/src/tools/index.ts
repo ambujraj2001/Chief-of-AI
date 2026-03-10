@@ -126,3 +126,7 @@ export const tools = [
 ];
 
 export type AppTool = (typeof tools)[number];
+
+export const toolByName = Object.fromEntries(
+  tools.map((t) => [t.name, t]),
+) as Record<string, AppTool>;

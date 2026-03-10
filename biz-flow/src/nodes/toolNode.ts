@@ -3,6 +3,7 @@ import { tools } from "../tools";
 import { ToolMessage, AIMessage } from "@langchain/core/messages";
 import { log } from "../utils/logger";
 import { debugGraphState } from "../utils/debugGraphState";
+import { recordToolExecutionEvent } from "../services/toolObservability.service";
 
 export const toolNode = async (state: GraphState) => {
   const lastMessage = state.messages[state.messages.length - 1] as AIMessage;
@@ -46,15 +47,26 @@ export const toolNode = async (state: GraphState) => {
       userId: state.userId,
     });
 
+    const startedAt = Date.now();
     try {
       // @ts-ignore - invoking dynamic tool
       const toolResult = await matchedTool.invoke(toolCall.args);
+      const latencyMs = Date.now() - startedAt;
 
       log({
         event: "tool_execution_completed",
         toolName: toolCall.name,
         result: toolResult,
         userId: state.userId,
+        latencyMs,
+      });
+
+      void recordToolExecutionEvent({
+        userId: state.userId,
+        toolName: toolCall.name,
+        intent: state.intent || "general_chat",
+        success: true,
+        latencyMs,
       });
 
       results.push(toolResult);
@@ -75,12 +87,23 @@ export const toolNode = async (state: GraphState) => {
         }),
       );
     } catch (error: any) {
+      const latencyMs = Date.now() - startedAt;
       const errMsg = error instanceof Error ? error.message : String(error);
       log({
         event: "tool_execution_failed",
         toolName: toolCall.name,
         error: errMsg,
         userId: state.userId,
+        latencyMs,
+      });
+
+      void recordToolExecutionEvent({
+        userId: state.userId,
+        toolName: toolCall.name,
+        intent: state.intent || "general_chat",
+        success: false,
+        latencyMs,
+        errorMessage: errMsg,
       });
 
       toolMessages.push(
