@@ -173,9 +173,9 @@ export const getMemoriesTool = tool(
       const content = results
         .map(
           (m: any) =>
-            `[ID: ${m.id}] ${m.title ? `(${m.title}) ` : ""}${m.content}`,
+            `ID: ${m.id}\nTitle: ${m.title || "None"}\nContent: ${m.content}`,
         )
-        .join("\n\n");
+        .join("\n\n---\n\n");
       return { content };
     } catch (error: any) {
       log({
@@ -222,9 +222,9 @@ export const searchMemoryTool = tool(
       return results
         .map(
           (m: any) =>
-            `[ID: ${m.id}] ${m.title ? `(${m.title}) ` : ""}${m.content}`,
+            `ID: ${m.id}\nTitle: ${m.title || "None"}\nContent: ${m.content}`,
         )
-        .join("\n\n");
+        .join("\n\n---\n\n");
     } catch (error: any) {
       log({
         event: "tool_execution_failed",
