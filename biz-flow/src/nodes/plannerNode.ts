@@ -77,10 +77,7 @@ export const plannerNode = async (state: GraphState) => {
   // Combine static tools with dynamically retrieved tools
   const allTools = [...agentTools, ...retrievedTools];
 
-  // @ts-ignore - buildModel might only expect StructuredToolInterface[]
-  const llm = buildModel(allTools).bindTools(allTools, {
-    parallel_tool_calls: false,
-  });
+  const llm = buildModel(allTools);
 
   /**
    * Planner system instructions
@@ -200,10 +197,10 @@ If you simply print the JSON parameters, the system will fail.
    * Mistral AI API strict schema check: Only exactly one SystemMessage is allowed at the start.
    * We merge the planner prompt with any existing system prompts from the state.
    */
-  const systemMessages = [plannerPrompt, ...state.messages].filter(isSystemMessage);
-  const otherMessages = state.messages.filter(
-    (m) => !isSystemMessage(m),
+  const systemMessages = [plannerPrompt, ...state.messages].filter(
+    isSystemMessage,
   );
+  const otherMessages = state.messages.filter((m) => !isSystemMessage(m));
 
   const mergedSystemContent = systemMessages
     .map((m) => m.content)

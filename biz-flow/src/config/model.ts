@@ -1,11 +1,3 @@
-// ─── Model Configuration ──────────────────────────────────────────────────────
-// All LLM setup lives here. To switch models, only edit this file.
-//
-// Current backend: Mistral AI (OpenAI-compatible)
-//   Base URL : MISTRAL_API_BASE  → https://api.mistral.ai/v1
-//   Model    : MISTRAL_MODEL     → mistral-small-latest
-//   API Key  : MISTRAL_API_KEY   → BHd7...
-
 import { ChatOpenAI } from "@langchain/openai";
 import { StructuredToolInterface } from "@langchain/core/tools";
 
@@ -18,17 +10,27 @@ const getEnv = (key: string): string => {
 export const buildModel = (tools?: StructuredToolInterface[]) => {
   const apiKey = getEnv("MISTRAL_API_KEY");
   const modelName = getEnv("MISTRAL_MODEL");
-  const baseURL = getEnv("MISTRAL_API_BASE");
+  const baseURL = process.env.MISTRAL_API_BASE || "https://api.mistral.ai/v1";
+
+  if (!apiKey || apiKey === "your_mistral_api_key_here") {
+    console.warn(
+      "⚠️ MISTRAL_API_KEY is missing or using placeholder in buildModel",
+    );
+  }
 
   const llm = new ChatOpenAI({
     modelName,
+    apiKey,
     openAIApiKey: apiKey,
-    temperature: 0.3,
     configuration: {
       baseURL,
-      apiKey,
+      apiKey: apiKey,
     },
+    temperature: 0.3,
   });
 
-  return tools && tools.length > 0 ? llm.bindTools(tools) : llm;
+  if (tools && tools.length > 0) {
+    return llm.bindTools(tools, { parallel_tool_calls: false });
+  }
+  return llm;
 };
