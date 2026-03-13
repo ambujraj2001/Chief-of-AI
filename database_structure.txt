@@ -1,0 +1,138 @@
+# Chief of AI - Database Structure
+
+This document outlines the tables, column names, and data types used in the Chief of AI Supabase/PostgreSQL database.
+
+---
+
+## 1. Table: users
+Primary table for user identity and global AI preferences.
+
+| Column | Data Type | Description |
+| :--- | :--- | :--- |
+| id | uuid | Primary Key |
+| access_code | text | Unique user login code |
+| full_name | text | User's full name |
+| email | text | Unique email address |
+| role | text | User's professional role |
+| interaction_tone | text | AI tone: professional, casual, etc. |
+| response_complexity | integer | Scale of 1-10 for AI response depth |
+| voice_model | text | atlas, standard |
+| notify_response_alerts| boolean | |
+| notify_daily_briefing | boolean | |
+| show_demo | boolean | Tracks if onboarding tour completed |
+| two_factor_enabled | boolean | |
+| is_locked | boolean | Account security status |
+| created_at | timestamp | |
+| updated_at | timestamp | |
+
+---
+
+## 2. Table: entries
+Polymorphic table for Memories, Journal Entries, and Knowledge items.
+
+| Column | Data Type | Description |
+| :--- | :--- | :--- |
+| id | uuid | Primary Key |
+| user_id | uuid | Foreign Key -> users.id |
+| title | text | |
+| content | text | Markdown supported content |
+| type | text | 'memory', 'journal', 'knowledge' |
+| created_at | timestamp | |
+
+---
+
+## 3. Table: tasks
+Management for the user's to-do list.
+
+| Column | Data Type | Description |
+| :--- | :--- | :--- |
+| id | uuid | Primary Key |
+| user_id | uuid | Foreign Key -> users.id |
+| title | text | |
+| status | text | 'pending', 'completed' |
+| priority | text | 'low', 'medium', 'high' |
+| due_date | timestamp | Optional deadline |
+| created_at | timestamp | |
+
+---
+
+## 4. Table: reminders
+Time-based scheduled alerts.
+
+| Column | Data Type | Description |
+| :--- | :--- | :--- |
+| id | uuid | Primary Key |
+| user_id | uuid | Foreign Key -> users.id |
+| title | text | Reminder message |
+| remind_at | timestamp | Scheduled time |
+| status | text | 'active', 'sent' |
+| created_at | timestamp | |
+
+---
+
+## 5. Table: files
+Metadata for files uploaded to Supabase Storage.
+
+| Column | Data Type | Description |
+| :--- | :--- | :--- |
+| id | uuid | Primary Key |
+| user_id | uuid | Foreign Key -> users.id |
+| file_name | text | |
+| file_url | text | Public URL to storage object |
+| created_at | timestamp | |
+
+---
+
+## 6. Table: apps
+The "Custom Agents/Apps" created by AI.
+
+| Column | Data Type | Description |
+| :--- | :--- | :--- |
+| id | uuid | Primary Key |
+| name | text | |
+| description | text | |
+| schema | jsonb | Defines data structure and rules |
+| owner_id | uuid | Foreign Key -> users.id |
+| join_code | text | Code for sharing the app |
+| created_at | timestamp | |
+
+---
+
+## 7. Table: ai_routines
+Automated background tasks run by the AI.
+
+| Column | Data Type | Description |
+| :--- | :--- | :--- |
+| id | uuid | Primary Key |
+| user_id | uuid | Foreign Key -> users.id |
+| name | text | |
+| instruction | text | Natural language "system prompt" |
+| cron_expression | text | e.g. '0 9 * * *' |
+| timezone | text | |
+| is_active | boolean | |
+| last_run | timestamp | |
+| created_at | timestamp | |
+
+---
+
+## 8. Table: ai_notifications
+In-app notifications driven by AI agents.
+
+| Column | Data Type | Description |
+| :--- | :--- | :--- |
+| id | uuid | Primary Key |
+| user_id | uuid | Foreign Key -> users.id |
+| title | text | |
+| message | text | |
+| is_read | boolean | |
+| created_at | timestamp | |
+
+---
+
+## 9. Supporting Tables
+- **memory_access**: Tracks usage for "AI Context" transparency.
+- **memory_share_codes**: Temporary codes for shared memories.
+- **app_members**: Membership registry for shared apps.
+- **app_data**: Dynamic storage for app-specific state (JSONB).
+- **app_chats**: History of conversations within a specific app.
+- **ai_routine_runs**: Logs and results of automated routine executions.

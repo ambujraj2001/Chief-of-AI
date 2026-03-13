@@ -56,6 +56,10 @@ export const GraphStateAnnotation = Annotation.Root({
     reducer: (_, y) => y,
     default: () => [],
   }),
+  retrievedMemories: Annotation<any[]>({
+    reducer: (x, y) => x.concat(y),
+    default: () => [],
+  }),
 });
 
 export type GraphState = typeof GraphStateAnnotation.State;

@@ -128,7 +128,7 @@ const MemoriesPage: React.FC = () => {
   };
 
   return (
-    <main className="flex-1 p-6 md:p-10 max-w-6xl mx-auto w-full">
+    <main className="flex-1 overflow-y-auto p-6 md:p-10 max-w-6xl mx-auto w-full bg-background-light dark:bg-background-dark">
       <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 text-primary mb-2">

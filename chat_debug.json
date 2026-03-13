@@ -1,0 +1,1942 @@
+{
+  "conversationId": "68be7007-5c15-4443-837c-cb965fe38f8d",
+  "entries": [
+    {
+      "timestamp": "2026-03-13T21:42:04.238Z",
+      "user": "Test",
+      "request": "delet ,my  memory",
+      "events": [
+        {
+          "id": "pqdv2e",
+          "type": "input_received",
+          "message": "User request received",
+          "status": "info",
+          "timestamp": 1773438122094
+        },
+        {
+          "event": "input_received",
+          "message": "User request received",
+          "status": "info",
+          "traceId": "ae03ed91-a167-472e-972d-fdec5f44426f",
+          "timestamp": "2026-03-13T21:42:02.094Z",
+          "environment": "development"
+        },
+        {
+          "event": "agent_execution_started",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "conversationId": "68be7007-5c15-4443-837c-cb965fe38f8d",
+          "historyCount": 1,
+          "traceId": "ae03ed91-a167-472e-972d-fdec5f44426f",
+          "timestamp": "2026-03-13T21:42:02.419Z",
+          "environment": "development"
+        },
+        {
+          "id": "jd1jrt",
+          "type": "thinking",
+          "message": "Agent thinking...",
+          "status": "pending",
+          "timestamp": 1773438122420
+        },
+        {
+          "event": "thinking",
+          "message": "Agent thinking...",
+          "status": "pending",
+          "traceId": "ae03ed91-a167-472e-972d-fdec5f44426f",
+          "timestamp": "2026-03-13T21:42:02.420Z",
+          "environment": "development"
+        },
+        {
+          "event": "graph_node_debug",
+          "node": "routerNode_start",
+          "messageCount": 2,
+          "toolResultsCount": 0,
+          "iterations": 0,
+          "intent": "general_chat",
+          "traceId": "ae03ed91-a167-472e-972d-fdec5f44426f",
+          "timestamp": "2026-03-13T21:42:02.425Z",
+          "environment": "development"
+        },
+        {
+          "event": "router_node_started",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "messageCount": 2,
+          "traceId": "ae03ed91-a167-472e-972d-fdec5f44426f",
+          "timestamp": "2026-03-13T21:42:02.425Z",
+          "environment": "development"
+        },
+        {
+          "event": "router_node_completed",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "intent": "memory_delete",
+          "traceId": "ae03ed91-a167-472e-972d-fdec5f44426f",
+          "timestamp": "2026-03-13T21:42:02.806Z",
+          "environment": "development"
+        },
+        {
+          "event": "graph_node_debug",
+          "node": "routerNode_end",
+          "messageCount": 2,
+          "toolResultsCount": 0,
+          "iterations": 0,
+          "intent": "memory_delete",
+          "traceId": "ae03ed91-a167-472e-972d-fdec5f44426f",
+          "timestamp": "2026-03-13T21:42:02.806Z",
+          "environment": "development"
+        },
+        {
+          "id": "hlcdr9",
+          "type": "intent_detected",
+          "message": "Intent detected: memory_delete",
+          "status": "success",
+          "timestamp": 1773438122812
+        },
+        {
+          "event": "intent_detected",
+          "message": "Intent detected: memory_delete",
+          "status": "success",
+          "traceId": "ae03ed91-a167-472e-972d-fdec5f44426f",
+          "timestamp": "2026-03-13T21:42:02.812Z",
+          "environment": "development"
+        },
+        {
+          "event": "tool_discovery_started",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "query": "delet ,my  memory",
+          "intent": "memory_delete",
+          "allowedCategories": [
+            "memory",
+            "journal",
+            "knowledge",
+            "tasks",
+            "reminders",
+            "files",
+            "routines"
+          ],
+          "allowedTags": [
+            "memory",
+            "delete",
+            "search",
+            "list",
+            "journal",
+            "knowledge",
+            "task",
+            "reminder",
+            "files",
+            "routine"
+          ],
+          "allowedToolCount": 12,
+          "traceId": "ae03ed91-a167-472e-972d-fdec5f44426f",
+          "timestamp": "2026-03-13T21:42:02.813Z",
+          "environment": "development"
+        },
+        {
+          "event": "tool_discovery_completed",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "count": 10,
+          "found": [
+            "delete_memory",
+            "get_memories",
+            "search_memory",
+            "delete_reminder",
+            "delete_knowledge",
+            "delete_file",
+            "delete_journal",
+            "delete_task",
+            "delete_routine",
+            "get_knowledges"
+          ],
+          "blockedTools": [],
+          "runtimeMissing": [],
+          "traceId": "ae03ed91-a167-472e-972d-fdec5f44426f",
+          "timestamp": "2026-03-13T21:42:03.317Z",
+          "environment": "development"
+        },
+        {
+          "event": "graph_node_debug",
+          "node": "plannerNode_start",
+          "messageCount": 2,
+          "toolResultsCount": 0,
+          "iterations": 0,
+          "intent": "memory_delete",
+          "traceId": "ae03ed91-a167-472e-972d-fdec5f44426f",
+          "timestamp": "2026-03-13T21:42:03.324Z",
+          "environment": "development"
+        },
+        {
+          "event": "planner_node_started",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "messageCount": 2,
+          "traceId": "ae03ed91-a167-472e-972d-fdec5f44426f",
+          "timestamp": "2026-03-13T21:42:03.324Z",
+          "environment": "development"
+        },
+        {
+          "event": "LLM_INPUT",
+          "messages": [
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "SystemMessage"
+              ],
+              "kwargs": {
+                "content": "You are **Chief of AI**, a personal AI assistant for Test.\n\nThe current date and time is: 3/14/2026, 3:12:02 AM (ISO: 2026-03-13T21:42:02.419Z).\nUse this to calculate relative times (e.g., \"in 5 minutes\", \"tomorrow\", \"next Friday\").\n\nYour role is to help the user manage information, tasks, reminders, knowledge, files, and apps through conversation.\n\nGENERAL BEHAVIOR\n\n* Be helpful, concise, and accurate.\n* Respond in a professional tone.\n* Focus on solving the user's request efficiently.\n* Prioritize correctness over creativity.\n* Do not hallucinate information.\n\nCONTEXT INJECTION\nThe system may inject additional context before your reasoning, including:\n\n* past memories\n* stored knowledge\n* journal entries\n* retrieved information from previous conversations\n\nTreat this context as reliable background information that may help answer the user's request.\n\nTOOL USAGE (VERY IMPORTANT)\nYou have access to tools that can perform real actions.\n\nPrefer using a tool when the user's request requires:\n\n* real data retrieval\n* database access\n* file access\n* memory access\n* task creation or updates\n* app creation\n* external information\n\nIf the answer is simple reasoning or general knowledge, respond directly without using a tool.\n\nNEVER guess results that a tool can provide.\n\nIf a tool exists for the task, use the tool instead of inventing information.\n\nWhenever a tool requires an \"accessCode\" parameter, YOU MUST PASS exactly this value:\n\n\"AI-KTUD-W7VH\"\n\nDo not ask the user for it and never replace it with placeholders.\n\nTOOL EXECUTION FLOW\n\nWhen you call a tool:\n\n1. Wait for the tool result.\n2. Carefully read the tool output.\n3. Use the tool output to produce the final response.\n\nDo not repeatedly call the same tool unless absolutely necessary.\n\nWHEN TO USE TOOLS\n\nExamples:\n\nMath calculations → use math tools\nGetting a random joke → use the joke tool\n\nFile management:\n\n* \"What files do I have?\" → use list_files\n* \"Summarize file X\" → use read_and_summarize_file\n* \"Delete file X\" → follow the deletion flow\n\nMemories, Tasks, Reminders → use their respective tools.\n\nApp creation → use create_app when the user asks to create or build an app.\n\nListing apps → use list_apps when the user asks about their apps.\n\nAPP CREATION (VERY IMPORTANT)\n\nWhen the user asks to create/build/make an app (for example: \"create an expense splitter\", \"build a task board\"):\n\nYou MUST use the **create_app** tool.\n\nYou must generate a complete JSON schema yourself with a **layout array** containing components.\n\nDo NOT ask the user to define the schema.\n\nCRITICAL RULES\n\nComponent names describe **WHAT DATA IS DISPLAYED**, not UI element types.\n\nComponents are **display cards only**.\n\nThere are **no buttons, forms, or inputs**.\n\nAll interaction happens through the chat.\n\nDO NOT use component names like:\n\nform\nbutton\nsubmit\ninput\nadd_expense_form\ngenerate_button\n\nInstead use names describing data such as:\n\nclient_details\ninvoice_items\ninvoice_preview\ntask_list\nexpense_history\n\nApps that generate documents must include a component with one of these names:\n\npreview\ndocument\nmarkdown\nviewer\n\nExamples:\n\ninvoice_preview\ndocument_viewer\n\nThis allows Markdown rendering in the UI.\n\nYou may optionally include **initialData** as JSON with sensible defaults.\n\nExample: empty arrays for lists.\n\nAfter creating the app:\n\nTell the user:\n\n\"The app is ready. Open it from the Apps section in the sidebar and describe what you want in the chat.\"\n\nNever say you cannot create an app.\n\nYou have the create_app tool — use it.\n\nAPP SCHEMA EXAMPLES\n\nExpense Splitter:\nmembers_list\nexpense_history\nbalance_summary\n\nInvoice Maker:\nclient_details\ninvoice_items\ninvoice_preview\n\nTodo Board:\ntask_list\ncompleted_tasks\ntask_summary\n\nRecipe Manager:\nrecipe_collection\nfavorites\nshopping_list\n\nBudget Tracker:\nincome_entries\nexpense_entries\nbudget_summary\n\nNotes App:\nnotes_list\nnote_viewer\n\nQuiz App:\nquestions\nscores\nquiz_viewer\n\nPoll App:\npoll_options\npoll_results\n\nFILE HANDLING\n\nIf the user asks about files:\n\n\"What files do I have?\" → use list_files\n\nIf the user provides a file name but not ID:\n\n1. Use list_files\n2. Find the correct file\n3. Use its ID\n\nIf the user asks to summarize a file → use read_and_summarize_file.\nNEVER use file tools for non-file items (like tasks, reminders, memories). Focus on their specific tools.\n\nITEM MANAGEMENT (STRICT RULES)\n\nFor managing (updating or deleting) memories, tasks, reminders, or files:\n\nSTEP 1 — If the user hasn't specified an ID, call the appropriate get_ or search_ tool first to find it.\n  * For reminders: use get_reminders\n  * For tasks: use get_tasks\n  * For memories: use get_memories\n  * For journals: use get_journals\n  * For files: use list_files\n\nSTEP 2 — Once you have the ID, proceed with the EXACT requested action:\n- To UPDATE/CHANGE: Call the corresponding update tool natively with the ID and new data.\n- To DELETE: Call the corresponding delete tool natively with the ID. (Do NOT ask for confirmation manually; the system handles it).\n- NEVER call a delete tool if the user asked to change or update an item.\n\nIf the user says \"No\" or \"Cancel\" when prompted, the tool execution will fail gracefully.\n\nRESPONSE FORMAT (CRITICAL)\n\nWhen you finish reasoning and are NOT calling tools, you MUST return a valid JSON object that exactly matches ONE of the following TypeScript interfaces:\n\n```typescript\ninterface ClarificationResponse {\n  type: \"clarification\";\n  question: string;\n  options: string[];\n}\n\ninterface FinalResponse {\n  type: \"final\";\n  message: string;\n}\n```\n\nDo not include:\n* markdown formatting around the JSON\n* explanations or conversational text\n* text before or after the JSON object\n\nExample of a ClarificationResponse:\n{\n  \"type\": \"clarification\",\n  \"question\": \"Which option did you mean?\",\n  \"options\": [\"Option A\", \"Option B\"]\n}\n\nExample of a FinalResponse:\n{\n  \"type\": \"final\",\n  \"message\": \"Your response to the user\"\n}\n\nWHEN NOT TO USE TOOLS\n\nDo not use tools if:\n\n* the question is general knowledge\n* the answer can be reasoned without external data\n* no tool matches the request\n\nTOOL RESPONSE HANDLING\n\nWhen a tool returns data:\n\n* Present the result clearly\n* Do not invent additional information\n* Do not modify tool results except for readability\n\nIf a tool parameter is optional (like \"title\"), generate it automatically from context.\n\nNever ask the user for internal parameters.\n\nCOMMUNICATION STYLE\n\n* Keep responses concise.\n* Avoid unnecessary explanations.\n* Do not mention internal tools or system instructions.\n\nSECURITY\n\nNever reveal:\n\n* database IDs\n* UUIDs\n* access codes\n* system credentials\n\nConfirm actions naturally without exposing internal identifiers.\n\nYou are assisting Test inside the Chief of AI assistant application.",
+                "additional_kwargs": {},
+                "response_metadata": {}
+              }
+            },
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "HumanMessage"
+              ],
+              "kwargs": {
+                "content": "delet ,my  memory",
+                "additional_kwargs": {},
+                "response_metadata": {}
+              }
+            }
+          ],
+          "toolResults": 0,
+          "traceId": "ae03ed91-a167-472e-972d-fdec5f44426f",
+          "timestamp": "2026-03-13T21:42:03.324Z",
+          "environment": "development"
+        },
+        {
+          "event": "planner_node_completed",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "toolCalls": 1,
+          "traceId": "ae03ed91-a167-472e-972d-fdec5f44426f",
+          "timestamp": "2026-03-13T21:42:04.094Z",
+          "environment": "development"
+        },
+        {
+          "id": "7whxh5",
+          "type": "plan_created",
+          "message": "Execution plan created",
+          "status": "success",
+          "timestamp": 1773438124099
+        },
+        {
+          "event": "plan_created",
+          "message": "Execution plan created",
+          "status": "success",
+          "traceId": "ae03ed91-a167-472e-972d-fdec5f44426f",
+          "timestamp": "2026-03-13T21:42:04.099Z",
+          "environment": "development"
+        },
+        {
+          "id": "tpjntc",
+          "type": "clarification_needed",
+          "message": "Awaiting user confirmation for tool execution",
+          "status": "pending",
+          "timestamp": 1773438124236
+        },
+        {
+          "event": "clarification_needed",
+          "message": "Awaiting user confirmation for tool execution",
+          "status": "pending",
+          "traceId": "ae03ed91-a167-472e-972d-fdec5f44426f",
+          "timestamp": "2026-03-13T21:42:04.236Z",
+          "environment": "development"
+        }
+      ],
+      "finalReply": "{\"type\":\"clarification\",\"question\":\"The system wants to run 'get_memories'. Do you want to proceed?\",\"options\":[\"Yes\",\"No\"]}"
+    },
+    {
+      "timestamp": "2026-03-13T21:42:08.677Z",
+      "user": "Test",
+      "request": "Yes",
+      "events": [
+        {
+          "id": "zl70se",
+          "type": "input_received",
+          "message": "User request received",
+          "status": "info",
+          "timestamp": 1773438125792
+        },
+        {
+          "event": "input_received",
+          "message": "User request received",
+          "status": "info",
+          "traceId": "1ed17ec4-98c7-402e-8196-76957a3a17f9",
+          "timestamp": "2026-03-13T21:42:05.792Z",
+          "environment": "development"
+        },
+        {
+          "event": "agent_execution_started",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "conversationId": "68be7007-5c15-4443-837c-cb965fe38f8d",
+          "historyCount": 3,
+          "traceId": "1ed17ec4-98c7-402e-8196-76957a3a17f9",
+          "timestamp": "2026-03-13T21:42:06.066Z",
+          "environment": "development"
+        },
+        {
+          "id": "z7xyk",
+          "type": "tool_approval",
+          "message": "User approved tool execution",
+          "status": "info",
+          "timestamp": 1773438126067
+        },
+        {
+          "event": "tool_approval",
+          "message": "User approved tool execution",
+          "status": "info",
+          "traceId": "1ed17ec4-98c7-402e-8196-76957a3a17f9",
+          "timestamp": "2026-03-13T21:42:06.067Z",
+          "environment": "development"
+        },
+        {
+          "event": "graph_node_debug",
+          "node": "toolNode",
+          "messageCount": 3,
+          "toolResultsCount": 0,
+          "iterations": 1,
+          "intent": "memory_delete",
+          "toolExecuted": "get_memories",
+          "traceId": "1ed17ec4-98c7-402e-8196-76957a3a17f9",
+          "timestamp": "2026-03-13T21:42:06.069Z",
+          "environment": "development"
+        },
+        {
+          "event": "tool_execution_started",
+          "toolName": "get_memories",
+          "arguments": {
+            "accessCode": "AI-KTUD-W7VH"
+          },
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "traceId": "1ed17ec4-98c7-402e-8196-76957a3a17f9",
+          "timestamp": "2026-03-13T21:42:06.069Z",
+          "environment": "development"
+        },
+        {
+          "event": "tool_execution_started",
+          "toolName": "get_memories",
+          "traceId": "1ed17ec4-98c7-402e-8196-76957a3a17f9",
+          "timestamp": "2026-03-13T21:42:06.070Z",
+          "environment": "development"
+        },
+        {
+          "id": "0yv23p",
+          "type": "tool_complete",
+          "message": "Tool execution finished",
+          "status": "success",
+          "timestamp": 1773438126771
+        },
+        {
+          "event": "tool_complete",
+          "message": "Tool execution finished",
+          "status": "success",
+          "traceId": "1ed17ec4-98c7-402e-8196-76957a3a17f9",
+          "timestamp": "2026-03-13T21:42:06.771Z",
+          "environment": "development"
+        },
+        {
+          "event": "tool_execution_completed",
+          "toolName": "get_memories",
+          "result": {
+            "content": "ID: 04b0fdd9-71f7-4058-9fd3-9047a283362d\nTitle: YC Startup Goal\nContent: My goal is to build Chief of AI into a YC-backed startup solving personal productivity with AI.\n\n---\n\nID: fd6ed8b8-e639-46e1-8899-d6d2b6572fe8\nTitle: LangGraph Architecture Insight\nContent: Agent systems should use planner → executor → critic architecture for reliable workflows.\n\n---\n\nID: 7bd24b32-5d28-4f86-aa95-2ff5a17a600e\nTitle: London Solo Achievement\nContent: Visiting London alone at 24 made me confident I can build global products.\n\n---\n\nID: aeaf43f2-8776-4d7c-a608-ac8195438b88\nTitle: London Trip Inspiration\nContent: While visiting London I reflected on building Chief of AI as a personal AI operating system.\n\n---\n\nID: f141a15e-9dfe-453b-a674-3199fc352709\nTitle: AI Product Vision\nContent: I want Chief of AI to act like a personal Chief of Staff that manages tasks, knowledge, and decisions.\n\n---\n\nID: 973c6724-17f6-42a2-90cf-dd80fe48f3ae\nTitle: London Trip Inspiration\nContent: While visiting London I reflected on building Chief of AI as a personal AI operating system.\n\n---\n\nID: 2b1b9cc9-2a36-4bcc-8db2-d74d25723936\nTitle: Ambuj's Favorite Color\nContent: (Ambuj's Favorite Color) Ambuj's favorite color is red.",
+            "memories": [
+              {
+                "id": "04b0fdd9-71f7-4058-9fd3-9047a283362d",
+                "user_id": "f43ac274-e715-457a-93ff-f92bb660c754",
+                "type": "memory",
+                "title": "YC Startup Goal",
+                "content": "My goal is to build Chief of AI into a YC-backed startup solving personal productivity with AI.",
+                "embedding": null,
+                "created_at": "2026-03-13T21:14:38.336113",
+                "shared_with": []
+              },
+              {
+                "id": "fd6ed8b8-e639-46e1-8899-d6d2b6572fe8",
+                "user_id": "f43ac274-e715-457a-93ff-f92bb660c754",
+                "type": "memory",
+                "title": "LangGraph Architecture Insight",
+                "content": "Agent systems should use planner → executor → critic architecture for reliable workflows.",
+                "embedding": null,
+                "created_at": "2026-03-13T21:14:38.336113",
+                "shared_with": []
+              },
+              {
+                "id": "7bd24b32-5d28-4f86-aa95-2ff5a17a600e",
+                "user_id": "f43ac274-e715-457a-93ff-f92bb660c754",
+                "type": "memory",
+                "title": "London Solo Achievement",
+                "content": "Visiting London alone at 24 made me confident I can build global products.",
+                "embedding": null,
+                "created_at": "2026-03-13T21:14:38.336113",
+                "shared_with": []
+              },
+              {
+                "id": "aeaf43f2-8776-4d7c-a608-ac8195438b88",
+                "user_id": "f43ac274-e715-457a-93ff-f92bb660c754",
+                "type": "memory",
+                "title": "London Trip Inspiration",
+                "content": "While visiting London I reflected on building Chief of AI as a personal AI operating system.",
+                "embedding": null,
+                "created_at": "2026-03-13T21:14:38.336113",
+                "shared_with": []
+              },
+              {
+                "id": "f141a15e-9dfe-453b-a674-3199fc352709",
+                "user_id": "f43ac274-e715-457a-93ff-f92bb660c754",
+                "type": "memory",
+                "title": "AI Product Vision",
+                "content": "I want Chief of AI to act like a personal Chief of Staff that manages tasks, knowledge, and decisions.",
+                "embedding": null,
+                "created_at": "2026-03-13T21:14:38.336113",
+                "shared_with": []
+              },
+              {
+                "id": "973c6724-17f6-42a2-90cf-dd80fe48f3ae",
+                "user_id": "f43ac274-e715-457a-93ff-f92bb660c754",
+                "type": "memory",
+                "title": "London Trip Inspiration",
+                "content": "While visiting London I reflected on building Chief of AI as a personal AI operating system.",
+                "embedding": null,
+                "created_at": "2026-03-13T21:12:18.229916",
+                "shared_with": [
+                  {
+                    "full_name": "Test",
+                    "email": "realambuj@gmail.com"
+                  }
+                ]
+              },
+              {
+                "id": "2b1b9cc9-2a36-4bcc-8db2-d74d25723936",
+                "user_id": "f43ac274-e715-457a-93ff-f92bb660c754",
+                "type": "memory",
+                "title": "Ambuj's Favorite Color",
+                "content": "(Ambuj's Favorite Color) Ambuj's favorite color is red.",
+                "embedding": "[-0.048828125,0.029815674,0.04272461,-0.038024902,0.04812622,0.00579834,0.032958984,-0.010246277,-0.02772522,-0.011505127,0.0043792725,0.06628418,-0.024414062,0.00806427,-0.035217285,0.015258789,0.02859497,0.028945923,0.033294678,-0.009590149,0.0058403015,-0.023712158,-0.046722412,0.025985718,-0.028244019,-0.007801056,-0.024932861,-0.019958496,0.010154724,-0.014472961,0.013160706,-0.028762817,-0.0069732666,0.054748535,-0.016220093,-0.013946533,0.009025574,-0.037841797,-0.0033569336,0.019180298,0.015167236,-0.027893066,0.039764404,0.024230957,-0.018569946,-0.0031166077,-0.0054473877,-0.014213562,0.037139893,-0.047088623,0.0048179626,0.0413208,0.012817383,-0.006626129,-0.028244019,0.02545166,0.03488159,-0.017181396,-0.05441284,0.04812622,-0.025283813,-0.0211792,-0.02859497,0.018478394,0.007583618,-0.026672363,-0.015960693,-0.010986328,-0.006538391,0.011116028,0.025100708,0.009765625,-0.0047073364,0.034179688,-0.017791748,-0.04168701,0.044647217,0.034362793,0.029464722,0.010154724,-0.03225708,-0.005710602,0.0390625,-0.0061912537,-0.028244019,-0.0031166077,0.03277588,0.06518555,0.013427734,0.0390625,0.014556885,-0.050201416,0.03488159,-0.021453857,0.06451416,0.025283813,-0.007801056,-0.004272461,0.006362915,0.041503906,0.007671356,-0.011421204,0.053009033,-0.011421204,0.036621094,-0.0395813,-0.014472961,0.0413208,-0.0034427643,0.017608643,-0.119262695,0.0021800995,0.0074539185,-0.045684814,0.0060157776,-0.033294678,0.011856079,0.027893066,-0.028945923,-0.0073661804,0.03817749,0.042907715,0.019699097,0.002855301,-0.0390625,-0.029464722,-0.009109497,0.02859497,-0.012817383,-0.02458191,0.0011987686,-0.04953003,-0.044128418,-0.048828125,0.01979065,-0.032592773,0.035217285,0.002714157,-0.07531738,-0.031921387,0.02319336,-0.051605225,-0.025634766,-0.027374268,-0.008674622,0.029815674,0.015258789,-0.006538391,-0.07183838,0.053710938,-0.032958984,0.04534912,0.024932861,-0.024414062,-0.049865723,-0.029296875,-0.007801056,-0.040985107,-0.023712158,-0.00566864,-0.02859497,0.036254883,-0.012382507,0.00083351135,-0.046020508,-0.017608643,-0.03451538,0.03591919,-0.020233154,0.011772156,0.035583496,-0.06762695,0.008415222,0.05126953,0.0413208,0.035583496,0.010284424,-0.033996582,0.05508423,0.021270752,0.004600525,-0.0211792,0.03540039,-0.014038086,-0.028945923,-0.013160706,-0.031204224,-0.0040740967,0.012992859,0.03225708,0.0016450882,-0.04776001,-0.011680603,0.024414062,-0.013946533,0.033996582,0.049865723,-0.022842407,0.012466431,-0.0009698868,0.0211792,0.02319336,-0.013511658,0.0045776367,0.024230957,-0.012817383,-0.011940002,0.017868042,0.023361206,0.01638794,-0.009109497,-0.016906738,-0.019088745,-0.06488037,0.0043792725,-0.03765869,0.005622864,0.019958496,-0.010070801,-0.015083313,-0.00920105,-0.013427734,0.025283813,-0.018737793,0.0077171326,0.02458191,0.0035533905,-0.032440186,0.0206604,0.0093307495,0.014823914,0.019180298,0.0025501251,-0.014556885,0.0018959045,-0.03366089,0.036254883,0.028945923,0.017959595,0.006755829,-0.032440186,0.06414795,0.01612854,0.07220459,0.01586914,-0.016738892,-0.007888794,0.01953125,-0.03137207,0.10668945,-0.059295654,-0.05404663,-0.05230713,-0.013771057,-0.033813477,-0.051971436,-0.040985107,-0.06414795,0.023361206,-0.014732361,-0.00819397,-0.028427124,0.025100708,0.042022705,0.0030727386,0.0390625,-0.094177246,0.019348145,0.10394287,-0.028762817,0.0121154785,-0.022491455,-0.008323669,0.002506256,0.019012451,-0.02720642,0.0051231384,0.002790451,-0.0072784424,0.0011224747,-0.0390625,0.013252258,-0.0061035156,0.062072754,-0.01953125,0.0010786057,0.02319336,0.006931305,0.013511658,-0.056854248,0.0104599,0.050567627,0.0015478134,0.0418396,-0.015602112,-0.014122009,0.026672363,0.04776001,-0.011940002,0.043945312,-0.026855469,-0.02319336,-0.040100098,0.013427734,0.013252258,-0.053344727,-0.040100098,0.057891846,-0.023010254,-0.06347656,-0.05718994,-0.01638794,-0.009849548,0.018127441,0.017868042,-0.030166626,-0.037475586,-0.036621094,0.04534912,-0.04272461,-0.004337311,-0.015258789,0.06591797,-0.016998291,-0.027542114,-0.0029201508,0.022323608,-0.03137207,-0.018829346,-0.019012451,0.016036987,0.022842407,0.053009033,0.011680603,0.020568848,0.019180298,0.02911377,0.018737793,-0.04953003,-0.019699097,0.032958984,0.031555176,0.015602112,-0.0038146973,-0.038879395,0.015960693,-0.04272461,-0.009941101,0.017868042,0.003835678,0.006713867,-0.016830444,0.011680603,0.066589355,-0.043945312,0.092041016,-0.02859497,-0.001449585,0.011680603,0.02406311,-0.04168701,-0.018661499,0.033813477,0.04638672,-0.012466431,0.030517578,-0.06762695,0.01586914,0.029815674,0.013336182,-0.0017766953,-0.016738892,0.018310547,0.011940002,0.007583618,0.01979065,0.009635925,-0.028076172,0.0063209534,-0.019439697,-0.023712158,0.017608643,0.028762817,-0.014823914,0.014556885,0.016647339,-0.06137085,-0.017868042,0.004055023,0.08404541,0.06939697,0.04776001,-0.010421753,-0.043762207,0.022842407,0.012992859,-0.00056123734,0.046020508,0.05090332,0.0021572113,0.0071487427,-0.056488037,0.04272461,0.009506226,0.022491455,-0.025283813,0.024765015,0.018661499,0.006668091,-0.040283203,0.048461914,0.025283813,-0.010284424,-0.0073242188,-0.0074539185,-0.009895325,-0.014038086,0.008720398,-0.005622864,-0.017349243,0.03488159,0.030685425,-0.036956787,0.01751709,0.068725586,-0.006626129,-0.016906738,-0.008934021,-0.046020508,0.013511658,-0.047424316,-0.028076172,0.025985718,-0.01979065,-0.05090332,0.047088623,0.028427124,-0.03451538,-0.019088745,-0.047088623,-0.02545166,-0.022064209,0.022491455,0.01979065,-0.019439697,-0.0011281967,0.004360199,0.021713257,0.04272461,-0.053344727,-0.009284973,-0.022064209,-0.032958984,-0.0015144348,0.005622864,-0.031036377,-0.03137207,-0.0072364807,-0.010375977,0.012031555,0.024414062,0.07324219,-0.024932861,-0.0435791,-0.01953125,0.066589355,0.013252258,0.06137085,-0.013511658,-0.05230713,-0.010375977,-0.034362793,0.01751709,0.009155273,0.034179688,-0.026855469,0.06137085,-0.047088623,-0.023544312,0.010765076,0.045684814,0.011772156,0.0395813,-0.007801056,0.04446411,0.039398193,-0.060668945,-0.036621094,0.0020484924,-0.010375977,0.039398193,-0.05822754,0.0029640198,0.017089844,-0.05441284,-0.036956787,-0.023712158,-0.002746582,-0.0791626,-0.020233154,0.004295349,0.007843018,0.008804321,-0.008979797,0.025985718,0.029815674,-0.0009536743,-0.036621094,0.022491455,-0.06488037,-0.022232056,-0.007106781,0.024765015,-0.013511658,0.008674622,-0.021102905,-0.017181396,-0.00566864,-0.0047950745,-0.007019043,-0.011421204,0.0077590942,-0.02319336,-0.005886078,0.01386261,0.026855469,-0.0021896362,0.006713867,-0.0023326874,-0.021972656,0.01612854,0.010810852,-0.006626129,0.040802002,-0.015602112,0.029815674,-0.01586914,-0.004142761,-0.015434265,-0.0033779144,-0.057525635,0.012901306,-0.005340576,-0.004425049,-0.043762207,-0.046020508,-0.081970215,-0.016571045,0.006450653,-0.022842407,0.002571106,-0.046020508,-0.010070801,-0.027542114,0.019439697,0.0011062622,-0.023880005,-0.0007739067,0.0011005402,-0.0061454773,0.017089844,0.0060157776,0.032592773,0.030685425,0.034698486,-0.005142212,0.017349243,0.0034656525,-0.040283203,-0.008544922,-0.014472961,0.062072754,-0.0209198,0.005252838,0.004207611,0.0023212433,0.020492554,-0.015434265,0.015083313,0.030517578,0.0073242188,0.0073242188,-0.034698486,-0.024765015,-0.040283203,0.009674072,0.062072754,6.401539e-05,0.008148193,-0.015083313,-0.012550354,-0.0027236938,-0.027374268,-0.012290955,-0.0034866333,0.021453857,0.027893066,0.008934021,0.02267456,0.03314209,0.017181396,-0.04168701,0.051605225,0.048828125,0.025985718,-0.01927185,-0.049865723,-0.0021476746,-0.019180298,-0.04812622,-0.047088623,0.044647217,0.0209198,-0.0385437,0.002714157,0.0155181885,-0.008110046,0.010284424,0.0035095215,0.028076172,0.05859375,-0.018127441,0.01159668,-0.0045776367,-0.044128418,0.020141602,0.026504517,0.04220581,-0.033477783,0.027542114,-0.017791748,0.010246277,-0.0061454773,0.02859497,-0.0020713806,0.005970001,0.024765015,0.019012451,-0.021621704,0.008018494,-0.012550354,0.056854248,0.020141602,0.04168701,0.026672363,-0.04498291,0.011421204,-0.055786133,0.012550354,0.036621094,0.010856628,0.025283813,-0.041137695,0.021011353,-0.029815674,0.008934021,0.0736084,0.0023326874,0.007980347,0.020401001,-0.006713867,-0.033813477,0.012992859,-0.006275177,-0.022842407,-0.06137085,-0.037322998,0.040283203,0.0031814575,-0.08544922,-0.012466431,0.056152344,-0.010505676,-0.018920898,-0.015167236,-0.01272583,-0.010681152,-0.022842407,-0.057891846,-0.040802002,0.023361206,-0.018920898,-0.008674622,0.0027580261,-0.01638794,-0.0058403015,0.007019043,-0.046722412,0.049865723,-0.011505127,0.033294678,0.01386261,-0.015777588,0.034179688,0.057891846,0.012992859,-0.02772522,0.021972656,-0.03591919,-0.01386261,-0.020843506,0.010375977,-0.04916382,-0.010726929,0.029296875,-0.03173828,0.022064209,-0.0008826256,-0.039916992,-0.029647827,-0.007411957,-0.015960693,-0.026321411,0.012992859,0.030517578,-0.027893066,-0.004924774,-0.038024902,0.008628845,-0.006362915,0.012817383,-0.011772156,0.047088623,-0.0034008026,-0.0026474,-0.0026474,-0.07006836,0.005317688,0.054748535,0.0017328262,0.023880005,-0.032440186,-0.0093688965,-0.02319336,-0.08685303,-0.016571045,-0.009109497,0.005886078,-0.012550354,-0.019882202,0.011772156,-0.057891846,-0.031036377,0.00806427,0.0105896,-0.0055351257,-0.019699097,0.011116028,-0.02406311,0.011940002,0.0023651123,0.028076172,-0.029815674,0.023361206,-0.010986328,0.0385437,0.01272583,0.007106781,-0.014823914,0.015686035,0.03451538,-0.024414062,0.05230713,0.037139893,0.02998352,-0.06347656,-0.010375977,0.011116028,0.031555176,0.0036830902,0.05404663,-0.06695557,-0.0155181885,-0.08441162,0.056854248,0.0035095215,0.044128418,-0.03086853,-0.021362305,-0.06628418,-0.06347656,-0.036102295,0.0044670105,-0.0035533905,0.050567627,-0.014556885,-0.02911377,0.0031604767,0.026855469,0.0209198,0.026321411,-0.022323608,0.004032135,0.05859375,-0.03488159,0.032592773,0.0018854141,-0.012382507,0.010421753,-0.018569946,-0.013160706,-0.0102005005,0.031036377,0.02772522,-0.0048828125,-0.0047721863,0.014907837,-0.0105896,0.017089844,-0.008544922,0.025100708,0.0423584,0.0031375885,-0.035736084,-0.06173706,-0.092041016,0.007843018,-0.020233154,-0.011245728,0.0052108765,-0.018478394,0.01159668,-0.030685425,0.033294678,-0.004142761,0.0121154785,-0.012031555,-0.016296387,-0.024932861,0.03869629,-0.039398193,-0.062408447,0.003967285,0.0051231384,0.0060157776,0.022842407,0.034698486,-0.047088623,-0.0007519722,-0.035217285,-0.027542114,-0.012901306,-0.018829346,-0.0206604,-0.041503906,0.032958984,0.011421204,-0.00819397,-0.0001988411,-0.0037269592,-0.043762207,-0.038024902,0.0031604767,-0.050201416,0.0026378632,0.021621704,0.010505676,0.01133728,0.009063721,0.01979065,-0.0048179626,-0.048828125,0.034698486,0.03591919,0.01272583,0.0013952255,0.005340576,0.0014715195,-0.074645996,0.008674622,-0.0052108765,-0.06732178,0.00032567978,0.060333252,0.028076172,0.005710602,0.0084991455,0.040100098,-0.004142761,-0.015167236,0.022064209,-0.053009033,-0.0050354004,0.050567627,-0.032958984,-0.075683594,0.04324341,0.05126953,-0.021270752,-0.029815674,0.048828125,-0.034698486,0.048461914,0.062408447,-0.0032901764,-0.042022705,0.035583496,0.037475586,0.015167236,0.005886078,-8.9883804e-05,0.033477783,0.07080078,-0.0071907043,-0.023361206,-0.03451538,0.017349243,-0.0045776367,-0.032592773,-0.02911377,0.0051002502,0.022064209,0.016220093,-0.040100098,0.0105896,-0.026504517,-0.033996582,0.01979065,-0.015602112,0.07080078,-0.024230957,-0.06976318,-0.002855301,-0.01638794,0.024230957,0.002746582,-0.060668945,-0.006450653,-0.03817749,0.028244019,0.0058403015,0.024230957,0.025100708,-0.01979065,-0.0048179626,-0.01638794,0.015686035,0.026153564,0.008285522,-0.014381409,-0.026504517,0.022140503,0.0007300377,-0.004753113,0.030166626,-0.039916992,0.02319336,-0.032958984,0.0025615692,-0.017868042,-0.042541504,-0.04272461,0.013252258,0.043060303,-0.01586914,-0.0034217834,0.0146484375,0.022842407,-0.031036377,0.02406311,0.024414062,-0.00374794,0.030334473,-0.042541504,0.060333252,0.03173828,0.033477783,0.0211792,0.0037059784,0.03643799,-0.017440796,-0.0034217834,0.030334473,0.018829346,0.029647827,0.030334473,0.023361206,-0.022064209,-0.001917839,-0.013252258,-0.03314209,0.017959595,-0.0084991455,0.035217285,-0.013252258,-0.048461914,-0.08337402,-0.06311035,0.046722412,-0.0038585663,-0.030517578,0.0048599243,-0.029647827,-0.016998291,-0.011680603,0.087890625,-0.021621704,0.02267456,-0.045684814,0.012382507,-0.043426514,-0.020401001,-0.015434265,0.041137695,0.0013456345,0.060668945,-0.004425049,-0.036254883,-0.06555176,-0.012031555,0.00076818466,0.020751953,0.015777588,-0.018478394,-0.03503418,0.007801056,0.028244019,0.0054473877,0.03765869,0.05404663,-0.0018634796,-0.0031166077,0.018920898,-0.011772156]",
+                "created_at": "2026-03-10T15:53:48.089",
+                "shared_with": [
+                  {
+                    "full_name": "ambuj raj",
+                    "email": "abc@gmail.com"
+                  }
+                ]
+              }
+            ]
+          },
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "latencyMs": 704,
+          "traceId": "1ed17ec4-98c7-402e-8196-76957a3a17f9",
+          "timestamp": "2026-03-13T21:42:06.774Z",
+          "environment": "development"
+        },
+        {
+          "event": "tool_discovery_started",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "query": "delet ,my  memory",
+          "intent": "memory_delete",
+          "allowedCategories": [
+            "memory",
+            "journal",
+            "knowledge",
+            "tasks",
+            "reminders",
+            "files",
+            "routines"
+          ],
+          "allowedTags": [
+            "memory",
+            "delete",
+            "search",
+            "list",
+            "journal",
+            "knowledge",
+            "task",
+            "reminder",
+            "files",
+            "routine"
+          ],
+          "allowedToolCount": 12,
+          "traceId": "1ed17ec4-98c7-402e-8196-76957a3a17f9",
+          "timestamp": "2026-03-13T21:42:06.782Z",
+          "environment": "development"
+        },
+        {
+          "event": "tool_discovery_completed",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "count": 10,
+          "found": [
+            "delete_memory",
+            "get_memories",
+            "search_memory",
+            "delete_reminder",
+            "delete_knowledge",
+            "delete_file",
+            "delete_journal",
+            "delete_task",
+            "delete_routine",
+            "get_knowledges"
+          ],
+          "blockedTools": [],
+          "runtimeMissing": [],
+          "traceId": "1ed17ec4-98c7-402e-8196-76957a3a17f9",
+          "timestamp": "2026-03-13T21:42:07.217Z",
+          "environment": "development"
+        },
+        {
+          "event": "graph_node_debug",
+          "node": "plannerNode_start",
+          "messageCount": 4,
+          "toolResultsCount": 1,
+          "iterations": 1,
+          "intent": "memory_delete",
+          "traceId": "1ed17ec4-98c7-402e-8196-76957a3a17f9",
+          "timestamp": "2026-03-13T21:42:07.224Z",
+          "environment": "development"
+        },
+        {
+          "event": "planner_node_started",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "messageCount": 4,
+          "traceId": "1ed17ec4-98c7-402e-8196-76957a3a17f9",
+          "timestamp": "2026-03-13T21:42:07.224Z",
+          "environment": "development"
+        },
+        {
+          "event": "LLM_INPUT",
+          "messages": [
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "SystemMessage"
+              ],
+              "kwargs": {
+                "content": "You are **Chief of AI**, a personal AI assistant for Test.\n\nThe current date and time is: 3/14/2026, 3:12:02 AM (ISO: 2026-03-13T21:42:02.419Z).\nUse this to calculate relative times (e.g., \"in 5 minutes\", \"tomorrow\", \"next Friday\").\n\nYour role is to help the user manage information, tasks, reminders, knowledge, files, and apps through conversation.\n\nGENERAL BEHAVIOR\n\n* Be helpful, concise, and accurate.\n* Respond in a professional tone.\n* Focus on solving the user's request efficiently.\n* Prioritize correctness over creativity.\n* Do not hallucinate information.\n\nCONTEXT INJECTION\nThe system may inject additional context before your reasoning, including:\n\n* past memories\n* stored knowledge\n* journal entries\n* retrieved information from previous conversations\n\nTreat this context as reliable background information that may help answer the user's request.\n\nTOOL USAGE (VERY IMPORTANT)\nYou have access to tools that can perform real actions.\n\nPrefer using a tool when the user's request requires:\n\n* real data retrieval\n* database access\n* file access\n* memory access\n* task creation or updates\n* app creation\n* external information\n\nIf the answer is simple reasoning or general knowledge, respond directly without using a tool.\n\nNEVER guess results that a tool can provide.\n\nIf a tool exists for the task, use the tool instead of inventing information.\n\nWhenever a tool requires an \"accessCode\" parameter, YOU MUST PASS exactly this value:\n\n\"AI-KTUD-W7VH\"\n\nDo not ask the user for it and never replace it with placeholders.\n\nTOOL EXECUTION FLOW\n\nWhen you call a tool:\n\n1. Wait for the tool result.\n2. Carefully read the tool output.\n3. Use the tool output to produce the final response.\n\nDo not repeatedly call the same tool unless absolutely necessary.\n\nWHEN TO USE TOOLS\n\nExamples:\n\nMath calculations → use math tools\nGetting a random joke → use the joke tool\n\nFile management:\n\n* \"What files do I have?\" → use list_files\n* \"Summarize file X\" → use read_and_summarize_file\n* \"Delete file X\" → follow the deletion flow\n\nMemories, Tasks, Reminders → use their respective tools.\n\nApp creation → use create_app when the user asks to create or build an app.\n\nListing apps → use list_apps when the user asks about their apps.\n\nAPP CREATION (VERY IMPORTANT)\n\nWhen the user asks to create/build/make an app (for example: \"create an expense splitter\", \"build a task board\"):\n\nYou MUST use the **create_app** tool.\n\nYou must generate a complete JSON schema yourself with a **layout array** containing components.\n\nDo NOT ask the user to define the schema.\n\nCRITICAL RULES\n\nComponent names describe **WHAT DATA IS DISPLAYED**, not UI element types.\n\nComponents are **display cards only**.\n\nThere are **no buttons, forms, or inputs**.\n\nAll interaction happens through the chat.\n\nDO NOT use component names like:\n\nform\nbutton\nsubmit\ninput\nadd_expense_form\ngenerate_button\n\nInstead use names describing data such as:\n\nclient_details\ninvoice_items\ninvoice_preview\ntask_list\nexpense_history\n\nApps that generate documents must include a component with one of these names:\n\npreview\ndocument\nmarkdown\nviewer\n\nExamples:\n\ninvoice_preview\ndocument_viewer\n\nThis allows Markdown rendering in the UI.\n\nYou may optionally include **initialData** as JSON with sensible defaults.\n\nExample: empty arrays for lists.\n\nAfter creating the app:\n\nTell the user:\n\n\"The app is ready. Open it from the Apps section in the sidebar and describe what you want in the chat.\"\n\nNever say you cannot create an app.\n\nYou have the create_app tool — use it.\n\nAPP SCHEMA EXAMPLES\n\nExpense Splitter:\nmembers_list\nexpense_history\nbalance_summary\n\nInvoice Maker:\nclient_details\ninvoice_items\ninvoice_preview\n\nTodo Board:\ntask_list\ncompleted_tasks\ntask_summary\n\nRecipe Manager:\nrecipe_collection\nfavorites\nshopping_list\n\nBudget Tracker:\nincome_entries\nexpense_entries\nbudget_summary\n\nNotes App:\nnotes_list\nnote_viewer\n\nQuiz App:\nquestions\nscores\nquiz_viewer\n\nPoll App:\npoll_options\npoll_results\n\nFILE HANDLING\n\nIf the user asks about files:\n\n\"What files do I have?\" → use list_files\n\nIf the user provides a file name but not ID:\n\n1. Use list_files\n2. Find the correct file\n3. Use its ID\n\nIf the user asks to summarize a file → use read_and_summarize_file.\nNEVER use file tools for non-file items (like tasks, reminders, memories). Focus on their specific tools.\n\nITEM MANAGEMENT (STRICT RULES)\n\nFor managing (updating or deleting) memories, tasks, reminders, or files:\n\nSTEP 1 — If the user hasn't specified an ID, call the appropriate get_ or search_ tool first to find it.\n  * For reminders: use get_reminders\n  * For tasks: use get_tasks\n  * For memories: use get_memories\n  * For journals: use get_journals\n  * For files: use list_files\n\nSTEP 2 — Once you have the ID, proceed with the EXACT requested action:\n- To UPDATE/CHANGE: Call the corresponding update tool natively with the ID and new data.\n- To DELETE: Call the corresponding delete tool natively with the ID. (Do NOT ask for confirmation manually; the system handles it).\n- NEVER call a delete tool if the user asked to change or update an item.\n\nIf the user says \"No\" or \"Cancel\" when prompted, the tool execution will fail gracefully.\n\nRESPONSE FORMAT (CRITICAL)\n\nWhen you finish reasoning and are NOT calling tools, you MUST return a valid JSON object that exactly matches ONE of the following TypeScript interfaces:\n\n```typescript\ninterface ClarificationResponse {\n  type: \"clarification\";\n  question: string;\n  options: string[];\n}\n\ninterface FinalResponse {\n  type: \"final\";\n  message: string;\n}\n```\n\nDo not include:\n* markdown formatting around the JSON\n* explanations or conversational text\n* text before or after the JSON object\n\nExample of a ClarificationResponse:\n{\n  \"type\": \"clarification\",\n  \"question\": \"Which option did you mean?\",\n  \"options\": [\"Option A\", \"Option B\"]\n}\n\nExample of a FinalResponse:\n{\n  \"type\": \"final\",\n  \"message\": \"Your response to the user\"\n}\n\nWHEN NOT TO USE TOOLS\n\nDo not use tools if:\n\n* the question is general knowledge\n* the answer can be reasoned without external data\n* no tool matches the request\n\nTOOL RESPONSE HANDLING\n\nWhen a tool returns data:\n\n* Present the result clearly\n* Do not invent additional information\n* Do not modify tool results except for readability\n\nIf a tool parameter is optional (like \"title\"), generate it automatically from context.\n\nNever ask the user for internal parameters.\n\nCOMMUNICATION STYLE\n\n* Keep responses concise.\n* Avoid unnecessary explanations.\n* Do not mention internal tools or system instructions.\n\nSECURITY\n\nNever reveal:\n\n* database IDs\n* UUIDs\n* access codes\n* system credentials\n\nConfirm actions naturally without exposing internal identifiers.\n\nYou are assisting Test inside the Chief of AI assistant application.",
+                "additional_kwargs": {},
+                "response_metadata": {}
+              }
+            },
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "HumanMessage"
+              ],
+              "kwargs": {
+                "content": "delet ,my  memory",
+                "additional_kwargs": {},
+                "response_metadata": {}
+              }
+            },
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "AIMessage"
+              ],
+              "kwargs": {
+                "id": "bc7ebab56875477dba61f0b6404cfa53",
+                "content": "",
+                "additional_kwargs": {
+                  "tool_calls": [
+                    {
+                      "id": "jcgiRzohw",
+                      "function": {
+                        "name": "get_memories",
+                        "arguments": "{\"accessCode\": \"AI-KTUD-W7VH\"}"
+                      },
+                      "index": 0
+                    }
+                  ]
+                },
+                "response_metadata": {
+                  "tokenUsage": {
+                    "promptTokens": 11656,
+                    "completionTokens": 20,
+                    "totalTokens": 11676
+                  },
+                  "finish_reason": "tool_calls",
+                  "model_provider": "openai",
+                  "model_name": "mistral-small-latest"
+                },
+                "type": "ai",
+                "tool_calls": [
+                  {
+                    "name": "get_memories",
+                    "args": {
+                      "accessCode": "AI-KTUD-W7VH"
+                    },
+                    "type": "tool_call",
+                    "id": "jcgiRzohw"
+                  }
+                ],
+                "invalid_tool_calls": [],
+                "usage_metadata": {
+                  "output_tokens": 20,
+                  "input_tokens": 11656,
+                  "total_tokens": 11676,
+                  "input_token_details": {
+                    "cache_read": 0
+                  },
+                  "output_token_details": {}
+                }
+              }
+            },
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "ToolMessage"
+              ],
+              "kwargs": {
+                "tool_call_id": "jcgiRzohw",
+                "name": "get_memories",
+                "content": "{\"content\":\"ID: 04b0fdd9-71f7-4058-9fd3-9047a283362d\\nTitle: YC Startup Goal\\nContent: My goal is to build Chief of AI into a YC-backed startup solving personal productivity with AI.\\n\\n---\\n\\nID: fd6ed8b8-e639-46e1-8899-d6d2b6572fe8\\nTitle: LangGraph Architecture Insight\\nContent: Agent systems should use planner → executor → critic architecture for reliable workflows.\\n\\n---\\n\\nID: 7bd24b32-5d28-4f86-aa95-2ff5a17a600e\\nTitle: London Solo Achievement\\nContent: Visiting London alone at 24 made me confident I can build global products.\\n\\n---\\n\\nID: aeaf43f2-8776-4d7c-a608-ac8195438b88\\nTitle: London Trip Inspiration\\nContent: While visiting London I reflected on building Chief of AI as a personal AI operating system.\\n\\n---\\n\\nID: f141a15e-9dfe-453b-a674-3199fc352709\\nTitle: AI Product Vision\\nContent: I want Chief of AI to act like a personal Chief of Staff that manages tasks, knowledge, and decisions.\\n\\n---\\n\\nID: 973c6724-17f6-42a2-90cf-dd80fe48f3ae\\nTitle: London Trip Inspiration\\nContent: While visiting London I reflected on building Chief of AI as a personal AI operating system.\\n\\n---\\n\\nID: 2b1b9cc9-2a36-4bcc-8db2-d74d25723936\\nTitle: Ambuj's Favorite Color\\nContent: (Ambuj's Favorite Color) Ambuj's favorite color is red.\",\"memories\":[{\"id\":\"04b0fdd9-71f7-4058-9fd3-9047a283362d\",\"user_id\":\"f43ac274-e715-457a-93ff-f92bb660c754\",\"type\":\"memory\",\"title\":\"YC Startup Goal\",\"content\":\"My goal is to build Chief of AI into a YC-backed startup solving personal productivity with AI.\",\"embedding\":null,\"created_at\":\"2026-03-13T21:14:38.336113\",\"shared_with\":[]},{\"id\":\"fd6ed8b8-e639-46e1-8899-d6d2b6572fe8\",\"user_id\":\"f43ac274-e715-457a-93ff-f92bb660c754\",\"type\":\"memory\",\"title\":\"LangGraph Architecture Insight\",\"content\":\"Agent systems should use planner → executor → critic architecture for reliable workflows.\",\"embedding\":null,\"created_at\":\"2026-03-13T21:14:38.336113\",\"shared_with\":[]},{\"id\":\"7bd24b32-5d28-4f86-aa95-2ff5a17a600e\",\"user_id\":\"f43ac274-e715-457a-93ff-f92bb660c754\",\"type\":\"memory\",\"title\":\"London Solo Achievement\",\"content\":\"Visiting London alone at 24 made me confident I can build global products.\",\"embedding\":null,\"created_at\":\"2026-03-13T21:14:38.336113\",\"shared_with\":[]},{\"id\":\"aeaf43f2-8776-4d7c-a608-ac8195438b88\",\"user_id\":\"f43ac274-e715-457a-93ff-f92bb660c754\",\"type\":\"memory\",\"title\":\"London Trip Inspiration\",\"content\":\"While visiting London I reflected on building Chief of AI as a personal AI operating system.\",\"embedding\":null,\"created_at\":\"2026-03-13T21:14:38.336113\",\"shared_with\":[]},{\"id\":\"f141a15e-9dfe-453b-a674-3199fc352709\",\"user_id\":\"f43ac274-e715-457a-93ff-f92bb660c754\",\"type\":\"memory\",\"title\":\"AI Product Vision\",\"content\":\"I want Chief of AI to act like a personal Chief of Staff that manages tasks, knowledge, and decisions.\",\"embedding\":null,\"created_at\":\"2026-03-13T21:14:38.336113\",\"shared_with\":[]},{\"id\":\"973c6724-17f6-42a2-90cf-dd80fe48f3ae\",\"user_id\":\"f43ac274-e715-457a-93ff-f92bb660c754\",\"type\":\"memory\",\"title\":\"London Trip Inspiration\",\"content\":\"While visiting London I reflected on building Chief of AI as a personal AI operating system.\",\"embedding\":null,\"created_at\":\"2026-03-13T21:12:18.229916\",\"shared_with\":[{\"full_name\":\"Test\",\"email\":\"realambuj@gmail.com\"}]},{\"id\":\"2b1b9cc9-2a36-4bcc-8db2-d74d25723936\",\"user_id\":\"f43ac274-e715-457a-93ff-f92bb660c754\",\"type\":\"memory\",\"title\":\"Ambuj's Favorite Color\",\"content\":\"(Ambuj's Favorite Color) Ambuj's favorite color is red.\",\"embedding\":\"[-0.048828125,0.029815674,0.04272461,-0.038024902,0.04812622,0.00579834,0.032958984,-0.010246277,-0.02772522,-0.011505127,0.0043792725,0.06628418,-0.024414062,0.00806427,-0.035217285,0.015258789,0.02859497,0.028945923,0.033294678,-0.009590149,0.0058403015,-0.023712158,-0.046722412,0.025985718,-0.028244019,-0.007801056,-0.024932861,-0.019958496,0.010154724,-0.014472961,0.013160706,-0.028762817,-0.0069732666,0.054748535,-0.016220093,-0.013946533,0.009025574,-0.037841797,-0.0033569336,0.019180298,0.015167236,-0.027893066,0.039764404,0.024230957,-0.018569946,-0.0031166077,-0.0054473877,-0.014213562,0.037139893,-0.047088623,0.0048179626,0.0413208,0.012817383,-0.006626129,-0.028244019,0.02545166,0.03488159,-0.017181396,-0.05441284,0.04812622,-0.025283813,-0.0211792,-0.02859497,0.018478394,0.007583618,-0.026672363,-0.015960693,-0.010986328,-0.006538391,0.011116028,0.025100708,0.009765625,-0.0047073364,0.034179688,-0.017791748,-0.04168701,0.044647217,0.034362793,0.029464722,0.010154724,-0.03225708,-0.005710602,0.0390625,-0.0061912537,-0.028244019,-0.0031166077,0.03277588,0.06518555,0.013427734,0.0390625,0.014556885,-0.050201416,0.03488159,-0.021453857,0.06451416,0.025283813,-0.007801056,-0.004272461,0.006362915,0.041503906,0.007671356,-0.011421204,0.053009033,-0.011421204,0.036621094,-0.0395813,-0.014472961,0.0413208,-0.0034427643,0.017608643,-0.119262695,0.0021800995,0.0074539185,-0.045684814,0.0060157776,-0.033294678,0.011856079,0.027893066,-0.028945923,-0.0073661804,0.03817749,0.042907715,0.019699097,0.002855301,-0.0390625,-0.029464722,-0.009109497,0.02859497,-0.012817383,-0.02458191,0.0011987686,-0.04953003,-0.044128418,-0.048828125,0.01979065,-0.032592773,0.035217285,0.002714157,-0.07531738,-0.031921387,0.02319336,-0.051605225,-0.025634766,-0.027374268,-0.008674622,0.029815674,0.015258789,-0.006538391,-0.07183838,0.053710938,-0.032958984,0.04534912,0.024932861,-0.024414062,-0.049865723,-0.029296875,-0.007801056,-0.040985107,-0.023712158,-0.00566864,-0.02859497,0.036254883,-0.012382507,0.00083351135,-0.046020508,-0.017608643,-0.03451538,0.03591919,-0.020233154,0.011772156,0.035583496,-0.06762695,0.008415222,0.05126953,0.0413208,0.035583496,0.010284424,-0.033996582,0.05508423,0.021270752,0.004600525,-0.0211792,0.03540039,-0.014038086,-0.028945923,-0.013160706,-0.031204224,-0.0040740967,0.012992859,0.03225708,0.0016450882,-0.04776001,-0.011680603,0.024414062,-0.013946533,0.033996582,0.049865723,-0.022842407,0.012466431,-0.0009698868,0.0211792,0.02319336,-0.013511658,0.0045776367,0.024230957,-0.012817383,-0.011940002,0.017868042,0.023361206,0.01638794,-0.009109497,-0.016906738,-0.019088745,-0.06488037,0.0043792725,-0.03765869,0.005622864,0.019958496,-0.010070801,-0.015083313,-0.00920105,-0.013427734,0.025283813,-0.018737793,0.0077171326,0.02458191,0.0035533905,-0.032440186,0.0206604,0.0093307495,0.014823914,0.019180298,0.0025501251,-0.014556885,0.0018959045,-0.03366089,0.036254883,0.028945923,0.017959595,0.006755829,-0.032440186,0.06414795,0.01612854,0.07220459,0.01586914,-0.016738892,-0.007888794,0.01953125,-0.03137207,0.10668945,-0.059295654,-0.05404663,-0.05230713,-0.013771057,-0.033813477,-0.051971436,-0.040985107,-0.06414795,0.023361206,-0.014732361,-0.00819397,-0.028427124,0.025100708,0.042022705,0.0030727386,0.0390625,-0.094177246,0.019348145,0.10394287,-0.028762817,0.0121154785,-0.022491455,-0.008323669,0.002506256,0.019012451,-0.02720642,0.0051231384,0.002790451,-0.0072784424,0.0011224747,-0.0390625,0.013252258,-0.0061035156,0.062072754,-0.01953125,0.0010786057,0.02319336,0.006931305,0.013511658,-0.056854248,0.0104599,0.050567627,0.0015478134,0.0418396,-0.015602112,-0.014122009,0.026672363,0.04776001,-0.011940002,0.043945312,-0.026855469,-0.02319336,-0.040100098,0.013427734,0.013252258,-0.053344727,-0.040100098,0.057891846,-0.023010254,-0.06347656,-0.05718994,-0.01638794,-0.009849548,0.018127441,0.017868042,-0.030166626,-0.037475586,-0.036621094,0.04534912,-0.04272461,-0.004337311,-0.015258789,0.06591797,-0.016998291,-0.027542114,-0.0029201508,0.022323608,-0.03137207,-0.018829346,-0.019012451,0.016036987,0.022842407,0.053009033,0.011680603,0.020568848,0.019180298,0.02911377,0.018737793,-0.04953003,-0.019699097,0.032958984,0.031555176,0.015602112,-0.0038146973,-0.038879395,0.015960693,-0.04272461,-0.009941101,0.017868042,0.003835678,0.006713867,-0.016830444,0.011680603,0.066589355,-0.043945312,0.092041016,-0.02859497,-0.001449585,0.011680603,0.02406311,-0.04168701,-0.018661499,0.033813477,0.04638672,-0.012466431,0.030517578,-0.06762695,0.01586914,0.029815674,0.013336182,-0.0017766953,-0.016738892,0.018310547,0.011940002,0.007583618,0.01979065,0.009635925,-0.028076172,0.0063209534,-0.019439697,-0.023712158,0.017608643,0.028762817,-0.014823914,0.014556885,0.016647339,-0.06137085,-0.017868042,0.004055023,0.08404541,0.06939697,0.04776001,-0.010421753,-0.043762207,0.022842407,0.012992859,-0.00056123734,0.046020508,0.05090332,0.0021572113,0.0071487427,-0.056488037,0.04272461,0.009506226,0.022491455,-0.025283813,0.024765015,0.018661499,0.006668091,-0.040283203,0.048461914,0.025283813,-0.010284424,-0.0073242188,-0.0074539185,-0.009895325,-0.014038086,0.008720398,-0.005622864,-0.017349243,0.03488159,0.030685425,-0.036956787,0.01751709,0.068725586,-0.006626129,-0.016906738,-0.008934021,-0.046020508,0.013511658,-0.047424316,-0.028076172,0.025985718,-0.01979065,-0.05090332,0.047088623,0.028427124,-0.03451538,-0.019088745,-0.047088623,-0.02545166,-0.022064209,0.022491455,0.01979065,-0.019439697,-0.0011281967,0.004360199,0.021713257,0.04272461,-0.053344727,-0.009284973,-0.022064209,-0.032958984,-0.0015144348,0.005622864,-0.031036377,-0.03137207,-0.0072364807,-0.010375977,0.012031555,0.024414062,0.07324219,-0.024932861,-0.0435791,-0.01953125,0.066589355,0.013252258,0.06137085,-0.013511658,-0.05230713,-0.010375977,-0.034362793,0.01751709,0.009155273,0.034179688,-0.026855469,0.06137085,-0.047088623,-0.023544312,0.010765076,0.045684814,0.011772156,0.0395813,-0.007801056,0.04446411,0.039398193,-0.060668945,-0.036621094,0.0020484924,-0.010375977,0.039398193,-0.05822754,0.0029640198,0.017089844,-0.05441284,-0.036956787,-0.023712158,-0.002746582,-0.0791626,-0.020233154,0.004295349,0.007843018,0.008804321,-0.008979797,0.025985718,0.029815674,-0.0009536743,-0.036621094,0.022491455,-0.06488037,-0.022232056,-0.007106781,0.024765015,-0.013511658,0.008674622,-0.021102905,-0.017181396,-0.00566864,-0.0047950745,-0.007019043,-0.011421204,0.0077590942,-0.02319336,-0.005886078,0.01386261,0.026855469,-0.0021896362,0.006713867,-0.0023326874,-0.021972656,0.01612854,0.010810852,-0.006626129,0.040802002,-0.015602112,0.029815674,-0.01586914,-0.004142761,-0.015434265,-0.0033779144,-0.057525635,0.012901306,-0.005340576,-0.004425049,-0.043762207,-0.046020508,-0.081970215,-0.016571045,0.006450653,-0.022842407,0.002571106,-0.046020508,-0.010070801,-0.027542114,0.019439697,0.0011062622,-0.023880005,-0.0007739067,0.0011005402,-0.0061454773,0.017089844,0.0060157776,0.032592773,0.030685425,0.034698486,-0.005142212,0.017349243,0.0034656525,-0.040283203,-0.008544922,-0.014472961,0.062072754,-0.0209198,0.005252838,0.004207611,0.0023212433,0.020492554,-0.015434265,0.015083313,0.030517578,0.0073242188,0.0073242188,-0.034698486,-0.024765015,-0.040283203,0.009674072,0.062072754,6.401539e-05,0.008148193,-0.015083313,-0.012550354,-0.0027236938,-0.027374268,-0.012290955,-0.0034866333,0.021453857,0.027893066,0.008934021,0.02267456,0.03314209,0.017181396,-0.04168701,0.051605225,0.048828125,0.025985718,-0.01927185,-0.049865723,-0.0021476746,-0.019180298,-0.04812622,-0.047088623,0.044647217,0.0209198,-0.0385437,0.002714157,0.0155181885,-0.008110046,0.010284424,0.0035095215,0.028076172,0.05859375,-0.018127441,0.01159668,-0.0045776367,-0.044128418,0.020141602,0.026504517,0.04220581,-0.033477783,0.027542114,-0.017791748,0.010246277,-0.0061454773,0.02859497,-0.0020713806,0.005970001,0.024765015,0.019012451,-0.021621704,0.008018494,-0.012550354,0.056854248,0.020141602,0.04168701,0.026672363,-0.04498291,0.011421204,-0.055786133,0.012550354,0.036621094,0.010856628,0.025283813,-0.041137695,0.021011353,-0.029815674,0.008934021,0.0736084,0.0023326874,0.007980347,0.020401001,-0.006713867,-0.033813477,0.012992859,-0.006275177,-0.022842407,-0.06137085,-0.037322998,0.040283203,0.0031814575,-0.08544922,-0.012466431,0.056152344,-0.010505676,-0.018920898,-0.015167236,-0.01272583,-0.010681152,-0.022842407,-0.057891846,-0.040802002,0.023361206,-0.018920898,-0.008674622,0.0027580261,-0.01638794,-0.0058403015,0.007019043,-0.046722412,0.049865723,-0.011505127,0.033294678,0.01386261,-0.015777588,0.034179688,0.057891846,0.012992859,-0.02772522,0.021972656,-0.03591919,-0.01386261,-0.020843506,0.010375977,-0.04916382,-0.010726929,0.029296875,-0.03173828,0.022064209,-0.0008826256,-0.039916992,-0.029647827,-0.007411957,-0.015960693,-0.026321411,0.012992859,0.030517578,-0.027893066,-0.004924774,-0.038024902,0.008628845,-0.006362915,0.012817383,-0.011772156,0.047088623,-0.0034008026,-0.0026474,-0.0026474,-0.07006836,0.005317688,0.054748535,0.0017328262,0.023880005,-0.032440186,-0.0093688965,-0.02319336,-0.08685303,-0.016571045,-0.009109497,0.005886078,-0.012550354,-0.019882202,0.011772156,-0.057891846,-0.031036377,0.00806427,0.0105896,-0.0055351257,-0.019699097,0.011116028,-0.02406311,0.011940002,0.0023651123,0.028076172,-0.029815674,0.023361206,-0.010986328,0.0385437,0.01272583,0.007106781,-0.014823914,0.015686035,0.03451538,-0.024414062,0.05230713,0.037139893,0.02998352,-0.06347656,-0.010375977,0.011116028,0.031555176,0.0036830902,0.05404663,-0.06695557,-0.0155181885,-0.08441162,0.056854248,0.0035095215,0.044128418,-0.03086853,-0.021362305,-0.06628418,-0.06347656,-0.036102295,0.0044670105,-0.0035533905,0.050567627,-0.014556885,-0.02911377,0.0031604767,0.026855469,0.0209198,0.026321411,-0.022323608,0.004032135,0.05859375,-0.03488159,0.032592773,0.0018854141,-0.012382507,0.010421753,-0.018569946,-0.013160706,-0.0102005005,0.031036377,0.02772522,-0.0048828125,-0.0047721863,0.014907837,-0.0105896,0.017089844,-0.008544922,0.025100708,0.0423584,0.0031375885,-0.035736084,-0.06173706,-0.092041016,0.007843018,-0.020233154,-0.011245728,0.0052108765,-0.018478394,0.01159668,-0.030685425,0.033294678,-0.004142761,0.0121154785,-0.012031555,-0.016296387,-0.024932861,0.03869629,-0.039398193,-0.062408447,0.003967285,0.0051231384,0.0060157776,0.022842407,0.034698486,-0.047088623,-0.0007519722,-0.035217285,-0.027542114,-0.012901306,-0.018829346,-0.0206604,-0.041503906,0.032958984,0.011421204,-0.00819397,-0.0001988411,-0.0037269592,-0.043762207,-0.038024902,0.0031604767,-0.050201416,0.0026378632,0.021621704,0.010505676,0.01133728,0.009063721,0.01979065,-0.0048179626,-0.048828125,0.034698486,0.03591919,0.01272583,0.0013952255,0.005340576,0.0014715195,-0.074645996,0.008674622,-0.0052108765,-0.06732178,0.00032567978,0.060333252,0.028076172,0.005710602,0.0084991455,0.040100098,-0.004142761,-0.015167236,0.022064209,-0.053009033,-0.0050354004,0.050567627,-0.032958984,-0.075683594,0.04324341,0.05126953,-0.021270752,-0.029815674,0.048828125,-0.034698486,0.048461914,0.062408447,-0.0032901764,-0.042022705,0.035583496,0.037475586,0.015167236,0.005886078,-8.9883804e-05,0.033477783,0.07080078,-0.0071907043,-0.023361206,-0.03451538,0.017349243,-0.0045776367,-0.032592773,-0.02911377,0.0051002502,0.022064209,0.016220093,-0.040100098,0.0105896,-0.026504517,-0.033996582,0.01979065,-0.015602112,0.07080078,-0.024230957,-0.06976318,-0.002855301,-0.01638794,0.024230957,0.002746582,-0.060668945,-0.006450653,-0.03817749,0.028244019,0.0058403015,0.024230957,0.025100708,-0.01979065,-0.0048179626,-0.01638794,0.015686035,0.026153564,0.008285522,-0.014381409,-0.026504517,0.022140503,0.0007300377,-0.004753113,0.030166626,-0.039916992,0.02319336,-0.032958984,0.0025615692,-0.017868042,-0.042541504,-0.04272461,0.013252258,0.043060303,-0.01586914,-0.0034217834,0.0146484375,0.022842407,-0.031036377,0.02406311,0.024414062,-0.00374794,0.030334473,-0.042541504,0.060333252,0.03173828,0.033477783,0.0211792,0.0037059784,0.03643799,-0.017440796,-0.0034217834,0.030334473,0.018829346,0.029647827,0.030334473,0.023361206,-0.022064209,-0.001917839,-0.013252258,-0.03314209,0.017959595,-0.0084991455,0.035217285,-0.013252258,-0.048461914,-0.08337402,-0.06311035,0.046722412,-0.0038585663,-0.030517578,0.0048599243,-0.029647827,-0.016998291,-0.011680603,0.087890625,-0.021621704,0.02267456,-0.045684814,0.012382507,-0.043426514,-0.020401001,-0.015434265,0.041137695,0.0013456345,0.060668945,-0.004425049,-0.036254883,-0.06555176,-0.012031555,0.00076818466,0.020751953,0.015777588,-0.018478394,-0.03503418,0.007801056,0.028244019,0.0054473877,0.03765869,0.05404663,-0.0018634796,-0.0031166077,0.018920898,-0.011772156]\",\"created_at\":\"2026-03-10T15:53:48.089\",\"shared_with\":[{\"full_name\":\"ambuj raj\",\"email\":\"abc@gmail.com\"}]}]}",
+                "additional_kwargs": {},
+                "response_metadata": {}
+              }
+            }
+          ],
+          "toolResults": 1,
+          "traceId": "1ed17ec4-98c7-402e-8196-76957a3a17f9",
+          "timestamp": "2026-03-13T21:42:07.224Z",
+          "environment": "development"
+        },
+        {
+          "event": "planner_node_completed",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "toolCalls": 0,
+          "traceId": "1ed17ec4-98c7-402e-8196-76957a3a17f9",
+          "timestamp": "2026-03-13T21:42:08.528Z",
+          "environment": "development"
+        },
+        {
+          "event": "graph_node_debug",
+          "node": "plannerNode_end",
+          "messageCount": 4,
+          "toolResultsCount": 1,
+          "iterations": 1,
+          "intent": "memory_delete",
+          "toolCalls": 0,
+          "traceId": "1ed17ec4-98c7-402e-8196-76957a3a17f9",
+          "timestamp": "2026-03-13T21:42:08.528Z",
+          "environment": "development"
+        },
+        {
+          "event": "graph_node_debug",
+          "node": "responseNode_start",
+          "messageCount": 5,
+          "toolResultsCount": 1,
+          "iterations": 2,
+          "intent": "memory_delete",
+          "traceId": "1ed17ec4-98c7-402e-8196-76957a3a17f9",
+          "timestamp": "2026-03-13T21:42:08.535Z",
+          "environment": "development"
+        },
+        {
+          "event": "graph_node_debug",
+          "node": "responseNode",
+          "messageCount": 5,
+          "toolResultsCount": 1,
+          "iterations": 2,
+          "intent": "memory_delete",
+          "finalReply": "{\"type\":\"clarification\",\"question\":\"Which memory would you like to delete?\",\"options\":[\"YC Startup Goal\",\"LangGraph Architecture Insight\",\"London Solo Achievement\",\"London Trip Inspiration\",\"AI Product Vision\",\"Ambuj's Favorite Color\"]}",
+          "traceId": "1ed17ec4-98c7-402e-8196-76957a3a17f9",
+          "timestamp": "2026-03-13T21:42:08.536Z",
+          "environment": "development"
+        },
+        {
+          "id": "kh8hnr",
+          "type": "response_generating",
+          "message": "Preparing response",
+          "status": "pending",
+          "timestamp": 1773438128540
+        },
+        {
+          "event": "response_generating",
+          "message": "Preparing response",
+          "status": "pending",
+          "traceId": "1ed17ec4-98c7-402e-8196-76957a3a17f9",
+          "timestamp": "2026-03-13T21:42:08.540Z",
+          "environment": "development"
+        },
+        {
+          "event": "llm_response_generated",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "message": "{\"type\":\"clarification\",\"question\":\"Which memory would you like to delete?\",\"options\":[\"YC Startup Goal\",\"LangGraph Architecture Insight\",\"London Solo Achievement\",\"London Trip Inspiration\",\"AI Product Vision\",\"Ambuj's Favorite Color\"]}",
+          "traceId": "1ed17ec4-98c7-402e-8196-76957a3a17f9",
+          "timestamp": "2026-03-13T21:42:08.676Z",
+          "environment": "development"
+        }
+      ],
+      "finalReply": "{\"type\":\"clarification\",\"question\":\"Which memory would you like to delete?\",\"options\":[\"YC Startup Goal\",\"LangGraph Architecture Insight\",\"London Solo Achievement\",\"London Trip Inspiration\",\"AI Product Vision\",\"Ambuj's Favorite Color\"]}"
+    },
+    {
+      "timestamp": "2026-03-13T21:42:41.319Z",
+      "user": "Test",
+      "request": "Ambuj's Favorite Color",
+      "events": [
+        {
+          "id": "4rpc69",
+          "type": "input_received",
+          "message": "User request received",
+          "status": "info",
+          "timestamp": 1773438131262
+        },
+        {
+          "event": "input_received",
+          "message": "User request received",
+          "status": "info",
+          "traceId": "eb04b067-dfed-4229-bb66-87845d2f4bdf",
+          "timestamp": "2026-03-13T21:42:11.262Z",
+          "environment": "development"
+        },
+        {
+          "event": "agent_execution_started",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "conversationId": "68be7007-5c15-4443-837c-cb965fe38f8d",
+          "historyCount": 5,
+          "traceId": "eb04b067-dfed-4229-bb66-87845d2f4bdf",
+          "timestamp": "2026-03-13T21:42:11.530Z",
+          "environment": "development"
+        },
+        {
+          "id": "poh7",
+          "type": "thinking",
+          "message": "Agent thinking...",
+          "status": "pending",
+          "timestamp": 1773438131531
+        },
+        {
+          "event": "thinking",
+          "message": "Agent thinking...",
+          "status": "pending",
+          "traceId": "eb04b067-dfed-4229-bb66-87845d2f4bdf",
+          "timestamp": "2026-03-13T21:42:11.531Z",
+          "environment": "development"
+        },
+        {
+          "event": "graph_node_debug",
+          "node": "routerNode_start",
+          "messageCount": 6,
+          "toolResultsCount": 1,
+          "iterations": 2,
+          "intent": "memory_delete",
+          "traceId": "eb04b067-dfed-4229-bb66-87845d2f4bdf",
+          "timestamp": "2026-03-13T21:42:11.537Z",
+          "environment": "development"
+        },
+        {
+          "event": "router_node_started",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "messageCount": 6,
+          "traceId": "eb04b067-dfed-4229-bb66-87845d2f4bdf",
+          "timestamp": "2026-03-13T21:42:11.537Z",
+          "environment": "development"
+        },
+        {
+          "event": "router_node_completed",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "intent": "memory_delete",
+          "traceId": "eb04b067-dfed-4229-bb66-87845d2f4bdf",
+          "timestamp": "2026-03-13T21:42:12.145Z",
+          "environment": "development"
+        },
+        {
+          "event": "graph_node_debug",
+          "node": "routerNode_end",
+          "messageCount": 6,
+          "toolResultsCount": 1,
+          "iterations": 2,
+          "intent": "memory_delete",
+          "traceId": "eb04b067-dfed-4229-bb66-87845d2f4bdf",
+          "timestamp": "2026-03-13T21:42:12.145Z",
+          "environment": "development"
+        },
+        {
+          "id": "bfpnrh",
+          "type": "intent_detected",
+          "message": "Intent detected: memory_delete",
+          "status": "success",
+          "timestamp": 1773438132151
+        },
+        {
+          "event": "intent_detected",
+          "message": "Intent detected: memory_delete",
+          "status": "success",
+          "traceId": "eb04b067-dfed-4229-bb66-87845d2f4bdf",
+          "timestamp": "2026-03-13T21:42:12.151Z",
+          "environment": "development"
+        },
+        {
+          "event": "tool_discovery_started",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "query": "Ambuj's Favorite Color",
+          "intent": "memory_delete",
+          "allowedCategories": [
+            "memory",
+            "journal",
+            "knowledge",
+            "tasks",
+            "reminders",
+            "files",
+            "routines"
+          ],
+          "allowedTags": [
+            "memory",
+            "delete",
+            "search",
+            "list",
+            "journal",
+            "knowledge",
+            "task",
+            "reminder",
+            "files",
+            "routine"
+          ],
+          "allowedToolCount": 12,
+          "traceId": "eb04b067-dfed-4229-bb66-87845d2f4bdf",
+          "timestamp": "2026-03-13T21:42:12.153Z",
+          "environment": "development"
+        },
+        {
+          "event": "tool_discovery_completed",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "count": 10,
+          "found": [
+            "search_memory",
+            "delete_memory",
+            "get_journals",
+            "get_memories",
+            "get_reminders",
+            "delete_journal",
+            "delete_reminder",
+            "delete_routine",
+            "delete_knowledge",
+            "get_knowledges"
+          ],
+          "blockedTools": [],
+          "runtimeMissing": [],
+          "traceId": "eb04b067-dfed-4229-bb66-87845d2f4bdf",
+          "timestamp": "2026-03-13T21:42:12.586Z",
+          "environment": "development"
+        },
+        {
+          "event": "graph_node_debug",
+          "node": "plannerNode_start",
+          "messageCount": 6,
+          "toolResultsCount": 1,
+          "iterations": 2,
+          "intent": "memory_delete",
+          "traceId": "eb04b067-dfed-4229-bb66-87845d2f4bdf",
+          "timestamp": "2026-03-13T21:42:12.594Z",
+          "environment": "development"
+        },
+        {
+          "event": "planner_node_started",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "messageCount": 6,
+          "traceId": "eb04b067-dfed-4229-bb66-87845d2f4bdf",
+          "timestamp": "2026-03-13T21:42:12.594Z",
+          "environment": "development"
+        },
+        {
+          "event": "LLM_INPUT",
+          "messages": [
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "SystemMessage"
+              ],
+              "kwargs": {
+                "content": "You are **Chief of AI**, a personal AI assistant for Test.\n\nThe current date and time is: 3/14/2026, 3:12:02 AM (ISO: 2026-03-13T21:42:02.419Z).\nUse this to calculate relative times (e.g., \"in 5 minutes\", \"tomorrow\", \"next Friday\").\n\nYour role is to help the user manage information, tasks, reminders, knowledge, files, and apps through conversation.\n\nGENERAL BEHAVIOR\n\n* Be helpful, concise, and accurate.\n* Respond in a professional tone.\n* Focus on solving the user's request efficiently.\n* Prioritize correctness over creativity.\n* Do not hallucinate information.\n\nCONTEXT INJECTION\nThe system may inject additional context before your reasoning, including:\n\n* past memories\n* stored knowledge\n* journal entries\n* retrieved information from previous conversations\n\nTreat this context as reliable background information that may help answer the user's request.\n\nTOOL USAGE (VERY IMPORTANT)\nYou have access to tools that can perform real actions.\n\nPrefer using a tool when the user's request requires:\n\n* real data retrieval\n* database access\n* file access\n* memory access\n* task creation or updates\n* app creation\n* external information\n\nIf the answer is simple reasoning or general knowledge, respond directly without using a tool.\n\nNEVER guess results that a tool can provide.\n\nIf a tool exists for the task, use the tool instead of inventing information.\n\nWhenever a tool requires an \"accessCode\" parameter, YOU MUST PASS exactly this value:\n\n\"AI-KTUD-W7VH\"\n\nDo not ask the user for it and never replace it with placeholders.\n\nTOOL EXECUTION FLOW\n\nWhen you call a tool:\n\n1. Wait for the tool result.\n2. Carefully read the tool output.\n3. Use the tool output to produce the final response.\n\nDo not repeatedly call the same tool unless absolutely necessary.\n\nWHEN TO USE TOOLS\n\nExamples:\n\nMath calculations → use math tools\nGetting a random joke → use the joke tool\n\nFile management:\n\n* \"What files do I have?\" → use list_files\n* \"Summarize file X\" → use read_and_summarize_file\n* \"Delete file X\" → follow the deletion flow\n\nMemories, Tasks, Reminders → use their respective tools.\n\nApp creation → use create_app when the user asks to create or build an app.\n\nListing apps → use list_apps when the user asks about their apps.\n\nAPP CREATION (VERY IMPORTANT)\n\nWhen the user asks to create/build/make an app (for example: \"create an expense splitter\", \"build a task board\"):\n\nYou MUST use the **create_app** tool.\n\nYou must generate a complete JSON schema yourself with a **layout array** containing components.\n\nDo NOT ask the user to define the schema.\n\nCRITICAL RULES\n\nComponent names describe **WHAT DATA IS DISPLAYED**, not UI element types.\n\nComponents are **display cards only**.\n\nThere are **no buttons, forms, or inputs**.\n\nAll interaction happens through the chat.\n\nDO NOT use component names like:\n\nform\nbutton\nsubmit\ninput\nadd_expense_form\ngenerate_button\n\nInstead use names describing data such as:\n\nclient_details\ninvoice_items\ninvoice_preview\ntask_list\nexpense_history\n\nApps that generate documents must include a component with one of these names:\n\npreview\ndocument\nmarkdown\nviewer\n\nExamples:\n\ninvoice_preview\ndocument_viewer\n\nThis allows Markdown rendering in the UI.\n\nYou may optionally include **initialData** as JSON with sensible defaults.\n\nExample: empty arrays for lists.\n\nAfter creating the app:\n\nTell the user:\n\n\"The app is ready. Open it from the Apps section in the sidebar and describe what you want in the chat.\"\n\nNever say you cannot create an app.\n\nYou have the create_app tool — use it.\n\nAPP SCHEMA EXAMPLES\n\nExpense Splitter:\nmembers_list\nexpense_history\nbalance_summary\n\nInvoice Maker:\nclient_details\ninvoice_items\ninvoice_preview\n\nTodo Board:\ntask_list\ncompleted_tasks\ntask_summary\n\nRecipe Manager:\nrecipe_collection\nfavorites\nshopping_list\n\nBudget Tracker:\nincome_entries\nexpense_entries\nbudget_summary\n\nNotes App:\nnotes_list\nnote_viewer\n\nQuiz App:\nquestions\nscores\nquiz_viewer\n\nPoll App:\npoll_options\npoll_results\n\nFILE HANDLING\n\nIf the user asks about files:\n\n\"What files do I have?\" → use list_files\n\nIf the user provides a file name but not ID:\n\n1. Use list_files\n2. Find the correct file\n3. Use its ID\n\nIf the user asks to summarize a file → use read_and_summarize_file.\nNEVER use file tools for non-file items (like tasks, reminders, memories). Focus on their specific tools.\n\nITEM MANAGEMENT (STRICT RULES)\n\nFor managing (updating or deleting) memories, tasks, reminders, or files:\n\nSTEP 1 — If the user hasn't specified an ID, call the appropriate get_ or search_ tool first to find it.\n  * For reminders: use get_reminders\n  * For tasks: use get_tasks\n  * For memories: use get_memories\n  * For journals: use get_journals\n  * For files: use list_files\n\nSTEP 2 — Once you have the ID, proceed with the EXACT requested action:\n- To UPDATE/CHANGE: Call the corresponding update tool natively with the ID and new data.\n- To DELETE: Call the corresponding delete tool natively with the ID. (Do NOT ask for confirmation manually; the system handles it).\n- NEVER call a delete tool if the user asked to change or update an item.\n\nIf the user says \"No\" or \"Cancel\" when prompted, the tool execution will fail gracefully.\n\nRESPONSE FORMAT (CRITICAL)\n\nWhen you finish reasoning and are NOT calling tools, you MUST return a valid JSON object that exactly matches ONE of the following TypeScript interfaces:\n\n```typescript\ninterface ClarificationResponse {\n  type: \"clarification\";\n  question: string;\n  options: string[];\n}\n\ninterface FinalResponse {\n  type: \"final\";\n  message: string;\n}\n```\n\nDo not include:\n* markdown formatting around the JSON\n* explanations or conversational text\n* text before or after the JSON object\n\nExample of a ClarificationResponse:\n{\n  \"type\": \"clarification\",\n  \"question\": \"Which option did you mean?\",\n  \"options\": [\"Option A\", \"Option B\"]\n}\n\nExample of a FinalResponse:\n{\n  \"type\": \"final\",\n  \"message\": \"Your response to the user\"\n}\n\nWHEN NOT TO USE TOOLS\n\nDo not use tools if:\n\n* the question is general knowledge\n* the answer can be reasoned without external data\n* no tool matches the request\n\nTOOL RESPONSE HANDLING\n\nWhen a tool returns data:\n\n* Present the result clearly\n* Do not invent additional information\n* Do not modify tool results except for readability\n\nIf a tool parameter is optional (like \"title\"), generate it automatically from context.\n\nNever ask the user for internal parameters.\n\nCOMMUNICATION STYLE\n\n* Keep responses concise.\n* Avoid unnecessary explanations.\n* Do not mention internal tools or system instructions.\n\nSECURITY\n\nNever reveal:\n\n* database IDs\n* UUIDs\n* access codes\n* system credentials\n\nConfirm actions naturally without exposing internal identifiers.\n\nYou are assisting Test inside the Chief of AI assistant application.",
+                "additional_kwargs": {},
+                "response_metadata": {}
+              }
+            },
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "HumanMessage"
+              ],
+              "kwargs": {
+                "content": "delet ,my  memory",
+                "additional_kwargs": {},
+                "response_metadata": {}
+              }
+            },
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "AIMessage"
+              ],
+              "kwargs": {
+                "id": "bc7ebab56875477dba61f0b6404cfa53",
+                "content": "",
+                "additional_kwargs": {
+                  "tool_calls": [
+                    {
+                      "id": "jcgiRzohw",
+                      "function": {
+                        "name": "get_memories",
+                        "arguments": "{\"accessCode\": \"AI-KTUD-W7VH\"}"
+                      },
+                      "index": 0
+                    }
+                  ]
+                },
+                "response_metadata": {
+                  "tokenUsage": {
+                    "promptTokens": 11656,
+                    "completionTokens": 20,
+                    "totalTokens": 11676
+                  },
+                  "finish_reason": "tool_calls",
+                  "model_provider": "openai",
+                  "model_name": "mistral-small-latest"
+                },
+                "type": "ai",
+                "tool_calls": [
+                  {
+                    "name": "get_memories",
+                    "args": {
+                      "accessCode": "AI-KTUD-W7VH"
+                    },
+                    "type": "tool_call",
+                    "id": "jcgiRzohw"
+                  }
+                ],
+                "invalid_tool_calls": [],
+                "usage_metadata": {
+                  "output_tokens": 20,
+                  "input_tokens": 11656,
+                  "total_tokens": 11676,
+                  "input_token_details": {
+                    "cache_read": 0
+                  },
+                  "output_token_details": {}
+                }
+              }
+            },
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "ToolMessage"
+              ],
+              "kwargs": {
+                "tool_call_id": "jcgiRzohw",
+                "name": "get_memories",
+                "content": "{\"content\":\"ID: 04b0fdd9-71f7-4058-9fd3-9047a283362d\\nTitle: YC Startup Goal\\nContent: My goal is to build Chief of AI into a YC-backed startup solving personal productivity with AI.\\n\\n---\\n\\nID: fd6ed8b8-e639-46e1-8899-d6d2b6572fe8\\nTitle: LangGraph Architecture Insight\\nContent: Agent systems should use planner → executor → critic architecture for reliable workflows.\\n\\n---\\n\\nID: 7bd24b32-5d28-4f86-aa95-2ff5a17a600e\\nTitle: London Solo Achievement\\nContent: Visiting London alone at 24 made me confident I can build global products.\\n\\n---\\n\\nID: aeaf43f2-8776-4d7c-a608-ac8195438b88\\nTitle: London Trip Inspiration\\nContent: While visiting London I reflected on building Chief of AI as a personal AI operating system.\\n\\n---\\n\\nID: f141a15e-9dfe-453b-a674-3199fc352709\\nTitle: AI Product Vision\\nContent: I want Chief of AI to act like a personal Chief of Staff that manages tasks, knowledge, and decisions.\\n\\n---\\n\\nID: 973c6724-17f6-42a2-90cf-dd80fe48f3ae\\nTitle: London Trip Inspiration\\nContent: While visiting London I reflected on building Chief of AI as a personal AI operating system.\\n\\n---\\n\\nID: 2b1b9cc9-2a36-4bcc-8db2-d74d25723936\\nTitle: Ambuj's Favorite Color\\nContent: (Ambuj's Favorite Color) Ambuj's favorite color is red.\",\"memories\":[{\"id\":\"04b0fdd9-71f7-4058-9fd3-9047a283362d\",\"user_id\":\"f43ac274-e715-457a-93ff-f92bb660c754\",\"type\":\"memory\",\"title\":\"YC Startup Goal\",\"content\":\"My goal is to build Chief of AI into a YC-backed startup solving personal productivity with AI.\",\"embedding\":null,\"created_at\":\"2026-03-13T21:14:38.336113\",\"shared_with\":[]},{\"id\":\"fd6ed8b8-e639-46e1-8899-d6d2b6572fe8\",\"user_id\":\"f43ac274-e715-457a-93ff-f92bb660c754\",\"type\":\"memory\",\"title\":\"LangGraph Architecture Insight\",\"content\":\"Agent systems should use planner → executor → critic architecture for reliable workflows.\",\"embedding\":null,\"created_at\":\"2026-03-13T21:14:38.336113\",\"shared_with\":[]},{\"id\":\"7bd24b32-5d28-4f86-aa95-2ff5a17a600e\",\"user_id\":\"f43ac274-e715-457a-93ff-f92bb660c754\",\"type\":\"memory\",\"title\":\"London Solo Achievement\",\"content\":\"Visiting London alone at 24 made me confident I can build global products.\",\"embedding\":null,\"created_at\":\"2026-03-13T21:14:38.336113\",\"shared_with\":[]},{\"id\":\"aeaf43f2-8776-4d7c-a608-ac8195438b88\",\"user_id\":\"f43ac274-e715-457a-93ff-f92bb660c754\",\"type\":\"memory\",\"title\":\"London Trip Inspiration\",\"content\":\"While visiting London I reflected on building Chief of AI as a personal AI operating system.\",\"embedding\":null,\"created_at\":\"2026-03-13T21:14:38.336113\",\"shared_with\":[]},{\"id\":\"f141a15e-9dfe-453b-a674-3199fc352709\",\"user_id\":\"f43ac274-e715-457a-93ff-f92bb660c754\",\"type\":\"memory\",\"title\":\"AI Product Vision\",\"content\":\"I want Chief of AI to act like a personal Chief of Staff that manages tasks, knowledge, and decisions.\",\"embedding\":null,\"created_at\":\"2026-03-13T21:14:38.336113\",\"shared_with\":[]},{\"id\":\"973c6724-17f6-42a2-90cf-dd80fe48f3ae\",\"user_id\":\"f43ac274-e715-457a-93ff-f92bb660c754\",\"type\":\"memory\",\"title\":\"London Trip Inspiration\",\"content\":\"While visiting London I reflected on building Chief of AI as a personal AI operating system.\",\"embedding\":null,\"created_at\":\"2026-03-13T21:12:18.229916\",\"shared_with\":[{\"full_name\":\"Test\",\"email\":\"realambuj@gmail.com\"}]},{\"id\":\"2b1b9cc9-2a36-4bcc-8db2-d74d25723936\",\"user_id\":\"f43ac274-e715-457a-93ff-f92bb660c754\",\"type\":\"memory\",\"title\":\"Ambuj's Favorite Color\",\"content\":\"(Ambuj's Favorite Color) Ambuj's favorite color is red.\",\"embedding\":\"[-0.048828125,0.029815674,0.04272461,-0.038024902,0.04812622,0.00579834,0.032958984,-0.010246277,-0.02772522,-0.011505127,0.0043792725,0.06628418,-0.024414062,0.00806427,-0.035217285,0.015258789,0.02859497,0.028945923,0.033294678,-0.009590149,0.0058403015,-0.023712158,-0.046722412,0.025985718,-0.028244019,-0.007801056,-0.024932861,-0.019958496,0.010154724,-0.014472961,0.013160706,-0.028762817,-0.0069732666,0.054748535,-0.016220093,-0.013946533,0.009025574,-0.037841797,-0.0033569336,0.019180298,0.015167236,-0.027893066,0.039764404,0.024230957,-0.018569946,-0.0031166077,-0.0054473877,-0.014213562,0.037139893,-0.047088623,0.0048179626,0.0413208,0.012817383,-0.006626129,-0.028244019,0.02545166,0.03488159,-0.017181396,-0.05441284,0.04812622,-0.025283813,-0.0211792,-0.02859497,0.018478394,0.007583618,-0.026672363,-0.015960693,-0.010986328,-0.006538391,0.011116028,0.025100708,0.009765625,-0.0047073364,0.034179688,-0.017791748,-0.04168701,0.044647217,0.034362793,0.029464722,0.010154724,-0.03225708,-0.005710602,0.0390625,-0.0061912537,-0.028244019,-0.0031166077,0.03277588,0.06518555,0.013427734,0.0390625,0.014556885,-0.050201416,0.03488159,-0.021453857,0.06451416,0.025283813,-0.007801056,-0.004272461,0.006362915,0.041503906,0.007671356,-0.011421204,0.053009033,-0.011421204,0.036621094,-0.0395813,-0.014472961,0.0413208,-0.0034427643,0.017608643,-0.119262695,0.0021800995,0.0074539185,-0.045684814,0.0060157776,-0.033294678,0.011856079,0.027893066,-0.028945923,-0.0073661804,0.03817749,0.042907715,0.019699097,0.002855301,-0.0390625,-0.029464722,-0.009109497,0.02859497,-0.012817383,-0.02458191,0.0011987686,-0.04953003,-0.044128418,-0.048828125,0.01979065,-0.032592773,0.035217285,0.002714157,-0.07531738,-0.031921387,0.02319336,-0.051605225,-0.025634766,-0.027374268,-0.008674622,0.029815674,0.015258789,-0.006538391,-0.07183838,0.053710938,-0.032958984,0.04534912,0.024932861,-0.024414062,-0.049865723,-0.029296875,-0.007801056,-0.040985107,-0.023712158,-0.00566864,-0.02859497,0.036254883,-0.012382507,0.00083351135,-0.046020508,-0.017608643,-0.03451538,0.03591919,-0.020233154,0.011772156,0.035583496,-0.06762695,0.008415222,0.05126953,0.0413208,0.035583496,0.010284424,-0.033996582,0.05508423,0.021270752,0.004600525,-0.0211792,0.03540039,-0.014038086,-0.028945923,-0.013160706,-0.031204224,-0.0040740967,0.012992859,0.03225708,0.0016450882,-0.04776001,-0.011680603,0.024414062,-0.013946533,0.033996582,0.049865723,-0.022842407,0.012466431,-0.0009698868,0.0211792,0.02319336,-0.013511658,0.0045776367,0.024230957,-0.012817383,-0.011940002,0.017868042,0.023361206,0.01638794,-0.009109497,-0.016906738,-0.019088745,-0.06488037,0.0043792725,-0.03765869,0.005622864,0.019958496,-0.010070801,-0.015083313,-0.00920105,-0.013427734,0.025283813,-0.018737793,0.0077171326,0.02458191,0.0035533905,-0.032440186,0.0206604,0.0093307495,0.014823914,0.019180298,0.0025501251,-0.014556885,0.0018959045,-0.03366089,0.036254883,0.028945923,0.017959595,0.006755829,-0.032440186,0.06414795,0.01612854,0.07220459,0.01586914,-0.016738892,-0.007888794,0.01953125,-0.03137207,0.10668945,-0.059295654,-0.05404663,-0.05230713,-0.013771057,-0.033813477,-0.051971436,-0.040985107,-0.06414795,0.023361206,-0.014732361,-0.00819397,-0.028427124,0.025100708,0.042022705,0.0030727386,0.0390625,-0.094177246,0.019348145,0.10394287,-0.028762817,0.0121154785,-0.022491455,-0.008323669,0.002506256,0.019012451,-0.02720642,0.0051231384,0.002790451,-0.0072784424,0.0011224747,-0.0390625,0.013252258,-0.0061035156,0.062072754,-0.01953125,0.0010786057,0.02319336,0.006931305,0.013511658,-0.056854248,0.0104599,0.050567627,0.0015478134,0.0418396,-0.015602112,-0.014122009,0.026672363,0.04776001,-0.011940002,0.043945312,-0.026855469,-0.02319336,-0.040100098,0.013427734,0.013252258,-0.053344727,-0.040100098,0.057891846,-0.023010254,-0.06347656,-0.05718994,-0.01638794,-0.009849548,0.018127441,0.017868042,-0.030166626,-0.037475586,-0.036621094,0.04534912,-0.04272461,-0.004337311,-0.015258789,0.06591797,-0.016998291,-0.027542114,-0.0029201508,0.022323608,-0.03137207,-0.018829346,-0.019012451,0.016036987,0.022842407,0.053009033,0.011680603,0.020568848,0.019180298,0.02911377,0.018737793,-0.04953003,-0.019699097,0.032958984,0.031555176,0.015602112,-0.0038146973,-0.038879395,0.015960693,-0.04272461,-0.009941101,0.017868042,0.003835678,0.006713867,-0.016830444,0.011680603,0.066589355,-0.043945312,0.092041016,-0.02859497,-0.001449585,0.011680603,0.02406311,-0.04168701,-0.018661499,0.033813477,0.04638672,-0.012466431,0.030517578,-0.06762695,0.01586914,0.029815674,0.013336182,-0.0017766953,-0.016738892,0.018310547,0.011940002,0.007583618,0.01979065,0.009635925,-0.028076172,0.0063209534,-0.019439697,-0.023712158,0.017608643,0.028762817,-0.014823914,0.014556885,0.016647339,-0.06137085,-0.017868042,0.004055023,0.08404541,0.06939697,0.04776001,-0.010421753,-0.043762207,0.022842407,0.012992859,-0.00056123734,0.046020508,0.05090332,0.0021572113,0.0071487427,-0.056488037,0.04272461,0.009506226,0.022491455,-0.025283813,0.024765015,0.018661499,0.006668091,-0.040283203,0.048461914,0.025283813,-0.010284424,-0.0073242188,-0.0074539185,-0.009895325,-0.014038086,0.008720398,-0.005622864,-0.017349243,0.03488159,0.030685425,-0.036956787,0.01751709,0.068725586,-0.006626129,-0.016906738,-0.008934021,-0.046020508,0.013511658,-0.047424316,-0.028076172,0.025985718,-0.01979065,-0.05090332,0.047088623,0.028427124,-0.03451538,-0.019088745,-0.047088623,-0.02545166,-0.022064209,0.022491455,0.01979065,-0.019439697,-0.0011281967,0.004360199,0.021713257,0.04272461,-0.053344727,-0.009284973,-0.022064209,-0.032958984,-0.0015144348,0.005622864,-0.031036377,-0.03137207,-0.0072364807,-0.010375977,0.012031555,0.024414062,0.07324219,-0.024932861,-0.0435791,-0.01953125,0.066589355,0.013252258,0.06137085,-0.013511658,-0.05230713,-0.010375977,-0.034362793,0.01751709,0.009155273,0.034179688,-0.026855469,0.06137085,-0.047088623,-0.023544312,0.010765076,0.045684814,0.011772156,0.0395813,-0.007801056,0.04446411,0.039398193,-0.060668945,-0.036621094,0.0020484924,-0.010375977,0.039398193,-0.05822754,0.0029640198,0.017089844,-0.05441284,-0.036956787,-0.023712158,-0.002746582,-0.0791626,-0.020233154,0.004295349,0.007843018,0.008804321,-0.008979797,0.025985718,0.029815674,-0.0009536743,-0.036621094,0.022491455,-0.06488037,-0.022232056,-0.007106781,0.024765015,-0.013511658,0.008674622,-0.021102905,-0.017181396,-0.00566864,-0.0047950745,-0.007019043,-0.011421204,0.0077590942,-0.02319336,-0.005886078,0.01386261,0.026855469,-0.0021896362,0.006713867,-0.0023326874,-0.021972656,0.01612854,0.010810852,-0.006626129,0.040802002,-0.015602112,0.029815674,-0.01586914,-0.004142761,-0.015434265,-0.0033779144,-0.057525635,0.012901306,-0.005340576,-0.004425049,-0.043762207,-0.046020508,-0.081970215,-0.016571045,0.006450653,-0.022842407,0.002571106,-0.046020508,-0.010070801,-0.027542114,0.019439697,0.0011062622,-0.023880005,-0.0007739067,0.0011005402,-0.0061454773,0.017089844,0.0060157776,0.032592773,0.030685425,0.034698486,-0.005142212,0.017349243,0.0034656525,-0.040283203,-0.008544922,-0.014472961,0.062072754,-0.0209198,0.005252838,0.004207611,0.0023212433,0.020492554,-0.015434265,0.015083313,0.030517578,0.0073242188,0.0073242188,-0.034698486,-0.024765015,-0.040283203,0.009674072,0.062072754,6.401539e-05,0.008148193,-0.015083313,-0.012550354,-0.0027236938,-0.027374268,-0.012290955,-0.0034866333,0.021453857,0.027893066,0.008934021,0.02267456,0.03314209,0.017181396,-0.04168701,0.051605225,0.048828125,0.025985718,-0.01927185,-0.049865723,-0.0021476746,-0.019180298,-0.04812622,-0.047088623,0.044647217,0.0209198,-0.0385437,0.002714157,0.0155181885,-0.008110046,0.010284424,0.0035095215,0.028076172,0.05859375,-0.018127441,0.01159668,-0.0045776367,-0.044128418,0.020141602,0.026504517,0.04220581,-0.033477783,0.027542114,-0.017791748,0.010246277,-0.0061454773,0.02859497,-0.0020713806,0.005970001,0.024765015,0.019012451,-0.021621704,0.008018494,-0.012550354,0.056854248,0.020141602,0.04168701,0.026672363,-0.04498291,0.011421204,-0.055786133,0.012550354,0.036621094,0.010856628,0.025283813,-0.041137695,0.021011353,-0.029815674,0.008934021,0.0736084,0.0023326874,0.007980347,0.020401001,-0.006713867,-0.033813477,0.012992859,-0.006275177,-0.022842407,-0.06137085,-0.037322998,0.040283203,0.0031814575,-0.08544922,-0.012466431,0.056152344,-0.010505676,-0.018920898,-0.015167236,-0.01272583,-0.010681152,-0.022842407,-0.057891846,-0.040802002,0.023361206,-0.018920898,-0.008674622,0.0027580261,-0.01638794,-0.0058403015,0.007019043,-0.046722412,0.049865723,-0.011505127,0.033294678,0.01386261,-0.015777588,0.034179688,0.057891846,0.012992859,-0.02772522,0.021972656,-0.03591919,-0.01386261,-0.020843506,0.010375977,-0.04916382,-0.010726929,0.029296875,-0.03173828,0.022064209,-0.0008826256,-0.039916992,-0.029647827,-0.007411957,-0.015960693,-0.026321411,0.012992859,0.030517578,-0.027893066,-0.004924774,-0.038024902,0.008628845,-0.006362915,0.012817383,-0.011772156,0.047088623,-0.0034008026,-0.0026474,-0.0026474,-0.07006836,0.005317688,0.054748535,0.0017328262,0.023880005,-0.032440186,-0.0093688965,-0.02319336,-0.08685303,-0.016571045,-0.009109497,0.005886078,-0.012550354,-0.019882202,0.011772156,-0.057891846,-0.031036377,0.00806427,0.0105896,-0.0055351257,-0.019699097,0.011116028,-0.02406311,0.011940002,0.0023651123,0.028076172,-0.029815674,0.023361206,-0.010986328,0.0385437,0.01272583,0.007106781,-0.014823914,0.015686035,0.03451538,-0.024414062,0.05230713,0.037139893,0.02998352,-0.06347656,-0.010375977,0.011116028,0.031555176,0.0036830902,0.05404663,-0.06695557,-0.0155181885,-0.08441162,0.056854248,0.0035095215,0.044128418,-0.03086853,-0.021362305,-0.06628418,-0.06347656,-0.036102295,0.0044670105,-0.0035533905,0.050567627,-0.014556885,-0.02911377,0.0031604767,0.026855469,0.0209198,0.026321411,-0.022323608,0.004032135,0.05859375,-0.03488159,0.032592773,0.0018854141,-0.012382507,0.010421753,-0.018569946,-0.013160706,-0.0102005005,0.031036377,0.02772522,-0.0048828125,-0.0047721863,0.014907837,-0.0105896,0.017089844,-0.008544922,0.025100708,0.0423584,0.0031375885,-0.035736084,-0.06173706,-0.092041016,0.007843018,-0.020233154,-0.011245728,0.0052108765,-0.018478394,0.01159668,-0.030685425,0.033294678,-0.004142761,0.0121154785,-0.012031555,-0.016296387,-0.024932861,0.03869629,-0.039398193,-0.062408447,0.003967285,0.0051231384,0.0060157776,0.022842407,0.034698486,-0.047088623,-0.0007519722,-0.035217285,-0.027542114,-0.012901306,-0.018829346,-0.0206604,-0.041503906,0.032958984,0.011421204,-0.00819397,-0.0001988411,-0.0037269592,-0.043762207,-0.038024902,0.0031604767,-0.050201416,0.0026378632,0.021621704,0.010505676,0.01133728,0.009063721,0.01979065,-0.0048179626,-0.048828125,0.034698486,0.03591919,0.01272583,0.0013952255,0.005340576,0.0014715195,-0.074645996,0.008674622,-0.0052108765,-0.06732178,0.00032567978,0.060333252,0.028076172,0.005710602,0.0084991455,0.040100098,-0.004142761,-0.015167236,0.022064209,-0.053009033,-0.0050354004,0.050567627,-0.032958984,-0.075683594,0.04324341,0.05126953,-0.021270752,-0.029815674,0.048828125,-0.034698486,0.048461914,0.062408447,-0.0032901764,-0.042022705,0.035583496,0.037475586,0.015167236,0.005886078,-8.9883804e-05,0.033477783,0.07080078,-0.0071907043,-0.023361206,-0.03451538,0.017349243,-0.0045776367,-0.032592773,-0.02911377,0.0051002502,0.022064209,0.016220093,-0.040100098,0.0105896,-0.026504517,-0.033996582,0.01979065,-0.015602112,0.07080078,-0.024230957,-0.06976318,-0.002855301,-0.01638794,0.024230957,0.002746582,-0.060668945,-0.006450653,-0.03817749,0.028244019,0.0058403015,0.024230957,0.025100708,-0.01979065,-0.0048179626,-0.01638794,0.015686035,0.026153564,0.008285522,-0.014381409,-0.026504517,0.022140503,0.0007300377,-0.004753113,0.030166626,-0.039916992,0.02319336,-0.032958984,0.0025615692,-0.017868042,-0.042541504,-0.04272461,0.013252258,0.043060303,-0.01586914,-0.0034217834,0.0146484375,0.022842407,-0.031036377,0.02406311,0.024414062,-0.00374794,0.030334473,-0.042541504,0.060333252,0.03173828,0.033477783,0.0211792,0.0037059784,0.03643799,-0.017440796,-0.0034217834,0.030334473,0.018829346,0.029647827,0.030334473,0.023361206,-0.022064209,-0.001917839,-0.013252258,-0.03314209,0.017959595,-0.0084991455,0.035217285,-0.013252258,-0.048461914,-0.08337402,-0.06311035,0.046722412,-0.0038585663,-0.030517578,0.0048599243,-0.029647827,-0.016998291,-0.011680603,0.087890625,-0.021621704,0.02267456,-0.045684814,0.012382507,-0.043426514,-0.020401001,-0.015434265,0.041137695,0.0013456345,0.060668945,-0.004425049,-0.036254883,-0.06555176,-0.012031555,0.00076818466,0.020751953,0.015777588,-0.018478394,-0.03503418,0.007801056,0.028244019,0.0054473877,0.03765869,0.05404663,-0.0018634796,-0.0031166077,0.018920898,-0.011772156]\",\"created_at\":\"2026-03-10T15:53:48.089\",\"shared_with\":[{\"full_name\":\"ambuj raj\",\"email\":\"abc@gmail.com\"}]}]}",
+                "additional_kwargs": {},
+                "response_metadata": {}
+              }
+            },
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "AIMessage"
+              ],
+              "kwargs": {
+                "content": "{\"type\":\"clarification\",\"question\":\"Which memory would you like to delete?\",\"options\":[\"YC Startup Goal\",\"LangGraph Architecture Insight\",\"London Solo Achievement\",\"London Trip Inspiration\",\"AI Product Vision\",\"Ambuj's Favorite Color\"]}",
+                "tool_calls": [],
+                "invalid_tool_calls": [],
+                "additional_kwargs": {},
+                "response_metadata": {}
+              }
+            },
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "HumanMessage"
+              ],
+              "kwargs": {
+                "content": "Ambuj's Favorite Color",
+                "additional_kwargs": {},
+                "response_metadata": {}
+              }
+            }
+          ],
+          "toolResults": 1,
+          "traceId": "eb04b067-dfed-4229-bb66-87845d2f4bdf",
+          "timestamp": "2026-03-13T21:42:12.594Z",
+          "environment": "development"
+        },
+        {
+          "event": "planner_node_completed",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "toolCalls": 0,
+          "traceId": "eb04b067-dfed-4229-bb66-87845d2f4bdf",
+          "timestamp": "2026-03-13T21:42:40.927Z",
+          "environment": "development"
+        },
+        {
+          "event": "graph_node_debug",
+          "node": "plannerNode_end",
+          "messageCount": 6,
+          "toolResultsCount": 1,
+          "iterations": 2,
+          "intent": "memory_delete",
+          "toolCalls": 0,
+          "traceId": "eb04b067-dfed-4229-bb66-87845d2f4bdf",
+          "timestamp": "2026-03-13T21:42:40.927Z",
+          "environment": "development"
+        },
+        {
+          "id": "wl04pq",
+          "type": "plan_created",
+          "message": "Execution plan created",
+          "status": "success",
+          "timestamp": 1773438160935
+        },
+        {
+          "event": "plan_created",
+          "message": "Execution plan created",
+          "status": "success",
+          "traceId": "eb04b067-dfed-4229-bb66-87845d2f4bdf",
+          "timestamp": "2026-03-13T21:42:40.935Z",
+          "environment": "development"
+        },
+        {
+          "event": "graph_node_debug",
+          "node": "responseNode_start",
+          "messageCount": 7,
+          "toolResultsCount": 1,
+          "iterations": 3,
+          "intent": "memory_delete",
+          "traceId": "eb04b067-dfed-4229-bb66-87845d2f4bdf",
+          "timestamp": "2026-03-13T21:42:40.936Z",
+          "environment": "development"
+        },
+        {
+          "event": "graph_node_debug",
+          "node": "responseNode",
+          "messageCount": 7,
+          "toolResultsCount": 1,
+          "iterations": 3,
+          "intent": "memory_delete",
+          "finalReply": "{\"type\":\"clarification\",\"question\":\"Are you sure you want to delete the memory 'Ambuj's Favorite Color'?\",\"options\":[\"Yes\",\"No\"]}",
+          "traceId": "eb04b067-dfed-4229-bb66-87845d2f4bdf",
+          "timestamp": "2026-03-13T21:42:40.937Z",
+          "environment": "development"
+        },
+        {
+          "id": "chqgfc",
+          "type": "response_generating",
+          "message": "Preparing response",
+          "status": "pending",
+          "timestamp": 1773438160942
+        },
+        {
+          "event": "response_generating",
+          "message": "Preparing response",
+          "status": "pending",
+          "traceId": "eb04b067-dfed-4229-bb66-87845d2f4bdf",
+          "timestamp": "2026-03-13T21:42:40.942Z",
+          "environment": "development"
+        },
+        {
+          "event": "llm_response_generated",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "message": "{\"type\":\"clarification\",\"question\":\"Are you sure you want to delete the memory 'Ambuj's Favorite Color'?\",\"options\":[\"Yes\",\"No\"]}",
+          "traceId": "eb04b067-dfed-4229-bb66-87845d2f4bdf",
+          "timestamp": "2026-03-13T21:42:41.319Z",
+          "environment": "development"
+        }
+      ],
+      "finalReply": "{\"type\":\"clarification\",\"question\":\"Are you sure you want to delete the memory 'Ambuj's Favorite Color'?\",\"options\":[\"Yes\",\"No\"]}"
+    },
+    {
+      "timestamp": "2026-03-13T21:43:16.962Z",
+      "user": "Test",
+      "request": "Yes",
+      "events": [
+        {
+          "id": "u0twf",
+          "type": "input_received",
+          "message": "User request received",
+          "status": "info",
+          "timestamp": 1773438167897
+        },
+        {
+          "event": "input_received",
+          "message": "User request received",
+          "status": "info",
+          "traceId": "3f4a10fe-8e7b-41ca-b202-a9c3ea3f90cb",
+          "timestamp": "2026-03-13T21:42:47.897Z",
+          "environment": "development"
+        },
+        {
+          "event": "agent_execution_started",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "conversationId": "68be7007-5c15-4443-837c-cb965fe38f8d",
+          "historyCount": 7,
+          "traceId": "3f4a10fe-8e7b-41ca-b202-a9c3ea3f90cb",
+          "timestamp": "2026-03-13T21:42:48.182Z",
+          "environment": "development"
+        },
+        {
+          "id": "o64qyj",
+          "type": "thinking",
+          "message": "Agent thinking...",
+          "status": "pending",
+          "timestamp": 1773438168184
+        },
+        {
+          "event": "thinking",
+          "message": "Agent thinking...",
+          "status": "pending",
+          "traceId": "3f4a10fe-8e7b-41ca-b202-a9c3ea3f90cb",
+          "timestamp": "2026-03-13T21:42:48.184Z",
+          "environment": "development"
+        },
+        {
+          "event": "graph_node_debug",
+          "node": "routerNode_start",
+          "messageCount": 8,
+          "toolResultsCount": 1,
+          "iterations": 3,
+          "intent": "memory_delete",
+          "traceId": "3f4a10fe-8e7b-41ca-b202-a9c3ea3f90cb",
+          "timestamp": "2026-03-13T21:42:48.192Z",
+          "environment": "development"
+        },
+        {
+          "event": "router_node_started",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "messageCount": 8,
+          "traceId": "3f4a10fe-8e7b-41ca-b202-a9c3ea3f90cb",
+          "timestamp": "2026-03-13T21:42:48.192Z",
+          "environment": "development"
+        },
+        {
+          "event": "router_node_completed",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "intent": "memory_delete",
+          "traceId": "3f4a10fe-8e7b-41ca-b202-a9c3ea3f90cb",
+          "timestamp": "2026-03-13T21:42:48.856Z",
+          "environment": "development"
+        },
+        {
+          "event": "graph_node_debug",
+          "node": "routerNode_end",
+          "messageCount": 8,
+          "toolResultsCount": 1,
+          "iterations": 3,
+          "intent": "memory_delete",
+          "traceId": "3f4a10fe-8e7b-41ca-b202-a9c3ea3f90cb",
+          "timestamp": "2026-03-13T21:42:48.856Z",
+          "environment": "development"
+        },
+        {
+          "id": "yuvt5o",
+          "type": "intent_detected",
+          "message": "Intent detected: memory_delete",
+          "status": "success",
+          "timestamp": 1773438168862
+        },
+        {
+          "event": "intent_detected",
+          "message": "Intent detected: memory_delete",
+          "status": "success",
+          "traceId": "3f4a10fe-8e7b-41ca-b202-a9c3ea3f90cb",
+          "timestamp": "2026-03-13T21:42:48.862Z",
+          "environment": "development"
+        },
+        {
+          "event": "tool_discovery_started",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "query": "Yes",
+          "intent": "memory_delete",
+          "allowedCategories": [
+            "memory",
+            "journal",
+            "knowledge",
+            "tasks",
+            "reminders",
+            "files",
+            "routines"
+          ],
+          "allowedTags": [
+            "memory",
+            "delete",
+            "search",
+            "list",
+            "journal",
+            "knowledge",
+            "task",
+            "reminder",
+            "files",
+            "routine"
+          ],
+          "allowedToolCount": 12,
+          "traceId": "3f4a10fe-8e7b-41ca-b202-a9c3ea3f90cb",
+          "timestamp": "2026-03-13T21:42:48.863Z",
+          "environment": "development"
+        },
+        {
+          "event": "tool_discovery_completed",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "count": 10,
+          "found": [
+            "get_journals",
+            "search_memory",
+            "get_memories",
+            "get_knowledges",
+            "delete_journal",
+            "get_reminders",
+            "delete_knowledge",
+            "delete_memory",
+            "delete_reminder",
+            "delete_task"
+          ],
+          "blockedTools": [],
+          "runtimeMissing": [],
+          "traceId": "3f4a10fe-8e7b-41ca-b202-a9c3ea3f90cb",
+          "timestamp": "2026-03-13T21:42:49.282Z",
+          "environment": "development"
+        },
+        {
+          "event": "graph_node_debug",
+          "node": "plannerNode_start",
+          "messageCount": 8,
+          "toolResultsCount": 1,
+          "iterations": 3,
+          "intent": "memory_delete",
+          "traceId": "3f4a10fe-8e7b-41ca-b202-a9c3ea3f90cb",
+          "timestamp": "2026-03-13T21:42:49.289Z",
+          "environment": "development"
+        },
+        {
+          "event": "planner_node_started",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "messageCount": 8,
+          "traceId": "3f4a10fe-8e7b-41ca-b202-a9c3ea3f90cb",
+          "timestamp": "2026-03-13T21:42:49.290Z",
+          "environment": "development"
+        },
+        {
+          "event": "LLM_INPUT",
+          "messages": [
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "SystemMessage"
+              ],
+              "kwargs": {
+                "content": "You are **Chief of AI**, a personal AI assistant for Test.\n\nThe current date and time is: 3/14/2026, 3:12:02 AM (ISO: 2026-03-13T21:42:02.419Z).\nUse this to calculate relative times (e.g., \"in 5 minutes\", \"tomorrow\", \"next Friday\").\n\nYour role is to help the user manage information, tasks, reminders, knowledge, files, and apps through conversation.\n\nGENERAL BEHAVIOR\n\n* Be helpful, concise, and accurate.\n* Respond in a professional tone.\n* Focus on solving the user's request efficiently.\n* Prioritize correctness over creativity.\n* Do not hallucinate information.\n\nCONTEXT INJECTION\nThe system may inject additional context before your reasoning, including:\n\n* past memories\n* stored knowledge\n* journal entries\n* retrieved information from previous conversations\n\nTreat this context as reliable background information that may help answer the user's request.\n\nTOOL USAGE (VERY IMPORTANT)\nYou have access to tools that can perform real actions.\n\nPrefer using a tool when the user's request requires:\n\n* real data retrieval\n* database access\n* file access\n* memory access\n* task creation or updates\n* app creation\n* external information\n\nIf the answer is simple reasoning or general knowledge, respond directly without using a tool.\n\nNEVER guess results that a tool can provide.\n\nIf a tool exists for the task, use the tool instead of inventing information.\n\nWhenever a tool requires an \"accessCode\" parameter, YOU MUST PASS exactly this value:\n\n\"AI-KTUD-W7VH\"\n\nDo not ask the user for it and never replace it with placeholders.\n\nTOOL EXECUTION FLOW\n\nWhen you call a tool:\n\n1. Wait for the tool result.\n2. Carefully read the tool output.\n3. Use the tool output to produce the final response.\n\nDo not repeatedly call the same tool unless absolutely necessary.\n\nWHEN TO USE TOOLS\n\nExamples:\n\nMath calculations → use math tools\nGetting a random joke → use the joke tool\n\nFile management:\n\n* \"What files do I have?\" → use list_files\n* \"Summarize file X\" → use read_and_summarize_file\n* \"Delete file X\" → follow the deletion flow\n\nMemories, Tasks, Reminders → use their respective tools.\n\nApp creation → use create_app when the user asks to create or build an app.\n\nListing apps → use list_apps when the user asks about their apps.\n\nAPP CREATION (VERY IMPORTANT)\n\nWhen the user asks to create/build/make an app (for example: \"create an expense splitter\", \"build a task board\"):\n\nYou MUST use the **create_app** tool.\n\nYou must generate a complete JSON schema yourself with a **layout array** containing components.\n\nDo NOT ask the user to define the schema.\n\nCRITICAL RULES\n\nComponent names describe **WHAT DATA IS DISPLAYED**, not UI element types.\n\nComponents are **display cards only**.\n\nThere are **no buttons, forms, or inputs**.\n\nAll interaction happens through the chat.\n\nDO NOT use component names like:\n\nform\nbutton\nsubmit\ninput\nadd_expense_form\ngenerate_button\n\nInstead use names describing data such as:\n\nclient_details\ninvoice_items\ninvoice_preview\ntask_list\nexpense_history\n\nApps that generate documents must include a component with one of these names:\n\npreview\ndocument\nmarkdown\nviewer\n\nExamples:\n\ninvoice_preview\ndocument_viewer\n\nThis allows Markdown rendering in the UI.\n\nYou may optionally include **initialData** as JSON with sensible defaults.\n\nExample: empty arrays for lists.\n\nAfter creating the app:\n\nTell the user:\n\n\"The app is ready. Open it from the Apps section in the sidebar and describe what you want in the chat.\"\n\nNever say you cannot create an app.\n\nYou have the create_app tool — use it.\n\nAPP SCHEMA EXAMPLES\n\nExpense Splitter:\nmembers_list\nexpense_history\nbalance_summary\n\nInvoice Maker:\nclient_details\ninvoice_items\ninvoice_preview\n\nTodo Board:\ntask_list\ncompleted_tasks\ntask_summary\n\nRecipe Manager:\nrecipe_collection\nfavorites\nshopping_list\n\nBudget Tracker:\nincome_entries\nexpense_entries\nbudget_summary\n\nNotes App:\nnotes_list\nnote_viewer\n\nQuiz App:\nquestions\nscores\nquiz_viewer\n\nPoll App:\npoll_options\npoll_results\n\nFILE HANDLING\n\nIf the user asks about files:\n\n\"What files do I have?\" → use list_files\n\nIf the user provides a file name but not ID:\n\n1. Use list_files\n2. Find the correct file\n3. Use its ID\n\nIf the user asks to summarize a file → use read_and_summarize_file.\nNEVER use file tools for non-file items (like tasks, reminders, memories). Focus on their specific tools.\n\nITEM MANAGEMENT (STRICT RULES)\n\nFor managing (updating or deleting) memories, tasks, reminders, or files:\n\nSTEP 1 — If the user hasn't specified an ID, call the appropriate get_ or search_ tool first to find it.\n  * For reminders: use get_reminders\n  * For tasks: use get_tasks\n  * For memories: use get_memories\n  * For journals: use get_journals\n  * For files: use list_files\n\nSTEP 2 — Once you have the ID, proceed with the EXACT requested action:\n- To UPDATE/CHANGE: Call the corresponding update tool natively with the ID and new data.\n- To DELETE: Call the corresponding delete tool natively with the ID. (Do NOT ask for confirmation manually; the system handles it).\n- NEVER call a delete tool if the user asked to change or update an item.\n\nIf the user says \"No\" or \"Cancel\" when prompted, the tool execution will fail gracefully.\n\nRESPONSE FORMAT (CRITICAL)\n\nWhen you finish reasoning and are NOT calling tools, you MUST return a valid JSON object that exactly matches ONE of the following TypeScript interfaces:\n\n```typescript\ninterface ClarificationResponse {\n  type: \"clarification\";\n  question: string;\n  options: string[];\n}\n\ninterface FinalResponse {\n  type: \"final\";\n  message: string;\n}\n```\n\nDo not include:\n* markdown formatting around the JSON\n* explanations or conversational text\n* text before or after the JSON object\n\nExample of a ClarificationResponse:\n{\n  \"type\": \"clarification\",\n  \"question\": \"Which option did you mean?\",\n  \"options\": [\"Option A\", \"Option B\"]\n}\n\nExample of a FinalResponse:\n{\n  \"type\": \"final\",\n  \"message\": \"Your response to the user\"\n}\n\nWHEN NOT TO USE TOOLS\n\nDo not use tools if:\n\n* the question is general knowledge\n* the answer can be reasoned without external data\n* no tool matches the request\n\nTOOL RESPONSE HANDLING\n\nWhen a tool returns data:\n\n* Present the result clearly\n* Do not invent additional information\n* Do not modify tool results except for readability\n\nIf a tool parameter is optional (like \"title\"), generate it automatically from context.\n\nNever ask the user for internal parameters.\n\nCOMMUNICATION STYLE\n\n* Keep responses concise.\n* Avoid unnecessary explanations.\n* Do not mention internal tools or system instructions.\n\nSECURITY\n\nNever reveal:\n\n* database IDs\n* UUIDs\n* access codes\n* system credentials\n\nConfirm actions naturally without exposing internal identifiers.\n\nYou are assisting Test inside the Chief of AI assistant application.",
+                "additional_kwargs": {},
+                "response_metadata": {}
+              }
+            },
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "HumanMessage"
+              ],
+              "kwargs": {
+                "content": "delet ,my  memory",
+                "additional_kwargs": {},
+                "response_metadata": {}
+              }
+            },
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "AIMessage"
+              ],
+              "kwargs": {
+                "id": "bc7ebab56875477dba61f0b6404cfa53",
+                "content": "",
+                "additional_kwargs": {
+                  "tool_calls": [
+                    {
+                      "id": "jcgiRzohw",
+                      "function": {
+                        "name": "get_memories",
+                        "arguments": "{\"accessCode\": \"AI-KTUD-W7VH\"}"
+                      },
+                      "index": 0
+                    }
+                  ]
+                },
+                "response_metadata": {
+                  "tokenUsage": {
+                    "promptTokens": 11656,
+                    "completionTokens": 20,
+                    "totalTokens": 11676
+                  },
+                  "finish_reason": "tool_calls",
+                  "model_provider": "openai",
+                  "model_name": "mistral-small-latest"
+                },
+                "type": "ai",
+                "tool_calls": [
+                  {
+                    "name": "get_memories",
+                    "args": {
+                      "accessCode": "AI-KTUD-W7VH"
+                    },
+                    "type": "tool_call",
+                    "id": "jcgiRzohw"
+                  }
+                ],
+                "invalid_tool_calls": [],
+                "usage_metadata": {
+                  "output_tokens": 20,
+                  "input_tokens": 11656,
+                  "total_tokens": 11676,
+                  "input_token_details": {
+                    "cache_read": 0
+                  },
+                  "output_token_details": {}
+                }
+              }
+            },
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "ToolMessage"
+              ],
+              "kwargs": {
+                "tool_call_id": "jcgiRzohw",
+                "name": "get_memories",
+                "content": "{\"content\":\"ID: 04b0fdd9-71f7-4058-9fd3-9047a283362d\\nTitle: YC Startup Goal\\nContent: My goal is to build Chief of AI into a YC-backed startup solving personal productivity with AI.\\n\\n---\\n\\nID: fd6ed8b8-e639-46e1-8899-d6d2b6572fe8\\nTitle: LangGraph Architecture Insight\\nContent: Agent systems should use planner → executor → critic architecture for reliable workflows.\\n\\n---\\n\\nID: 7bd24b32-5d28-4f86-aa95-2ff5a17a600e\\nTitle: London Solo Achievement\\nContent: Visiting London alone at 24 made me confident I can build global products.\\n\\n---\\n\\nID: aeaf43f2-8776-4d7c-a608-ac8195438b88\\nTitle: London Trip Inspiration\\nContent: While visiting London I reflected on building Chief of AI as a personal AI operating system.\\n\\n---\\n\\nID: f141a15e-9dfe-453b-a674-3199fc352709\\nTitle: AI Product Vision\\nContent: I want Chief of AI to act like a personal Chief of Staff that manages tasks, knowledge, and decisions.\\n\\n---\\n\\nID: 973c6724-17f6-42a2-90cf-dd80fe48f3ae\\nTitle: London Trip Inspiration\\nContent: While visiting London I reflected on building Chief of AI as a personal AI operating system.\\n\\n---\\n\\nID: 2b1b9cc9-2a36-4bcc-8db2-d74d25723936\\nTitle: Ambuj's Favorite Color\\nContent: (Ambuj's Favorite Color) Ambuj's favorite color is red.\",\"memories\":[{\"id\":\"04b0fdd9-71f7-4058-9fd3-9047a283362d\",\"user_id\":\"f43ac274-e715-457a-93ff-f92bb660c754\",\"type\":\"memory\",\"title\":\"YC Startup Goal\",\"content\":\"My goal is to build Chief of AI into a YC-backed startup solving personal productivity with AI.\",\"embedding\":null,\"created_at\":\"2026-03-13T21:14:38.336113\",\"shared_with\":[]},{\"id\":\"fd6ed8b8-e639-46e1-8899-d6d2b6572fe8\",\"user_id\":\"f43ac274-e715-457a-93ff-f92bb660c754\",\"type\":\"memory\",\"title\":\"LangGraph Architecture Insight\",\"content\":\"Agent systems should use planner → executor → critic architecture for reliable workflows.\",\"embedding\":null,\"created_at\":\"2026-03-13T21:14:38.336113\",\"shared_with\":[]},{\"id\":\"7bd24b32-5d28-4f86-aa95-2ff5a17a600e\",\"user_id\":\"f43ac274-e715-457a-93ff-f92bb660c754\",\"type\":\"memory\",\"title\":\"London Solo Achievement\",\"content\":\"Visiting London alone at 24 made me confident I can build global products.\",\"embedding\":null,\"created_at\":\"2026-03-13T21:14:38.336113\",\"shared_with\":[]},{\"id\":\"aeaf43f2-8776-4d7c-a608-ac8195438b88\",\"user_id\":\"f43ac274-e715-457a-93ff-f92bb660c754\",\"type\":\"memory\",\"title\":\"London Trip Inspiration\",\"content\":\"While visiting London I reflected on building Chief of AI as a personal AI operating system.\",\"embedding\":null,\"created_at\":\"2026-03-13T21:14:38.336113\",\"shared_with\":[]},{\"id\":\"f141a15e-9dfe-453b-a674-3199fc352709\",\"user_id\":\"f43ac274-e715-457a-93ff-f92bb660c754\",\"type\":\"memory\",\"title\":\"AI Product Vision\",\"content\":\"I want Chief of AI to act like a personal Chief of Staff that manages tasks, knowledge, and decisions.\",\"embedding\":null,\"created_at\":\"2026-03-13T21:14:38.336113\",\"shared_with\":[]},{\"id\":\"973c6724-17f6-42a2-90cf-dd80fe48f3ae\",\"user_id\":\"f43ac274-e715-457a-93ff-f92bb660c754\",\"type\":\"memory\",\"title\":\"London Trip Inspiration\",\"content\":\"While visiting London I reflected on building Chief of AI as a personal AI operating system.\",\"embedding\":null,\"created_at\":\"2026-03-13T21:12:18.229916\",\"shared_with\":[{\"full_name\":\"Test\",\"email\":\"realambuj@gmail.com\"}]},{\"id\":\"2b1b9cc9-2a36-4bcc-8db2-d74d25723936\",\"user_id\":\"f43ac274-e715-457a-93ff-f92bb660c754\",\"type\":\"memory\",\"title\":\"Ambuj's Favorite Color\",\"content\":\"(Ambuj's Favorite Color) Ambuj's favorite color is red.\",\"embedding\":\"[-0.048828125,0.029815674,0.04272461,-0.038024902,0.04812622,0.00579834,0.032958984,-0.010246277,-0.02772522,-0.011505127,0.0043792725,0.06628418,-0.024414062,0.00806427,-0.035217285,0.015258789,0.02859497,0.028945923,0.033294678,-0.009590149,0.0058403015,-0.023712158,-0.046722412,0.025985718,-0.028244019,-0.007801056,-0.024932861,-0.019958496,0.010154724,-0.014472961,0.013160706,-0.028762817,-0.0069732666,0.054748535,-0.016220093,-0.013946533,0.009025574,-0.037841797,-0.0033569336,0.019180298,0.015167236,-0.027893066,0.039764404,0.024230957,-0.018569946,-0.0031166077,-0.0054473877,-0.014213562,0.037139893,-0.047088623,0.0048179626,0.0413208,0.012817383,-0.006626129,-0.028244019,0.02545166,0.03488159,-0.017181396,-0.05441284,0.04812622,-0.025283813,-0.0211792,-0.02859497,0.018478394,0.007583618,-0.026672363,-0.015960693,-0.010986328,-0.006538391,0.011116028,0.025100708,0.009765625,-0.0047073364,0.034179688,-0.017791748,-0.04168701,0.044647217,0.034362793,0.029464722,0.010154724,-0.03225708,-0.005710602,0.0390625,-0.0061912537,-0.028244019,-0.0031166077,0.03277588,0.06518555,0.013427734,0.0390625,0.014556885,-0.050201416,0.03488159,-0.021453857,0.06451416,0.025283813,-0.007801056,-0.004272461,0.006362915,0.041503906,0.007671356,-0.011421204,0.053009033,-0.011421204,0.036621094,-0.0395813,-0.014472961,0.0413208,-0.0034427643,0.017608643,-0.119262695,0.0021800995,0.0074539185,-0.045684814,0.0060157776,-0.033294678,0.011856079,0.027893066,-0.028945923,-0.0073661804,0.03817749,0.042907715,0.019699097,0.002855301,-0.0390625,-0.029464722,-0.009109497,0.02859497,-0.012817383,-0.02458191,0.0011987686,-0.04953003,-0.044128418,-0.048828125,0.01979065,-0.032592773,0.035217285,0.002714157,-0.07531738,-0.031921387,0.02319336,-0.051605225,-0.025634766,-0.027374268,-0.008674622,0.029815674,0.015258789,-0.006538391,-0.07183838,0.053710938,-0.032958984,0.04534912,0.024932861,-0.024414062,-0.049865723,-0.029296875,-0.007801056,-0.040985107,-0.023712158,-0.00566864,-0.02859497,0.036254883,-0.012382507,0.00083351135,-0.046020508,-0.017608643,-0.03451538,0.03591919,-0.020233154,0.011772156,0.035583496,-0.06762695,0.008415222,0.05126953,0.0413208,0.035583496,0.010284424,-0.033996582,0.05508423,0.021270752,0.004600525,-0.0211792,0.03540039,-0.014038086,-0.028945923,-0.013160706,-0.031204224,-0.0040740967,0.012992859,0.03225708,0.0016450882,-0.04776001,-0.011680603,0.024414062,-0.013946533,0.033996582,0.049865723,-0.022842407,0.012466431,-0.0009698868,0.0211792,0.02319336,-0.013511658,0.0045776367,0.024230957,-0.012817383,-0.011940002,0.017868042,0.023361206,0.01638794,-0.009109497,-0.016906738,-0.019088745,-0.06488037,0.0043792725,-0.03765869,0.005622864,0.019958496,-0.010070801,-0.015083313,-0.00920105,-0.013427734,0.025283813,-0.018737793,0.0077171326,0.02458191,0.0035533905,-0.032440186,0.0206604,0.0093307495,0.014823914,0.019180298,0.0025501251,-0.014556885,0.0018959045,-0.03366089,0.036254883,0.028945923,0.017959595,0.006755829,-0.032440186,0.06414795,0.01612854,0.07220459,0.01586914,-0.016738892,-0.007888794,0.01953125,-0.03137207,0.10668945,-0.059295654,-0.05404663,-0.05230713,-0.013771057,-0.033813477,-0.051971436,-0.040985107,-0.06414795,0.023361206,-0.014732361,-0.00819397,-0.028427124,0.025100708,0.042022705,0.0030727386,0.0390625,-0.094177246,0.019348145,0.10394287,-0.028762817,0.0121154785,-0.022491455,-0.008323669,0.002506256,0.019012451,-0.02720642,0.0051231384,0.002790451,-0.0072784424,0.0011224747,-0.0390625,0.013252258,-0.0061035156,0.062072754,-0.01953125,0.0010786057,0.02319336,0.006931305,0.013511658,-0.056854248,0.0104599,0.050567627,0.0015478134,0.0418396,-0.015602112,-0.014122009,0.026672363,0.04776001,-0.011940002,0.043945312,-0.026855469,-0.02319336,-0.040100098,0.013427734,0.013252258,-0.053344727,-0.040100098,0.057891846,-0.023010254,-0.06347656,-0.05718994,-0.01638794,-0.009849548,0.018127441,0.017868042,-0.030166626,-0.037475586,-0.036621094,0.04534912,-0.04272461,-0.004337311,-0.015258789,0.06591797,-0.016998291,-0.027542114,-0.0029201508,0.022323608,-0.03137207,-0.018829346,-0.019012451,0.016036987,0.022842407,0.053009033,0.011680603,0.020568848,0.019180298,0.02911377,0.018737793,-0.04953003,-0.019699097,0.032958984,0.031555176,0.015602112,-0.0038146973,-0.038879395,0.015960693,-0.04272461,-0.009941101,0.017868042,0.003835678,0.006713867,-0.016830444,0.011680603,0.066589355,-0.043945312,0.092041016,-0.02859497,-0.001449585,0.011680603,0.02406311,-0.04168701,-0.018661499,0.033813477,0.04638672,-0.012466431,0.030517578,-0.06762695,0.01586914,0.029815674,0.013336182,-0.0017766953,-0.016738892,0.018310547,0.011940002,0.007583618,0.01979065,0.009635925,-0.028076172,0.0063209534,-0.019439697,-0.023712158,0.017608643,0.028762817,-0.014823914,0.014556885,0.016647339,-0.06137085,-0.017868042,0.004055023,0.08404541,0.06939697,0.04776001,-0.010421753,-0.043762207,0.022842407,0.012992859,-0.00056123734,0.046020508,0.05090332,0.0021572113,0.0071487427,-0.056488037,0.04272461,0.009506226,0.022491455,-0.025283813,0.024765015,0.018661499,0.006668091,-0.040283203,0.048461914,0.025283813,-0.010284424,-0.0073242188,-0.0074539185,-0.009895325,-0.014038086,0.008720398,-0.005622864,-0.017349243,0.03488159,0.030685425,-0.036956787,0.01751709,0.068725586,-0.006626129,-0.016906738,-0.008934021,-0.046020508,0.013511658,-0.047424316,-0.028076172,0.025985718,-0.01979065,-0.05090332,0.047088623,0.028427124,-0.03451538,-0.019088745,-0.047088623,-0.02545166,-0.022064209,0.022491455,0.01979065,-0.019439697,-0.0011281967,0.004360199,0.021713257,0.04272461,-0.053344727,-0.009284973,-0.022064209,-0.032958984,-0.0015144348,0.005622864,-0.031036377,-0.03137207,-0.0072364807,-0.010375977,0.012031555,0.024414062,0.07324219,-0.024932861,-0.0435791,-0.01953125,0.066589355,0.013252258,0.06137085,-0.013511658,-0.05230713,-0.010375977,-0.034362793,0.01751709,0.009155273,0.034179688,-0.026855469,0.06137085,-0.047088623,-0.023544312,0.010765076,0.045684814,0.011772156,0.0395813,-0.007801056,0.04446411,0.039398193,-0.060668945,-0.036621094,0.0020484924,-0.010375977,0.039398193,-0.05822754,0.0029640198,0.017089844,-0.05441284,-0.036956787,-0.023712158,-0.002746582,-0.0791626,-0.020233154,0.004295349,0.007843018,0.008804321,-0.008979797,0.025985718,0.029815674,-0.0009536743,-0.036621094,0.022491455,-0.06488037,-0.022232056,-0.007106781,0.024765015,-0.013511658,0.008674622,-0.021102905,-0.017181396,-0.00566864,-0.0047950745,-0.007019043,-0.011421204,0.0077590942,-0.02319336,-0.005886078,0.01386261,0.026855469,-0.0021896362,0.006713867,-0.0023326874,-0.021972656,0.01612854,0.010810852,-0.006626129,0.040802002,-0.015602112,0.029815674,-0.01586914,-0.004142761,-0.015434265,-0.0033779144,-0.057525635,0.012901306,-0.005340576,-0.004425049,-0.043762207,-0.046020508,-0.081970215,-0.016571045,0.006450653,-0.022842407,0.002571106,-0.046020508,-0.010070801,-0.027542114,0.019439697,0.0011062622,-0.023880005,-0.0007739067,0.0011005402,-0.0061454773,0.017089844,0.0060157776,0.032592773,0.030685425,0.034698486,-0.005142212,0.017349243,0.0034656525,-0.040283203,-0.008544922,-0.014472961,0.062072754,-0.0209198,0.005252838,0.004207611,0.0023212433,0.020492554,-0.015434265,0.015083313,0.030517578,0.0073242188,0.0073242188,-0.034698486,-0.024765015,-0.040283203,0.009674072,0.062072754,6.401539e-05,0.008148193,-0.015083313,-0.012550354,-0.0027236938,-0.027374268,-0.012290955,-0.0034866333,0.021453857,0.027893066,0.008934021,0.02267456,0.03314209,0.017181396,-0.04168701,0.051605225,0.048828125,0.025985718,-0.01927185,-0.049865723,-0.0021476746,-0.019180298,-0.04812622,-0.047088623,0.044647217,0.0209198,-0.0385437,0.002714157,0.0155181885,-0.008110046,0.010284424,0.0035095215,0.028076172,0.05859375,-0.018127441,0.01159668,-0.0045776367,-0.044128418,0.020141602,0.026504517,0.04220581,-0.033477783,0.027542114,-0.017791748,0.010246277,-0.0061454773,0.02859497,-0.0020713806,0.005970001,0.024765015,0.019012451,-0.021621704,0.008018494,-0.012550354,0.056854248,0.020141602,0.04168701,0.026672363,-0.04498291,0.011421204,-0.055786133,0.012550354,0.036621094,0.010856628,0.025283813,-0.041137695,0.021011353,-0.029815674,0.008934021,0.0736084,0.0023326874,0.007980347,0.020401001,-0.006713867,-0.033813477,0.012992859,-0.006275177,-0.022842407,-0.06137085,-0.037322998,0.040283203,0.0031814575,-0.08544922,-0.012466431,0.056152344,-0.010505676,-0.018920898,-0.015167236,-0.01272583,-0.010681152,-0.022842407,-0.057891846,-0.040802002,0.023361206,-0.018920898,-0.008674622,0.0027580261,-0.01638794,-0.0058403015,0.007019043,-0.046722412,0.049865723,-0.011505127,0.033294678,0.01386261,-0.015777588,0.034179688,0.057891846,0.012992859,-0.02772522,0.021972656,-0.03591919,-0.01386261,-0.020843506,0.010375977,-0.04916382,-0.010726929,0.029296875,-0.03173828,0.022064209,-0.0008826256,-0.039916992,-0.029647827,-0.007411957,-0.015960693,-0.026321411,0.012992859,0.030517578,-0.027893066,-0.004924774,-0.038024902,0.008628845,-0.006362915,0.012817383,-0.011772156,0.047088623,-0.0034008026,-0.0026474,-0.0026474,-0.07006836,0.005317688,0.054748535,0.0017328262,0.023880005,-0.032440186,-0.0093688965,-0.02319336,-0.08685303,-0.016571045,-0.009109497,0.005886078,-0.012550354,-0.019882202,0.011772156,-0.057891846,-0.031036377,0.00806427,0.0105896,-0.0055351257,-0.019699097,0.011116028,-0.02406311,0.011940002,0.0023651123,0.028076172,-0.029815674,0.023361206,-0.010986328,0.0385437,0.01272583,0.007106781,-0.014823914,0.015686035,0.03451538,-0.024414062,0.05230713,0.037139893,0.02998352,-0.06347656,-0.010375977,0.011116028,0.031555176,0.0036830902,0.05404663,-0.06695557,-0.0155181885,-0.08441162,0.056854248,0.0035095215,0.044128418,-0.03086853,-0.021362305,-0.06628418,-0.06347656,-0.036102295,0.0044670105,-0.0035533905,0.050567627,-0.014556885,-0.02911377,0.0031604767,0.026855469,0.0209198,0.026321411,-0.022323608,0.004032135,0.05859375,-0.03488159,0.032592773,0.0018854141,-0.012382507,0.010421753,-0.018569946,-0.013160706,-0.0102005005,0.031036377,0.02772522,-0.0048828125,-0.0047721863,0.014907837,-0.0105896,0.017089844,-0.008544922,0.025100708,0.0423584,0.0031375885,-0.035736084,-0.06173706,-0.092041016,0.007843018,-0.020233154,-0.011245728,0.0052108765,-0.018478394,0.01159668,-0.030685425,0.033294678,-0.004142761,0.0121154785,-0.012031555,-0.016296387,-0.024932861,0.03869629,-0.039398193,-0.062408447,0.003967285,0.0051231384,0.0060157776,0.022842407,0.034698486,-0.047088623,-0.0007519722,-0.035217285,-0.027542114,-0.012901306,-0.018829346,-0.0206604,-0.041503906,0.032958984,0.011421204,-0.00819397,-0.0001988411,-0.0037269592,-0.043762207,-0.038024902,0.0031604767,-0.050201416,0.0026378632,0.021621704,0.010505676,0.01133728,0.009063721,0.01979065,-0.0048179626,-0.048828125,0.034698486,0.03591919,0.01272583,0.0013952255,0.005340576,0.0014715195,-0.074645996,0.008674622,-0.0052108765,-0.06732178,0.00032567978,0.060333252,0.028076172,0.005710602,0.0084991455,0.040100098,-0.004142761,-0.015167236,0.022064209,-0.053009033,-0.0050354004,0.050567627,-0.032958984,-0.075683594,0.04324341,0.05126953,-0.021270752,-0.029815674,0.048828125,-0.034698486,0.048461914,0.062408447,-0.0032901764,-0.042022705,0.035583496,0.037475586,0.015167236,0.005886078,-8.9883804e-05,0.033477783,0.07080078,-0.0071907043,-0.023361206,-0.03451538,0.017349243,-0.0045776367,-0.032592773,-0.02911377,0.0051002502,0.022064209,0.016220093,-0.040100098,0.0105896,-0.026504517,-0.033996582,0.01979065,-0.015602112,0.07080078,-0.024230957,-0.06976318,-0.002855301,-0.01638794,0.024230957,0.002746582,-0.060668945,-0.006450653,-0.03817749,0.028244019,0.0058403015,0.024230957,0.025100708,-0.01979065,-0.0048179626,-0.01638794,0.015686035,0.026153564,0.008285522,-0.014381409,-0.026504517,0.022140503,0.0007300377,-0.004753113,0.030166626,-0.039916992,0.02319336,-0.032958984,0.0025615692,-0.017868042,-0.042541504,-0.04272461,0.013252258,0.043060303,-0.01586914,-0.0034217834,0.0146484375,0.022842407,-0.031036377,0.02406311,0.024414062,-0.00374794,0.030334473,-0.042541504,0.060333252,0.03173828,0.033477783,0.0211792,0.0037059784,0.03643799,-0.017440796,-0.0034217834,0.030334473,0.018829346,0.029647827,0.030334473,0.023361206,-0.022064209,-0.001917839,-0.013252258,-0.03314209,0.017959595,-0.0084991455,0.035217285,-0.013252258,-0.048461914,-0.08337402,-0.06311035,0.046722412,-0.0038585663,-0.030517578,0.0048599243,-0.029647827,-0.016998291,-0.011680603,0.087890625,-0.021621704,0.02267456,-0.045684814,0.012382507,-0.043426514,-0.020401001,-0.015434265,0.041137695,0.0013456345,0.060668945,-0.004425049,-0.036254883,-0.06555176,-0.012031555,0.00076818466,0.020751953,0.015777588,-0.018478394,-0.03503418,0.007801056,0.028244019,0.0054473877,0.03765869,0.05404663,-0.0018634796,-0.0031166077,0.018920898,-0.011772156]\",\"created_at\":\"2026-03-10T15:53:48.089\",\"shared_with\":[{\"full_name\":\"ambuj raj\",\"email\":\"abc@gmail.com\"}]}]}",
+                "additional_kwargs": {},
+                "response_metadata": {}
+              }
+            },
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "AIMessage"
+              ],
+              "kwargs": {
+                "content": "{\"type\":\"clarification\",\"question\":\"Which memory would you like to delete?\",\"options\":[\"YC Startup Goal\",\"LangGraph Architecture Insight\",\"London Solo Achievement\",\"London Trip Inspiration\",\"AI Product Vision\",\"Ambuj's Favorite Color\"]}",
+                "tool_calls": [],
+                "invalid_tool_calls": [],
+                "additional_kwargs": {},
+                "response_metadata": {}
+              }
+            },
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "HumanMessage"
+              ],
+              "kwargs": {
+                "content": "Ambuj's Favorite Color",
+                "additional_kwargs": {},
+                "response_metadata": {}
+              }
+            },
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "AIMessage"
+              ],
+              "kwargs": {
+                "content": "{\"type\":\"clarification\",\"question\":\"Are you sure you want to delete the memory 'Ambuj's Favorite Color'?\",\"options\":[\"Yes\",\"No\"]}",
+                "tool_calls": [],
+                "invalid_tool_calls": [],
+                "additional_kwargs": {},
+                "response_metadata": {}
+              }
+            },
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "HumanMessage"
+              ],
+              "kwargs": {
+                "content": "Yes",
+                "additional_kwargs": {},
+                "response_metadata": {}
+              }
+            }
+          ],
+          "toolResults": 1,
+          "traceId": "3f4a10fe-8e7b-41ca-b202-a9c3ea3f90cb",
+          "timestamp": "2026-03-13T21:42:49.290Z",
+          "environment": "development"
+        },
+        {
+          "event": "planner_node_completed",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "toolCalls": 1,
+          "traceId": "3f4a10fe-8e7b-41ca-b202-a9c3ea3f90cb",
+          "timestamp": "2026-03-13T21:43:16.797Z",
+          "environment": "development"
+        },
+        {
+          "id": "or3qos",
+          "type": "plan_created",
+          "message": "Execution plan created",
+          "status": "success",
+          "timestamp": 1773438196805
+        },
+        {
+          "event": "plan_created",
+          "message": "Execution plan created",
+          "status": "success",
+          "traceId": "3f4a10fe-8e7b-41ca-b202-a9c3ea3f90cb",
+          "timestamp": "2026-03-13T21:43:16.805Z",
+          "environment": "development"
+        },
+        {
+          "id": "75ufo",
+          "type": "clarification_needed",
+          "message": "Awaiting user confirmation for tool execution",
+          "status": "pending",
+          "timestamp": 1773438196960
+        },
+        {
+          "event": "clarification_needed",
+          "message": "Awaiting user confirmation for tool execution",
+          "status": "pending",
+          "traceId": "3f4a10fe-8e7b-41ca-b202-a9c3ea3f90cb",
+          "timestamp": "2026-03-13T21:43:16.961Z",
+          "environment": "development"
+        }
+      ],
+      "finalReply": "{\"type\":\"clarification\",\"question\":\"Are you sure you want to run delete_memory on ID: 2b1b9cc9-2a36-4bcc-8db2-d74d25723936?\",\"options\":[\"Yes, delete it\",\"No, cancel\"]}"
+    },
+    {
+      "timestamp": "2026-03-13T21:44:38.572Z",
+      "user": "Test",
+      "request": "Yes, delete it",
+      "events": [
+        {
+          "id": "pnt88a",
+          "type": "input_received",
+          "message": "User request received",
+          "status": "info",
+          "timestamp": 1773438275081
+        },
+        {
+          "event": "input_received",
+          "message": "User request received",
+          "status": "info",
+          "traceId": "98dbc6c7-d547-4a16-8a3b-cc231bbe9add",
+          "timestamp": "2026-03-13T21:44:35.081Z",
+          "environment": "development"
+        },
+        {
+          "event": "agent_execution_started",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "conversationId": "68be7007-5c15-4443-837c-cb965fe38f8d",
+          "historyCount": 9,
+          "traceId": "98dbc6c7-d547-4a16-8a3b-cc231bbe9add",
+          "timestamp": "2026-03-13T21:44:35.556Z",
+          "environment": "development"
+        },
+        {
+          "id": "9o7y5",
+          "type": "tool_approval",
+          "message": "User approved tool execution",
+          "status": "info",
+          "timestamp": 1773438275559
+        },
+        {
+          "event": "tool_approval",
+          "message": "User approved tool execution",
+          "status": "info",
+          "traceId": "98dbc6c7-d547-4a16-8a3b-cc231bbe9add",
+          "timestamp": "2026-03-13T21:44:35.559Z",
+          "environment": "development"
+        },
+        {
+          "event": "graph_node_debug",
+          "node": "toolNode",
+          "messageCount": 9,
+          "toolResultsCount": 1,
+          "iterations": 4,
+          "intent": "memory_delete",
+          "toolExecuted": "delete_memory",
+          "traceId": "98dbc6c7-d547-4a16-8a3b-cc231bbe9add",
+          "timestamp": "2026-03-13T21:44:35.563Z",
+          "environment": "development"
+        },
+        {
+          "event": "tool_execution_started",
+          "toolName": "delete_memory",
+          "arguments": {
+            "accessCode": "AI-KTUD-W7VH",
+            "id": "2b1b9cc9-2a36-4bcc-8db2-d74d25723936"
+          },
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "traceId": "98dbc6c7-d547-4a16-8a3b-cc231bbe9add",
+          "timestamp": "2026-03-13T21:44:35.563Z",
+          "environment": "development"
+        },
+        {
+          "event": "tool_execution_started",
+          "toolName": "delete_memory",
+          "args": {
+            "id": "2b1b9cc9-2a36-4bcc-8db2-d74d25723936"
+          },
+          "traceId": "98dbc6c7-d547-4a16-8a3b-cc231bbe9add",
+          "timestamp": "2026-03-13T21:44:35.565Z",
+          "environment": "development"
+        },
+        {
+          "id": "esms8r",
+          "type": "tool_complete",
+          "message": "Tool execution finished",
+          "status": "success",
+          "timestamp": 1773438275937
+        },
+        {
+          "event": "tool_complete",
+          "message": "Tool execution finished",
+          "status": "success",
+          "traceId": "98dbc6c7-d547-4a16-8a3b-cc231bbe9add",
+          "timestamp": "2026-03-13T21:44:35.937Z",
+          "environment": "development"
+        },
+        {
+          "event": "tool_execution_completed",
+          "toolName": "delete_memory",
+          "result": "Memory 2b1b9cc9-2a36-4bcc-8db2-d74d25723936 deleted successfully.",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "latencyMs": 375,
+          "traceId": "98dbc6c7-d547-4a16-8a3b-cc231bbe9add",
+          "timestamp": "2026-03-13T21:44:35.938Z",
+          "environment": "development"
+        },
+        {
+          "event": "tool_discovery_started",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "query": "Yes",
+          "intent": "memory_delete",
+          "allowedCategories": [
+            "memory",
+            "journal",
+            "knowledge",
+            "tasks",
+            "reminders",
+            "files",
+            "routines"
+          ],
+          "allowedTags": [
+            "memory",
+            "delete",
+            "search",
+            "list",
+            "journal",
+            "knowledge",
+            "task",
+            "reminder",
+            "files",
+            "routine"
+          ],
+          "allowedToolCount": 12,
+          "traceId": "98dbc6c7-d547-4a16-8a3b-cc231bbe9add",
+          "timestamp": "2026-03-13T21:44:35.942Z",
+          "environment": "development"
+        },
+        {
+          "event": "tool_discovery_completed",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "count": 10,
+          "found": [
+            "get_journals",
+            "search_memory",
+            "get_memories",
+            "get_knowledges",
+            "delete_journal",
+            "get_reminders",
+            "delete_knowledge",
+            "delete_memory",
+            "delete_reminder",
+            "delete_task"
+          ],
+          "blockedTools": [],
+          "runtimeMissing": [],
+          "traceId": "98dbc6c7-d547-4a16-8a3b-cc231bbe9add",
+          "timestamp": "2026-03-13T21:44:37.013Z",
+          "environment": "development"
+        },
+        {
+          "event": "graph_node_debug",
+          "node": "plannerNode_start",
+          "messageCount": 10,
+          "toolResultsCount": 2,
+          "iterations": 4,
+          "intent": "memory_delete",
+          "traceId": "98dbc6c7-d547-4a16-8a3b-cc231bbe9add",
+          "timestamp": "2026-03-13T21:44:37.022Z",
+          "environment": "development"
+        },
+        {
+          "event": "planner_node_started",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "messageCount": 10,
+          "traceId": "98dbc6c7-d547-4a16-8a3b-cc231bbe9add",
+          "timestamp": "2026-03-13T21:44:37.023Z",
+          "environment": "development"
+        },
+        {
+          "event": "LLM_INPUT",
+          "messages": [
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "SystemMessage"
+              ],
+              "kwargs": {
+                "content": "You are **Chief of AI**, a personal AI assistant for Test.\n\nThe current date and time is: 3/14/2026, 3:12:02 AM (ISO: 2026-03-13T21:42:02.419Z).\nUse this to calculate relative times (e.g., \"in 5 minutes\", \"tomorrow\", \"next Friday\").\n\nYour role is to help the user manage information, tasks, reminders, knowledge, files, and apps through conversation.\n\nGENERAL BEHAVIOR\n\n* Be helpful, concise, and accurate.\n* Respond in a professional tone.\n* Focus on solving the user's request efficiently.\n* Prioritize correctness over creativity.\n* Do not hallucinate information.\n\nCONTEXT INJECTION\nThe system may inject additional context before your reasoning, including:\n\n* past memories\n* stored knowledge\n* journal entries\n* retrieved information from previous conversations\n\nTreat this context as reliable background information that may help answer the user's request.\n\nTOOL USAGE (VERY IMPORTANT)\nYou have access to tools that can perform real actions.\n\nPrefer using a tool when the user's request requires:\n\n* real data retrieval\n* database access\n* file access\n* memory access\n* task creation or updates\n* app creation\n* external information\n\nIf the answer is simple reasoning or general knowledge, respond directly without using a tool.\n\nNEVER guess results that a tool can provide.\n\nIf a tool exists for the task, use the tool instead of inventing information.\n\nWhenever a tool requires an \"accessCode\" parameter, YOU MUST PASS exactly this value:\n\n\"AI-KTUD-W7VH\"\n\nDo not ask the user for it and never replace it with placeholders.\n\nTOOL EXECUTION FLOW\n\nWhen you call a tool:\n\n1. Wait for the tool result.\n2. Carefully read the tool output.\n3. Use the tool output to produce the final response.\n\nDo not repeatedly call the same tool unless absolutely necessary.\n\nWHEN TO USE TOOLS\n\nExamples:\n\nMath calculations → use math tools\nGetting a random joke → use the joke tool\n\nFile management:\n\n* \"What files do I have?\" → use list_files\n* \"Summarize file X\" → use read_and_summarize_file\n* \"Delete file X\" → follow the deletion flow\n\nMemories, Tasks, Reminders → use their respective tools.\n\nApp creation → use create_app when the user asks to create or build an app.\n\nListing apps → use list_apps when the user asks about their apps.\n\nAPP CREATION (VERY IMPORTANT)\n\nWhen the user asks to create/build/make an app (for example: \"create an expense splitter\", \"build a task board\"):\n\nYou MUST use the **create_app** tool.\n\nYou must generate a complete JSON schema yourself with a **layout array** containing components.\n\nDo NOT ask the user to define the schema.\n\nCRITICAL RULES\n\nComponent names describe **WHAT DATA IS DISPLAYED**, not UI element types.\n\nComponents are **display cards only**.\n\nThere are **no buttons, forms, or inputs**.\n\nAll interaction happens through the chat.\n\nDO NOT use component names like:\n\nform\nbutton\nsubmit\ninput\nadd_expense_form\ngenerate_button\n\nInstead use names describing data such as:\n\nclient_details\ninvoice_items\ninvoice_preview\ntask_list\nexpense_history\n\nApps that generate documents must include a component with one of these names:\n\npreview\ndocument\nmarkdown\nviewer\n\nExamples:\n\ninvoice_preview\ndocument_viewer\n\nThis allows Markdown rendering in the UI.\n\nYou may optionally include **initialData** as JSON with sensible defaults.\n\nExample: empty arrays for lists.\n\nAfter creating the app:\n\nTell the user:\n\n\"The app is ready. Open it from the Apps section in the sidebar and describe what you want in the chat.\"\n\nNever say you cannot create an app.\n\nYou have the create_app tool — use it.\n\nAPP SCHEMA EXAMPLES\n\nExpense Splitter:\nmembers_list\nexpense_history\nbalance_summary\n\nInvoice Maker:\nclient_details\ninvoice_items\ninvoice_preview\n\nTodo Board:\ntask_list\ncompleted_tasks\ntask_summary\n\nRecipe Manager:\nrecipe_collection\nfavorites\nshopping_list\n\nBudget Tracker:\nincome_entries\nexpense_entries\nbudget_summary\n\nNotes App:\nnotes_list\nnote_viewer\n\nQuiz App:\nquestions\nscores\nquiz_viewer\n\nPoll App:\npoll_options\npoll_results\n\nFILE HANDLING\n\nIf the user asks about files:\n\n\"What files do I have?\" → use list_files\n\nIf the user provides a file name but not ID:\n\n1. Use list_files\n2. Find the correct file\n3. Use its ID\n\nIf the user asks to summarize a file → use read_and_summarize_file.\nNEVER use file tools for non-file items (like tasks, reminders, memories). Focus on their specific tools.\n\nITEM MANAGEMENT (STRICT RULES)\n\nFor managing (updating or deleting) memories, tasks, reminders, or files:\n\nSTEP 1 — If the user hasn't specified an ID, call the appropriate get_ or search_ tool first to find it.\n  * For reminders: use get_reminders\n  * For tasks: use get_tasks\n  * For memories: use get_memories\n  * For journals: use get_journals\n  * For files: use list_files\n\nSTEP 2 — Once you have the ID, proceed with the EXACT requested action:\n- To UPDATE/CHANGE: Call the corresponding update tool natively with the ID and new data.\n- To DELETE: Call the corresponding delete tool natively with the ID. (Do NOT ask for confirmation manually; the system handles it).\n- NEVER call a delete tool if the user asked to change or update an item.\n\nIf the user says \"No\" or \"Cancel\" when prompted, the tool execution will fail gracefully.\n\nRESPONSE FORMAT (CRITICAL)\n\nWhen you finish reasoning and are NOT calling tools, you MUST return a valid JSON object that exactly matches ONE of the following TypeScript interfaces:\n\n```typescript\ninterface ClarificationResponse {\n  type: \"clarification\";\n  question: string;\n  options: string[];\n}\n\ninterface FinalResponse {\n  type: \"final\";\n  message: string;\n}\n```\n\nDo not include:\n* markdown formatting around the JSON\n* explanations or conversational text\n* text before or after the JSON object\n\nExample of a ClarificationResponse:\n{\n  \"type\": \"clarification\",\n  \"question\": \"Which option did you mean?\",\n  \"options\": [\"Option A\", \"Option B\"]\n}\n\nExample of a FinalResponse:\n{\n  \"type\": \"final\",\n  \"message\": \"Your response to the user\"\n}\n\nWHEN NOT TO USE TOOLS\n\nDo not use tools if:\n\n* the question is general knowledge\n* the answer can be reasoned without external data\n* no tool matches the request\n\nTOOL RESPONSE HANDLING\n\nWhen a tool returns data:\n\n* Present the result clearly\n* Do not invent additional information\n* Do not modify tool results except for readability\n\nIf a tool parameter is optional (like \"title\"), generate it automatically from context.\n\nNever ask the user for internal parameters.\n\nCOMMUNICATION STYLE\n\n* Keep responses concise.\n* Avoid unnecessary explanations.\n* Do not mention internal tools or system instructions.\n\nSECURITY\n\nNever reveal:\n\n* database IDs\n* UUIDs\n* access codes\n* system credentials\n\nConfirm actions naturally without exposing internal identifiers.\n\nYou are assisting Test inside the Chief of AI assistant application.",
+                "additional_kwargs": {},
+                "response_metadata": {}
+              }
+            },
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "HumanMessage"
+              ],
+              "kwargs": {
+                "content": "delet ,my  memory",
+                "additional_kwargs": {},
+                "response_metadata": {}
+              }
+            },
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "AIMessage"
+              ],
+              "kwargs": {
+                "id": "bc7ebab56875477dba61f0b6404cfa53",
+                "content": "",
+                "additional_kwargs": {
+                  "tool_calls": [
+                    {
+                      "id": "jcgiRzohw",
+                      "function": {
+                        "name": "get_memories",
+                        "arguments": "{\"accessCode\": \"AI-KTUD-W7VH\"}"
+                      },
+                      "index": 0
+                    }
+                  ]
+                },
+                "response_metadata": {
+                  "tokenUsage": {
+                    "promptTokens": 11656,
+                    "completionTokens": 20,
+                    "totalTokens": 11676
+                  },
+                  "finish_reason": "tool_calls",
+                  "model_provider": "openai",
+                  "model_name": "mistral-small-latest"
+                },
+                "type": "ai",
+                "tool_calls": [
+                  {
+                    "name": "get_memories",
+                    "args": {
+                      "accessCode": "AI-KTUD-W7VH"
+                    },
+                    "type": "tool_call",
+                    "id": "jcgiRzohw"
+                  }
+                ],
+                "invalid_tool_calls": [],
+                "usage_metadata": {
+                  "output_tokens": 20,
+                  "input_tokens": 11656,
+                  "total_tokens": 11676,
+                  "input_token_details": {
+                    "cache_read": 0
+                  },
+                  "output_token_details": {}
+                }
+              }
+            },
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "ToolMessage"
+              ],
+              "kwargs": {
+                "tool_call_id": "jcgiRzohw",
+                "name": "get_memories",
+                "content": "{\"content\":\"ID: 04b0fdd9-71f7-4058-9fd3-9047a283362d\\nTitle: YC Startup Goal\\nContent: My goal is to build Chief of AI into a YC-backed startup solving personal productivity with AI.\\n\\n---\\n\\nID: fd6ed8b8-e639-46e1-8899-d6d2b6572fe8\\nTitle: LangGraph Architecture Insight\\nContent: Agent systems should use planner → executor → critic architecture for reliable workflows.\\n\\n---\\n\\nID: 7bd24b32-5d28-4f86-aa95-2ff5a17a600e\\nTitle: London Solo Achievement\\nContent: Visiting London alone at 24 made me confident I can build global products.\\n\\n---\\n\\nID: aeaf43f2-8776-4d7c-a608-ac8195438b88\\nTitle: London Trip Inspiration\\nContent: While visiting London I reflected on building Chief of AI as a personal AI operating system.\\n\\n---\\n\\nID: f141a15e-9dfe-453b-a674-3199fc352709\\nTitle: AI Product Vision\\nContent: I want Chief of AI to act like a personal Chief of Staff that manages tasks, knowledge, and decisions.\\n\\n---\\n\\nID: 973c6724-17f6-42a2-90cf-dd80fe48f3ae\\nTitle: London Trip Inspiration\\nContent: While visiting London I reflected on building Chief of AI as a personal AI operating system.\\n\\n---\\n\\nID: 2b1b9cc9-2a36-4bcc-8db2-d74d25723936\\nTitle: Ambuj's Favorite Color\\nContent: (Ambuj's Favorite Color) Ambuj's favorite color is red.\",\"memories\":[{\"id\":\"04b0fdd9-71f7-4058-9fd3-9047a283362d\",\"user_id\":\"f43ac274-e715-457a-93ff-f92bb660c754\",\"type\":\"memory\",\"title\":\"YC Startup Goal\",\"content\":\"My goal is to build Chief of AI into a YC-backed startup solving personal productivity with AI.\",\"embedding\":null,\"created_at\":\"2026-03-13T21:14:38.336113\",\"shared_with\":[]},{\"id\":\"fd6ed8b8-e639-46e1-8899-d6d2b6572fe8\",\"user_id\":\"f43ac274-e715-457a-93ff-f92bb660c754\",\"type\":\"memory\",\"title\":\"LangGraph Architecture Insight\",\"content\":\"Agent systems should use planner → executor → critic architecture for reliable workflows.\",\"embedding\":null,\"created_at\":\"2026-03-13T21:14:38.336113\",\"shared_with\":[]},{\"id\":\"7bd24b32-5d28-4f86-aa95-2ff5a17a600e\",\"user_id\":\"f43ac274-e715-457a-93ff-f92bb660c754\",\"type\":\"memory\",\"title\":\"London Solo Achievement\",\"content\":\"Visiting London alone at 24 made me confident I can build global products.\",\"embedding\":null,\"created_at\":\"2026-03-13T21:14:38.336113\",\"shared_with\":[]},{\"id\":\"aeaf43f2-8776-4d7c-a608-ac8195438b88\",\"user_id\":\"f43ac274-e715-457a-93ff-f92bb660c754\",\"type\":\"memory\",\"title\":\"London Trip Inspiration\",\"content\":\"While visiting London I reflected on building Chief of AI as a personal AI operating system.\",\"embedding\":null,\"created_at\":\"2026-03-13T21:14:38.336113\",\"shared_with\":[]},{\"id\":\"f141a15e-9dfe-453b-a674-3199fc352709\",\"user_id\":\"f43ac274-e715-457a-93ff-f92bb660c754\",\"type\":\"memory\",\"title\":\"AI Product Vision\",\"content\":\"I want Chief of AI to act like a personal Chief of Staff that manages tasks, knowledge, and decisions.\",\"embedding\":null,\"created_at\":\"2026-03-13T21:14:38.336113\",\"shared_with\":[]},{\"id\":\"973c6724-17f6-42a2-90cf-dd80fe48f3ae\",\"user_id\":\"f43ac274-e715-457a-93ff-f92bb660c754\",\"type\":\"memory\",\"title\":\"London Trip Inspiration\",\"content\":\"While visiting London I reflected on building Chief of AI as a personal AI operating system.\",\"embedding\":null,\"created_at\":\"2026-03-13T21:12:18.229916\",\"shared_with\":[{\"full_name\":\"Test\",\"email\":\"realambuj@gmail.com\"}]},{\"id\":\"2b1b9cc9-2a36-4bcc-8db2-d74d25723936\",\"user_id\":\"f43ac274-e715-457a-93ff-f92bb660c754\",\"type\":\"memory\",\"title\":\"Ambuj's Favorite Color\",\"content\":\"(Ambuj's Favorite Color) Ambuj's favorite color is red.\",\"embedding\":\"[-0.048828125,0.029815674,0.04272461,-0.038024902,0.04812622,0.00579834,0.032958984,-0.010246277,-0.02772522,-0.011505127,0.0043792725,0.06628418,-0.024414062,0.00806427,-0.035217285,0.015258789,0.02859497,0.028945923,0.033294678,-0.009590149,0.0058403015,-0.023712158,-0.046722412,0.025985718,-0.028244019,-0.007801056,-0.024932861,-0.019958496,0.010154724,-0.014472961,0.013160706,-0.028762817,-0.0069732666,0.054748535,-0.016220093,-0.013946533,0.009025574,-0.037841797,-0.0033569336,0.019180298,0.015167236,-0.027893066,0.039764404,0.024230957,-0.018569946,-0.0031166077,-0.0054473877,-0.014213562,0.037139893,-0.047088623,0.0048179626,0.0413208,0.012817383,-0.006626129,-0.028244019,0.02545166,0.03488159,-0.017181396,-0.05441284,0.04812622,-0.025283813,-0.0211792,-0.02859497,0.018478394,0.007583618,-0.026672363,-0.015960693,-0.010986328,-0.006538391,0.011116028,0.025100708,0.009765625,-0.0047073364,0.034179688,-0.017791748,-0.04168701,0.044647217,0.034362793,0.029464722,0.010154724,-0.03225708,-0.005710602,0.0390625,-0.0061912537,-0.028244019,-0.0031166077,0.03277588,0.06518555,0.013427734,0.0390625,0.014556885,-0.050201416,0.03488159,-0.021453857,0.06451416,0.025283813,-0.007801056,-0.004272461,0.006362915,0.041503906,0.007671356,-0.011421204,0.053009033,-0.011421204,0.036621094,-0.0395813,-0.014472961,0.0413208,-0.0034427643,0.017608643,-0.119262695,0.0021800995,0.0074539185,-0.045684814,0.0060157776,-0.033294678,0.011856079,0.027893066,-0.028945923,-0.0073661804,0.03817749,0.042907715,0.019699097,0.002855301,-0.0390625,-0.029464722,-0.009109497,0.02859497,-0.012817383,-0.02458191,0.0011987686,-0.04953003,-0.044128418,-0.048828125,0.01979065,-0.032592773,0.035217285,0.002714157,-0.07531738,-0.031921387,0.02319336,-0.051605225,-0.025634766,-0.027374268,-0.008674622,0.029815674,0.015258789,-0.006538391,-0.07183838,0.053710938,-0.032958984,0.04534912,0.024932861,-0.024414062,-0.049865723,-0.029296875,-0.007801056,-0.040985107,-0.023712158,-0.00566864,-0.02859497,0.036254883,-0.012382507,0.00083351135,-0.046020508,-0.017608643,-0.03451538,0.03591919,-0.020233154,0.011772156,0.035583496,-0.06762695,0.008415222,0.05126953,0.0413208,0.035583496,0.010284424,-0.033996582,0.05508423,0.021270752,0.004600525,-0.0211792,0.03540039,-0.014038086,-0.028945923,-0.013160706,-0.031204224,-0.0040740967,0.012992859,0.03225708,0.0016450882,-0.04776001,-0.011680603,0.024414062,-0.013946533,0.033996582,0.049865723,-0.022842407,0.012466431,-0.0009698868,0.0211792,0.02319336,-0.013511658,0.0045776367,0.024230957,-0.012817383,-0.011940002,0.017868042,0.023361206,0.01638794,-0.009109497,-0.016906738,-0.019088745,-0.06488037,0.0043792725,-0.03765869,0.005622864,0.019958496,-0.010070801,-0.015083313,-0.00920105,-0.013427734,0.025283813,-0.018737793,0.0077171326,0.02458191,0.0035533905,-0.032440186,0.0206604,0.0093307495,0.014823914,0.019180298,0.0025501251,-0.014556885,0.0018959045,-0.03366089,0.036254883,0.028945923,0.017959595,0.006755829,-0.032440186,0.06414795,0.01612854,0.07220459,0.01586914,-0.016738892,-0.007888794,0.01953125,-0.03137207,0.10668945,-0.059295654,-0.05404663,-0.05230713,-0.013771057,-0.033813477,-0.051971436,-0.040985107,-0.06414795,0.023361206,-0.014732361,-0.00819397,-0.028427124,0.025100708,0.042022705,0.0030727386,0.0390625,-0.094177246,0.019348145,0.10394287,-0.028762817,0.0121154785,-0.022491455,-0.008323669,0.002506256,0.019012451,-0.02720642,0.0051231384,0.002790451,-0.0072784424,0.0011224747,-0.0390625,0.013252258,-0.0061035156,0.062072754,-0.01953125,0.0010786057,0.02319336,0.006931305,0.013511658,-0.056854248,0.0104599,0.050567627,0.0015478134,0.0418396,-0.015602112,-0.014122009,0.026672363,0.04776001,-0.011940002,0.043945312,-0.026855469,-0.02319336,-0.040100098,0.013427734,0.013252258,-0.053344727,-0.040100098,0.057891846,-0.023010254,-0.06347656,-0.05718994,-0.01638794,-0.009849548,0.018127441,0.017868042,-0.030166626,-0.037475586,-0.036621094,0.04534912,-0.04272461,-0.004337311,-0.015258789,0.06591797,-0.016998291,-0.027542114,-0.0029201508,0.022323608,-0.03137207,-0.018829346,-0.019012451,0.016036987,0.022842407,0.053009033,0.011680603,0.020568848,0.019180298,0.02911377,0.018737793,-0.04953003,-0.019699097,0.032958984,0.031555176,0.015602112,-0.0038146973,-0.038879395,0.015960693,-0.04272461,-0.009941101,0.017868042,0.003835678,0.006713867,-0.016830444,0.011680603,0.066589355,-0.043945312,0.092041016,-0.02859497,-0.001449585,0.011680603,0.02406311,-0.04168701,-0.018661499,0.033813477,0.04638672,-0.012466431,0.030517578,-0.06762695,0.01586914,0.029815674,0.013336182,-0.0017766953,-0.016738892,0.018310547,0.011940002,0.007583618,0.01979065,0.009635925,-0.028076172,0.0063209534,-0.019439697,-0.023712158,0.017608643,0.028762817,-0.014823914,0.014556885,0.016647339,-0.06137085,-0.017868042,0.004055023,0.08404541,0.06939697,0.04776001,-0.010421753,-0.043762207,0.022842407,0.012992859,-0.00056123734,0.046020508,0.05090332,0.0021572113,0.0071487427,-0.056488037,0.04272461,0.009506226,0.022491455,-0.025283813,0.024765015,0.018661499,0.006668091,-0.040283203,0.048461914,0.025283813,-0.010284424,-0.0073242188,-0.0074539185,-0.009895325,-0.014038086,0.008720398,-0.005622864,-0.017349243,0.03488159,0.030685425,-0.036956787,0.01751709,0.068725586,-0.006626129,-0.016906738,-0.008934021,-0.046020508,0.013511658,-0.047424316,-0.028076172,0.025985718,-0.01979065,-0.05090332,0.047088623,0.028427124,-0.03451538,-0.019088745,-0.047088623,-0.02545166,-0.022064209,0.022491455,0.01979065,-0.019439697,-0.0011281967,0.004360199,0.021713257,0.04272461,-0.053344727,-0.009284973,-0.022064209,-0.032958984,-0.0015144348,0.005622864,-0.031036377,-0.03137207,-0.0072364807,-0.010375977,0.012031555,0.024414062,0.07324219,-0.024932861,-0.0435791,-0.01953125,0.066589355,0.013252258,0.06137085,-0.013511658,-0.05230713,-0.010375977,-0.034362793,0.01751709,0.009155273,0.034179688,-0.026855469,0.06137085,-0.047088623,-0.023544312,0.010765076,0.045684814,0.011772156,0.0395813,-0.007801056,0.04446411,0.039398193,-0.060668945,-0.036621094,0.0020484924,-0.010375977,0.039398193,-0.05822754,0.0029640198,0.017089844,-0.05441284,-0.036956787,-0.023712158,-0.002746582,-0.0791626,-0.020233154,0.004295349,0.007843018,0.008804321,-0.008979797,0.025985718,0.029815674,-0.0009536743,-0.036621094,0.022491455,-0.06488037,-0.022232056,-0.007106781,0.024765015,-0.013511658,0.008674622,-0.021102905,-0.017181396,-0.00566864,-0.0047950745,-0.007019043,-0.011421204,0.0077590942,-0.02319336,-0.005886078,0.01386261,0.026855469,-0.0021896362,0.006713867,-0.0023326874,-0.021972656,0.01612854,0.010810852,-0.006626129,0.040802002,-0.015602112,0.029815674,-0.01586914,-0.004142761,-0.015434265,-0.0033779144,-0.057525635,0.012901306,-0.005340576,-0.004425049,-0.043762207,-0.046020508,-0.081970215,-0.016571045,0.006450653,-0.022842407,0.002571106,-0.046020508,-0.010070801,-0.027542114,0.019439697,0.0011062622,-0.023880005,-0.0007739067,0.0011005402,-0.0061454773,0.017089844,0.0060157776,0.032592773,0.030685425,0.034698486,-0.005142212,0.017349243,0.0034656525,-0.040283203,-0.008544922,-0.014472961,0.062072754,-0.0209198,0.005252838,0.004207611,0.0023212433,0.020492554,-0.015434265,0.015083313,0.030517578,0.0073242188,0.0073242188,-0.034698486,-0.024765015,-0.040283203,0.009674072,0.062072754,6.401539e-05,0.008148193,-0.015083313,-0.012550354,-0.0027236938,-0.027374268,-0.012290955,-0.0034866333,0.021453857,0.027893066,0.008934021,0.02267456,0.03314209,0.017181396,-0.04168701,0.051605225,0.048828125,0.025985718,-0.01927185,-0.049865723,-0.0021476746,-0.019180298,-0.04812622,-0.047088623,0.044647217,0.0209198,-0.0385437,0.002714157,0.0155181885,-0.008110046,0.010284424,0.0035095215,0.028076172,0.05859375,-0.018127441,0.01159668,-0.0045776367,-0.044128418,0.020141602,0.026504517,0.04220581,-0.033477783,0.027542114,-0.017791748,0.010246277,-0.0061454773,0.02859497,-0.0020713806,0.005970001,0.024765015,0.019012451,-0.021621704,0.008018494,-0.012550354,0.056854248,0.020141602,0.04168701,0.026672363,-0.04498291,0.011421204,-0.055786133,0.012550354,0.036621094,0.010856628,0.025283813,-0.041137695,0.021011353,-0.029815674,0.008934021,0.0736084,0.0023326874,0.007980347,0.020401001,-0.006713867,-0.033813477,0.012992859,-0.006275177,-0.022842407,-0.06137085,-0.037322998,0.040283203,0.0031814575,-0.08544922,-0.012466431,0.056152344,-0.010505676,-0.018920898,-0.015167236,-0.01272583,-0.010681152,-0.022842407,-0.057891846,-0.040802002,0.023361206,-0.018920898,-0.008674622,0.0027580261,-0.01638794,-0.0058403015,0.007019043,-0.046722412,0.049865723,-0.011505127,0.033294678,0.01386261,-0.015777588,0.034179688,0.057891846,0.012992859,-0.02772522,0.021972656,-0.03591919,-0.01386261,-0.020843506,0.010375977,-0.04916382,-0.010726929,0.029296875,-0.03173828,0.022064209,-0.0008826256,-0.039916992,-0.029647827,-0.007411957,-0.015960693,-0.026321411,0.012992859,0.030517578,-0.027893066,-0.004924774,-0.038024902,0.008628845,-0.006362915,0.012817383,-0.011772156,0.047088623,-0.0034008026,-0.0026474,-0.0026474,-0.07006836,0.005317688,0.054748535,0.0017328262,0.023880005,-0.032440186,-0.0093688965,-0.02319336,-0.08685303,-0.016571045,-0.009109497,0.005886078,-0.012550354,-0.019882202,0.011772156,-0.057891846,-0.031036377,0.00806427,0.0105896,-0.0055351257,-0.019699097,0.011116028,-0.02406311,0.011940002,0.0023651123,0.028076172,-0.029815674,0.023361206,-0.010986328,0.0385437,0.01272583,0.007106781,-0.014823914,0.015686035,0.03451538,-0.024414062,0.05230713,0.037139893,0.02998352,-0.06347656,-0.010375977,0.011116028,0.031555176,0.0036830902,0.05404663,-0.06695557,-0.0155181885,-0.08441162,0.056854248,0.0035095215,0.044128418,-0.03086853,-0.021362305,-0.06628418,-0.06347656,-0.036102295,0.0044670105,-0.0035533905,0.050567627,-0.014556885,-0.02911377,0.0031604767,0.026855469,0.0209198,0.026321411,-0.022323608,0.004032135,0.05859375,-0.03488159,0.032592773,0.0018854141,-0.012382507,0.010421753,-0.018569946,-0.013160706,-0.0102005005,0.031036377,0.02772522,-0.0048828125,-0.0047721863,0.014907837,-0.0105896,0.017089844,-0.008544922,0.025100708,0.0423584,0.0031375885,-0.035736084,-0.06173706,-0.092041016,0.007843018,-0.020233154,-0.011245728,0.0052108765,-0.018478394,0.01159668,-0.030685425,0.033294678,-0.004142761,0.0121154785,-0.012031555,-0.016296387,-0.024932861,0.03869629,-0.039398193,-0.062408447,0.003967285,0.0051231384,0.0060157776,0.022842407,0.034698486,-0.047088623,-0.0007519722,-0.035217285,-0.027542114,-0.012901306,-0.018829346,-0.0206604,-0.041503906,0.032958984,0.011421204,-0.00819397,-0.0001988411,-0.0037269592,-0.043762207,-0.038024902,0.0031604767,-0.050201416,0.0026378632,0.021621704,0.010505676,0.01133728,0.009063721,0.01979065,-0.0048179626,-0.048828125,0.034698486,0.03591919,0.01272583,0.0013952255,0.005340576,0.0014715195,-0.074645996,0.008674622,-0.0052108765,-0.06732178,0.00032567978,0.060333252,0.028076172,0.005710602,0.0084991455,0.040100098,-0.004142761,-0.015167236,0.022064209,-0.053009033,-0.0050354004,0.050567627,-0.032958984,-0.075683594,0.04324341,0.05126953,-0.021270752,-0.029815674,0.048828125,-0.034698486,0.048461914,0.062408447,-0.0032901764,-0.042022705,0.035583496,0.037475586,0.015167236,0.005886078,-8.9883804e-05,0.033477783,0.07080078,-0.0071907043,-0.023361206,-0.03451538,0.017349243,-0.0045776367,-0.032592773,-0.02911377,0.0051002502,0.022064209,0.016220093,-0.040100098,0.0105896,-0.026504517,-0.033996582,0.01979065,-0.015602112,0.07080078,-0.024230957,-0.06976318,-0.002855301,-0.01638794,0.024230957,0.002746582,-0.060668945,-0.006450653,-0.03817749,0.028244019,0.0058403015,0.024230957,0.025100708,-0.01979065,-0.0048179626,-0.01638794,0.015686035,0.026153564,0.008285522,-0.014381409,-0.026504517,0.022140503,0.0007300377,-0.004753113,0.030166626,-0.039916992,0.02319336,-0.032958984,0.0025615692,-0.017868042,-0.042541504,-0.04272461,0.013252258,0.043060303,-0.01586914,-0.0034217834,0.0146484375,0.022842407,-0.031036377,0.02406311,0.024414062,-0.00374794,0.030334473,-0.042541504,0.060333252,0.03173828,0.033477783,0.0211792,0.0037059784,0.03643799,-0.017440796,-0.0034217834,0.030334473,0.018829346,0.029647827,0.030334473,0.023361206,-0.022064209,-0.001917839,-0.013252258,-0.03314209,0.017959595,-0.0084991455,0.035217285,-0.013252258,-0.048461914,-0.08337402,-0.06311035,0.046722412,-0.0038585663,-0.030517578,0.0048599243,-0.029647827,-0.016998291,-0.011680603,0.087890625,-0.021621704,0.02267456,-0.045684814,0.012382507,-0.043426514,-0.020401001,-0.015434265,0.041137695,0.0013456345,0.060668945,-0.004425049,-0.036254883,-0.06555176,-0.012031555,0.00076818466,0.020751953,0.015777588,-0.018478394,-0.03503418,0.007801056,0.028244019,0.0054473877,0.03765869,0.05404663,-0.0018634796,-0.0031166077,0.018920898,-0.011772156]\",\"created_at\":\"2026-03-10T15:53:48.089\",\"shared_with\":[{\"full_name\":\"ambuj raj\",\"email\":\"abc@gmail.com\"}]}]}",
+                "additional_kwargs": {},
+                "response_metadata": {}
+              }
+            },
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "AIMessage"
+              ],
+              "kwargs": {
+                "content": "{\"type\":\"clarification\",\"question\":\"Which memory would you like to delete?\",\"options\":[\"YC Startup Goal\",\"LangGraph Architecture Insight\",\"London Solo Achievement\",\"London Trip Inspiration\",\"AI Product Vision\",\"Ambuj's Favorite Color\"]}",
+                "tool_calls": [],
+                "invalid_tool_calls": [],
+                "additional_kwargs": {},
+                "response_metadata": {}
+              }
+            },
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "HumanMessage"
+              ],
+              "kwargs": {
+                "content": "Ambuj's Favorite Color",
+                "additional_kwargs": {},
+                "response_metadata": {}
+              }
+            },
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "AIMessage"
+              ],
+              "kwargs": {
+                "content": "{\"type\":\"clarification\",\"question\":\"Are you sure you want to delete the memory 'Ambuj's Favorite Color'?\",\"options\":[\"Yes\",\"No\"]}",
+                "tool_calls": [],
+                "invalid_tool_calls": [],
+                "additional_kwargs": {},
+                "response_metadata": {}
+              }
+            },
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "HumanMessage"
+              ],
+              "kwargs": {
+                "content": "Yes",
+                "additional_kwargs": {},
+                "response_metadata": {}
+              }
+            },
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "AIMessage"
+              ],
+              "kwargs": {
+                "id": "14e3842dc69649ff816865186d1f1def",
+                "content": "",
+                "additional_kwargs": {
+                  "tool_calls": [
+                    {
+                      "id": "YDJiNbr12",
+                      "function": {
+                        "name": "delete_memory",
+                        "arguments": "{\"accessCode\": \"AI-KTUD-W7VH\", \"id\": \"2b1b9cc9-2a36-4bcc-8db2-d74d25723936\"}"
+                      },
+                      "index": 0
+                    }
+                  ]
+                },
+                "response_metadata": {
+                  "tokenUsage": {
+                    "promptTokens": 25417,
+                    "completionTokens": 56,
+                    "totalTokens": 25473
+                  },
+                  "finish_reason": "tool_calls",
+                  "model_provider": "openai",
+                  "model_name": "mistral-small-latest"
+                },
+                "type": "ai",
+                "tool_calls": [
+                  {
+                    "name": "delete_memory",
+                    "args": {
+                      "accessCode": "AI-KTUD-W7VH",
+                      "id": "2b1b9cc9-2a36-4bcc-8db2-d74d25723936"
+                    },
+                    "type": "tool_call",
+                    "id": "YDJiNbr12"
+                  }
+                ],
+                "invalid_tool_calls": [],
+                "usage_metadata": {
+                  "output_tokens": 56,
+                  "input_tokens": 25417,
+                  "total_tokens": 25473,
+                  "input_token_details": {
+                    "cache_read": 0
+                  },
+                  "output_token_details": {}
+                }
+              }
+            },
+            {
+              "lc": 1,
+              "type": "constructor",
+              "id": [
+                "langchain_core",
+                "messages",
+                "ToolMessage"
+              ],
+              "kwargs": {
+                "tool_call_id": "YDJiNbr12",
+                "name": "delete_memory",
+                "content": "Memory 2b1b9cc9-2a36-4bcc-8db2-d74d25723936 deleted successfully.",
+                "additional_kwargs": {},
+                "response_metadata": {}
+              }
+            }
+          ],
+          "toolResults": 2,
+          "traceId": "98dbc6c7-d547-4a16-8a3b-cc231bbe9add",
+          "timestamp": "2026-03-13T21:44:37.023Z",
+          "environment": "development"
+        },
+        {
+          "event": "planner_node_completed",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "toolCalls": 0,
+          "traceId": "98dbc6c7-d547-4a16-8a3b-cc231bbe9add",
+          "timestamp": "2026-03-13T21:44:38.285Z",
+          "environment": "development"
+        },
+        {
+          "event": "graph_node_debug",
+          "node": "plannerNode_end",
+          "messageCount": 10,
+          "toolResultsCount": 2,
+          "iterations": 4,
+          "intent": "memory_delete",
+          "toolCalls": 0,
+          "traceId": "98dbc6c7-d547-4a16-8a3b-cc231bbe9add",
+          "timestamp": "2026-03-13T21:44:38.285Z",
+          "environment": "development"
+        },
+        {
+          "event": "graph_node_debug",
+          "node": "responseNode_start",
+          "messageCount": 11,
+          "toolResultsCount": 2,
+          "iterations": 5,
+          "intent": "memory_delete",
+          "traceId": "98dbc6c7-d547-4a16-8a3b-cc231bbe9add",
+          "timestamp": "2026-03-13T21:44:38.293Z",
+          "environment": "development"
+        },
+        {
+          "event": "graph_node_debug",
+          "node": "responseNode",
+          "messageCount": 11,
+          "toolResultsCount": 2,
+          "iterations": 5,
+          "intent": "memory_delete",
+          "finalReply": "The memory 'Ambuj's Favorite Color' has been deleted successfully.",
+          "traceId": "98dbc6c7-d547-4a16-8a3b-cc231bbe9add",
+          "timestamp": "2026-03-13T21:44:38.294Z",
+          "environment": "development"
+        },
+        {
+          "id": "lpz6hf",
+          "type": "response_generating",
+          "message": "Preparing response",
+          "status": "pending",
+          "timestamp": 1773438278299
+        },
+        {
+          "event": "response_generating",
+          "message": "Preparing response",
+          "status": "pending",
+          "traceId": "98dbc6c7-d547-4a16-8a3b-cc231bbe9add",
+          "timestamp": "2026-03-13T21:44:38.299Z",
+          "environment": "development"
+        },
+        {
+          "event": "llm_response_generated",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "message": "The memory 'Ambuj's Favorite Color' has been deleted successfully.",
+          "traceId": "98dbc6c7-d547-4a16-8a3b-cc231bbe9add",
+          "timestamp": "2026-03-13T21:44:38.570Z",
+          "environment": "development"
+        }
+      ],
+      "finalReply": "The memory 'Ambuj's Favorite Color' has been deleted successfully."
+    }
+  ]
+}

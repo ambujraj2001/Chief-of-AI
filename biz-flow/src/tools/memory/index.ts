@@ -169,21 +169,21 @@ export const getMemoriesTool = tool(
       const results = await getUserMemories(user.id);
 
       if (!results || results.length === 0)
-        return { content: "No memories found." };
+        return { content: "No memories found.", memories: [] };
       const content = results
         .map(
           (m: any) =>
             `ID: ${m.id}\nTitle: ${m.title || "None"}\nContent: ${m.content}`,
         )
         .join("\n\n---\n\n");
-      return { content };
+      return { content, memories: results };
     } catch (error: any) {
       log({
         event: "tool_execution_failed",
         toolName: "get_memories",
         error: error.message,
       });
-      return `Error getting memories: ${error.message}`;
+      return { content: `Error getting memories: ${error.message}`, memories: [] };
     }
   },
   {
@@ -218,20 +218,21 @@ export const searchMemoryTool = tool(
       const results = await searchEntries(user.id, "memory", query, limit);
 
       if (!results || results.length === 0)
-        return "No relevant memories found.";
-      return results
+        return { content: "No relevant memories found.", memories: [] };
+      const content = results
         .map(
           (m: any) =>
             `ID: ${m.id}\nTitle: ${m.title || "None"}\nContent: ${m.content}`,
         )
         .join("\n\n---\n\n");
+      return { content, memories: results };
     } catch (error: any) {
       log({
         event: "tool_execution_failed",
         toolName: "search_memory",
         error: error.message,
       });
-      return `Error searching memory: ${error.message}`;
+      return { content: `Error searching memory: ${error.message}`, memories: [] };
     }
   },
   {

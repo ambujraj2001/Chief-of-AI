@@ -13,12 +13,16 @@ import {
   getRecentConversationHistory,
   ChatMessage,
 } from "../services/chat.service";
+import { AIEvent } from "../types/aiEvent.types";
 
 // ─── System prompt ────────────────────────────────────────────────────────────
 
 const buildSystemPrompt = (user: UserRow): string =>
   `
 You are **Chief of AI**, a personal AI assistant for ${user.full_name}.
+
+The current date and time is: ${new Date().toLocaleString()} (ISO: ${new Date().toISOString()}).
+Use this to calculate relative times (e.g., "in 5 minutes", "tomorrow", "next Friday").
 
 Your role is to help the user manage information, tasks, reminders, knowledge, files, and apps through conversation.
 
@@ -325,8 +329,30 @@ export const runAgent = async (
   user: UserRow,
   conversationId?: string,
   incognito?: boolean,
+  onEvent?: (event: AIEvent) => void
 ): Promise<string> => {
-  // 1. Save the new user message to DB
+  const emitAIEvent = (type: AIEvent['type'], msg: string, status: AIEvent['status'] = 'info', data?: Record<string, any>) => {
+    const event = {
+      id: Math.random().toString(36).substring(7),
+      type,
+      message: msg,
+      status,
+      timestamp: Date.now(),
+      data
+    };
+    onEvent?.(event);
+    log({
+      event: type,
+      message: msg,
+      status,
+      ...data
+    });
+  };
+
+  // 1️⃣ User Input Received
+  emitAIEvent('input_received', 'User request received', 'info');
+
+  // Save the new user message to DB
   if (!incognito) {
     await saveChatMessage(user.id, "user", message, conversationId);
   }
@@ -361,7 +387,7 @@ export const runAgent = async (
 
   // 3. Setup tooling and model
   const agentTools = tools.filter((t) => t.name !== "prettify_response");
-  const llm = buildModel(agentTools as any);
+  const llm = buildModel(agentTools as any); // Keep this for potential direct LLM calls if needed, though graph handles it.
 
   log({
     event: "agent_execution_started",
@@ -380,7 +406,25 @@ export const runAgent = async (
   const { chatGraph } = await import("../graphs/chatGraph");
 
   const threadId = conversationId || user.id;
-  const config = { configurable: { thread_id: threadId } };
+  const config: any = { 
+    configurable: { 
+      thread_id: threadId,
+      onEvent: emitAIEvent,
+      user
+    },
+    callbacks: [{
+      handleToolStart: (tool: any) => {
+        const toolType = tool.name.includes('memory') ? 'memory_lookup' : 
+                         tool.name.includes('task') ? 'task_fetch' :
+                         tool.name.includes('calendar') ? 'calendar_lookup' :
+                         tool.name.includes('knowledge') ? 'knowledge_lookup' : 'tool_start';
+        emitAIEvent(toolType as any, `Executing tool: ${tool.name}`, 'pending');
+      },
+      handleToolEnd: (output: string, runId: string, parentRunId?: string, tags?: string[], kwargs?: any) => {
+        emitAIEvent('tool_complete', `Tool execution finished`, 'success');
+      }
+    }]
+  };
 
   let result;
   const state = await chatGraph.getState(config);
@@ -400,9 +444,11 @@ export const runAgent = async (
 
     if (isApproval) {
       // User approved, resume graph
-      result = await chatGraph.invoke(null, config);
+      emitAIEvent('tool_approval', 'User approved tool execution', 'info');
+      result = await chatGraph.invoke(null, config); // Invoke to resume
     } else {
       // User denied the tool call, simulate a failure and resume
+      emitAIEvent('tool_denial', 'User denied tool execution', 'warning');
       const lastMsg = state.values.messages[state.values.messages.length - 1];
       if (lastMsg?.tool_calls?.length > 0) {
         const toolMessages = lastMsg.tool_calls.map(
@@ -419,20 +465,53 @@ export const runAgent = async (
           "tools",
         );
       }
-      result = await chatGraph.invoke(null, config);
+      result = await chatGraph.invoke(null, config); // Invoke to resume with cancellation
     }
   } else {
     // Normal graph execution
+    // Real-time stream to capture state changes
     const hasCheckpointHistory = state?.values?.messages?.length > 0;
     const payload = {
       userId: user.id,
       user,
       messages: hasCheckpointHistory ? [new HumanMessage(message)] : messages,
     };
-    result = await chatGraph.invoke(payload, config);
+
+    emitAIEvent('thinking', 'Agent thinking...', 'pending');
+
+    // We loop through the graph steps to emit real-time events based on state changes
+    const eventStream = await chatGraph.stream(payload, { ...config, streamMode: "updates" });
+    
+    let finalState: any = state.values; // Initialize with current state
+    for await (const chunk of eventStream) {
+      const node = Object.keys(chunk)[0];
+      const update = (chunk as any)[node];
+      
+      // 2️⃣ Intent Detection
+      if (node === 'router' && update.intent) {
+        emitAIEvent('intent_detected', `Intent detected: ${update.intent}`, 'success');
+      }
+
+      // 3️⃣ Action Planning
+      if (node === 'planner') {
+        emitAIEvent('plan_created', 'Execution plan created', 'success');
+      }
+
+      // 5️⃣ Context Update
+    if ((node === 'memory' || node === 'discovery') && update.retrievedMemories) {
+      const memories = update.retrievedMemories;
+      if (memories.length > 0) {
+        emitAIEvent('context_updated', `Found ${memories.length} relevant context items`, 'success', { memories });
+      }
+    }
+  
+      // Update finalState with the latest chunk
+      finalState = { ...finalState, ...update };
+    }
+    result = finalState; // The result of the stream is the final state
   }
 
-  // After execution, check if it paused
+  // After execution, check if it paused for HITL (if not already handled above)
   const newState = await chatGraph.getState(config);
   if (newState?.next?.includes("tools")) {
     const lastMsg =
@@ -461,10 +540,22 @@ export const runAgent = async (
       await saveChatMessage(user.id, "ai", clarificationReply, conversationId);
     }
 
+    emitAIEvent('clarification_needed', 'Awaiting user confirmation for tool execution', 'pending');
     return clarificationReply;
   }
 
+  // 6️⃣ Response Generation
+  emitAIEvent('response_generating', 'Preparing response', 'pending');
+
   let finalReply = result?.reply;
+
+  if (!finalReply) {
+    // Fallback to getting last AI message if reply not in state directly
+    const lastMsg = result?.messages?.[result.messages.length - 1];
+    if (lastMsg instanceof AIMessage) {
+      finalReply = lastMsg.content as string;
+    }
+  }
 
   if (!finalReply || !finalReply.trim()) {
     finalReply =

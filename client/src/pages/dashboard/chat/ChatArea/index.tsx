@@ -4,11 +4,12 @@ import { type RootState } from "../../../../store";
 import { message, Spin } from "antd";
 import { useParams } from "react-router-dom";
 import {
-  apiChat,
+  apiChatStream,
   apiGetChatHistory,
   type ChatMessage as ApiChatMessage,
   type FileEntry,
 } from "../../../../services/api";
+import { aiEventBus } from "../../../../features/activity/aiEventBus";
 import dayjs from "dayjs";
 
 import type { Message } from "./types";
@@ -169,16 +170,20 @@ const ChatArea = () => {
           ? parseInt(incognitoStored, 10) > Date.now()
           : false;
 
-        const result = await apiChat(
+        const finalReply = await apiChatStream(
           content,
           accessCode,
+          (event) => {
+            aiEventBus.emit(event);
+          },
           sessionConversationId,
           incognito,
         );
+
         const aiReply: Message = {
           id: (Date.now() + 1).toString(),
           role: "ai",
-          content: result.reply,
+          content: finalReply,
         };
         setMessages((prev) => [...prev, aiReply]);
       } catch (err: unknown) {

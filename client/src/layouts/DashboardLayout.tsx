@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, lazy, Suspense } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { message, Modal, Dropdown, Tooltip } from "antd";
+import { message, Modal, Dropdown, Tooltip, Spin } from "antd";
 import type { MenuProps } from "antd";
 import { useSelector } from "react-redux";
 import { type RootState } from "../store";
@@ -10,6 +10,8 @@ import type { Step, CallBackProps } from "react-joyride";
 import { useDispatch } from "react-redux";
 import { setUser } from "../store/userSlice";
 import { apiUpdateProfile } from "../services/api";
+
+const IntelligencePanel = lazy(() => import("../features/intelligence/IntelligencePanel"));
 
 const DashboardLayout = () => {
   const navigate = useNavigate();
@@ -27,6 +29,7 @@ const DashboardLayout = () => {
   const [logoutModalVisible, setLogoutModalVisible] = useState(false);
   const [runTour, setRunTour] = useState(false);
   const [isIncognito, setIsIncognito] = useState<boolean>(false);
+
 
   useEffect(() => {
     const checkIncognito = () => {
@@ -316,8 +319,22 @@ const DashboardLayout = () => {
           </div>
         </header>
 
-        <Outlet context={{ sidebarCollapsed, setSidebarCollapsed }} />
+        {/* Dynamic Contextual Workspace */}
+        <div className="flex-1 flex overflow-hidden">
+          <div className="flex-1 relative overflow-hidden flex flex-col min-w-0">
+             <Outlet context={{ sidebarCollapsed, setSidebarCollapsed }} />
+          </div>
+          
+          <Suspense fallback={
+            <div className="w-[280px] xl:w-[320px] h-full border-l border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex items-center justify-center">
+              <Spin />
+            </div>
+          }>
+            <IntelligencePanel />
+          </Suspense>
+        </div>
       </main>
+      
       <Joyride
         steps={tourSteps}
         run={runTour}

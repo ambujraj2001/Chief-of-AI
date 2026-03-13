@@ -130,6 +130,62 @@ export const apiChat = (
 ): Promise<ChatResult> =>
   post<ChatResult>("/chat", { message, accessCode, conversationId, incognito });
 
+import type { AIEvent } from "../features/activity/aiEventBus";
+
+export const apiChatStream = async (
+  message: string,
+  accessCode: string,
+  onEvent: (event: AIEvent) => void,
+  conversationId?: string,
+  incognito?: boolean,
+): Promise<string> => {
+  const res = await fetch(`${BASE_URL}/chat`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "text/event-stream",
+      "x-trace-id": crypto.randomUUID(),
+    },
+    body: JSON.stringify({ message, accessCode, conversationId, incognito }),
+  });
+
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    throw new Error(data?.error ?? `Request failed with status ${res.status}`);
+  }
+
+  const reader = res.body?.getReader();
+  if (!reader) throw new Error("No readable stream");
+
+  const decoder = new TextDecoder();
+  let finalReply = "";
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+
+    const chunk = decoder.decode(value);
+    const lines = chunk.split("\n");
+
+    for (const line of lines) {
+      if (line.trim().startsWith("data: ")) {
+        try {
+          const data = JSON.parse(line.trim().substring(6));
+          if (data.type === "final_reply") {
+            finalReply = data.reply;
+          } else {
+            onEvent(data);
+          }
+        } catch (e) {
+          console.error("Error parsing SSE line:", line, e);
+        }
+      }
+    }
+  }
+
+  return finalReply;
+};
+
 /** POST /auth/forgot-access-code — sends OTP to email */
 export const apiForgotAccessCode = (
   email: string,

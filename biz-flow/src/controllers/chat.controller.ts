@@ -11,9 +11,50 @@ import {
   ChatResponse,
   ChatHistoryResponse,
 } from "../types/chat.types";
-import { log } from "../utils/logger";
+import { log, tracingStorage } from "../utils/logger";
+import fs from "fs";
+import path from "path";
+import crypto from "crypto";
 
 // ─── POST /chat ───────────────────────────────────────────────────────────────
+
+// ─── Local Testing Logger (Appends if same conversationId) ──────────────────
+const writeLocalDebugLog = (conversationId: string | undefined, user: string, request: string, reply: string, events?: any[]) => {
+  try {
+    const logPath = path.join(process.cwd(), "..", "chat_debug.json");
+    let logData: any = { conversationId: "", entries: [] };
+    
+    if (fs.existsSync(logPath)) {
+      try {
+        const content = fs.readFileSync(logPath, "utf-8");
+        const parsed = JSON.parse(content);
+        // Only keep previous entries if they belong to the same conversation
+        if (parsed.conversationId === conversationId) {
+          logData = parsed;
+        }
+      } catch (e) {
+        // Corrupted file, just start over
+      }
+    }
+    
+    // If it's a new or different conversation, reset the log data
+    if (logData.conversationId !== conversationId) {
+      logData = { conversationId: conversationId || "session-unknown", entries: [] };
+    }
+    
+    logData.entries.push({
+      timestamp: new Date().toISOString(),
+      user,
+      request,
+      events,
+      finalReply: reply,
+    });
+    
+    fs.writeFileSync(logPath, JSON.stringify(logData, null, 2), "utf-8");
+  } catch (err) {
+    console.error("Failed to write local chat log:", err);
+  }
+};
 
 export const chat = async (
   req: Request<object, object, ChatRequestBody>,
@@ -56,15 +97,72 @@ export const chat = async (
     });
 
     // ── Run the AI agent ──────────────────────────────────────────────────────
-    const reply = await runAgent(
-      message.trim(),
-      user,
-      conversationId,
-      incognito as boolean | undefined,
-    );
+    const isStream = req.headers.accept === "text/event-stream";
+    const events: any[] = [];
 
-    const response: ChatResponse = { reply };
-    res.status(200).json(response);
+    const currentStore = tracingStorage.getStore();
+    await tracingStorage.run(
+      {
+        traceId: currentStore?.traceId || crypto.randomUUID(),
+        collector: (d) => events.push(d),
+      },
+      async () => {
+        if (isStream) {
+          res.setHeader("Content-Type", "text/event-stream");
+          res.setHeader("Cache-Control", "no-cache");
+          res.setHeader("Connection", "keep-alive");
+
+          const reply = await runAgent(
+            message.trim(),
+            user,
+            conversationId,
+            incognito as boolean | undefined,
+            (event) => {
+              events.push(event);
+              res.write(`data: ${JSON.stringify(event)}\n\n`);
+            },
+          );
+
+          res.write(
+            `data: ${JSON.stringify({ type: "final_reply", reply })}\n\n`,
+          );
+          res.end();
+
+          // Log the full interaction
+          writeLocalDebugLog(
+            conversationId,
+            user.full_name,
+            message.trim(),
+            reply,
+            events,
+          );
+          return;
+        }
+
+        // Non-streaming case - still collect events for debug logging
+        const reply = await runAgent(
+          message.trim(),
+          user,
+          conversationId,
+          incognito as boolean | undefined,
+          (event) => {
+            events.push(event);
+          },
+        );
+
+        const response: ChatResponse = { reply };
+        res.status(200).json(response);
+
+        // Log the full interaction including collected events
+        writeLocalDebugLog(
+          conversationId,
+          user.full_name,
+          message.trim(),
+          reply,
+          events,
+        );
+      },
+    );
   } catch (err) {
     next(err);
   }

@@ -185,6 +185,12 @@ Step 2: Once the user provides or clarifies which item (giving you the ID), proc
 - NEVER mix these up. If the user asks to "change", "edit", or "update", use the update tool.
 - NEVER call a delete tool if the user asked to change or update an item.
 
+CONTEXT CLARITY RULE (VERY IMPORTANT):
+The 'CONTEXT INJECTION' section in the system prompt may already contain retrieved memories, knowledge, or journal entries. 
+IF the user's request is already answered or partially addressed by that context, you MUST use it. 
+DO NOT call 'search_memory', 'search_knowledge', or similar retrieval tools for the same information to avoid redundant processing.
+Only use retrieval tools if the provided context is fundamentally insufficient or irrelevant.
+
 STRICT TOOL CALLING RULE:
 NEVER output tool arguments (like accessCode, content, title) as a JSON string or plain text in your response content.
 If you want to use a tool, you MUST use the native tool calling mechanism.

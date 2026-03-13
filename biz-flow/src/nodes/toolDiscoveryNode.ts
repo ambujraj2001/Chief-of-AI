@@ -13,9 +13,11 @@ import { generateEmbedding } from "../services/embedding.service";
  * using Hybrid Search (Vector + Keyword) based on the user's query.
  */
 export const toolDiscoveryNode = async (state: GraphState) => {
-  const lastMessage = state.messages[state.messages.length - 1];
+  const lastHumanMessage = [...state.messages]
+    .reverse()
+    .find((m) => m._getType() === "human");
   const query =
-    typeof lastMessage.content === "string" ? lastMessage.content : "";
+    typeof lastHumanMessage?.content === "string" ? lastHumanMessage.content : "";
 
   if (!query) {
     return { retrievedTools: [] };

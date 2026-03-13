@@ -6,8 +6,11 @@ const dataset = process.env.AXIOM_DATASET || "backend-logs";
 
 const axiom = token ? new Axiom({ token }) : null;
 
-// Async storage for traceId to avoid manual passing through all functions
-export const tracingStorage = new AsyncLocalStorage<{ traceId: string }>();
+// Async storage for traceId and optional debug collector
+export const tracingStorage = new AsyncLocalStorage<{ 
+  traceId: string; 
+  collector?: (data: any) => void;
+}>();
 
 if (!axiom) {
   console.warn("⚠️ AXIOM_TOKEN is missing. Logging will be console-only.");
@@ -44,7 +47,12 @@ export const log = (data: LogData) => {
     JSON.stringify(enrichedData, null, 2),
   );
 
-  // 2. Ingest to Axiom
+  // 2. Capture for collectors (like chat_debug.json)
+  if (store?.collector) {
+    store.collector(enrichedData);
+  }
+
+  // 3. Ingest to Axiom
   if (axiom) {
     try {
       axiom.ingest(dataset, [enrichedData]);
