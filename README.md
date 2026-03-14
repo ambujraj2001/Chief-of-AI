@@ -9,8 +9,8 @@
 | Module                | Link                                                                                    |
 | :-------------------- | :-------------------------------------------------------------------------------------- |
 | **🌐 Landing Page**   | [rad-belekoy-2e127e.netlify.app](https://rad-belekoy-2e127e.netlify.app/)               |
-| **🚀 Production App** | [nexora-ai.vercel.app](https://nexora-ai.vercel.app/login)                          |
-| **⚡ Backend API**    | [nexora-api.onrender.com](https://nexora-api.onrender.com)                            |
+| **🚀 Production App** | [get-nexora.vercel.app](https://get-nexora.vercel.app/login)                          |
+| **⚡ Backend API**    | [nexora-backend-0e73.onrender.com](https://nexora-backend-0e73.onrender.com)          |
 | **📊 Axiom Logs**     | [Real-time Stream](https://app.axiom.co/ambuj-amwx/stream/nexora-logs)             |
 | **🧪 LangSmith**      | [smith.langchain.com](https://smith.langchain.com/)                                     |
 | **🎨 UX Design**      | [Stitch Workspace](https://stitch.withgoogle.com/projects/1326706984944929208)          |

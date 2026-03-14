@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
-const CTA_URL = "https://chief-of-ai.vercel.app/";
+const CTA_URL = "https://get-nexora.vercel.app/";
 
 const CTASection = () => {
   return (

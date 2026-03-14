@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Bot, ArrowRight } from "lucide-react";
 
-const CTA_URL = "https://nexora-ai.vercel.app/";
+const CTA_URL = "https://get-nexora.vercel.app/";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);

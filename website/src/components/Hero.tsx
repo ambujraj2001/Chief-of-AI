@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 
-const CTA_URL = "https://nexora-ai.vercel.app/";
+const CTA_URL = "https://get-nexora.vercel.app/";
 
 const Hero = () => {
   return (
