@@ -1,7 +1,10 @@
 import { supabase } from "../config/supabase";
 import { generateEmbedding } from "./embedding.service";
+import * as appService from "./app.service";
 
 export type EntryType = "memory" | "journal" | "knowledge" | "note";
+
+export const joinSharedApp = appService.joinSharedApp;
 
 export const findEntryByTitleAndType = async (
   userId: string,

@@ -372,3 +372,19 @@ export const deleteApp = async (appId: string): Promise<void> => {
   const { error } = await supabase.from("apps").delete().eq("id", appId);
   if (error) throw new Error(`Failed to delete app: ${error.message}`);
 };
+export const joinSharedApp = async (data: { userId: string; code: string }): Promise<boolean> => {
+  const { userId, code } = data;
+  const app = await getAppByJoinCode(code);
+
+  if (!app) {
+    throw new Error("Invalid share code.");
+  }
+
+  const alreadyMember = await isAppMember(app.id, userId);
+  if (alreadyMember) {
+    throw new Error("You are already a member of this workspace.");
+  }
+
+  await addAppMember(app.id, userId);
+  return true;
+};

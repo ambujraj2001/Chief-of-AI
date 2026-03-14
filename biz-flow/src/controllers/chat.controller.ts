@@ -6,12 +6,13 @@ import {
   deleteUserChatHistory,
 } from "../services/chat.service";
 import { runAgent } from "../agents/chatAgent";
+import { engine } from "../flows";
 import {
   ChatRequestBody,
   ChatResponse,
   ChatHistoryResponse,
 } from "../types/chat.types";
-import { log, tracingStorage } from "../utils/logger";
+import { log, logError, tracingStorage } from "../utils/logger";
 import fs from "fs";
 import path from "path";
 import crypto from "crypto";
@@ -111,7 +112,58 @@ export const chat = async (
           res.setHeader("Content-Type", "text/event-stream");
           res.setHeader("Cache-Control", "no-cache");
           res.setHeader("Connection", "keep-alive");
+        }
 
+        // ── 1. Attempt Deterministic Flow ─────────────────────────────────────
+        try {
+          log({
+            event: "flow_attempt",
+            message: message.trim(),
+            userId: user.id,
+          });
+
+          const flowResult = await engine.tryRunDeterministicFlow(
+            message.trim(),
+            user,
+            {
+              onEvent: (event) => {
+                events.push(event);
+                if (isStream) {
+                  res.write(`data: ${JSON.stringify(event)}\n\n`);
+                }
+              },
+              conversationId,
+            },
+          );
+
+          if (flowResult?.type === "success") {
+            const reply = flowResult.reply || "";
+            if (isStream) {
+              res.write(
+                `data: ${JSON.stringify({ type: "final_reply", reply })}\n\n`,
+              );
+              res.end();
+            } else {
+              const response: ChatResponse = { reply };
+              res.status(200).json(response);
+            }
+
+            writeLocalDebugLog(
+              conversationId,
+              user.full_name,
+              message.trim(),
+              reply,
+              events,
+            );
+            return;
+          }
+        } catch (err) {
+          logError("deterministic_flow_error", err as Error, user.id);
+          // Fallback through to agent
+        }
+
+        // ── 2. Fallback to AI Agent ───────────────────────────────────────────
+        if (isStream) {
           const reply = await runAgent(
             message.trim(),
             user,
