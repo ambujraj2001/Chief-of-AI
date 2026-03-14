@@ -1,6 +1,11 @@
 import React, { useMemo } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import ReminderListCard from "./components/ReminderListCard";
+import TaskListCard from "./components/TaskListCard";
+import MemoryListCard from "./components/MemoryListCard";
+import FileListCard from "./components/FileListCard";
+import ContactListCard from "./components/ContactListCard";
 
 interface AiMessageProps {
   content: string;
@@ -13,9 +18,25 @@ interface ClarificationData {
   options: string[];
 }
 
+interface UIComponentData {
+  type: "ui_component";
+  component: string;
+  data: unknown;
+}
+
 type ParsedContent =
   | { kind: "clarification"; data: ClarificationData }
+  | { kind: "ui_component"; data: UIComponentData; text?: string }
   | { kind: "text"; text: string };
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+const COMPONENT_REGISTRY: Record<string, React.FC<{ data: any }>> = {
+  reminder_list: ReminderListCard as React.FC<{ data: any }>,
+  task_list: TaskListCard as React.FC<{ data: any }>,
+  memory_list: MemoryListCard as React.FC<{ data: any }>,
+  file_list: FileListCard as React.FC<{ data: any }>,
+  contact_list: ContactListCard as React.FC<{ data: any }>,
+};
 
 /**
  * Try to extract a leading JSON object from a string that may have
@@ -51,6 +72,9 @@ const AiMessage: React.FC<AiMessageProps> = ({ content, onOptionSelect }) => {
         if (parsed.type === "clarification") {
           return { kind: "clarification", data: parsed as ClarificationData };
         }
+        if (parsed.type === "ui_component") {
+          return { kind: "ui_component", data: parsed as unknown as UIComponentData };
+        }
         if (parsed.message) {
           return { kind: "text", text: parsed.message };
         }
@@ -67,6 +91,9 @@ const AiMessage: React.FC<AiMessageProps> = ({ content, onOptionSelect }) => {
               ? `${data.question}\n\n${rest}`
               : rest;
           return { kind: "clarification", data };
+        }
+        if (parsed.type === "ui_component") {
+          return { kind: "ui_component", data: parsed as unknown as UIComponentData, text: rest };
         }
         const msg = typeof parsed.message === "string" ? parsed.message : "";
         const fullText = rest ? (msg ? `${msg}\n\n${rest}` : rest) : msg;
@@ -105,6 +132,25 @@ const AiMessage: React.FC<AiMessageProps> = ({ content, onOptionSelect }) => {
                   </button>
                 ))}
               </div>
+            </div>
+          ) : processed.kind === "ui_component" ? (
+            <div className="flex flex-col gap-3">
+              {processed.text && (
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {processed.text}
+                </ReactMarkdown>
+              )}
+              {(() => {
+                const UIComponent = COMPONENT_REGISTRY[processed.data.component];
+                if (UIComponent) {
+                  return <UIComponent data={processed.data.data} />;
+                }
+                return (
+                  <div className="p-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg text-amber-600 dark:text-amber-400 text-xs italic">
+                    Unsupported UI component: {processed.data.component}
+                  </div>
+                );
+              })()}
             </div>
           ) : (
             <ReactMarkdown remarkPlugins={[remarkGfm]}>

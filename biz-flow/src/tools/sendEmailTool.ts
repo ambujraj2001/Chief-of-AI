@@ -5,13 +5,33 @@ import nodemailer from "nodemailer";
 export const sendEmailTool = new DynamicStructuredTool({
   name: "send_email",
   description:
-    "Send an email to a specific address with a subject and message. ALWAYS call this tool when the user explicitly asks to send an email. Do NOT reply manually or confirm without actually using the tool.",
+    "Sends an email. Use 'automated' to send silently via the server's SMTP (Brevo). Use 'manual' to open the email draft/pad in the UI for the user to review and send.",
   schema: z.object({
     to: z.string().describe("The recipient's email address"),
+    name: z.string().optional().describe("The name of the recipient"),
     subject: z.string().describe("The subject of the email"),
     message: z.string().describe("The body of the email (text or HTML)"),
+    type: z
+      .enum(["automated", "manual"])
+      .default("automated")
+      .describe(
+        "Whether to send automatically ('automated') or prepare for manual review ('manual').",
+      ),
   }),
-  func: async ({ to, subject, message }) => {
+  func: async ({ to, name, subject, message, type }) => {
+    if (type === "manual") {
+      return JSON.stringify({
+        status: "ready",
+        message: `I've prepared the email for ${name || to}. You can review and send it using the button below.`,
+        contact: {
+          name: name || "Recipient",
+          email: to,
+          subject: subject,
+          body: message,
+        },
+      });
+    }
+
     try {
       const transporter = nodemailer.createTransport({
         host: process.env.SMTP_HOST,

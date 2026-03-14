@@ -57,6 +57,8 @@ import {
   deleteRoutineTool,
   updateRoutineTool,
 } from "./routines";
+import { makeCallTool } from "./makeCallTool";
+
 
 export const tools = [
   // Math Tools
@@ -118,6 +120,8 @@ export const tools = [
   // External Tools
   webSearchTool,
   sendEmailTool,
+
+  makeCallTool,
   randomJokeTool,
 
   // Safety Tools

@@ -101,7 +101,20 @@ interface FinalResponse {
   type: "final";
   message: string;
 }
+
+interface UIComponentResponse {
+  type: "ui_component";
+  component: "reminder_list" | "task_list" | "memory_list" | "file_list" | "contact_list";
+  data: any;
+}
 \`\`\`
+
+GENERATIVE UI RULES:
+* Use "ui_component" responses when the user asks to see/list items (reminders, tasks, memories, files, contacts).
+* The "data" field must contain the raw array of items returned by the tools.
+* Do not return database IDs or internal metadata in the "data" field if possible.
+* If you cannot perform a physical action (like making a phone call or sending a real email), provide the relevant contact information in a "ui_component" response so the user can use the integrated action buttons.
+
 
 TOOL EXECUTION RULE:
 If you need to call a tool, USE THE NATIVE TOOL CALLING API. DO NOT output JSON text.
@@ -156,7 +169,8 @@ interface DeleteFileArgs { accessCode: string; id: string; }
 
 // External & Utility Tools
 interface WebSearchArgs { query: string; }
-interface SendEmailArgs { to: string; subject: string; message: string; }
+interface SendEmailArgs { to: string; name?: string; subject: string; message: string; type?: "automated" | "manual"; }
+interface MakePhoneCallArgs { phoneNumber: string; name?: string; }
 interface RandomJokeArgs {}
 interface AddNumbersArgs { a: number; b: number; }
 interface SubtractNumbersArgs { a: number; b: number; }
@@ -285,7 +299,7 @@ If you simply print the JSON parameters, the system will fail.
    */
   if (
     !parsed ||
-    !(parsed.type === "clarification" || parsed.type === "final")
+    !(parsed.type === "clarification" || parsed.type === "final" || parsed.type === "ui_component")
   ) {
     log({
       event: "planner_node_invalid_json_retry",
@@ -310,6 +324,12 @@ interface ClarificationResponse {
 interface FinalResponse {
   type: "final";
   message: string;
+}
+
+interface UIComponentResponse {
+  type: "ui_component";
+  component: "reminder_list" | "task_list" | "memory_list" | "file_list" | "contact_list";
+  data: any;
 }
 \`\`\`
 
@@ -347,19 +367,24 @@ If you meant to execute a tool, USE THE NATIVE TOOL API instead of returning JSO
     try {
       const retryParsed = retryJSON ? JSON.parse(retryJSON) : null;
 
-      if (retryParsed) {
+      if (retryParsed && typeof retryParsed === "object" && retryParsed.type) {
         response = new AIMessage({
           content: JSON.stringify(retryParsed),
         });
       } else {
-        throw new Error("Retry JSON parse failed");
+        // Fallback: Wrap raw retry content in a final response instead of erroring
+        response = new AIMessage({
+          content: JSON.stringify({
+            type: "final",
+            message: retryContent || "I encountered a formatting issue, but I'm here to help. What can I do for you?",
+          }),
+        });
       }
     } catch {
       response = new AIMessage({
         content: JSON.stringify({
           type: "final",
-          message:
-            "I encountered an internal formatting error. Please try again.",
+          message: retryContent || "I encountered an internal formatting error. Please try again.",
         }),
       });
     }

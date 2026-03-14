@@ -66,6 +66,8 @@ export const toolMetadataList: ToolMetadata[] = [
 
   { name: "web_search", version: v, category: "web", tags: ["search", "internet"], intents: ["tool_task", "general_chat"] },
   { name: "send_email", version: v, category: "communication", tags: ["email", "send"], intents: ["tool_task"] },
+
+  { name: "make_phone_call", version: v, category: "communication", tags: ["call", "phone"], intents: ["tool_task"] },
   { name: "get_joke", version: v, category: "fun", tags: ["joke", "humor"], intents: ["tool_task", "general_chat"] },
 
   { name: "handle_inappropriate_request", version: v, category: "safety", tags: ["safety", "guardrails"], intents: ["general_chat", "tool_task"] },

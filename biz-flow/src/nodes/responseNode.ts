@@ -59,6 +59,8 @@ export const responseNode = async (state: GraphState) => {
           finalReply = JSON.stringify(parsed);
         } else if (parsed.type === "final" && parsed.message) {
           finalReply = parsed.message;
+        } else if (parsed.type === "ui_component") {
+          finalReply = JSON.stringify(parsed);
         } else if (parsed.message) {
           finalReply = parsed.message;
         }

@@ -251,6 +251,12 @@ interface FinalResponse {
   type: "final";
   message: string;
 }
+
+interface UIComponentResponse {
+  type: "ui_component";
+  component: "reminder_list" | "task_list" | "memory_list" | "file_list" | "contact_list";
+  data: any;
+}
 \`\`\`
 
 Do not include:
@@ -290,6 +296,12 @@ When a tool returns data:
 If a tool parameter is optional (like "title"), generate it automatically from context.
 
 Never ask the user for internal parameters.
+
+GENERATIVE UI RULES
+* Use "ui_component" responses when the user asks to see/list items (reminders, tasks, memories, files, contacts).
+* The "data" field must contain the raw array of items returned by the tools.
+* Return exactly ONE valid JSON object matching these interfaces.
+* If you cannot perform a physical action (like making a phone call), provide the relevant contact information in a "ui_component" response so the user can use the integrated action buttons.
 
 COMMUNICATION STYLE
 
@@ -374,6 +386,8 @@ export const runAgent = async (
             ? `\nOptions I gave: ${parsed.options.join(", ")}`
             : "";
           aiContent = `${parsed.question}${opts}`;
+        } else if (parsed?.type === "ui_component" && parsed.component) {
+          aiContent = `[System displayed a ${parsed.component} with ${Array.isArray(parsed.data) ? parsed.data.length : 'some'} items]`;
         }
       } catch {
         // Not JSON, use as-is
