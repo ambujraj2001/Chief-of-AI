@@ -8,7 +8,7 @@
 
 | Module                | Link                                                                                    |
 | :-------------------- | :-------------------------------------------------------------------------------------- |
-| **🌐 Landing Page**   | [rad-belekoy-2e127e.netlify.app](https://rad-belekoy-2e127e.netlify.app/)               |
+| **🌐 Landing Page**   | [get-nexora-ai.netlify.app](https://get-nexora-ai.netlify.app/)               |
 | **🚀 Production App** | [get-nexora.vercel.app](https://get-nexora.vercel.app/login)                          |
 | **⚡ Backend API**    | [nexora-backend-0e73.onrender.com](https://nexora-backend-0e73.onrender.com)          |
 | **📊 Axiom Logs**     | [Real-time Stream](https://app.axiom.co/ambuj-amwx/stream/nexora-logs)             |
