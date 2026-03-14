@@ -1,8 +1,8 @@
 {
-  "conversationId": "2e31f73a-23bf-47f6-904e-2a0fa0a233e5",
+  "conversationId": "e258c92a-efe0-49e3-85f1-5e0dc63a0a27",
   "entries": [
     {
-      "timestamp": "2026-03-14T21:53:13.174Z",
+      "timestamp": "2026-03-14T22:34:37.098Z",
       "user": "Test",
       "request": "list reminders",
       "events": [
@@ -10,8 +10,8 @@
           "event": "flow_attempt",
           "message": "list reminders",
           "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "traceId": "d97a8203-0c14-49cd-9df7-f62ec67e4fe0",
-          "timestamp": "2026-03-14T21:53:12.856Z",
+          "traceId": "d5f84656-e664-4992-a6da-ac99a6c9168d",
+          "timestamp": "2026-03-14T22:34:36.763Z",
           "environment": "development"
         },
         {
@@ -22,102 +22,43 @@
           "parameters": {
             "originalMessage": "list reminders"
           },
-          "traceId": "d97a8203-0c14-49cd-9df7-f62ec67e4fe0",
-          "timestamp": "2026-03-14T21:53:12.942Z",
+          "traceId": "d5f84656-e664-4992-a6da-ac99a6c9168d",
+          "timestamp": "2026-03-14T22:34:36.840Z",
           "environment": "development"
         },
         {
-          "id": "93pch",
+          "id": "tp8kxh",
           "type": "thinking",
           "message": "Checking your reminders...",
           "status": "pending",
-          "timestamp": 1773525193020
+          "timestamp": 1773527676905
         },
         {
-          "id": "wvvice",
+          "id": "pmtzvh",
           "type": "tool_start",
           "message": "Fetching reminders from database",
           "status": "pending",
-          "timestamp": 1773525193020
+          "timestamp": 1773527676905
         },
         {
-          "id": "6y0l4i",
+          "id": "cw94ur",
           "type": "final_reply",
           "message": "{\"type\":\"ui_component\",\"component\":\"reminder_list\",\"data\":[{\"title\":\"Call potential cofounder\",\"reminder_at\":\"2026-03-14T02:12:18.229916\",\"status\":\"notified\"},{\"title\":\"Work on YC application answers\",\"reminder_at\":\"2026-03-14T21:12:18.229916\",\"status\":\"notified\"},{\"title\":\"pay rent tomorrow\",\"reminder_at\":\"2026-03-15T04:30:00\",\"status\":\"active\"},{\"title\":\"Call Rahul\",\"reminder_at\":\"2026-03-15T17:00:00\",\"status\":\"active\"},{\"title\":\"Wish Riya on her birthday\",\"reminder_at\":\"2026-03-15T19:45:00\",\"status\":\"active\"},{\"title\":\"Review AI system architecture\",\"reminder_at\":\"2026-03-15T21:12:18.229916\",\"status\":\"active\"}]}",
           "status": "success",
-          "timestamp": 1773525193172
+          "timestamp": 1773527677097
         },
         {
           "event": "flow_lifecycle",
           "action": "flow_success",
           "flowId": "list_reminders",
           "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "latency": 230,
-          "traceId": "d97a8203-0c14-49cd-9df7-f62ec67e4fe0",
-          "timestamp": "2026-03-14T21:53:13.172Z",
+          "latency": 258,
+          "traceId": "d5f84656-e664-4992-a6da-ac99a6c9168d",
+          "timestamp": "2026-03-14T22:34:37.097Z",
           "environment": "development"
         }
       ],
       "finalReply": "{\"type\":\"ui_component\",\"component\":\"reminder_list\",\"data\":[{\"title\":\"Call potential cofounder\",\"reminder_at\":\"2026-03-14T02:12:18.229916\",\"status\":\"notified\"},{\"title\":\"Work on YC application answers\",\"reminder_at\":\"2026-03-14T21:12:18.229916\",\"status\":\"notified\"},{\"title\":\"pay rent tomorrow\",\"reminder_at\":\"2026-03-15T04:30:00\",\"status\":\"active\"},{\"title\":\"Call Rahul\",\"reminder_at\":\"2026-03-15T17:00:00\",\"status\":\"active\"},{\"title\":\"Wish Riya on her birthday\",\"reminder_at\":\"2026-03-15T19:45:00\",\"status\":\"active\"},{\"title\":\"Review AI system architecture\",\"reminder_at\":\"2026-03-15T21:12:18.229916\",\"status\":\"active\"}]}"
-    },
-    {
-      "timestamp": "2026-03-14T21:53:23.160Z",
-      "user": "Test",
-      "request": "list task",
-      "events": [
-        {
-          "event": "flow_attempt",
-          "message": "list task",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "traceId": "a6719dff-22d6-422e-ab76-5b7603590e02",
-          "timestamp": "2026-03-14T21:53:22.858Z",
-          "environment": "development"
-        },
-        {
-          "event": "flow_lifecycle",
-          "action": "flow_selected",
-          "flowId": "list_tasks",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "parameters": {
-            "originalMessage": "list task"
-          },
-          "traceId": "a6719dff-22d6-422e-ab76-5b7603590e02",
-          "timestamp": "2026-03-14T21:53:22.933Z",
-          "environment": "development"
-        },
-        {
-          "id": "0ip9kx",
-          "type": "thinking",
-          "message": "Fetching your tasks...",
-          "status": "pending",
-          "timestamp": 1773525203003
-        },
-        {
-          "id": "w1raqc",
-          "type": "tool_start",
-          "message": "Retrieving tasks from database",
-          "status": "pending",
-          "timestamp": 1773525203003
-        },
-        {
-          "id": "nq9xhi",
-          "type": "final_reply",
-          "message": "{\"type\":\"ui_component\",\"component\":\"task_list\",\"data\":[{\"title\":\"Prepare YC application\",\"is_completed\":false,\"status\":\"pending\"},{\"title\":\"Improve Nexora landing page\",\"is_completed\":false,\"status\":\"pending\"},{\"title\":\"Test Gemini API integration\",\"is_completed\":false,\"status\":\"pending\"},{\"title\":\"Add AI memory sharing feature\",\"is_completed\":false,\"status\":\"pending\"},{\"title\":\"Refactor LangGraph flow\",\"is_completed\":false,\"status\":\"pending\"},{\"title\":\"Optimize pgvector queries\",\"is_completed\":false,\"status\":\"pending\"},{\"title\":\"prepare yc demo\",\"is_completed\":false,\"status\":\"pending\"},{\"title\":\"Solve daily coding question\",\"is_completed\":false,\"status\":\"pending\"}]}",
-          "status": "success",
-          "timestamp": 1773525203155
-        },
-        {
-          "event": "flow_lifecycle",
-          "action": "flow_success",
-          "flowId": "list_tasks",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "latency": 224,
-          "traceId": "a6719dff-22d6-422e-ab76-5b7603590e02",
-          "timestamp": "2026-03-14T21:53:23.156Z",
-          "environment": "development"
-        }
-      ],
-      "finalReply": "{\"type\":\"ui_component\",\"component\":\"task_list\",\"data\":[{\"title\":\"Prepare YC application\",\"is_completed\":false,\"status\":\"pending\"},{\"title\":\"Improve Nexora landing page\",\"is_completed\":false,\"status\":\"pending\"},{\"title\":\"Test Gemini API integration\",\"is_completed\":false,\"status\":\"pending\"},{\"title\":\"Add AI memory sharing feature\",\"is_completed\":false,\"status\":\"pending\"},{\"title\":\"Refactor LangGraph flow\",\"is_completed\":false,\"status\":\"pending\"},{\"title\":\"Optimize pgvector queries\",\"is_completed\":false,\"status\":\"pending\"},{\"title\":\"prepare yc demo\",\"is_completed\":false,\"status\":\"pending\"},{\"title\":\"Solve daily coding question\",\"is_completed\":false,\"status\":\"pending\"}]}"
     }
   ]
 }

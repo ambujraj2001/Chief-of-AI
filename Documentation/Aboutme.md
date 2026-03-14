@@ -1,10 +1,10 @@
-# Nexorar Ultimate Executive AI Chief of Staff
+# Nexora: Your Ultimate Executive AI Chief of Staff
 
-## Nexora premium AI-powered productivity workspace designed for high-performance individuals. More than a chatbot, it acts as your intelligent assistant—bringing together tasks, calendar, documents, and memory into one seamless conversational experience.
+## Nexora is a premium AI-powered productivity workspace designed for high-performance individuals. More than a chatbot, it acts as your intelligent assistant—bringing together tasks, calendar, documents, and memory into one seamless conversational experience.
 
 ## 🚀 The Product Ecosystem
 
-Nexoraides a multi-faceted dashboard where every module is seamlessly connected to the AI core:
+Nexora provides a multi-faceted dashboard where every module is seamlessly connected to the AI core:
 
 ### 1. Intelligent Chat Command Center
 
@@ -22,13 +22,13 @@ The heart of the product. A high-performance chat interface where you can speak 
 
 ### 3. "AI-Powered" Document Intelligence
 
-- **Instant Text Extraction**: Upload a Word document (`.docx`), and Nexoradiately parses it into high-quality text for the AI to ingest.
+- **Instant Text Extraction**: Upload a Word document (`.docx`), and Nexora immediately parses it into high-quality text for the AI to ingest.
 - **Universal Knowledge Retrieval**: Chat with your documents. Ask questions about specific contracts, project plans, or data exports (`.csv`) without opening the files.
 - **Read-Only Vault**: A central **Files Gallery** for quick access to your history of uploaded wisdom.
 
 ### 4. Persistent Memory & Knowledge Base
 
-- **Contextual Learning**: Nexorambers your preferences, past topics, and key facts. It builds a **Common Knowledge Base** specific to _you_.
+- **Contextual Learning**: Nexora remembers your preferences, past topics, and key facts. It builds a **Common Knowledge Base** specific to _you_.
 - **Memory Bank**: Access the "Memories" tab to see exactly what the AI has learned about your workflow and personal nuances.
 - **Complete Audit Trail**: The **Activity Feed** logs every single AI interaction, providing a transparent history of your operations.
 
@@ -36,7 +36,7 @@ The heart of the product. A high-performance chat interface where you can speak 
 
 ## 💬 What can you do in the Chat? (Examples)
 
-Nexorauilt to handle the "Heavy Lifting" of your digital life. Here are real-world examples:
+Nexora is built to handle the "Heavy Lifting" of your digital life. Here are real-world examples:
 
 ### **Project Management**
 
@@ -69,4 +69,4 @@ Nexorauilt to handle the "Heavy Lifting" of your digital life. Here are real-wor
 
 ---
 
-\*\*Nexora the intersection of intelligence and elegance—the professional upgrade for those who value their time.
+**Nexora** is the intersection of intelligence and elegance—the professional upgrade for those who value their time.

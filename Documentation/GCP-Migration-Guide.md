@@ -1,6 +1,6 @@
 # GCP Migration Guide -- Nexora
 
-> Step-by-step instructions for migrating Nexoraoogle Cloud Platform.
+> Step-by-step instructions for migrating Nexora to Google Cloud Platform.
 > Estimated monthly cost: ~$10-20/month | GCP Credits: $300
 
 ---
@@ -70,7 +70,7 @@ gcloud config set project nexora
 ### Via CLI
 
 ```bash
-gcloud projects create nexora --name="NexorNexora
+gcloud projects create nexora --name="Nexora"
 gcloud config set project nexora
 ```
 
@@ -214,7 +214,7 @@ This stores your Docker container images for Cloud Run.
 gcloud artifacts repositories create nexora-repo \
   --repository-format=docker \
   --location=us-central1 \
-  --description="Nexoraainer images"
+  --description="Nexora container images"
 ```
 
 ### Configure Docker to use Artifact Registry
@@ -308,7 +308,7 @@ Create a dedicated service account for Cloud Run with the minimum required permi
 
 ```bash
 gcloud iam service-accounts create nexora-runner \
-  --display-name="Nexorad Run Service Account"
+  --display-name="Nexora Cloud Run Service Account"
 ```
 
 ### Grant required roles
