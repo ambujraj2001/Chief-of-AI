@@ -1,548 +1,429 @@
 {
-  "conversationId": "2674439d-ed90-4f0b-b79f-e9f0a3c46100",
+  "conversationId": "2ca9aea1-6a13-4b1e-8882-fb45f7a4a655",
   "entries": [
     {
-      "timestamp": "2026-03-14T11:50:46.755Z",
+      "timestamp": "2026-03-14T19:44:34.586Z",
       "user": "Test",
-      "request": "what was my memory about london",
+      "request": "Can you generate a share code for my memory",
       "events": [
         {
-          "id": "lgccuq",
-          "type": "input_received",
-          "message": "User request received",
-          "status": "info",
-          "timestamp": 1773489042014
-        },
-        {
-          "event": "input_received",
-          "message": "User request received",
-          "status": "info",
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:42.014Z",
-          "environment": "development"
-        },
-        {
-          "event": "agent_execution_started",
+          "event": "flow_attempt",
+          "message": "Can you generate a share code for my memory",
           "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "conversationId": "2674439d-ed90-4f0b-b79f-e9f0a3c46100",
-          "historyCount": 1,
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:42.443Z",
+          "traceId": "07687fbc-8a10-4a65-8114-d23ac6c1dcc1",
+          "timestamp": "2026-03-14T19:44:33.787Z",
           "environment": "development"
         },
         {
-          "id": "fbo8c",
-          "type": "thinking",
-          "message": "Agent thinking...",
-          "status": "pending",
-          "timestamp": 1773489042544
-        },
-        {
-          "event": "thinking",
-          "message": "Agent thinking...",
-          "status": "pending",
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:42.544Z",
-          "environment": "development"
-        },
-        {
-          "event": "graph_node_debug",
-          "node": "routerNode_start",
-          "messageCount": 2,
-          "toolResultsCount": 0,
-          "iterations": 0,
-          "intent": "general_chat",
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:42.558Z",
-          "environment": "development"
-        },
-        {
-          "event": "router_node_started",
+          "event": "flow_lifecycle",
+          "action": "flow_selected",
+          "flowId": "share_memory",
           "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "messageCount": 2,
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:42.558Z",
-          "environment": "development"
-        },
-        {
-          "event": "router_node_completed",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "intent": "memory_query",
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:42.915Z",
-          "environment": "development"
-        },
-        {
-          "event": "graph_node_debug",
-          "node": "routerNode_end",
-          "messageCount": 2,
-          "toolResultsCount": 0,
-          "iterations": 0,
-          "intent": "memory_query",
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:42.915Z",
-          "environment": "development"
-        },
-        {
-          "id": "mp9ci7",
-          "type": "intent_detected",
-          "message": "Intent detected: memory_query",
-          "status": "success",
-          "timestamp": 1773489042919
-        },
-        {
-          "event": "intent_detected",
-          "message": "Intent detected: memory_query",
-          "status": "success",
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:42.919Z",
-          "environment": "development"
-        },
-        {
-          "event": "graph_node_debug",
-          "node": "memoryNode_start",
-          "messageCount": 2,
-          "toolResultsCount": 0,
-          "iterations": 0,
-          "intent": "memory_query",
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:42.919Z",
-          "environment": "development"
-        },
-        {
-          "id": "rtanfs",
-          "type": "memory_search_started",
-          "message": "Searching for memories about: \"what was my memory about london\"",
-          "status": "pending",
-          "timestamp": 1773489042919
-        },
-        {
-          "event": "memory_search_started",
-          "message": "Searching for memories about: \"what was my memory about london\"",
-          "status": "pending",
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:42.919Z",
-          "environment": "development"
-        },
-        {
-          "event": "tool_execution_started",
-          "toolName": "search_memory",
-          "args": {
-            "query": "what was my memory about london"
+          "parameters": {
+            "originalMessage": "can you generate a share code for my memory"
           },
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:42.920Z",
+          "traceId": "07687fbc-8a10-4a65-8114-d23ac6c1dcc1",
+          "timestamp": "2026-03-14T19:44:33.870Z",
           "environment": "development"
         },
         {
-          "id": "68smxf",
-          "type": "tool_complete",
-          "message": "Tool execution finished",
-          "status": "success",
-          "timestamp": 1773489043695
-        },
-        {
-          "event": "tool_complete",
-          "message": "Tool execution finished",
-          "status": "success",
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:43.695Z",
-          "environment": "development"
-        },
-        {
-          "id": "1kdr2",
-          "type": "memory_search_fallback_triggered",
-          "message": "Low semantic match, performing full recall...",
-          "status": "warning",
-          "timestamp": 1773489043695
-        },
-        {
-          "event": "memory_search_fallback_triggered",
-          "message": "Low semantic match, performing full recall...",
-          "status": "warning",
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:43.695Z",
-          "environment": "development"
-        },
-        {
-          "event": "tool_execution_started",
-          "toolName": "get_memories",
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:43.697Z",
-          "environment": "development"
-        },
-        {
-          "id": "xpwrxb",
-          "type": "tool_complete",
-          "message": "Tool execution finished",
-          "status": "success",
-          "timestamp": 1773489044594
-        },
-        {
-          "event": "tool_complete",
-          "message": "Tool execution finished",
-          "status": "success",
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:44.594Z",
-          "environment": "development"
-        },
-        {
-          "id": "8vzpc",
-          "type": "memory_candidates_retrieved",
-          "message": "Retrieved 8 candidates for filtering",
-          "status": "info",
-          "timestamp": 1773489044595,
-          "data": {
-            "count": 8
-          }
-        },
-        {
-          "event": "memory_candidates_retrieved",
-          "message": "Retrieved 8 candidates for filtering",
-          "status": "info",
-          "count": 8,
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:44.595Z",
-          "environment": "development"
-        },
-        {
-          "id": "h3j67n",
-          "type": "memory_filtered",
-          "message": "Filtered down to 3 relevant memories",
-          "status": "success",
-          "timestamp": 1773489044929,
-          "data": {
-            "count": 3
-          }
-        },
-        {
-          "event": "memory_filtered",
-          "message": "Filtered down to 3 relevant memories",
-          "status": "success",
-          "count": 3,
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:44.929Z",
-          "environment": "development"
-        },
-        {
-          "event": "memory_node_completed",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "memoriesFound": 3,
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:44.930Z",
-          "environment": "development"
-        },
-        {
-          "event": "graph_node_debug",
-          "node": "memoryNode",
-          "messageCount": 2,
-          "toolResultsCount": 0,
-          "iterations": 0,
-          "intent": "memory_query",
-          "memoriesFound": 3,
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:44.930Z",
-          "environment": "development"
-        },
-        {
-          "id": "wfporq",
-          "type": "context_updated",
-          "message": "Found 3 relevant context items",
-          "status": "success",
-          "timestamp": 1773489044935,
-          "data": {
-            "memories": [
-              {
-                "id": "7bd24b32-5d28-4f86-aa95-2ff5a17a600e",
-                "user_id": "f43ac274-e715-457a-93ff-f92bb660c754",
-                "type": "memory",
-                "title": "London Solo Achievement",
-                "content": "Visiting London alone at 24 made me confident I can build global products.",
-                "embedding": null,
-                "created_at": "2026-03-13T21:14:38.336113",
-                "shared_with": []
-              },
-              {
-                "id": "aeaf43f2-8776-4d7c-a608-ac8195438b88",
-                "user_id": "f43ac274-e715-457a-93ff-f92bb660c754",
-                "type": "memory",
-                "title": "London Trip Inspiration",
-                "content": "While visiting London I reflected on building Chief of AI as a personal AI operating system.",
-                "embedding": null,
-                "created_at": "2026-03-13T21:14:38.336113",
-                "shared_with": []
-              },
-              {
-                "id": "973c6724-17f6-42a2-90cf-dd80fe48f3ae",
-                "user_id": "f43ac274-e715-457a-93ff-f92bb660c754",
-                "type": "memory",
-                "title": "London Trip Inspiration",
-                "content": "While visiting London I reflected on building Chief of AI as a personal AI operating system.",
-                "embedding": null,
-                "created_at": "2026-03-13T21:12:18.229916",
-                "shared_with": [
-                  {
-                    "full_name": "Test",
-                    "email": "realambuj@gmail.com"
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "event": "context_updated",
-          "message": "Found 3 relevant context items",
-          "status": "success",
-          "memories": [
-            {
-              "id": "7bd24b32-5d28-4f86-aa95-2ff5a17a600e",
-              "user_id": "f43ac274-e715-457a-93ff-f92bb660c754",
-              "type": "memory",
-              "title": "London Solo Achievement",
-              "content": "Visiting London alone at 24 made me confident I can build global products.",
-              "embedding": null,
-              "created_at": "2026-03-13T21:14:38.336113",
-              "shared_with": []
-            },
-            {
-              "id": "aeaf43f2-8776-4d7c-a608-ac8195438b88",
-              "user_id": "f43ac274-e715-457a-93ff-f92bb660c754",
-              "type": "memory",
-              "title": "London Trip Inspiration",
-              "content": "While visiting London I reflected on building Chief of AI as a personal AI operating system.",
-              "embedding": null,
-              "created_at": "2026-03-13T21:14:38.336113",
-              "shared_with": []
-            },
-            {
-              "id": "973c6724-17f6-42a2-90cf-dd80fe48f3ae",
-              "user_id": "f43ac274-e715-457a-93ff-f92bb660c754",
-              "type": "memory",
-              "title": "London Trip Inspiration",
-              "content": "While visiting London I reflected on building Chief of AI as a personal AI operating system.",
-              "embedding": null,
-              "created_at": "2026-03-13T21:12:18.229916",
-              "shared_with": [
-                {
-                  "full_name": "Test",
-                  "email": "realambuj@gmail.com"
-                }
-              ]
-            }
-          ],
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:44.935Z",
-          "environment": "development"
-        },
-        {
-          "event": "tool_discovery_started",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "query": "what was my memory about london",
-          "intent": "memory_query",
-          "allowedCategories": [
-            "conversation",
-            "memory",
-            "journal",
-            "knowledge",
-            "tasks",
-            "reminders",
-            "files"
-          ],
-          "allowedTags": [
-            "history",
-            "chat",
-            "memory",
-            "search",
-            "list",
-            "journal",
-            "knowledge",
-            "task",
-            "reminder",
-            "files",
-            "read",
-            "summary"
-          ],
-          "allowedToolCount": 10,
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:44.937Z",
-          "environment": "development"
-        },
-        {
-          "event": "tool_discovery_completed",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "count": 10,
-          "found": [
-            "get_memories",
-            "search_memory",
-            "search_journal",
-            "search_knowledge",
-            "get_reminders",
-            "get_chat_history",
-            "get_knowledges",
-            "get_journals",
-            "read_and_summarize_file",
-            "get_tasks"
-          ],
-          "blockedTools": [],
-          "runtimeMissing": [],
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:45.543Z",
-          "environment": "development"
-        },
-        {
-          "event": "graph_node_debug",
-          "node": "plannerNode_start",
-          "messageCount": 3,
-          "toolResultsCount": 0,
-          "iterations": 0,
-          "intent": "memory_query",
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:45.552Z",
-          "environment": "development"
-        },
-        {
-          "event": "planner_node_started",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "messageCount": 3,
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:45.552Z",
-          "environment": "development"
-        },
-        {
-          "event": "LLM_INPUT",
-          "messages": [
-            {
-              "lc": 1,
-              "type": "constructor",
-              "id": [
-                "langchain_core",
-                "messages",
-                "SystemMessage"
-              ],
-              "kwargs": {
-                "content": "You are **Chief of AI**, a personal AI assistant for Test.\n\nThe current date and time is: 3/14/2026, 5:20:42 PM (ISO: 2026-03-14T11:50:42.444Z).\nUse this to calculate relative times (e.g., \"in 5 minutes\", \"tomorrow\", \"next Friday\").\n\nYour role is to help the user manage information, tasks, reminders, knowledge, files, and apps through conversation.\n\nGENERAL BEHAVIOR\n\n* Be helpful, concise, and accurate.\n* Respond in a professional tone.\n* Focus on solving the user's request efficiently.\n* Prioritize correctness over creativity.\n* Do not hallucinate information.\n\nCONTEXT INJECTION\nThe system may inject additional context before your reasoning, including:\n\n* past memories\n* stored knowledge\n* journal entries\n* retrieved information from previous conversations\n\nTreat this context as reliable background information that may help answer the user's request.\n\nTOOL USAGE (VERY IMPORTANT)\nYou have access to tools that can perform real actions.\n\nPrefer using a tool when the user's request requires:\n\n* real data retrieval\n* database access\n* file access\n* memory access\n* task creation or updates\n* app creation\n* external information\n\nIf the answer is simple reasoning or general knowledge, respond directly without using a tool.\n\nNEVER guess results that a tool can provide.\n\nIf a tool exists for the task, use the tool instead of inventing information.\n\nWhenever a tool requires an \"accessCode\" parameter, YOU MUST PASS exactly this value:\n\n\"AI-KTUD-W7VH\"\n\nDo not ask the user for it and never replace it with placeholders.\n\nTOOL EXECUTION FLOW\n\nWhen you call a tool:\n\n1. Wait for the tool result.\n2. Carefully read the tool output.\n3. Use the tool output to produce the final response.\n\nDo not repeatedly call the same tool unless absolutely necessary.\n\nWHEN TO USE TOOLS\n\nExamples:\n\nMath calculations → use math tools\nGetting a random joke → use the joke tool\n\nFile management:\n\n* \"What files do I have?\" → use list_files\n* \"Summarize file X\" → use read_and_summarize_file\n* \"Delete file X\" → follow the deletion flow\n\nMemories, Tasks, Reminders → use their respective tools.\n\nApp creation → use create_app when the user asks to create or build an app.\n\nListing apps → use list_apps when the user asks about their apps.\n\nAPP CREATION (VERY IMPORTANT)\n\nWhen the user asks to create/build/make an app (for example: \"create an expense splitter\", \"build a task board\"):\n\nYou MUST use the **create_app** tool.\n\nYou must generate a complete JSON schema yourself with a **layout array** containing components.\n\nDo NOT ask the user to define the schema.\n\nCRITICAL RULES\n\nComponent names describe **WHAT DATA IS DISPLAYED**, not UI element types.\n\nComponents are **display cards only**.\n\nThere are **no buttons, forms, or inputs**.\n\nAll interaction happens through the chat.\n\nDO NOT use component names like:\n\nform\nbutton\nsubmit\ninput\nadd_expense_form\ngenerate_button\n\nInstead use names describing data such as:\n\nclient_details\ninvoice_items\ninvoice_preview\ntask_list\nexpense_history\n\nApps that generate documents must include a component with one of these names:\n\npreview\ndocument\nmarkdown\nviewer\n\nExamples:\n\ninvoice_preview\ndocument_viewer\n\nThis allows Markdown rendering in the UI.\n\nYou may optionally include **initialData** as JSON with sensible defaults.\n\nExample: empty arrays for lists.\n\nAfter creating the app:\n\nTell the user:\n\n\"The app is ready. Open it from the Apps section in the sidebar and describe what you want in the chat.\"\n\nNever say you cannot create an app.\n\nYou have the create_app tool — use it.\n\nAPP SCHEMA EXAMPLES\n\nExpense Splitter:\nmembers_list\nexpense_history\nbalance_summary\n\nInvoice Maker:\nclient_details\ninvoice_items\ninvoice_preview\n\nTodo Board:\ntask_list\ncompleted_tasks\ntask_summary\n\nRecipe Manager:\nrecipe_collection\nfavorites\nshopping_list\n\nBudget Tracker:\nincome_entries\nexpense_entries\nbudget_summary\n\nNotes App:\nnotes_list\nnote_viewer\n\nQuiz App:\nquestions\nscores\nquiz_viewer\n\nPoll App:\npoll_options\npoll_results\n\nFILE HANDLING\n\nIf the user asks about files:\n\n\"What files do I have?\" → use list_files\n\nIf the user provides a file name but not ID:\n\n1. Use list_files\n2. Find the correct file\n3. Use its ID\n\nIf the user asks to summarize a file → use read_and_summarize_file.\nNEVER use file tools for non-file items (like tasks, reminders, memories). Focus on their specific tools.\n\nITEM MANAGEMENT (STRICT RULES)\n\nFor managing (updating or deleting) memories, tasks, reminders, or files:\n\nSTEP 1 — If the user hasn't specified an ID, call the appropriate get_ or search_ tool first to find it.\n  * For reminders: use get_reminders\n  * For tasks: use get_tasks\n  * For memories: use get_memories\n  * For journals: use get_journals\n  * For files: use list_files\n\nSTEP 2 — Once you have the ID, proceed with the EXACT requested action:\n- To UPDATE/CHANGE: Call the corresponding update tool natively with the ID and new data.\n- To DELETE: Call the corresponding delete tool natively with the ID. (Do NOT ask for confirmation manually; the system handles it).\n- NEVER call a delete tool if the user asked to change or update an item.\n\nIf the user says \"No\" or \"Cancel\" when prompted, the tool execution will fail gracefully.\n\nRESPONSE FORMAT (CRITICAL)\n\nWhen you finish reasoning and are NOT calling tools, you MUST return a valid JSON object that exactly matches ONE of the following TypeScript interfaces:\n\n```typescript\ninterface ClarificationResponse {\n  type: \"clarification\";\n  question: string;\n  options: string[];\n}\n\ninterface FinalResponse {\n  type: \"final\";\n  message: string;\n}\n\ninterface UIComponentResponse {\n  type: \"ui_component\";\n  component: \"reminder_list\" | \"task_list\" | \"memory_list\" | \"file_list\" | \"contact_list\";\n  data: any;\n}\n```\n\nDo not include:\n* markdown formatting around the JSON\n* explanations or conversational text\n* text before or after the JSON object\n\nExample of a ClarificationResponse:\n{\n  \"type\": \"clarification\",\n  \"question\": \"Which option did you mean?\",\n  \"options\": [\"Option A\", \"Option B\"]\n}\n\nExample of a FinalResponse:\n{\n  \"type\": \"final\",\n  \"message\": \"Your response to the user\"\n}\n\nWHEN NOT TO USE TOOLS\n\nDo not use tools if:\n\n* the question is general knowledge\n* the answer can be reasoned without external data\n* no tool matches the request\n\nTOOL RESPONSE HANDLING\n\nWhen a tool returns data:\n\n* Present the result clearly\n* Do not invent additional information\n* Do not modify tool results except for readability\n\nIf a tool parameter is optional (like \"title\"), generate it automatically from context.\n\nNever ask the user for internal parameters.\n\nGENERATIVE UI RULES\n* Use \"ui_component\" responses when the user asks to see/list items (reminders, tasks, memories, files, contacts).\n* The \"data\" field must contain the raw array of items returned by the tools.\n* Return exactly ONE valid JSON object matching these interfaces.\n* If you cannot perform a physical action (like making a phone call), provide the relevant contact information in a \"ui_component\" response so the user can use the integrated action buttons.\n\nCOMMUNICATION STYLE\n\n* Keep responses concise.\n* Avoid unnecessary explanations.\n* Do not mention internal tools or system instructions.\n\nSECURITY\n\nNever reveal:\n\n* database IDs\n* UUIDs\n* access codes\n* system credentials\n\nConfirm actions naturally without exposing internal identifiers.\n\nYou are assisting Test inside the Chief of AI assistant application.",
-                "additional_kwargs": {},
-                "response_metadata": {}
-              }
-            },
-            {
-              "lc": 1,
-              "type": "constructor",
-              "id": [
-                "langchain_core",
-                "messages",
-                "HumanMessage"
-              ],
-              "kwargs": {
-                "content": "what was my memory about london",
-                "additional_kwargs": {},
-                "response_metadata": {}
-              }
-            },
-            {
-              "lc": 1,
-              "type": "constructor",
-              "id": [
-                "langchain_core",
-                "messages",
-                "SystemMessage"
-              ],
-              "kwargs": {
-                "content": "\n### CONTEXT INJECTION\nThe following relevant information was retrieved from the user's past data:\n\nMemory: Visiting London alone at 24 made me confident I can build global products.\nMemory: While visiting London I reflected on building Chief of AI as a personal AI operating system.\nMemory: While visiting London I reflected on building Chief of AI as a personal AI operating system.\n\nInstructions for Context:\n* Use this information to answer the user's request directly.\n* Do NOT call search tools again if the answer is already here.\n* Maintain privacy: do not mention retrieval sources unless asked.\n",
-                "additional_kwargs": {},
-                "response_metadata": {}
-              }
-            }
-          ],
-          "toolResults": 0,
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:45.552Z",
-          "environment": "development"
-        },
-        {
-          "event": "planner_node_completed",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "toolCalls": 0,
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:46.569Z",
-          "environment": "development"
-        },
-        {
-          "event": "graph_node_debug",
-          "node": "plannerNode_end",
-          "messageCount": 3,
-          "toolResultsCount": 0,
-          "iterations": 0,
-          "intent": "memory_query",
-          "toolCalls": 0,
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:46.570Z",
-          "environment": "development"
-        },
-        {
-          "id": "jwjppb",
-          "type": "plan_created",
-          "message": "Execution plan created",
-          "status": "success",
-          "timestamp": 1773489046576
-        },
-        {
-          "event": "plan_created",
-          "message": "Execution plan created",
-          "status": "success",
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:46.576Z",
-          "environment": "development"
-        },
-        {
-          "event": "graph_node_debug",
-          "node": "responseNode_start",
-          "messageCount": 4,
-          "toolResultsCount": 0,
-          "iterations": 1,
-          "intent": "memory_query",
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:46.577Z",
-          "environment": "development"
-        },
-        {
-          "event": "graph_node_debug",
-          "node": "responseNode",
-          "messageCount": 4,
-          "toolResultsCount": 0,
-          "iterations": 1,
-          "intent": "memory_query",
-          "finalReply": "You had two memories about London. One was about gaining confidence to build global products after visiting London alone at 24. The other was about reflecting on building Chief of AI as a personal AI operating system while visiting London.",
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:46.577Z",
-          "environment": "development"
-        },
-        {
-          "id": "bulim",
-          "type": "response_generating",
-          "message": "Preparing response",
+          "id": "z1ogz",
+          "type": "thinking",
+          "message": "Checking your memories...",
           "status": "pending",
-          "timestamp": 1773489046583
+          "timestamp": 1773517473939
         },
         {
-          "event": "response_generating",
-          "message": "Preparing response",
-          "status": "pending",
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:46.583Z",
-          "environment": "development"
+          "id": "d1glf9",
+          "type": "final_reply",
+          "message": "Which memory would you like to share?\n\n1. Shivansh's Good Qualities\n2. Shivansh's Behavior\n3. YC Startup Goal\n4. AI Product Vision\n5. London Solo Achievement\n6. LangGraph Architecture Insight\n7. London Trip Inspiration\n8. London Trip Inspiration\n\nReply with the **number** or a part of the **title**.",
+          "status": "success",
+          "timestamp": 1773517474582
         },
         {
-          "event": "llm_response_generated",
+          "event": "flow_lifecycle",
+          "action": "flow_success",
+          "flowId": "share_memory",
           "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "message": "You had two memories about London. One was about gaining confidence to build global products after visiting London alone at 24. The other was about reflecting on building Chief of AI as a personal AI operating system while visiting London.",
-          "traceId": "8a88ce23-8704-4a9f-bde3-9a271ffa796c",
-          "timestamp": "2026-03-14T11:50:46.754Z",
+          "latency": 713,
+          "traceId": "07687fbc-8a10-4a65-8114-d23ac6c1dcc1",
+          "timestamp": "2026-03-14T19:44:34.583Z",
           "environment": "development"
         }
       ],
-      "finalReply": "You had two memories about London. One was about gaining confidence to build global products after visiting London alone at 24. The other was about reflecting on building Chief of AI as a personal AI operating system while visiting London."
+      "finalReply": "Which memory would you like to share?\n\n1. Shivansh's Good Qualities\n2. Shivansh's Behavior\n3. YC Startup Goal\n4. AI Product Vision\n5. London Solo Achievement\n6. LangGraph Architecture Insight\n7. London Trip Inspiration\n8. London Trip Inspiration\n\nReply with the **number** or a part of the **title**."
+    },
+    {
+      "timestamp": "2026-03-14T19:44:42.608Z",
+      "user": "Test",
+      "request": "1",
+      "events": [
+        {
+          "event": "flow_attempt",
+          "message": "1",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "traceId": "17a417af-036a-41ef-9373-33ce02e3cf9c",
+          "timestamp": "2026-03-14T19:44:41.855Z",
+          "environment": "development"
+        },
+        {
+          "event": "flow_lifecycle",
+          "action": "flow_selected",
+          "flowId": "share_memory",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "parameters": {},
+          "traceId": "17a417af-036a-41ef-9373-33ce02e3cf9c",
+          "timestamp": "2026-03-14T19:44:41.965Z",
+          "environment": "development"
+        },
+        {
+          "id": "120ru",
+          "type": "tool_start",
+          "message": "Generating share code for: \"Shivansh's Good Qualities\"",
+          "status": "pending",
+          "timestamp": 1773517482065
+        },
+        {
+          "id": "l9tixm",
+          "type": "final_reply",
+          "message": "Memory shared successfully! Use this code to join: **MEM-U0LZTH**",
+          "status": "success",
+          "timestamp": 1773517482583
+        },
+        {
+          "event": "flow_lifecycle",
+          "action": "flow_success",
+          "flowId": "share_memory",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "latency": 642,
+          "traceId": "17a417af-036a-41ef-9373-33ce02e3cf9c",
+          "timestamp": "2026-03-14T19:44:42.607Z",
+          "environment": "development"
+        }
+      ],
+      "finalReply": "Memory shared successfully! Use this code to join: **MEM-U0LZTH**"
+    },
+    {
+      "timestamp": "2026-03-14T19:48:17.959Z",
+      "user": "Test",
+      "request": "what re my task?",
+      "events": [
+        {
+          "event": "flow_attempt",
+          "message": "what re my task?",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "traceId": "0cbe73d5-02ce-4149-be42-de980352d510",
+          "timestamp": "2026-03-14T19:48:17.492Z",
+          "environment": "development"
+        },
+        {
+          "event": "flow_lifecycle",
+          "action": "flow_selected",
+          "flowId": "list_tasks",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "parameters": {
+            "originalMessage": "what re my task?"
+          },
+          "traceId": "0cbe73d5-02ce-4149-be42-de980352d510",
+          "timestamp": "2026-03-14T19:48:17.582Z",
+          "environment": "development"
+        },
+        {
+          "id": "t4pmys",
+          "type": "thinking",
+          "message": "Fetching your tasks...",
+          "status": "pending",
+          "timestamp": 1773517697798
+        },
+        {
+          "id": "d8g19p",
+          "type": "tool_start",
+          "message": "Retrieving tasks from database",
+          "status": "pending",
+          "timestamp": 1773517697798
+        },
+        {
+          "id": "5j6r26",
+          "type": "final_reply",
+          "message": "You have 9 tasks:\n1. Fix AI event bus logging [pending]\n2. Deploy backend to GCP [pending]\n3. Prepare YC application [pending]\n4. Improve Chief of AI landing page [pending]\n5. Test Gemini API integration [pending]\n6. Refactor LangGraph flow [pending]\n7. Add AI memory sharing feature [pending]\n8. Optimize pgvector queries [pending]\n9. Solve daily coding question [pending]",
+          "status": "success",
+          "timestamp": 1773517697957
+        },
+        {
+          "event": "flow_lifecycle",
+          "action": "flow_success",
+          "flowId": "list_tasks",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "latency": 375,
+          "traceId": "0cbe73d5-02ce-4149-be42-de980352d510",
+          "timestamp": "2026-03-14T19:48:17.957Z",
+          "environment": "development"
+        }
+      ],
+      "finalReply": "You have 9 tasks:\n1. Fix AI event bus logging [pending]\n2. Deploy backend to GCP [pending]\n3. Prepare YC application [pending]\n4. Improve Chief of AI landing page [pending]\n5. Test Gemini API integration [pending]\n6. Refactor LangGraph flow [pending]\n7. Add AI memory sharing feature [pending]\n8. Optimize pgvector queries [pending]\n9. Solve daily coding question [pending]"
+    },
+    {
+      "timestamp": "2026-03-14T19:48:25.165Z",
+      "user": "Test",
+      "request": "delete a task",
+      "events": [
+        {
+          "event": "flow_attempt",
+          "message": "delete a task",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "traceId": "c1764b6f-c8e4-4b66-a704-630c02e6e55d",
+          "timestamp": "2026-03-14T19:48:24.823Z",
+          "environment": "development"
+        },
+        {
+          "event": "flow_lifecycle",
+          "action": "flow_selected",
+          "flowId": "delete_task",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "parameters": {
+            "originalMessage": "delete a task"
+          },
+          "traceId": "c1764b6f-c8e4-4b66-a704-630c02e6e55d",
+          "timestamp": "2026-03-14T19:48:24.899Z",
+          "environment": "development"
+        },
+        {
+          "id": "ggle9a",
+          "type": "thinking",
+          "message": "Fetching tasks to delete...",
+          "status": "pending",
+          "timestamp": 1773517704975
+        },
+        {
+          "id": "h58guf",
+          "type": "final_reply",
+          "message": "Which task would you like to delete?\n\n1. Fix AI event bus logging\n2. Deploy backend to GCP\n3. Prepare YC application\n4. Improve Chief of AI landing page\n5. Test Gemini API integration\n6. Refactor LangGraph flow\n7. Add AI memory sharing feature\n8. Optimize pgvector queries\n9. Solve daily coding question\n\nReply with the **number** or the **title**.",
+          "status": "success",
+          "timestamp": 1773517705164
+        },
+        {
+          "event": "flow_lifecycle",
+          "action": "flow_success",
+          "flowId": "delete_task",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "latency": 265,
+          "traceId": "c1764b6f-c8e4-4b66-a704-630c02e6e55d",
+          "timestamp": "2026-03-14T19:48:25.164Z",
+          "environment": "development"
+        }
+      ],
+      "finalReply": "Which task would you like to delete?\n\n1. Fix AI event bus logging\n2. Deploy backend to GCP\n3. Prepare YC application\n4. Improve Chief of AI landing page\n5. Test Gemini API integration\n6. Refactor LangGraph flow\n7. Add AI memory sharing feature\n8. Optimize pgvector queries\n9. Solve daily coding question\n\nReply with the **number** or the **title**."
+    },
+    {
+      "timestamp": "2026-03-14T19:48:34.360Z",
+      "user": "Test",
+      "request": "8",
+      "events": [
+        {
+          "event": "flow_attempt",
+          "message": "8",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "traceId": "833fdad0-c64c-4df7-9304-266525062b7d",
+          "timestamp": "2026-03-14T19:48:34.022Z",
+          "environment": "development"
+        },
+        {
+          "event": "flow_lifecycle",
+          "action": "flow_selected",
+          "flowId": "delete_task",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "parameters": {},
+          "traceId": "833fdad0-c64c-4df7-9304-266525062b7d",
+          "timestamp": "2026-03-14T19:48:34.098Z",
+          "environment": "development"
+        },
+        {
+          "id": "a4q9fm",
+          "type": "tool_start",
+          "message": "Deleting task: \"Fix AI event bus logging\"",
+          "status": "pending",
+          "timestamp": 1773517714174
+        },
+        {
+          "id": "9gkpzd",
+          "type": "final_reply",
+          "message": "Task deleted: **Fix AI event bus logging**.",
+          "status": "success",
+          "timestamp": 1773517714333
+        },
+        {
+          "event": "flow_lifecycle",
+          "action": "flow_success",
+          "flowId": "delete_task",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "latency": 260,
+          "traceId": "833fdad0-c64c-4df7-9304-266525062b7d",
+          "timestamp": "2026-03-14T19:48:34.358Z",
+          "environment": "development"
+        }
+      ],
+      "finalReply": "Task deleted: **Fix AI event bus logging**."
+    },
+    {
+      "timestamp": "2026-03-14T19:49:35.521Z",
+      "user": "Test",
+      "request": "add task prepare YC demo",
+      "events": [
+        {
+          "event": "flow_attempt",
+          "message": "add task prepare YC demo",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "traceId": "dd464fb1-2c81-44bc-988f-761ea0f91723",
+          "timestamp": "2026-03-14T19:49:35.148Z",
+          "environment": "development"
+        },
+        {
+          "event": "flow_lifecycle",
+          "action": "flow_selected",
+          "flowId": "create_task",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "parameters": {
+            "originalMessage": "add task prepare yc demo"
+          },
+          "traceId": "dd464fb1-2c81-44bc-988f-761ea0f91723",
+          "timestamp": "2026-03-14T19:49:35.224Z",
+          "environment": "development"
+        },
+        {
+          "id": "b71sat",
+          "type": "thinking",
+          "message": "Creating your task...",
+          "status": "pending",
+          "timestamp": 1773517775296
+        },
+        {
+          "id": "6ym34",
+          "type": "tool_start",
+          "message": "Saving task: \"prepare yc demo\"",
+          "status": "pending",
+          "timestamp": 1773517775296
+        },
+        {
+          "id": "gx44g8",
+          "type": "final_reply",
+          "message": "Task created: **prepare yc demo**.",
+          "status": "success",
+          "timestamp": 1773517775520
+        },
+        {
+          "event": "flow_lifecycle",
+          "action": "flow_success",
+          "flowId": "create_task",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "latency": 296,
+          "traceId": "dd464fb1-2c81-44bc-988f-761ea0f91723",
+          "timestamp": "2026-03-14T19:49:35.520Z",
+          "environment": "development"
+        }
+      ],
+      "finalReply": "Task created: **prepare yc demo**."
+    },
+    {
+      "timestamp": "2026-03-14T19:49:42.635Z",
+      "user": "Test",
+      "request": "delete task\\",
+      "events": [
+        {
+          "event": "flow_attempt",
+          "message": "delete task\\",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "traceId": "a5e80d70-ca47-4a03-bc89-378af3428605",
+          "timestamp": "2026-03-14T19:49:42.315Z",
+          "environment": "development"
+        },
+        {
+          "event": "flow_lifecycle",
+          "action": "flow_selected",
+          "flowId": "delete_task",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "parameters": {
+            "originalMessage": "delete task\\"
+          },
+          "traceId": "a5e80d70-ca47-4a03-bc89-378af3428605",
+          "timestamp": "2026-03-14T19:49:42.392Z",
+          "environment": "development"
+        },
+        {
+          "id": "g2qzph",
+          "type": "thinking",
+          "message": "Fetching tasks to delete...",
+          "status": "pending",
+          "timestamp": 1773517782467
+        },
+        {
+          "id": "s6akgo",
+          "type": "final_reply",
+          "message": "Which task would you like to delete?\n\n1. Deploy backend to GCP\n2. Prepare YC application\n3. Improve Chief of AI landing page\n4. Test Gemini API integration\n5. Add AI memory sharing feature\n6. Refactor LangGraph flow\n7. Optimize pgvector queries\n8. prepare yc demo\n9. Solve daily coding question\n\nReply with the **number** or the **title**.",
+          "status": "success",
+          "timestamp": 1773517782634
+        },
+        {
+          "event": "flow_lifecycle",
+          "action": "flow_success",
+          "flowId": "delete_task",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "latency": 242,
+          "traceId": "a5e80d70-ca47-4a03-bc89-378af3428605",
+          "timestamp": "2026-03-14T19:49:42.634Z",
+          "environment": "development"
+        }
+      ],
+      "finalReply": "Which task would you like to delete?\n\n1. Deploy backend to GCP\n2. Prepare YC application\n3. Improve Chief of AI landing page\n4. Test Gemini API integration\n5. Add AI memory sharing feature\n6. Refactor LangGraph flow\n7. Optimize pgvector queries\n8. prepare yc demo\n9. Solve daily coding question\n\nReply with the **number** or the **title**."
+    },
+    {
+      "timestamp": "2026-03-14T19:49:49.952Z",
+      "user": "Test",
+      "request": "8",
+      "events": [
+        {
+          "event": "flow_attempt",
+          "message": "8",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "traceId": "cad27750-ae0c-44d2-90fd-0e9cf3f3e944",
+          "timestamp": "2026-03-14T19:49:49.633Z",
+          "environment": "development"
+        },
+        {
+          "event": "flow_lifecycle",
+          "action": "flow_selected",
+          "flowId": "delete_task",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "parameters": {},
+          "traceId": "cad27750-ae0c-44d2-90fd-0e9cf3f3e944",
+          "timestamp": "2026-03-14T19:49:49.710Z",
+          "environment": "development"
+        },
+        {
+          "id": "n3t6d",
+          "type": "tool_start",
+          "message": "Deleting task: \"Deploy backend to GCP\"",
+          "status": "pending",
+          "timestamp": 1773517789782
+        },
+        {
+          "id": "tosdrl",
+          "type": "final_reply",
+          "message": "Task deleted: **Deploy backend to GCP**.",
+          "status": "success",
+          "timestamp": 1773517789928
+        },
+        {
+          "event": "flow_lifecycle",
+          "action": "flow_success",
+          "flowId": "delete_task",
+          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "latency": 241,
+          "traceId": "cad27750-ae0c-44d2-90fd-0e9cf3f3e944",
+          "timestamp": "2026-03-14T19:49:49.951Z",
+          "environment": "development"
+        }
+      ],
+      "finalReply": "Task deleted: **Deploy backend to GCP**."
     }
   ]
 }

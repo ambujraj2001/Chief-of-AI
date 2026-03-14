@@ -11,16 +11,18 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../store/userSlice";
 import { apiUpdateProfile } from "../services/api";
 
-const IntelligencePanel = lazy(() => import("../features/intelligence/IntelligencePanel"));
+const IntelligencePanel = lazy(
+  () => import("../features/intelligence/IntelligencePanel"),
+);
 
 const DashboardLayout = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
-  
-  const isChatPage = 
-    location.pathname === "/dashboard" || 
-    location.pathname === "/dashboard/" || 
+
+  const isChatPage =
+    location.pathname === "/dashboard" ||
+    location.pathname === "/dashboard/" ||
     location.pathname.startsWith("/dashboard/chat/");
   const user = useSelector((state: RootState) => state.user);
   const userName = user.fullName;
@@ -35,7 +37,6 @@ const DashboardLayout = () => {
   const [logoutModalVisible, setLogoutModalVisible] = useState(false);
   const [runTour, setRunTour] = useState(false);
   const [isIncognito, setIsIncognito] = useState<boolean>(false);
-
 
   useEffect(() => {
     const checkIncognito = () => {
@@ -190,7 +191,10 @@ const DashboardLayout = () => {
       >
         <div className="text-center py-6">
           <div className="size-16 rounded-full bg-rose-50 dark:bg-rose-900/10 text-rose-500 flex items-center justify-center mx-auto mb-4">
-            <span className="material-symbols-outlined text-3xl">logout</span>
+            <h1 className="text-sm font-black tracking-tighter">CHIEF OF AI</h1>
+            <p className="text-[10px] text-primary font-bold uppercase tracking-[0.2em]">
+              AI OPERATING SYSTEM
+            </p>
           </div>
           <h3 className="text-xl font-black text-slate-900 dark:text-white mb-2">
             Confirm Logout
@@ -256,13 +260,13 @@ const DashboardLayout = () => {
             </h1>
 
             <div className="flex flex-col overflow-hidden max-w-full lg:max-w-none">
-              <h2 className="text-xs sm:text-sm font-bold flex items-center gap-1.5 truncate">
+              <h2 className="text-xs sm:text-sm font-black flex items-center gap-1.5 truncate uppercase tracking-tight">
                 <span className="truncate">AI Nexus</span>
               </h2>
               <div className="flex items-center gap-1.5">
-                <div className="size-1.5 sm:size-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-                <span className="text-[9px] sm:text-[10px] font-medium text-slate-500  tracking-tight truncate">
-                  Intelligence Synced
+                <div className="size-1.5 sm:size-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)] animate-pulse shrink-0" />
+                <span className="text-[9px] sm:text-[10px] font-bold text-slate-500 uppercase tracking-widest truncate">
+                  System Online
                 </span>
               </div>
             </div>
@@ -328,21 +332,23 @@ const DashboardLayout = () => {
         {/* Dynamic Contextual Workspace */}
         <div className="flex-1 flex overflow-hidden">
           <div className="flex-1 relative overflow-hidden flex flex-col min-w-0">
-             <Outlet context={{ sidebarCollapsed, setSidebarCollapsed }} />
+            <Outlet context={{ sidebarCollapsed, setSidebarCollapsed }} />
           </div>
-          
+
           {isChatPage && (
-            <Suspense fallback={
-              <div className="w-[280px] xl:w-[320px] h-full border-l border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex items-center justify-center">
-                <Spin />
-              </div>
-            }>
+            <Suspense
+              fallback={
+                <div className="w-[280px] xl:w-[320px] h-full border-l border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex items-center justify-center">
+                  <Spin />
+                </div>
+              }
+            >
               <IntelligencePanel />
             </Suspense>
           )}
         </div>
       </main>
-      
+
       <Joyride
         steps={tourSteps}
         run={runTour}
