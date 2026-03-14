@@ -239,9 +239,7 @@ const AIRoutinesPage = () => {
               {/* Routine Image/Icon Placeholder */}
               <div className="size-24 md:size-28 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden flex-shrink-0">
                 <div className="bg-primary/10 size-full flex items-center justify-center">
-                  <span className="material-symbols-outlined text-primary text-4xl opacity-50">
-                    smart_toy
-                  </span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary opacity-50"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
                 </div>
               </div>
 

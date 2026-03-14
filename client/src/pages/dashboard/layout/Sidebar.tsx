@@ -16,7 +16,7 @@ const NAV_GROUPS: NavGroup[] = [
   {
     label: "ASSISTANT",
     items: [
-      { icon: "chat", label: "Chat", path: "/dashboard" },
+      { icon: "chat", label: "New Chat", path: "/dashboard" },
       { icon: "history", label: "Recent Chat", path: "/dashboard/chats" },
     ],
   },
@@ -63,15 +63,13 @@ const NAV_GROUPS: NavGroup[] = [
 ];
 
 type SidebarProps = {
-  collapsed: boolean;
-  onToggle: () => void;
+  collapsed?: boolean;
+  onToggle?: () => void;
   isMobile?: boolean;
   onCloseMobile?: () => void;
 };
 
 const Sidebar = ({
-  collapsed,
-  onToggle,
   isMobile,
   onCloseMobile,
 }: SidebarProps) => {
@@ -109,21 +107,11 @@ const Sidebar = ({
         bg-white dark:bg-background-dark
         flex flex-col shrink-0 overflow-visible relative h-full
         transition-all duration-300 ease-in-out
-        ${collapsed && !isMobile ? "w-[68px]" : "w-64"}
+        w-64
       `}
     >
       {/* ── Logo / Toggle ─────────────────────────────── */}
       <div className="flex items-center h-16 px-3 gap-3 border-b border-slate-100 dark:border-slate-800/50">
-        <button
-          onClick={onToggle}
-          title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-          className={`size-9 items-center justify-center rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors shrink-0 ${isMobile ? "hidden lg:flex" : "flex"}`}
-        >
-          <span className="material-symbols-outlined text-[22px]">
-            {collapsed ? "menu_open" : "menu"}
-          </span>
-        </button>
-
         {isMobile && (
           <button
             onClick={onCloseMobile}
@@ -134,18 +122,26 @@ const Sidebar = ({
         )}
 
         <div
-          className={`flex flex-col overflow-hidden whitespace-nowrap transition-all duration-200 ${
-            collapsed && !isMobile
-              ? "opacity-0 w-0 text-transparent"
-              : "opacity-100 w-full"
-          }`}
+          className="flex items-center gap-2.5 overflow-hidden whitespace-nowrap w-full"
           onClick={handleOpenDashboard}
           style={{ cursor: "pointer" }}
         >
-          <h1 className="text-sm font-bold tracking-tight">NEXORA</h1>
-          <p className="text-[10px] text-slate-500 font-medium uppercase tracking-widest">
-            Intelligence Workspace
-          </p>
+          <div className="size-8 rounded-lg bg-primary flex items-center justify-center shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 8V4H8" />
+              <rect width="16" height="12" x="4" y="8" rx="2" />
+              <path d="M2 14h2" />
+              <path d="M20 14h2" />
+              <path d="M15 13v2" />
+              <path d="M9 13v2" />
+            </svg>
+          </div>
+          <div className="flex flex-col">
+            <h1 className="text-sm font-bold tracking-tight">NEXORA</h1>
+            <p className="text-[10px] text-slate-500 font-medium uppercase tracking-widest">
+              Intelligence Workspace
+            </p>
+          </div>
         </div>
       </div>
 
@@ -154,26 +150,19 @@ const Sidebar = ({
         <nav className="flex flex-col gap-6">
           {NAV_GROUPS.map((group) => (
             <div key={group.label} className="flex flex-col gap-1">
-              {!collapsed || isMobile ? (
-                <div className="px-3 mb-2">
-                  <span className="text-[11px] font-bold text-slate-400 dark:text-slate-500 tracking-wider uppercase">
-                    {group.label}
-                  </span>
-                </div>
-              ) : (
-                <div className="h-4" /> // Spacer when collapsed
-              )}
+              <div className="px-3 mb-2">
+                <span className="text-[11px] font-bold text-slate-400 dark:text-slate-500 tracking-wider uppercase">
+                  {group.label}
+                </span>
+              </div>
               {group.items.map((item) => {
                 const isActive = activeItem === item.label;
-                const isCollapsedStyle = collapsed && !isMobile;
                 return (
                   <button
                     key={item.label}
                     onClick={() => handleNav(item)}
-                    title={isCollapsedStyle ? item.label : undefined}
                     className={`
-                      flex items-center rounded-lg font-medium text-sm transition-all duration-200 w-full
-                      ${isCollapsedStyle ? "justify-center py-2" : "gap-3 px-3 py-2 text-left"}
+                      flex items-center gap-3 px-3 py-2 text-left rounded-lg font-medium text-sm transition-all duration-200 w-full
                       ${
                         isActive
                           ? "bg-primary/10 text-primary"
@@ -186,11 +175,9 @@ const Sidebar = ({
                     >
                       {item.icon}
                     </span>
-                    {!isCollapsedStyle && (
-                      <span className="overflow-hidden whitespace-nowrap">
-                        {item.label}
-                      </span>
-                    )}
+                    <span className="overflow-hidden whitespace-nowrap">
+                      {item.label}
+                    </span>
                   </button>
                 );
               })}

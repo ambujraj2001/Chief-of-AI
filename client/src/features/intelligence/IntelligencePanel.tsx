@@ -10,13 +10,13 @@ const IntelligencePanel: React.FC = () => {
     >
       <ActivitySimulator />
       {/* Header */}
-      <div className="p-6 pb-4 flex items-center gap-2">
-        <div className="size-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+      <div className="p-6 pb-4 flex items-center gap-1.5">
+        <div className="size-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
           <span className="material-symbols-outlined text-[20px]">hub</span>
         </div>
-        <div className="flex flex-col">
-          <h2 className="text-sm font-black text-slate-800 dark:text-white uppercase tracking-tight">Intelligence</h2>
-          <span className="text-[10px] font-bold text-slate-400 -mt-1 uppercase tracking-widest leading-none">Command Center</span>
+        <div className="flex flex-col min-w-0 gap-0.5">
+          <h2 className="text-sm font-black text-slate-800 dark:text-white uppercase tracking-tight leading-tight">Intelligence</h2>
+          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">Command Center</span>
         </div>
       </div>
 

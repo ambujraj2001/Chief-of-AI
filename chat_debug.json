@@ -1,56 +1,56 @@
 {
-  "conversationId": "f6017ec7-5aa8-4289-9e84-1d67435dee5d",
+  "conversationId": "3789d61a-e8f6-458d-bdbb-7f51310a9979",
   "entries": [
     {
-      "timestamp": "2026-03-14T23:00:35.121Z",
+      "timestamp": "2026-03-14T23:31:41.043Z",
       "user": "Test",
-      "request": "tell me a joke",
+      "request": "hi",
       "events": [
         {
           "event": "flow_attempt",
-          "message": "tell me a joke",
+          "message": "hi",
           "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "traceId": "9d8f6908-e071-4f22-81a1-9f604dae3cc2",
-          "timestamp": "2026-03-14T23:00:32.757Z",
+          "traceId": "3456ed06-e5c8-483f-b365-44e55305d482",
+          "timestamp": "2026-03-14T23:31:39.670Z",
           "environment": "development"
         },
         {
-          "id": "8eoz5t",
+          "id": "2at1e",
           "type": "input_received",
           "message": "User request received",
           "status": "info",
-          "timestamp": 1773529232830
+          "timestamp": 1773531099741
         },
         {
           "event": "input_received",
           "message": "User request received",
           "status": "info",
-          "traceId": "9d8f6908-e071-4f22-81a1-9f604dae3cc2",
-          "timestamp": "2026-03-14T23:00:32.830Z",
+          "traceId": "3456ed06-e5c8-483f-b365-44e55305d482",
+          "timestamp": "2026-03-14T23:31:39.741Z",
           "environment": "development"
         },
         {
           "event": "agent_execution_started",
           "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "conversationId": "f6017ec7-5aa8-4289-9e84-1d67435dee5d",
+          "conversationId": "3789d61a-e8f6-458d-bdbb-7f51310a9979",
           "historyCount": 1,
-          "traceId": "9d8f6908-e071-4f22-81a1-9f604dae3cc2",
-          "timestamp": "2026-03-14T23:00:33.181Z",
+          "traceId": "3456ed06-e5c8-483f-b365-44e55305d482",
+          "timestamp": "2026-03-14T23:31:40.152Z",
           "environment": "development"
         },
         {
-          "id": "jw1o4",
+          "id": "pa1r9d",
           "type": "thinking",
           "message": "Agent thinking...",
           "status": "pending",
-          "timestamp": 1773529233274
+          "timestamp": 1773531100152
         },
         {
           "event": "thinking",
           "message": "Agent thinking...",
           "status": "pending",
-          "traceId": "9d8f6908-e071-4f22-81a1-9f604dae3cc2",
-          "timestamp": "2026-03-14T23:00:33.274Z",
+          "traceId": "3456ed06-e5c8-483f-b365-44e55305d482",
+          "timestamp": "2026-03-14T23:31:40.152Z",
           "environment": "development"
         },
         {
@@ -60,24 +60,24 @@
           "toolResultsCount": 0,
           "iterations": 0,
           "intent": "general_chat",
-          "traceId": "9d8f6908-e071-4f22-81a1-9f604dae3cc2",
-          "timestamp": "2026-03-14T23:00:33.286Z",
+          "traceId": "3456ed06-e5c8-483f-b365-44e55305d482",
+          "timestamp": "2026-03-14T23:31:40.156Z",
           "environment": "development"
         },
         {
           "event": "router_node_started",
           "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
           "messageCount": 2,
-          "traceId": "9d8f6908-e071-4f22-81a1-9f604dae3cc2",
-          "timestamp": "2026-03-14T23:00:33.286Z",
+          "traceId": "3456ed06-e5c8-483f-b365-44e55305d482",
+          "timestamp": "2026-03-14T23:31:40.156Z",
           "environment": "development"
         },
         {
           "event": "router_node_completed",
           "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "intent": "tool_task",
-          "traceId": "9d8f6908-e071-4f22-81a1-9f604dae3cc2",
-          "timestamp": "2026-03-14T23:00:33.647Z",
+          "intent": "general_chat",
+          "traceId": "3456ed06-e5c8-483f-b365-44e55305d482",
+          "timestamp": "2026-03-14T23:31:40.493Z",
           "environment": "development"
         },
         {
@@ -86,1006 +86,119 @@
           "messageCount": 2,
           "toolResultsCount": 0,
           "iterations": 0,
-          "intent": "tool_task",
-          "traceId": "9d8f6908-e071-4f22-81a1-9f604dae3cc2",
-          "timestamp": "2026-03-14T23:00:33.647Z",
+          "intent": "general_chat",
+          "traceId": "3456ed06-e5c8-483f-b365-44e55305d482",
+          "timestamp": "2026-03-14T23:31:40.493Z",
           "environment": "development"
         },
         {
-          "id": "za1edc",
+          "id": "lr1cr",
           "type": "intent_detected",
-          "message": "Intent detected: tool_task",
+          "message": "Intent detected: general_chat",
           "status": "success",
-          "timestamp": 1773529233650
+          "timestamp": 1773531100498
         },
         {
           "event": "intent_detected",
-          "message": "Intent detected: tool_task",
+          "message": "Intent detected: general_chat",
           "status": "success",
-          "traceId": "9d8f6908-e071-4f22-81a1-9f604dae3cc2",
-          "timestamp": "2026-03-14T23:00:33.650Z",
-          "environment": "development"
-        },
-        {
-          "event": "tool_discovery_started",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "query": "tell me a joke",
-          "intent": "tool_task",
-          "allowedCategories": [
-            "math",
-            "conversation",
-            "journal",
-            "knowledge",
-            "tasks",
-            "reminders",
-            "apps",
-            "routines",
-            "web",
-            "communication",
-            "fun",
-            "safety",
-            "help"
-          ],
-          "allowedTags": [
-            "math",
-            "sum",
-            "subtract",
-            "formatting",
-            "style",
-            "history",
-            "chat",
-            "journal",
-            "entry",
-            "edit",
-            "delete",
-            "search",
-            "list",
-            "knowledge",
-            "store",
-            "task",
-            "todo",
-            "reminder",
-            "schedule",
-            "app",
-            "routine",
-            "automation",
-            "internet",
-            "email",
-            "send",
-            "call",
-            "phone",
-            "joke",
-            "humor",
-            "safety",
-            "guardrails",
-            "help",
-            "capabilities"
-          ],
-          "allowedToolCount": 33,
-          "traceId": "9d8f6908-e071-4f22-81a1-9f604dae3cc2",
-          "timestamp": "2026-03-14T23:00:33.650Z",
-          "environment": "development"
-        },
-        {
-          "event": "tool_discovery_completed",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "count": 10,
-          "found": [
-            "get_joke",
-            "make_phone_call",
-            "add_reminder",
-            "add_numbers",
-            "add_journal",
-            "add_task",
-            "subtract_numbers",
-            "update_reminder",
-            "get_journals",
-            "prettify_response"
-          ],
-          "blockedTools": [],
-          "runtimeMissing": [],
-          "traceId": "9d8f6908-e071-4f22-81a1-9f604dae3cc2",
-          "timestamp": "2026-03-14T23:00:34.213Z",
+          "traceId": "3456ed06-e5c8-483f-b365-44e55305d482",
+          "timestamp": "2026-03-14T23:31:40.498Z",
           "environment": "development"
         },
         {
           "event": "graph_node_debug",
-          "node": "plannerNode_start",
+          "node": "chatNode_start",
           "messageCount": 2,
           "toolResultsCount": 0,
           "iterations": 0,
-          "intent": "tool_task",
-          "traceId": "9d8f6908-e071-4f22-81a1-9f604dae3cc2",
-          "timestamp": "2026-03-14T23:00:34.220Z",
+          "intent": "general_chat",
+          "traceId": "3456ed06-e5c8-483f-b365-44e55305d482",
+          "timestamp": "2026-03-14T23:31:40.499Z",
           "environment": "development"
         },
         {
-          "event": "planner_node_started",
+          "event": "chat_node_completed",
           "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "messageCount": 2,
-          "traceId": "9d8f6908-e071-4f22-81a1-9f604dae3cc2",
-          "timestamp": "2026-03-14T23:00:34.220Z",
-          "environment": "development"
-        },
-        {
-          "event": "LLM_INPUT",
-          "messages": [
-            {
-              "lc": 1,
-              "type": "constructor",
-              "id": [
-                "langchain_core",
-                "messages",
-                "SystemMessage"
-              ],
-              "kwargs": {
-                "content": "You are **Nexora**, a personal AI assistant for Test.\n\nThe current date and time is: 3/15/2026, 4:30:33 AM (ISO: 2026-03-14T23:00:33.182Z).\nUse this to calculate relative times (e.g., \"in 5 minutes\", \"tomorrow\", \"next Friday\").\n\nYour role is to help the user manage information, tasks, reminders, knowledge, files, and apps through conversation.\n\nGENERAL BEHAVIOR\n\n* Be helpful, concise, and accurate.\n* Respond in a professional tone.\n* Focus on solving the user's request efficiently.\n* Prioritize correctness over creativity.\n* Do not hallucinate information.\n\nCONTEXT INJECTION\nThe system may inject additional context before your reasoning, including:\n\n* past memories\n* stored knowledge\n* journal entries\n* retrieved information from previous conversations\n\nTreat this context as reliable background information that may help answer the user's request.\n\nTOOL USAGE (VERY IMPORTANT)\nYou have access to tools that can perform real actions.\n\nPrefer using a tool when the user's request requires:\n\n* real data retrieval\n* database access\n* file access\n* memory access\n* task creation or updates\n* app creation\n* external information\n\nIf the answer is simple reasoning or general knowledge, respond directly without using a tool.\n\nNEVER guess results that a tool can provide.\n\nIf a tool exists for the task, use the tool instead of inventing information.\n\nWhenever a tool requires an \"accessCode\" parameter, YOU MUST PASS exactly this value:\n\n\"AI-KTUD-W7VH\"\n\nDo not ask the user for it and never replace it with placeholders.\n\nTOOL EXECUTION FLOW\n\nWhen you call a tool:\n\n1. Wait for the tool result.\n2. Carefully read the tool output.\n3. Use the tool output to produce the final response.\n\nDo not repeatedly call the same tool unless absolutely necessary.\n\nWHEN TO USE TOOLS\n\nExamples:\n\nMath calculations → use math tools\nGetting a random joke → use the joke tool\n\nFile management:\n\n* \"What files do I have?\" → use list_files\n* \"Summarize file X\" → use read_and_summarize_file\n* \"Delete file X\" → follow the deletion flow\n\nMemories, Tasks, Reminders → use their respective tools.\n\nApp creation → use create_app when the user asks to create or build an app.\n\nListing apps → use list_apps when the user asks about their apps.\n\nAPP CREATION (VERY IMPORTANT)\n\nWhen the user asks to create/build/make an app (for example: \"create an expense splitter\", \"build a task board\"):\n\nYou MUST use the **create_app** tool.\n\nYou must generate a complete JSON schema yourself with a **layout array** containing components.\n\nDo NOT ask the user to define the schema.\n\nCRITICAL RULES\n\nComponent names describe **WHAT DATA IS DISPLAYED**, not UI element types.\n\nComponents are **display cards only**.\n\nThere are **no buttons, forms, or inputs**.\n\nAll interaction happens through the chat.\n\nDO NOT use component names like:\n\nform\nbutton\nsubmit\ninput\nadd_expense_form\ngenerate_button\n\nInstead use names describing data such as:\n\nclient_details\ninvoice_items\ninvoice_preview\ntask_list\nexpense_history\n\nApps that generate documents must include a component with one of these names:\n\npreview\ndocument\nmarkdown\nviewer\n\nExamples:\n\ninvoice_preview\ndocument_viewer\n\nThis allows Markdown rendering in the UI.\n\nYou may optionally include **initialData** as JSON with sensible defaults.\n\nExample: empty arrays for lists.\n\nAfter creating the app:\n\nTell the user:\n\n\"The app is ready. Open it from the Apps section in the sidebar and describe what you want in the chat.\"\n\nNever say you cannot create an app.\n\nYou have the create_app tool — use it.\n\nAPP SCHEMA EXAMPLES\n\nExpense Splitter:\nmembers_list\nexpense_history\nbalance_summary\n\nInvoice Maker:\nclient_details\ninvoice_items\ninvoice_preview\n\nTodo Board:\ntask_list\ncompleted_tasks\ntask_summary\n\nRecipe Manager:\nrecipe_collection\nfavorites\nshopping_list\n\nBudget Tracker:\nincome_entries\nexpense_entries\nbudget_summary\n\nNotes App:\nnotes_list\nnote_viewer\n\nQuiz App:\nquestions\nscores\nquiz_viewer\n\nPoll App:\npoll_options\npoll_results\n\nFILE HANDLING\n\nIf the user asks about files:\n\n\"What files do I have?\" → use list_files\n\nIf the user provides a file name but not ID:\n\n1. Use list_files\n2. Find the correct file\n3. Use its ID\n\nIf the user asks to summarize a file → use read_and_summarize_file.\nNEVER use file tools for non-file items (like tasks, reminders, memories). Focus on their specific tools.\n\nITEM MANAGEMENT (STRICT RULES)\n\nFor managing (updating or deleting) memories, tasks, reminders, or files:\n\nSTEP 1 — If the user hasn't specified an ID, call the appropriate get_ or search_ tool first to find it.\n  * For reminders: use get_reminders\n  * For tasks: use get_tasks\n  * For memories: use get_memories\n  * For journals: use get_journals\n  * For files: use list_files\n\nSTEP 2 — Once you have the ID, proceed with the EXACT requested action:\n- To UPDATE/CHANGE: Call the corresponding update tool natively with the ID and new data.\n- To DELETE: Call the corresponding delete tool natively with the ID. (Do NOT ask for confirmation manually; the system handles it).\n- NEVER call a delete tool if the user asked to change or update an item.\n\nIf the user says \"No\" or \"Cancel\" when prompted, the tool execution will fail gracefully.\n\nRESPONSE FORMAT (CRITICAL)\n\nWhen you finish reasoning and are NOT calling tools, you MUST return a valid JSON object that exactly matches ONE of the following TypeScript interfaces:\n\n```typescript\ninterface ClarificationResponse {\n  type: \"clarification\";\n  question: string;\n  options: string[];\n}\n\ninterface FinalResponse {\n  type: \"final\";\n  message: string;\n}\n\ninterface UIComponentResponse {\n  type: \"ui_component\";\n  component: \"reminder_list\" | \"task_list\" | \"memory_list\" | \"file_list\" | \"contact_list\";\n  data: any;\n}\n```\n\nDo not include:\n* markdown formatting around the JSON\n* explanations or conversational text\n* text before or after the JSON object\n\nExample of a ClarificationResponse:\n{\n  \"type\": \"clarification\",\n  \"question\": \"Which option did you mean?\",\n  \"options\": [\"Option A\", \"Option B\"]\n}\n\nExample of a FinalResponse:\n{\n  \"type\": \"final\",\n  \"message\": \"Your response to the user\"\n}\n\nWHEN NOT TO USE TOOLS\n\nDo not use tools if:\n\n* the question is general knowledge\n* the answer can be reasoned without external data\n* no tool matches the request\n\nTOOL RESPONSE HANDLING\n\nWhen a tool returns data:\n\n* Present the result clearly\n* Do not invent additional information\n* Do not modify tool results except for readability\n\nIf a tool parameter is optional (like \"title\"), generate it automatically from context.\n\nNever ask the user for internal parameters.\n\nGENERATIVE UI RULES\n* Use \"ui_component\" responses when the user asks to see/list items (reminders, tasks, memories, files, contacts).\n* The \"data\" field must contain the raw array of items returned by the tools.\n* Return exactly ONE valid JSON object matching these interfaces.\n* If you cannot perform a physical action (like making a phone call), provide the relevant contact information in a \"ui_component\" response so the user can use the integrated action buttons.\n\nCOMMUNICATION STYLE\n\n* Keep responses concise.\n* Avoid unnecessary explanations.\n* Do not mention internal tools or system instructions.\n\nSECURITY\n\nNever reveal:\n\n* database IDs\n* UUIDs\n* access codes\n* system credentials\n\nConfirm actions naturally without exposing internal identifiers.\n\nYou are assisting Test inside the Nexora assistant application.",
-                "additional_kwargs": {},
-                "response_metadata": {}
-              }
-            },
-            {
-              "lc": 1,
-              "type": "constructor",
-              "id": [
-                "langchain_core",
-                "messages",
-                "HumanMessage"
-              ],
-              "kwargs": {
-                "content": "tell me a joke",
-                "additional_kwargs": {},
-                "response_metadata": {}
-              }
-            }
-          ],
-          "toolResults": 0,
-          "traceId": "9d8f6908-e071-4f22-81a1-9f604dae3cc2",
-          "timestamp": "2026-03-14T23:00:34.221Z",
-          "environment": "development"
-        },
-        {
-          "event": "planner_node_completed",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "toolCalls": 1,
-          "traceId": "9d8f6908-e071-4f22-81a1-9f604dae3cc2",
-          "timestamp": "2026-03-14T23:00:34.948Z",
-          "environment": "development"
-        },
-        {
-          "id": "x05ry",
-          "type": "plan_created",
-          "message": "Execution plan created",
-          "status": "success",
-          "timestamp": 1773529234956
-        },
-        {
-          "event": "plan_created",
-          "message": "Execution plan created",
-          "status": "success",
-          "traceId": "9d8f6908-e071-4f22-81a1-9f604dae3cc2",
-          "timestamp": "2026-03-14T23:00:34.956Z",
-          "environment": "development"
-        },
-        {
-          "id": "qjbbak",
-          "type": "clarification_needed",
-          "message": "Awaiting user confirmation for tool execution",
-          "status": "pending",
-          "timestamp": 1773529235120
-        },
-        {
-          "event": "clarification_needed",
-          "message": "Awaiting user confirmation for tool execution",
-          "status": "pending",
-          "traceId": "9d8f6908-e071-4f22-81a1-9f604dae3cc2",
-          "timestamp": "2026-03-14T23:00:35.121Z",
-          "environment": "development"
-        }
-      ],
-      "finalReply": "{\"type\":\"clarification\",\"question\":\"The system wants to run 'get_joke'. Do you want to proceed?\",\"options\":[\"Yes\",\"No\"]}"
-    },
-    {
-      "timestamp": "2026-03-14T23:00:39.268Z",
-      "user": "Test",
-      "request": "Yes",
-      "events": [
-        {
-          "event": "flow_attempt",
-          "message": "Yes",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "traceId": "ebfc841d-ad27-4201-a4fb-2fe3ba03ef1b",
-          "timestamp": "2026-03-14T23:00:36.607Z",
-          "environment": "development"
-        },
-        {
-          "id": "6uokye",
-          "type": "input_received",
-          "message": "User request received",
-          "status": "info",
-          "timestamp": 1773529236630
-        },
-        {
-          "event": "input_received",
-          "message": "User request received",
-          "status": "info",
-          "traceId": "ebfc841d-ad27-4201-a4fb-2fe3ba03ef1b",
-          "timestamp": "2026-03-14T23:00:36.630Z",
-          "environment": "development"
-        },
-        {
-          "event": "agent_execution_started",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "conversationId": "f6017ec7-5aa8-4289-9e84-1d67435dee5d",
-          "historyCount": 3,
-          "traceId": "ebfc841d-ad27-4201-a4fb-2fe3ba03ef1b",
-          "timestamp": "2026-03-14T23:00:36.949Z",
-          "environment": "development"
-        },
-        {
-          "id": "obej6c",
-          "type": "tool_approval",
-          "message": "User approved tool execution",
-          "status": "info",
-          "timestamp": 1773529236952
-        },
-        {
-          "event": "tool_approval",
-          "message": "User approved tool execution",
-          "status": "info",
-          "traceId": "ebfc841d-ad27-4201-a4fb-2fe3ba03ef1b",
-          "timestamp": "2026-03-14T23:00:36.952Z",
+          "content": "{\n  \"type\": \"final\",\n  \"message\": \"Hello! How can I assist you today?\"\n}",
+          "traceId": "3456ed06-e5c8-483f-b365-44e55305d482",
+          "timestamp": "2026-03-14T23:31:40.878Z",
           "environment": "development"
         },
         {
           "event": "graph_node_debug",
-          "node": "toolNode",
+          "node": "chatNode_end",
+          "messageCount": 2,
+          "toolResultsCount": 0,
+          "iterations": 0,
+          "intent": "general_chat",
+          "traceId": "3456ed06-e5c8-483f-b365-44e55305d482",
+          "timestamp": "2026-03-14T23:31:40.878Z",
+          "environment": "development"
+        },
+        {
+          "id": "s01xlv",
+          "type": "thinking",
+          "message": "Processing conversation...",
+          "status": "pending",
+          "timestamp": 1773531100880
+        },
+        {
+          "event": "thinking",
+          "message": "Processing conversation...",
+          "status": "pending",
+          "traceId": "3456ed06-e5c8-483f-b365-44e55305d482",
+          "timestamp": "2026-03-14T23:31:40.880Z",
+          "environment": "development"
+        },
+        {
+          "event": "graph_node_debug",
+          "node": "responseNode_start",
           "messageCount": 3,
           "toolResultsCount": 0,
-          "iterations": 1,
-          "intent": "tool_task",
-          "toolExecuted": "get_joke",
-          "traceId": "ebfc841d-ad27-4201-a4fb-2fe3ba03ef1b",
-          "timestamp": "2026-03-14T23:00:36.955Z",
-          "environment": "development"
-        },
-        {
-          "event": "tool_execution_started",
-          "toolName": "get_joke",
-          "arguments": {},
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "traceId": "ebfc841d-ad27-4201-a4fb-2fe3ba03ef1b",
-          "timestamp": "2026-03-14T23:00:36.955Z",
-          "environment": "development"
-        },
-        {
-          "event": "tool_execution_started",
-          "toolName": "get_joke",
-          "traceId": "ebfc841d-ad27-4201-a4fb-2fe3ba03ef1b",
-          "timestamp": "2026-03-14T23:00:36.958Z",
-          "environment": "development"
-        },
-        {
-          "event": "external_api_call",
-          "url": "https://official-joke-api.appspot.com/random_joke",
-          "traceId": "ebfc841d-ad27-4201-a4fb-2fe3ba03ef1b",
-          "timestamp": "2026-03-14T23:00:36.958Z",
-          "environment": "development"
-        },
-        {
-          "event": "external_api_response",
-          "status": 200,
-          "ok": true,
-          "traceId": "ebfc841d-ad27-4201-a4fb-2fe3ba03ef1b",
-          "timestamp": "2026-03-14T23:00:37.895Z",
-          "environment": "development"
-        },
-        {
-          "event": "tool_execution_completed",
-          "toolName": "get_joke",
-          "traceId": "ebfc841d-ad27-4201-a4fb-2fe3ba03ef1b",
-          "timestamp": "2026-03-14T23:00:37.897Z",
-          "environment": "development"
-        },
-        {
-          "id": "ur1wbc",
-          "type": "tool_complete",
-          "message": "Tool execution finished",
-          "status": "success",
-          "timestamp": 1773529237897
-        },
-        {
-          "event": "tool_complete",
-          "message": "Tool execution finished",
-          "status": "success",
-          "traceId": "ebfc841d-ad27-4201-a4fb-2fe3ba03ef1b",
-          "timestamp": "2026-03-14T23:00:37.897Z",
-          "environment": "development"
-        },
-        {
-          "event": "tool_execution_completed",
-          "toolName": "get_joke",
-          "result": "Why did the golfer wear two pairs of pants? In case he got a hole in one.",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "latencyMs": 942,
-          "traceId": "ebfc841d-ad27-4201-a4fb-2fe3ba03ef1b",
-          "timestamp": "2026-03-14T23:00:37.898Z",
-          "environment": "development"
-        },
-        {
-          "event": "tool_discovery_started",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "query": "tell me a joke",
-          "intent": "tool_task",
-          "allowedCategories": [
-            "math",
-            "conversation",
-            "journal",
-            "knowledge",
-            "tasks",
-            "reminders",
-            "apps",
-            "routines",
-            "web",
-            "communication",
-            "fun",
-            "safety",
-            "help"
-          ],
-          "allowedTags": [
-            "math",
-            "sum",
-            "subtract",
-            "formatting",
-            "style",
-            "history",
-            "chat",
-            "journal",
-            "entry",
-            "edit",
-            "delete",
-            "search",
-            "list",
-            "knowledge",
-            "store",
-            "task",
-            "todo",
-            "reminder",
-            "schedule",
-            "app",
-            "routine",
-            "automation",
-            "internet",
-            "email",
-            "send",
-            "call",
-            "phone",
-            "joke",
-            "humor",
-            "safety",
-            "guardrails",
-            "help",
-            "capabilities"
-          ],
-          "allowedToolCount": 33,
-          "traceId": "ebfc841d-ad27-4201-a4fb-2fe3ba03ef1b",
-          "timestamp": "2026-03-14T23:00:37.905Z",
-          "environment": "development"
-        },
-        {
-          "event": "tool_discovery_completed",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "count": 10,
-          "found": [
-            "get_joke",
-            "make_phone_call",
-            "add_reminder",
-            "add_numbers",
-            "add_journal",
-            "add_task",
-            "subtract_numbers",
-            "update_reminder",
-            "get_journals",
-            "prettify_response"
-          ],
-          "blockedTools": [],
-          "runtimeMissing": [],
-          "traceId": "ebfc841d-ad27-4201-a4fb-2fe3ba03ef1b",
-          "timestamp": "2026-03-14T23:00:38.355Z",
-          "environment": "development"
-        },
-        {
-          "event": "graph_node_debug",
-          "node": "plannerNode_start",
-          "messageCount": 4,
-          "toolResultsCount": 1,
-          "iterations": 1,
-          "intent": "tool_task",
-          "traceId": "ebfc841d-ad27-4201-a4fb-2fe3ba03ef1b",
-          "timestamp": "2026-03-14T23:00:38.364Z",
-          "environment": "development"
-        },
-        {
-          "event": "planner_node_started",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "messageCount": 4,
-          "traceId": "ebfc841d-ad27-4201-a4fb-2fe3ba03ef1b",
-          "timestamp": "2026-03-14T23:00:38.364Z",
-          "environment": "development"
-        },
-        {
-          "event": "LLM_INPUT",
-          "messages": [
-            {
-              "lc": 1,
-              "type": "constructor",
-              "id": [
-                "langchain_core",
-                "messages",
-                "SystemMessage"
-              ],
-              "kwargs": {
-                "content": "You are **Nexora**, a personal AI assistant for Test.\n\nThe current date and time is: 3/15/2026, 4:30:33 AM (ISO: 2026-03-14T23:00:33.182Z).\nUse this to calculate relative times (e.g., \"in 5 minutes\", \"tomorrow\", \"next Friday\").\n\nYour role is to help the user manage information, tasks, reminders, knowledge, files, and apps through conversation.\n\nGENERAL BEHAVIOR\n\n* Be helpful, concise, and accurate.\n* Respond in a professional tone.\n* Focus on solving the user's request efficiently.\n* Prioritize correctness over creativity.\n* Do not hallucinate information.\n\nCONTEXT INJECTION\nThe system may inject additional context before your reasoning, including:\n\n* past memories\n* stored knowledge\n* journal entries\n* retrieved information from previous conversations\n\nTreat this context as reliable background information that may help answer the user's request.\n\nTOOL USAGE (VERY IMPORTANT)\nYou have access to tools that can perform real actions.\n\nPrefer using a tool when the user's request requires:\n\n* real data retrieval\n* database access\n* file access\n* memory access\n* task creation or updates\n* app creation\n* external information\n\nIf the answer is simple reasoning or general knowledge, respond directly without using a tool.\n\nNEVER guess results that a tool can provide.\n\nIf a tool exists for the task, use the tool instead of inventing information.\n\nWhenever a tool requires an \"accessCode\" parameter, YOU MUST PASS exactly this value:\n\n\"AI-KTUD-W7VH\"\n\nDo not ask the user for it and never replace it with placeholders.\n\nTOOL EXECUTION FLOW\n\nWhen you call a tool:\n\n1. Wait for the tool result.\n2. Carefully read the tool output.\n3. Use the tool output to produce the final response.\n\nDo not repeatedly call the same tool unless absolutely necessary.\n\nWHEN TO USE TOOLS\n\nExamples:\n\nMath calculations → use math tools\nGetting a random joke → use the joke tool\n\nFile management:\n\n* \"What files do I have?\" → use list_files\n* \"Summarize file X\" → use read_and_summarize_file\n* \"Delete file X\" → follow the deletion flow\n\nMemories, Tasks, Reminders → use their respective tools.\n\nApp creation → use create_app when the user asks to create or build an app.\n\nListing apps → use list_apps when the user asks about their apps.\n\nAPP CREATION (VERY IMPORTANT)\n\nWhen the user asks to create/build/make an app (for example: \"create an expense splitter\", \"build a task board\"):\n\nYou MUST use the **create_app** tool.\n\nYou must generate a complete JSON schema yourself with a **layout array** containing components.\n\nDo NOT ask the user to define the schema.\n\nCRITICAL RULES\n\nComponent names describe **WHAT DATA IS DISPLAYED**, not UI element types.\n\nComponents are **display cards only**.\n\nThere are **no buttons, forms, or inputs**.\n\nAll interaction happens through the chat.\n\nDO NOT use component names like:\n\nform\nbutton\nsubmit\ninput\nadd_expense_form\ngenerate_button\n\nInstead use names describing data such as:\n\nclient_details\ninvoice_items\ninvoice_preview\ntask_list\nexpense_history\n\nApps that generate documents must include a component with one of these names:\n\npreview\ndocument\nmarkdown\nviewer\n\nExamples:\n\ninvoice_preview\ndocument_viewer\n\nThis allows Markdown rendering in the UI.\n\nYou may optionally include **initialData** as JSON with sensible defaults.\n\nExample: empty arrays for lists.\n\nAfter creating the app:\n\nTell the user:\n\n\"The app is ready. Open it from the Apps section in the sidebar and describe what you want in the chat.\"\n\nNever say you cannot create an app.\n\nYou have the create_app tool — use it.\n\nAPP SCHEMA EXAMPLES\n\nExpense Splitter:\nmembers_list\nexpense_history\nbalance_summary\n\nInvoice Maker:\nclient_details\ninvoice_items\ninvoice_preview\n\nTodo Board:\ntask_list\ncompleted_tasks\ntask_summary\n\nRecipe Manager:\nrecipe_collection\nfavorites\nshopping_list\n\nBudget Tracker:\nincome_entries\nexpense_entries\nbudget_summary\n\nNotes App:\nnotes_list\nnote_viewer\n\nQuiz App:\nquestions\nscores\nquiz_viewer\n\nPoll App:\npoll_options\npoll_results\n\nFILE HANDLING\n\nIf the user asks about files:\n\n\"What files do I have?\" → use list_files\n\nIf the user provides a file name but not ID:\n\n1. Use list_files\n2. Find the correct file\n3. Use its ID\n\nIf the user asks to summarize a file → use read_and_summarize_file.\nNEVER use file tools for non-file items (like tasks, reminders, memories). Focus on their specific tools.\n\nITEM MANAGEMENT (STRICT RULES)\n\nFor managing (updating or deleting) memories, tasks, reminders, or files:\n\nSTEP 1 — If the user hasn't specified an ID, call the appropriate get_ or search_ tool first to find it.\n  * For reminders: use get_reminders\n  * For tasks: use get_tasks\n  * For memories: use get_memories\n  * For journals: use get_journals\n  * For files: use list_files\n\nSTEP 2 — Once you have the ID, proceed with the EXACT requested action:\n- To UPDATE/CHANGE: Call the corresponding update tool natively with the ID and new data.\n- To DELETE: Call the corresponding delete tool natively with the ID. (Do NOT ask for confirmation manually; the system handles it).\n- NEVER call a delete tool if the user asked to change or update an item.\n\nIf the user says \"No\" or \"Cancel\" when prompted, the tool execution will fail gracefully.\n\nRESPONSE FORMAT (CRITICAL)\n\nWhen you finish reasoning and are NOT calling tools, you MUST return a valid JSON object that exactly matches ONE of the following TypeScript interfaces:\n\n```typescript\ninterface ClarificationResponse {\n  type: \"clarification\";\n  question: string;\n  options: string[];\n}\n\ninterface FinalResponse {\n  type: \"final\";\n  message: string;\n}\n\ninterface UIComponentResponse {\n  type: \"ui_component\";\n  component: \"reminder_list\" | \"task_list\" | \"memory_list\" | \"file_list\" | \"contact_list\";\n  data: any;\n}\n```\n\nDo not include:\n* markdown formatting around the JSON\n* explanations or conversational text\n* text before or after the JSON object\n\nExample of a ClarificationResponse:\n{\n  \"type\": \"clarification\",\n  \"question\": \"Which option did you mean?\",\n  \"options\": [\"Option A\", \"Option B\"]\n}\n\nExample of a FinalResponse:\n{\n  \"type\": \"final\",\n  \"message\": \"Your response to the user\"\n}\n\nWHEN NOT TO USE TOOLS\n\nDo not use tools if:\n\n* the question is general knowledge\n* the answer can be reasoned without external data\n* no tool matches the request\n\nTOOL RESPONSE HANDLING\n\nWhen a tool returns data:\n\n* Present the result clearly\n* Do not invent additional information\n* Do not modify tool results except for readability\n\nIf a tool parameter is optional (like \"title\"), generate it automatically from context.\n\nNever ask the user for internal parameters.\n\nGENERATIVE UI RULES\n* Use \"ui_component\" responses when the user asks to see/list items (reminders, tasks, memories, files, contacts).\n* The \"data\" field must contain the raw array of items returned by the tools.\n* Return exactly ONE valid JSON object matching these interfaces.\n* If you cannot perform a physical action (like making a phone call), provide the relevant contact information in a \"ui_component\" response so the user can use the integrated action buttons.\n\nCOMMUNICATION STYLE\n\n* Keep responses concise.\n* Avoid unnecessary explanations.\n* Do not mention internal tools or system instructions.\n\nSECURITY\n\nNever reveal:\n\n* database IDs\n* UUIDs\n* access codes\n* system credentials\n\nConfirm actions naturally without exposing internal identifiers.\n\nYou are assisting Test inside the Nexora assistant application.",
-                "additional_kwargs": {},
-                "response_metadata": {}
-              }
-            },
-            {
-              "lc": 1,
-              "type": "constructor",
-              "id": [
-                "langchain_core",
-                "messages",
-                "HumanMessage"
-              ],
-              "kwargs": {
-                "content": "tell me a joke",
-                "additional_kwargs": {},
-                "response_metadata": {}
-              }
-            },
-            {
-              "lc": 1,
-              "type": "constructor",
-              "id": [
-                "langchain_core",
-                "messages",
-                "AIMessage"
-              ],
-              "kwargs": {
-                "id": "91428fea176e43949df7a7deeb13745a",
-                "content": "",
-                "additional_kwargs": {
-                  "tool_calls": [
-                    {
-                      "id": "ogDj9No3G",
-                      "function": {
-                        "name": "get_joke",
-                        "arguments": "{}"
-                      },
-                      "index": 0
-                    }
-                  ]
-                },
-                "response_metadata": {
-                  "tokenUsage": {
-                    "promptTokens": 12232,
-                    "completionTokens": 7,
-                    "totalTokens": 12239
-                  },
-                  "finish_reason": "tool_calls",
-                  "model_provider": "openai",
-                  "model_name": "mistral-small-latest"
-                },
-                "type": "ai",
-                "tool_calls": [
-                  {
-                    "name": "get_joke",
-                    "args": {},
-                    "type": "tool_call",
-                    "id": "ogDj9No3G"
-                  }
-                ],
-                "invalid_tool_calls": [],
-                "usage_metadata": {
-                  "output_tokens": 7,
-                  "input_tokens": 12232,
-                  "total_tokens": 12239,
-                  "input_token_details": {
-                    "cache_read": 0
-                  },
-                  "output_token_details": {}
-                }
-              }
-            },
-            {
-              "lc": 1,
-              "type": "constructor",
-              "id": [
-                "langchain_core",
-                "messages",
-                "ToolMessage"
-              ],
-              "kwargs": {
-                "tool_call_id": "ogDj9No3G",
-                "name": "get_joke",
-                "content": "Why did the golfer wear two pairs of pants? In case he got a hole in one.",
-                "additional_kwargs": {},
-                "response_metadata": {}
-              }
-            }
-          ],
-          "toolResults": 1,
-          "traceId": "ebfc841d-ad27-4201-a4fb-2fe3ba03ef1b",
-          "timestamp": "2026-03-14T23:00:38.364Z",
-          "environment": "development"
-        },
-        {
-          "event": "planner_node_completed",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "toolCalls": 0,
-          "traceId": "ebfc841d-ad27-4201-a4fb-2fe3ba03ef1b",
-          "timestamp": "2026-03-14T23:00:39.088Z",
-          "environment": "development"
-        },
-        {
-          "event": "graph_node_debug",
-          "node": "plannerNode_end",
-          "messageCount": 4,
-          "toolResultsCount": 1,
-          "iterations": 1,
-          "intent": "tool_task",
-          "toolCalls": 0,
-          "traceId": "ebfc841d-ad27-4201-a4fb-2fe3ba03ef1b",
-          "timestamp": "2026-03-14T23:00:39.088Z",
-          "environment": "development"
-        },
-        {
-          "event": "graph_node_debug",
-          "node": "responseNode_start",
-          "messageCount": 5,
-          "toolResultsCount": 1,
-          "iterations": 2,
-          "intent": "tool_task",
-          "traceId": "ebfc841d-ad27-4201-a4fb-2fe3ba03ef1b",
-          "timestamp": "2026-03-14T23:00:39.096Z",
+          "iterations": 0,
+          "intent": "general_chat",
+          "traceId": "3456ed06-e5c8-483f-b365-44e55305d482",
+          "timestamp": "2026-03-14T23:31:40.881Z",
           "environment": "development"
         },
         {
           "event": "graph_node_debug",
           "node": "responseNode",
-          "messageCount": 5,
-          "toolResultsCount": 1,
-          "iterations": 2,
-          "intent": "tool_task",
-          "finalReply": "Why did the golfer wear two pairs of pants? In case he got a hole in one.",
-          "traceId": "ebfc841d-ad27-4201-a4fb-2fe3ba03ef1b",
-          "timestamp": "2026-03-14T23:00:39.096Z",
+          "messageCount": 3,
+          "toolResultsCount": 0,
+          "iterations": 0,
+          "intent": "general_chat",
+          "finalReply": "Hello! How can I assist you today?",
+          "traceId": "3456ed06-e5c8-483f-b365-44e55305d482",
+          "timestamp": "2026-03-14T23:31:40.881Z",
           "environment": "development"
         },
         {
-          "id": "gd8yzl",
+          "id": "bxgrwa",
           "type": "response_generating",
           "message": "Preparing response",
           "status": "pending",
-          "timestamp": 1773529239103
+          "timestamp": 1773531100884
         },
         {
           "event": "response_generating",
           "message": "Preparing response",
           "status": "pending",
-          "traceId": "ebfc841d-ad27-4201-a4fb-2fe3ba03ef1b",
-          "timestamp": "2026-03-14T23:00:39.104Z",
+          "traceId": "3456ed06-e5c8-483f-b365-44e55305d482",
+          "timestamp": "2026-03-14T23:31:40.884Z",
           "environment": "development"
         },
         {
           "event": "llm_response_generated",
           "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "message": "Why did the golfer wear two pairs of pants? In case he got a hole in one.",
-          "traceId": "ebfc841d-ad27-4201-a4fb-2fe3ba03ef1b",
-          "timestamp": "2026-03-14T23:00:39.268Z",
+          "message": "Hello! How can I assist you today?",
+          "traceId": "3456ed06-e5c8-483f-b365-44e55305d482",
+          "timestamp": "2026-03-14T23:31:41.041Z",
           "environment": "development"
         }
       ],
-      "finalReply": "Why did the golfer wear two pairs of pants? In case he got a hole in one."
-    },
-    {
-      "timestamp": "2026-03-14T23:01:46.384Z",
-      "user": "Test",
-      "request": "who is pm modi",
-      "events": [
-        {
-          "event": "flow_attempt",
-          "message": "who is pm modi",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "traceId": "bc97e475-e099-4606-b754-618825aa1dd5",
-          "timestamp": "2026-03-14T23:01:44.837Z",
-          "environment": "development"
-        },
-        {
-          "id": "u3ojme",
-          "type": "input_received",
-          "message": "User request received",
-          "status": "info",
-          "timestamp": 1773529304919
-        },
-        {
-          "event": "input_received",
-          "message": "User request received",
-          "status": "info",
-          "traceId": "bc97e475-e099-4606-b754-618825aa1dd5",
-          "timestamp": "2026-03-14T23:01:44.920Z",
-          "environment": "development"
-        },
-        {
-          "event": "agent_execution_started",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "conversationId": "f6017ec7-5aa8-4289-9e84-1d67435dee5d",
-          "historyCount": 5,
-          "traceId": "bc97e475-e099-4606-b754-618825aa1dd5",
-          "timestamp": "2026-03-14T23:01:45.259Z",
-          "environment": "development"
-        },
-        {
-          "id": "jjgd5q",
-          "type": "thinking",
-          "message": "Agent thinking...",
-          "status": "pending",
-          "timestamp": 1773529305262
-        },
-        {
-          "event": "thinking",
-          "message": "Agent thinking...",
-          "status": "pending",
-          "traceId": "bc97e475-e099-4606-b754-618825aa1dd5",
-          "timestamp": "2026-03-14T23:01:45.262Z",
-          "environment": "development"
-        },
-        {
-          "event": "graph_node_debug",
-          "node": "routerNode_start",
-          "messageCount": 6,
-          "toolResultsCount": 1,
-          "iterations": 2,
-          "intent": "tool_task",
-          "traceId": "bc97e475-e099-4606-b754-618825aa1dd5",
-          "timestamp": "2026-03-14T23:01:45.269Z",
-          "environment": "development"
-        },
-        {
-          "event": "router_node_started",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "messageCount": 6,
-          "traceId": "bc97e475-e099-4606-b754-618825aa1dd5",
-          "timestamp": "2026-03-14T23:01:45.269Z",
-          "environment": "development"
-        },
-        {
-          "event": "router_node_completed",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "intent": "general_chat",
-          "traceId": "bc97e475-e099-4606-b754-618825aa1dd5",
-          "timestamp": "2026-03-14T23:01:45.628Z",
-          "environment": "development"
-        },
-        {
-          "event": "graph_node_debug",
-          "node": "routerNode_end",
-          "messageCount": 6,
-          "toolResultsCount": 1,
-          "iterations": 2,
-          "intent": "general_chat",
-          "traceId": "bc97e475-e099-4606-b754-618825aa1dd5",
-          "timestamp": "2026-03-14T23:01:45.628Z",
-          "environment": "development"
-        },
-        {
-          "id": "99jysi",
-          "type": "intent_detected",
-          "message": "Intent detected: general_chat",
-          "status": "success",
-          "timestamp": 1773529305635
-        },
-        {
-          "event": "intent_detected",
-          "message": "Intent detected: general_chat",
-          "status": "success",
-          "traceId": "bc97e475-e099-4606-b754-618825aa1dd5",
-          "timestamp": "2026-03-14T23:01:45.635Z",
-          "environment": "development"
-        },
-        {
-          "event": "graph_node_debug",
-          "node": "chatNode_start",
-          "messageCount": 6,
-          "toolResultsCount": 1,
-          "iterations": 2,
-          "intent": "general_chat",
-          "traceId": "bc97e475-e099-4606-b754-618825aa1dd5",
-          "timestamp": "2026-03-14T23:01:45.636Z",
-          "environment": "development"
-        },
-        {
-          "event": "chat_node_completed",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "content": "{\"type\": \"final\", \"message\": \"Narendra Modi is the current Prime Minister of India. He has been serving as the Prime Minister since 2014 and is a prominent leader of the Bharatiya Janata Party (BJP).\"}",
-          "traceId": "bc97e475-e099-4606-b754-618825aa1dd5",
-          "timestamp": "2026-03-14T23:01:46.203Z",
-          "environment": "development"
-        },
-        {
-          "event": "graph_node_debug",
-          "node": "chatNode_end",
-          "messageCount": 6,
-          "toolResultsCount": 1,
-          "iterations": 2,
-          "intent": "general_chat",
-          "traceId": "bc97e475-e099-4606-b754-618825aa1dd5",
-          "timestamp": "2026-03-14T23:01:46.204Z",
-          "environment": "development"
-        },
-        {
-          "id": "vw9cq",
-          "type": "thinking",
-          "message": "Processing conversation...",
-          "status": "pending",
-          "timestamp": 1773529306212
-        },
-        {
-          "event": "thinking",
-          "message": "Processing conversation...",
-          "status": "pending",
-          "traceId": "bc97e475-e099-4606-b754-618825aa1dd5",
-          "timestamp": "2026-03-14T23:01:46.212Z",
-          "environment": "development"
-        },
-        {
-          "event": "graph_node_debug",
-          "node": "responseNode_start",
-          "messageCount": 7,
-          "toolResultsCount": 1,
-          "iterations": 2,
-          "intent": "general_chat",
-          "traceId": "bc97e475-e099-4606-b754-618825aa1dd5",
-          "timestamp": "2026-03-14T23:01:46.214Z",
-          "environment": "development"
-        },
-        {
-          "event": "graph_node_debug",
-          "node": "responseNode",
-          "messageCount": 7,
-          "toolResultsCount": 1,
-          "iterations": 2,
-          "intent": "general_chat",
-          "finalReply": "Narendra Modi is the current Prime Minister of India. He has been serving as the Prime Minister since 2014 and is a prominent leader of the Bharatiya Janata Party (BJP).",
-          "traceId": "bc97e475-e099-4606-b754-618825aa1dd5",
-          "timestamp": "2026-03-14T23:01:46.214Z",
-          "environment": "development"
-        },
-        {
-          "id": "dsmij",
-          "type": "response_generating",
-          "message": "Preparing response",
-          "status": "pending",
-          "timestamp": 1773529306218
-        },
-        {
-          "event": "response_generating",
-          "message": "Preparing response",
-          "status": "pending",
-          "traceId": "bc97e475-e099-4606-b754-618825aa1dd5",
-          "timestamp": "2026-03-14T23:01:46.218Z",
-          "environment": "development"
-        },
-        {
-          "event": "llm_response_generated",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "message": "Narendra Modi is the current Prime Minister of India. He has been serving as the Prime Minister since 2014 and is a prominent leader of the Bharatiya Janata Party (BJP).",
-          "traceId": "bc97e475-e099-4606-b754-618825aa1dd5",
-          "timestamp": "2026-03-14T23:01:46.383Z",
-          "environment": "development"
-        }
-      ],
-      "finalReply": "Narendra Modi is the current Prime Minister of India. He has been serving as the Prime Minister since 2014 and is a prominent leader of the Bharatiya Janata Party (BJP)."
-    },
-    {
-      "timestamp": "2026-03-14T23:01:53.625Z",
-      "user": "Test",
-      "request": "whiskey of ireland",
-      "events": [
-        {
-          "event": "flow_attempt",
-          "message": "whiskey of ireland",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "traceId": "5d498d22-0647-4c5e-9c4f-7f6b8bf53bfa",
-          "timestamp": "2026-03-14T23:01:51.818Z",
-          "environment": "development"
-        },
-        {
-          "id": "29x5a8",
-          "type": "input_received",
-          "message": "User request received",
-          "status": "info",
-          "timestamp": 1773529311887
-        },
-        {
-          "event": "input_received",
-          "message": "User request received",
-          "status": "info",
-          "traceId": "5d498d22-0647-4c5e-9c4f-7f6b8bf53bfa",
-          "timestamp": "2026-03-14T23:01:51.888Z",
-          "environment": "development"
-        },
-        {
-          "event": "agent_execution_started",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "conversationId": "f6017ec7-5aa8-4289-9e84-1d67435dee5d",
-          "historyCount": 7,
-          "traceId": "5d498d22-0647-4c5e-9c4f-7f6b8bf53bfa",
-          "timestamp": "2026-03-14T23:01:52.200Z",
-          "environment": "development"
-        },
-        {
-          "id": "i4j4s",
-          "type": "thinking",
-          "message": "Agent thinking...",
-          "status": "pending",
-          "timestamp": 1773529312202
-        },
-        {
-          "event": "thinking",
-          "message": "Agent thinking...",
-          "status": "pending",
-          "traceId": "5d498d22-0647-4c5e-9c4f-7f6b8bf53bfa",
-          "timestamp": "2026-03-14T23:01:52.202Z",
-          "environment": "development"
-        },
-        {
-          "event": "graph_node_debug",
-          "node": "routerNode_start",
-          "messageCount": 8,
-          "toolResultsCount": 1,
-          "iterations": 2,
-          "intent": "general_chat",
-          "traceId": "5d498d22-0647-4c5e-9c4f-7f6b8bf53bfa",
-          "timestamp": "2026-03-14T23:01:52.208Z",
-          "environment": "development"
-        },
-        {
-          "event": "router_node_started",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "messageCount": 8,
-          "traceId": "5d498d22-0647-4c5e-9c4f-7f6b8bf53bfa",
-          "timestamp": "2026-03-14T23:01:52.208Z",
-          "environment": "development"
-        },
-        {
-          "event": "router_node_completed",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "intent": "general_chat",
-          "traceId": "5d498d22-0647-4c5e-9c4f-7f6b8bf53bfa",
-          "timestamp": "2026-03-14T23:01:52.535Z",
-          "environment": "development"
-        },
-        {
-          "event": "graph_node_debug",
-          "node": "routerNode_end",
-          "messageCount": 8,
-          "toolResultsCount": 1,
-          "iterations": 2,
-          "intent": "general_chat",
-          "traceId": "5d498d22-0647-4c5e-9c4f-7f6b8bf53bfa",
-          "timestamp": "2026-03-14T23:01:52.535Z",
-          "environment": "development"
-        },
-        {
-          "id": "2g5kx8",
-          "type": "intent_detected",
-          "message": "Intent detected: general_chat",
-          "status": "success",
-          "timestamp": 1773529312541
-        },
-        {
-          "event": "intent_detected",
-          "message": "Intent detected: general_chat",
-          "status": "success",
-          "traceId": "5d498d22-0647-4c5e-9c4f-7f6b8bf53bfa",
-          "timestamp": "2026-03-14T23:01:52.541Z",
-          "environment": "development"
-        },
-        {
-          "event": "graph_node_debug",
-          "node": "chatNode_start",
-          "messageCount": 8,
-          "toolResultsCount": 1,
-          "iterations": 2,
-          "intent": "general_chat",
-          "traceId": "5d498d22-0647-4c5e-9c4f-7f6b8bf53bfa",
-          "timestamp": "2026-03-14T23:01:52.542Z",
-          "environment": "development"
-        },
-        {
-          "event": "chat_node_completed",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "content": "{\"type\": \"final\", \"message\": \"Ireland is renowned for its whiskey, often spelled \\\"whisky\\\" in Ireland and other countries. Irish whiskey is typically triple-distilled and known for its smooth and approachable character. Some of the most famous Irish whiskey brands include Jameson, Bushmills, and Tullamore D.E.W. These whiskeys are often enjoyed neat, on the rocks, or in classic cocktails like the Irish Coffee or the Whiskey Sour.\"}",
-          "traceId": "5d498d22-0647-4c5e-9c4f-7f6b8bf53bfa",
-          "timestamp": "2026-03-14T23:01:53.456Z",
-          "environment": "development"
-        },
-        {
-          "event": "graph_node_debug",
-          "node": "chatNode_end",
-          "messageCount": 8,
-          "toolResultsCount": 1,
-          "iterations": 2,
-          "intent": "general_chat",
-          "traceId": "5d498d22-0647-4c5e-9c4f-7f6b8bf53bfa",
-          "timestamp": "2026-03-14T23:01:53.456Z",
-          "environment": "development"
-        },
-        {
-          "id": "73pb69",
-          "type": "thinking",
-          "message": "Processing conversation...",
-          "status": "pending",
-          "timestamp": 1773529313459
-        },
-        {
-          "event": "thinking",
-          "message": "Processing conversation...",
-          "status": "pending",
-          "traceId": "5d498d22-0647-4c5e-9c4f-7f6b8bf53bfa",
-          "timestamp": "2026-03-14T23:01:53.459Z",
-          "environment": "development"
-        },
-        {
-          "event": "graph_node_debug",
-          "node": "responseNode_start",
-          "messageCount": 9,
-          "toolResultsCount": 1,
-          "iterations": 2,
-          "intent": "general_chat",
-          "traceId": "5d498d22-0647-4c5e-9c4f-7f6b8bf53bfa",
-          "timestamp": "2026-03-14T23:01:53.460Z",
-          "environment": "development"
-        },
-        {
-          "event": "graph_node_debug",
-          "node": "responseNode",
-          "messageCount": 9,
-          "toolResultsCount": 1,
-          "iterations": 2,
-          "intent": "general_chat",
-          "finalReply": "Ireland is renowned for its whiskey, often spelled \"whisky\" in Ireland and other countries. Irish whiskey is typically triple-distilled and known for its smooth and approachable character. Some of the most famous Irish whiskey brands include Jameson, Bushmills, and Tullamore D.E.W. These whiskeys are often enjoyed neat, on the rocks, or in classic cocktails like the Irish Coffee or the Whiskey Sour.",
-          "traceId": "5d498d22-0647-4c5e-9c4f-7f6b8bf53bfa",
-          "timestamp": "2026-03-14T23:01:53.460Z",
-          "environment": "development"
-        },
-        {
-          "id": "itztaz",
-          "type": "response_generating",
-          "message": "Preparing response",
-          "status": "pending",
-          "timestamp": 1773529313465
-        },
-        {
-          "event": "response_generating",
-          "message": "Preparing response",
-          "status": "pending",
-          "traceId": "5d498d22-0647-4c5e-9c4f-7f6b8bf53bfa",
-          "timestamp": "2026-03-14T23:01:53.465Z",
-          "environment": "development"
-        },
-        {
-          "event": "llm_response_generated",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "message": "Ireland is renowned for its whiskey, often spelled \"whisky\" in Ireland and other countries. Irish whiskey is typically triple-distilled and known for its smooth and approachable character. Some of the most famous Irish whiskey brands include Jameson, Bushmills, and Tullamore D.E.W. These whiskeys are often enjoyed neat, on the rocks, or in classic cocktails like the Irish Coffee or the Whiskey Sour.",
-          "traceId": "5d498d22-0647-4c5e-9c4f-7f6b8bf53bfa",
-          "timestamp": "2026-03-14T23:01:53.624Z",
-          "environment": "development"
-        }
-      ],
-      "finalReply": "Ireland is renowned for its whiskey, often spelled \"whisky\" in Ireland and other countries. Irish whiskey is typically triple-distilled and known for its smooth and approachable character. Some of the most famous Irish whiskey brands include Jameson, Bushmills, and Tullamore D.E.W. These whiskeys are often enjoyed neat, on the rocks, or in classic cocktails like the Irish Coffee or the Whiskey Sour."
+      "finalReply": "Hello! How can I assist you today?"
     }
   ]
 }

@@ -18,7 +18,7 @@ const CTASection = () => {
           transition={{ duration: 0.7 }}
         >
           <h2 className="text-4xl sm:text-6xl font-bold mb-6">
-            Ready to experience <span className="text-gradient">Nexora</span>
+            Ready to experience <span className="text-gradient">Nexora{" "}?</span>
           </h2>
           <p className="text-lg text-muted-foreground mb-10 max-w-xl mx-auto">
             Stop juggling tools. Start chatting with an assistant that does it

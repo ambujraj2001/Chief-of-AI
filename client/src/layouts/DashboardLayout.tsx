@@ -30,9 +30,7 @@ const DashboardLayout = () => {
   const accessCode =
     user.accessCode || localStorage.getItem("accessCode") || "";
 
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(
-    window.innerWidth < 1024,
-  );
+  const sidebarCollapsed = false;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [logoutModalVisible, setLogoutModalVisible] = useState(false);
   const [runTour, setRunTour] = useState(false);
@@ -52,10 +50,7 @@ const DashboardLayout = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleToggleSidebar = useCallback(
-    () => setSidebarCollapsed((p) => !p),
-    [],
-  );
+  const handleToggleSidebar = useCallback(() => {}, []);
   const handleCloseMobileMenu = useCallback(
     () => setIsMobileMenuOpen(false),
     [],
@@ -332,7 +327,7 @@ const DashboardLayout = () => {
         {/* Dynamic Contextual Workspace */}
         <div className="flex-1 flex overflow-hidden">
           <div className="flex-1 relative overflow-hidden flex flex-col min-w-0">
-            <Outlet context={{ sidebarCollapsed, setSidebarCollapsed }} />
+            <Outlet context={{ sidebarCollapsed }} />
           </div>
 
           {isChatPage && (

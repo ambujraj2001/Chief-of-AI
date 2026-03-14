@@ -352,15 +352,34 @@ const SettingsPage = () => {
             <h3 className="text-xl font-bold tracking-tight">Profile</h3>
           </div>
           <div className="flex flex-col md:flex-row gap-8 items-start">
-            <div className="h-20 w-20 rounded-full bg-primary flex items-center justify-center text-white text-2xl font-bold shrink-0">
-              {formData.fullName
-                ? formData.fullName
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")
-                    .slice(0, 2)
-                    .toUpperCase()
-                : "U"}
+            <div className="flex flex-col items-center gap-2 shrink-0">
+              <div className="h-20 w-20 rounded-full bg-primary flex items-center justify-center text-white text-2xl font-bold">
+                {formData.fullName
+                  ? formData.fullName
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")
+                      .slice(0, 2)
+                      .toUpperCase()
+                  : "U"}
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  const code = user.accessCode || localStorage.getItem("accessCode") || "";
+                  navigator.clipboard.writeText(code);
+                  message.success("Access code copied!");
+                }}
+                className="flex items-center gap-1 px-2 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors cursor-pointer group"
+                title="Copy access code"
+              >
+                <span className="text-[10px] font-mono font-medium text-slate-500 dark:text-slate-400 select-all">
+                  {user.accessCode || localStorage.getItem("accessCode") || "—"}
+                </span>
+                <span className="material-symbols-outlined text-[13px] text-slate-400 group-hover:text-primary transition-colors">
+                  content_copy
+                </span>
+              </button>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 flex-1 w-full">
               <div className="space-y-2">

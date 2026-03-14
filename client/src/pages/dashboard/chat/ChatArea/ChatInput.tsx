@@ -1,12 +1,8 @@
 import React, { useRef, useEffect, useCallback, useState } from "react";
 import { message } from "antd";
-import type {
-  SpeechRecognition,
-  SpeechRecognitionEvent,
-  SpeechRecognitionErrorEvent,
-} from "./types";
 import type { FileEntry } from "../../../../services/api";
 import { apiUploadFile } from "../../../../services/api";
+import { useSpeechToText } from "../../../../hooks/useSpeechToText";
 
 interface ChatInputProps {
   inputValue: string;
@@ -17,159 +13,71 @@ interface ChatInputProps {
   disabled?: boolean;
 }
 
-interface SpeechRecognitionConstructor {
-  new (): SpeechRecognition;
-}
-
 const ChatInput: React.FC<ChatInputProps> = ({
   inputValue,
   onInputChange,
   onSend,
-  isListening,
+  isListening: _isListeningProp, // synced from hook to parent
   setIsListening,
   disabled,
 }) => {
+  void _isListeningProp;
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const recognitionRef = useRef<SpeechRecognition | null>(null);
-  const isListeningRef = useRef(isListening);
-  const inputValueRef = useRef(inputValue);
+  const baseTextRef = useRef("");
 
   const [attachments, setAttachments] = useState<FileEntry[]>([]);
   const [isUploading, setIsUploading] = useState(false);
 
   const accessCode = localStorage.getItem("accessCode") || "";
 
-  // Keep refs in sync
-  useEffect(() => {
-    isListeningRef.current = isListening;
-  }, [isListening]);
+  const {
+    transcript,
+    isListening: hookIsListening,
+    isSupported,
+    error: speechError,
+    startListening,
+    stopListening,
+    resetTranscript,
+  } = useSpeechToText({
+    continuous: true,
+    interimResults: true,
+    language: "en-US",
+  });
 
+  // Sync hook listening state to parent
   useEffect(() => {
-    inputValueRef.current = inputValue;
-  }, [inputValue]);
+    setIsListening(hookIsListening);
+  }, [hookIsListening, setIsListening]);
 
-  const onInputChangeRef = useRef(onInputChange);
+  // Show speech errors (network, permission, etc.)
   useEffect(() => {
-    onInputChangeRef.current = onInputChange;
-  }, [onInputChange]);
+    if (speechError) {
+      message.error(speechError);
+    }
+  }, [speechError]);
 
+  // While listening, merge base text + transcript into input
   useEffect(() => {
-    if (isListening) {
-      const win = window as unknown as Window & {
-        SpeechRecognition?: SpeechRecognitionConstructor;
-        webkitSpeechRecognition?: SpeechRecognitionConstructor;
-      };
-      const SpeechRecognitionClass =
-        win.SpeechRecognition || win.webkitSpeechRecognition;
+    if (!hookIsListening) return;
+    const base = baseTextRef.current;
+    const combined = transcript ? `${base}${base ? " " : ""}${transcript}`.trim() : base;
+    onInputChange(combined);
+  }, [transcript, hookIsListening, onInputChange]);
 
-      if (!SpeechRecognitionClass) {
-        message.error("Web Speech API is not supported in your browser.");
-        setIsListening(false);
+  const toggleListening = useCallback(() => {
+    if (hookIsListening) {
+      stopListening();
+    } else {
+      if (!isSupported) {
+        message.error("Voice input is not supported in your browser.");
         return;
       }
-
-      const recognition = new SpeechRecognitionClass();
-      recognition.lang = "en-US";
-      recognition.interimResults = true;
-      recognition.continuous = true;
-
-      // Track the committed (final) base text separately from interim results.
-      // This prevents interim results from being appended on top of themselves.
-      const baseText = { value: inputValueRef.current };
-
-      recognition.onstart = () => {
-        console.log("Speech recognition started");
-        // Snapshot current input value as the starting base
-        baseText.value = inputValueRef.current;
-      };
-
-      recognition.onresult = (event: SpeechRecognitionEvent) => {
-        let finalTranscript = "";
-        let interimTranscript = "";
-
-        for (let i = event.resultIndex; i < event.results.length; ++i) {
-          const text = event.results[i][0].transcript;
-          if (event.results[i].isFinal) {
-            finalTranscript += text;
-          } else {
-            interimTranscript += text;
-          }
-        }
-
-        if (finalTranscript) {
-          // Permanently commit final transcript into the base
-          const separator = baseText.value ? " " : "";
-          baseText.value = `${baseText.value}${separator}${finalTranscript.trim()}`;
-          onInputChangeRef.current(baseText.value);
-        } else if (interimTranscript) {
-          // Show interim result as a preview without permanently committing
-          const separator = baseText.value ? " " : "";
-          onInputChangeRef.current(
-            `${baseText.value}${separator}${interimTranscript.trim()}`,
-          );
-        }
-      };
-
-      recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
-        console.error("Speech recognition error:", event.error);
-        if (event.error === "not-allowed") {
-          message.error(
-            "Microphone access denied. Please check your browser permissions.",
-          );
-          setIsListening(false);
-        } else if (event.error === "network") {
-          message.error("Speech recognition network error.");
-          setIsListening(false);
-        }
-        // Ignore "aborted" — this fires when we manually call .stop()
-      };
-
-      recognition.onend = () => {
-        // Only restart if the user hasn't clicked Stop
-        if (isListeningRef.current) {
-          try {
-            recognition.start();
-          } catch (e) {
-            console.warn("Speech recognition restart failed:", e);
-          }
-        }
-      };
-
-      recognitionRef.current = recognition;
-      try {
-        recognition.start();
-      } catch (e) {
-        console.error("Initial speech start failed:", e);
-        setIsListening(false);
-      }
-    } else {
-      // User clicked Stop — cleanly tear down recognition
-      if (recognitionRef.current) {
-        recognitionRef.current.onend = () => {}; // Prevent the restart loop
-        recognitionRef.current.onerror = () => {};
-        try {
-          recognitionRef.current.stop();
-        } catch (e) {
-          console.warn("Stop failed:", e);
-        }
-        recognitionRef.current = null;
-      }
+      baseTextRef.current = inputValue;
+      resetTranscript();
+      startListening();
     }
-
-    return () => {
-      if (recognitionRef.current) {
-        recognitionRef.current.onend = () => {};
-        recognitionRef.current.onerror = () => {};
-        try {
-          recognitionRef.current.stop();
-        } catch (e) {
-          console.warn("Cleanup stop failed:", e);
-        }
-        recognitionRef.current = null;
-      }
-    };
-  }, [isListening, setIsListening]);
+  }, [hookIsListening, isSupported, inputValue, startListening, stopListening, resetTranscript]);
 
   const handleSend = useCallback(() => {
     onSend(attachments);
@@ -198,10 +106,6 @@ const ChatInput: React.FC<ChatInputProps> = ({
     },
     [onInputChange],
   );
-
-  const toggleListening = useCallback(() => {
-    setIsListening(!isListening);
-  }, [isListening, setIsListening]);
 
   const handleFileClick = () => {
     if (attachments.length >= 2) {
@@ -326,14 +230,14 @@ const ChatInput: React.FC<ChatInputProps> = ({
             <button
               onClick={toggleListening}
               className={`size-7 sm:size-8 rounded-full flex items-center justify-center transition-all border ${
-                isListening
+                hookIsListening
                   ? "bg-red-500 text-white border-red-600 animate-pulse"
                   : "bg-primary/10 text-primary hover:bg-primary/20 border-primary/20"
               }`}
-              title={isListening ? "Stop recording" : "Voice input"}
+              title={hookIsListening ? "Stop recording" : "Voice input"}
             >
               <span className="material-symbols-outlined text-[16px] sm:text-[18px]">
-                {isListening ? "graphic_eq" : "mic"}
+                {hookIsListening ? "graphic_eq" : "mic"}
               </span>
             </button>
             <div className="h-6 w-[1px] bg-slate-300 dark:bg-slate-700 mx-0.5 sm:mx-1" />

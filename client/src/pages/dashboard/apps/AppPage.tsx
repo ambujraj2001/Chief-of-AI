@@ -357,9 +357,7 @@ const AppAiMessage: React.FC<{
   return (
     <div className="flex gap-3 group animate-in fade-in slide-in-from-bottom-2 duration-500">
       <div className="size-7 rounded-lg bg-primary flex items-center justify-center shrink-0 mt-1">
-        <span className="material-symbols-outlined text-white text-base">
-          smart_toy
-        </span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
       </div>
       <div className="flex flex-col gap-1 max-w-[85%]">
         <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 text-slate-800 dark:text-slate-200 leading-relaxed border border-slate-100 dark:border-slate-800 shadow-sm prose dark:prose-invert max-w-none text-sm">
@@ -779,9 +777,7 @@ const AppPage = () => {
             {isTyping && (
               <div className="flex gap-3 animate-in fade-in">
                 <div className="size-7 rounded-lg bg-primary flex items-center justify-center shrink-0">
-                  <span className="material-symbols-outlined text-white text-base animate-pulse">
-                    smart_toy
-                  </span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-pulse"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
                 </div>
                 <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
                   <div className="flex gap-1.5">

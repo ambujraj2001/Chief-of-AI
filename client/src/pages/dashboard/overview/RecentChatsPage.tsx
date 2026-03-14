@@ -222,9 +222,7 @@ const RecentChatsPage = () => {
                 className="group flex items-center gap-4 bg-white dark:bg-slate-900/50 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary/50 dark:hover:border-primary/50 hover:shadow-md transition-all cursor-pointer"
               >
                 <div className="h-14 w-14 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0 overflow-hidden">
-                  <span className="material-symbols-outlined text-2xl">
-                    smart_toy
-                  </span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
                 </div>
 
                 <div className="flex-1 min-w-0">
