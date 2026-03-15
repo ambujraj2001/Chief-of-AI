@@ -466,13 +466,10 @@ const LoginPage = () => {
 
                 {formMode === "login" && step === 1 && (
                   <>
-                    <div className="relative pt-2">
-                      <div className="absolute inset-0 flex items-center">
-                        <div className="w-full border-t border-slate-200 dark:border-border-dark"></div>
-                      </div>
-                      <div className="relative flex justify-center text-sm">
-                        <span className="px-2 bg-white dark:bg-card-dark text-slate-500">Or continue with</span>
-                      </div>
+                    <div className="relative flex items-center gap-4 py-2">
+                      <div className="flex-grow border-t border-slate-200 dark:border-border-dark"></div>
+                      <span className="flex-shrink-0 text-sm text-slate-500 bg-white dark:bg-card-dark">Or continue with</span>
+                      <div className="flex-grow border-t border-slate-200 dark:border-border-dark"></div>
                     </div>
 
                     <div className="grid grid-cols-2 gap-4 w-full items-stretch">
@@ -525,7 +522,7 @@ const LoginPage = () => {
 
                 <div className="flex flex-col gap-3 pt-2 text-center">
                   {formMode === "login" ? (
-                    <div className="border-t border-slate-100 dark:border-border-dark pt-6 mt-2 space-y-4">
+                    <div className="border-t border-slate-100 dark:border-border-dark pt-4 mt-2 space-y-4">
                       <button
                         type="button"
                         onClick={() => navigate("/forgot-access-code")}
@@ -578,7 +575,7 @@ const LoginPage = () => {
               )}
             </div>
 
-            <div className="flex justify-center gap-6 text-slate-400 dark:text-slate-600">
+            <div className="flex justify-center gap-6 mt-8 text-slate-400 dark:text-slate-600">
               <span className="material-symbols-outlined hover:text-primary cursor-pointer transition-colors">
                 help_outline
               </span>

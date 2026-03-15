@@ -102,13 +102,10 @@ const SignupPage = () => {
                   )}
                 </button>
 
-                <div className="relative my-6">
-                  <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-slate-200 dark:border-border-dark"></div>
-                  </div>
-                  <div className="relative flex justify-center text-sm">
-                    <span className="px-2 bg-white dark:bg-card-dark text-slate-500">Or quick signup with</span>
-                  </div>
+                <div className="relative flex items-center gap-4 my-8">
+                  <div className="flex-grow border-t border-slate-200 dark:border-border-dark"></div>
+                  <span className="flex-shrink-0 text-sm text-slate-500 bg-white dark:bg-card-dark">Or quick signup with</span>
+                  <div className="flex-grow border-t border-slate-200 dark:border-border-dark"></div>
                 </div>
 
                 <div className="flex flex-col gap-3 w-full">
@@ -167,7 +164,7 @@ const SignupPage = () => {
                 )}
               </div>
 
-              <div className="mt-8 pt-6 border-t border-slate-100 dark:border-border-dark text-center">
+              <div className="mt-4 pt-4 border-t border-slate-100 dark:border-border-dark text-center">
                 <p className="text-sm text-slate-500 dark:text-slate-400">
                   Already have an access code?{" "}
                   <button
