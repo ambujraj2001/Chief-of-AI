@@ -177,27 +177,27 @@ const AiMessage: React.FC<AiMessageProps> = ({ content, onOptionSelect }) => {
               {processed.text}
             </ReactMarkdown>
           )}
-          {processed.kind !== "clarification" && (
-            <div className="flex gap-2 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
-              <button
-                className="p-1 text-slate-400 hover:text-slate-600 transition-colors"
-                title="Copy"
-                onClick={() => {
-                  const text =
-                    processed.kind === "text" ? processed.text : content;
-                  navigator.clipboard.writeText(text ?? content).then(
-                    () => message.success("Copied to clipboard"),
-                    () => message.error("Copy failed"),
-                  );
-                }}
-              >
-                <span className="material-symbols-outlined text-sm">
-                  content_copy
-                </span>
-              </button>
-            </div>
-          )}
         </div>
+        {processed.kind !== "clarification" && (
+          <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity ml-1">
+            <button
+              className="p-1 text-slate-400 hover:text-primary transition-colors flex items-center gap-1"
+              title="Copy message"
+              onClick={() => {
+                const text =
+                  processed.kind === "text" ? processed.text : content;
+                navigator.clipboard.writeText(text ?? content).then(
+                  () => message.success("Copied to clipboard"),
+                  () => message.error("Copy failed"),
+                );
+              }}
+            >
+              <span className="material-symbols-outlined text-[16px]">
+                content_copy
+              </span>
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

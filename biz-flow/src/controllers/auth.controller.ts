@@ -17,6 +17,9 @@ import { redis } from "../config/redis";
 import { sendOTP } from "../services/mail.service";
 import { authenticator } from "otplib";
 import QRCode from "qrcode";
+import { OAuth2Client } from "google-auth-library";
+
+const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 // ─── POST /auth/signup ──────────────────────────────────────────────────────
 
@@ -107,6 +110,98 @@ export const signup = async (
     });
   } catch (err) {
     next(err);
+  }
+};
+
+// ─── POST /auth/google ──────────────────────────────────────────────────────
+
+export const googleLogin = async (
+  req: Request<object, object, { idToken: string }>,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    const { idToken } = req.body;
+
+    if (!idToken) {
+      res.status(400).json({ error: "idToken is required" });
+      return;
+    }
+
+    const ticket = await googleClient.verifyIdToken({
+      idToken,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+
+    const payload = ticket.getPayload();
+    if (!payload || !payload.email) {
+      res.status(400).json({ error: "Invalid Google token" });
+      return;
+    }
+
+    const email = payload.email.toLowerCase();
+    const fullName = payload.name || "Google User";
+
+    let user = await findUserByEmail(email);
+
+    if (!user) {
+      // Auto-signup for Google users
+      const signupData: SignupBody = {
+        fullName,
+        email,
+        interactionTone: "professional",
+        responseComplexity: 3,
+        voiceModel: "atlas",
+        notifyResponseAlerts: true,
+        notifyDailyBriefing: true,
+      };
+      const newUser = await createUser(signupData);
+      user = await findUserByAccessCode(newUser.access_code);
+    }
+
+    if (!user) {
+      res.status(500).json({ error: "Failed to create or retrieve user" });
+      return;
+    }
+
+    if (user.is_locked) {
+      res.status(403).json({
+        error:
+          "Your account is locked. Please use the unlock flow to regain access.",
+      });
+      return;
+    }
+
+    log({
+      event: "google_login_successful",
+      userId: user.id,
+      email: user.email,
+    });
+
+    res.status(200).json({
+      user: {
+        id: user.id,
+        fullName: user.full_name,
+        email: user.email,
+        role: user.role || "User",
+      },
+      preferences: {
+        interactionTone: user.interaction_tone,
+        responseComplexity: user.response_complexity,
+        voiceModel: user.voice_model,
+        notifyResponseAlerts: user.notify_response_alerts,
+        notifyDailyBriefing: user.notify_daily_briefing,
+        showDemo: user.show_demo,
+        twoFactorEnabled: user.two_factor_enabled,
+      },
+      accessCode: user.access_code,
+    });
+  } catch (err) {
+    log({
+      event: "google_login_failed",
+      error: err instanceof Error ? err.message : "Unknown error",
+    });
+    res.status(401).json({ error: "Google authentication failed" });
   }
 };
 

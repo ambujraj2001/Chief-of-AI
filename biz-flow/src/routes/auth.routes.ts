@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   signup,
   bootconfig,
+  googleLogin,
   updateProfile,
   forgotAccessCode,
   verifyOTP,
@@ -22,6 +23,9 @@ router.post("/signup", signup);
 
 // POST /auth/bootconfig
 router.post("/bootconfig", bootconfig);
+
+// POST /auth/google
+router.post("/google", googleLogin);
 
 // POST /auth/update-profile
 router.post("/update-profile", updateProfile);

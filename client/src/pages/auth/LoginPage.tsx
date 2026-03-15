@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import AppHeader from "../../components/AppHeader";
 import {
   apiBootConfig,
+  apiGoogleLogin,
   apiLockAccount,
   apiRequestLockOTP,
   apiRequestUnlockOTP,
@@ -11,6 +12,7 @@ import {
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/userSlice";
 import { message } from "antd";
+import { GoogleLogin, type CredentialResponse } from "@react-oauth/google";
 
 type FormMode = "login" | "lock" | "unlock";
 
@@ -134,6 +136,28 @@ const LoginPage = () => {
       setError(null);
     },
     [],
+  );
+  
+  const handleGoogleSuccess = useCallback(
+    async (credentialResponse: CredentialResponse) => {
+      if (!credentialResponse.credential) return;
+      setLoading(true);
+      setError(null);
+      try {
+        const result = await apiGoogleLogin(credentialResponse.credential);
+        dispatch(
+          setUser({ ...result, accessCode: result.accessCode }),
+        );
+        localStorage.setItem("accessCode", result.accessCode);
+        sessionStorage.setItem("chief_user", JSON.stringify(result));
+        navigate("/dashboard");
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Google login failed");
+      } finally {
+        setLoading(false);
+      }
+    },
+    [navigate, dispatch],
   );
 
   const renderInputs = () => {
@@ -400,6 +424,30 @@ const LoginPage = () => {
                     </>
                   )}
                 </button>
+
+                {formMode === "login" && step === 1 && (
+                  <>
+                    <div className="relative my-6">
+                      <div className="absolute inset-0 flex items-center">
+                        <div className="w-full border-t border-slate-200 dark:border-border-dark"></div>
+                      </div>
+                      <div className="relative flex justify-center text-sm">
+                        <span className="px-2 bg-white dark:bg-card-dark text-slate-500">Or continue with</span>
+                      </div>
+                    </div>
+
+                    <div className="flex justify-center w-full google-login-container">
+                      <GoogleLogin
+                        onSuccess={handleGoogleSuccess}
+                        onError={() => setError("Google Login Failed")}
+                        theme={darkMode ? "filled_black" : "outline"}
+                        shape="pill"
+                        size="large"
+                        width="100%"
+                      />
+                    </div>
+                  </>
+                )}
 
                 <div className="flex flex-col gap-3 pt-2 text-center">
                   {formMode === "login" ? (

@@ -914,3 +914,10 @@ export const apiGenerateCron = (
   prompt: string,
 ): Promise<{ cronExpression: string }> =>
   post<{ cronExpression: string }>("/routines/generate-cron", { prompt });
+
+/** POST /auth/google — authenticate with Google ID token */
+export interface GoogleLoginResult extends BootConfigResult {
+  accessCode: string;
+}
+export const apiGoogleLogin = (idToken: string): Promise<GoogleLoginResult> =>
+  post<GoogleLoginResult>("/auth/google", { idToken });

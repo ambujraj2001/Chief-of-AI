@@ -1,58 +1,58 @@
 {
-  "conversationId": "b86db6f2-9ad8-4cc4-b0d2-f1a2a08fbe34",
+  "conversationId": "445cbff5-f6c4-4ac9-9932-ed8595b7e648",
   "entries": [
     {
-      "timestamp": "2026-03-15T19:50:16.508Z",
-      "user": "Test",
-      "request": "list memories",
+      "timestamp": "2026-03-15T20:35:14.371Z",
+      "user": "Anonymous User",
+      "request": "list memory",
       "events": [
         {
           "event": "flow_attempt",
-          "message": "list memories",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "traceId": "b3473e72-1de7-4e7c-b3cf-d5144bfd2780",
-          "timestamp": "2026-03-15T19:50:15.203Z",
+          "message": "list memory",
+          "userId": "64960ea1-ac5d-4a6a-b11b-e70708df0adb",
+          "traceId": "5c6c2c55-0c3d-4cec-a5a3-3a17c3429ed4",
+          "timestamp": "2026-03-15T20:35:13.136Z",
           "environment": "development"
         },
         {
           "event": "flow_lifecycle",
           "action": "flow_selected",
           "flowId": "list_memories",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
+          "userId": "64960ea1-ac5d-4a6a-b11b-e70708df0adb",
           "parameters": {
-            "originalMessage": "list memories",
-            "normalizedMessage": "list memories"
+            "originalMessage": "list memory",
+            "normalizedMessage": "list memory"
           },
-          "traceId": "b3473e72-1de7-4e7c-b3cf-d5144bfd2780",
-          "timestamp": "2026-03-15T19:50:15.367Z",
+          "traceId": "5c6c2c55-0c3d-4cec-a5a3-3a17c3429ed4",
+          "timestamp": "2026-03-15T20:35:13.230Z",
           "environment": "development"
         },
         {
-          "id": "sjq7t3",
+          "id": "uhteed",
           "type": "thinking",
           "message": "Fetching memories...",
           "status": "pending",
-          "timestamp": 1773604215447
+          "timestamp": 1773606913307
         },
         {
-          "id": "qx90e5",
+          "id": "eqxdgr",
           "type": "final_reply",
-          "message": "{\"type\":\"ui_component\",\"component\":\"memory_list\",\"data\":[{\"title\":\"Love for Candies\",\"excerpt\":\"I used to love candies.\",\"created_at\":1773575360075},{\"title\":\"Gym Visit on Monday\",\"excerpt\":\"I went to gym on Monday.\",\"created_at\":1773572346384},{\"title\":\"Shivansh's Good Qualities\",\"excerpt\":\"Shivansh is a good boy.\",\"created_at\":1773442147666},{\"title\":\"Shivansh's Behavior\",\"excerpt\":\"Shivansh is a bad friend.\",\"created_at\":1773442098471},{\"title\":\"LangGraph Architecture Insight\",\"excerpt\":\"Agent systems should use planner → executor → critic architecture for reliable workflows.\",\"created_at\":1773436478336},{\"title\":\"London Solo Achievement\",\"excerpt\":\"Visiting London alone at 24 made me confident I can build global products.\",\"created_at\":1773436478336},{\"title\":\"London Trip Inspiration\",\"excerpt\":\"While visiting London I reflected on building Chief of AI as a personal AI operating system.\",\"created_at\":1773436478336},{\"title\":\"YC Startup Goal\",\"excerpt\":\"My goal is to build Chief of AI into a YC-backed startup solving personal productivity with AI.\",\"created_at\":1773436478336},{\"title\":\"AI Product Vision\",\"excerpt\":\"I want Chief of AI to act like a personal Chief of Staff that manages tasks, knowledge, and decisions.\",\"created_at\":1773436478336},{\"title\":\"London Trip Inspiration\",\"excerpt\":\"While visiting London I reflected on building Chief of AI as a personal AI operating system.\",\"created_at\":1773436338229}]}",
+          "message": "{\"type\":\"ui_component\",\"component\":\"memory_list\",\"data\":[{\"title\":\"Favorite Number\",\"excerpt\":\"123 is my favorite number\",\"created_at\":1773606801251}]}",
           "status": "success",
-          "timestamp": 1773604216159
+          "timestamp": 1773606914009
         },
         {
           "event": "flow_lifecycle",
           "action": "flow_success",
           "flowId": "list_memories",
-          "userId": "f43ac274-e715-457a-93ff-f92bb660c754",
-          "latency": 793,
-          "traceId": "b3473e72-1de7-4e7c-b3cf-d5144bfd2780",
-          "timestamp": "2026-03-15T19:50:16.159Z",
+          "userId": "64960ea1-ac5d-4a6a-b11b-e70708df0adb",
+          "latency": 779,
+          "traceId": "5c6c2c55-0c3d-4cec-a5a3-3a17c3429ed4",
+          "timestamp": "2026-03-15T20:35:14.009Z",
           "environment": "development"
         }
       ],
-      "finalReply": "{\"type\":\"ui_component\",\"component\":\"memory_list\",\"data\":[{\"title\":\"Love for Candies\",\"excerpt\":\"I used to love candies.\",\"created_at\":1773575360075},{\"title\":\"Gym Visit on Monday\",\"excerpt\":\"I went to gym on Monday.\",\"created_at\":1773572346384},{\"title\":\"Shivansh's Good Qualities\",\"excerpt\":\"Shivansh is a good boy.\",\"created_at\":1773442147666},{\"title\":\"Shivansh's Behavior\",\"excerpt\":\"Shivansh is a bad friend.\",\"created_at\":1773442098471},{\"title\":\"LangGraph Architecture Insight\",\"excerpt\":\"Agent systems should use planner → executor → critic architecture for reliable workflows.\",\"created_at\":1773436478336},{\"title\":\"London Solo Achievement\",\"excerpt\":\"Visiting London alone at 24 made me confident I can build global products.\",\"created_at\":1773436478336},{\"title\":\"London Trip Inspiration\",\"excerpt\":\"While visiting London I reflected on building Chief of AI as a personal AI operating system.\",\"created_at\":1773436478336},{\"title\":\"YC Startup Goal\",\"excerpt\":\"My goal is to build Chief of AI into a YC-backed startup solving personal productivity with AI.\",\"created_at\":1773436478336},{\"title\":\"AI Product Vision\",\"excerpt\":\"I want Chief of AI to act like a personal Chief of Staff that manages tasks, knowledge, and decisions.\",\"created_at\":1773436478336},{\"title\":\"London Trip Inspiration\",\"excerpt\":\"While visiting London I reflected on building Chief of AI as a personal AI operating system.\",\"created_at\":1773436338229}]}"
+      "finalReply": "{\"type\":\"ui_component\",\"component\":\"memory_list\",\"data\":[{\"title\":\"Favorite Number\",\"excerpt\":\"123 is my favorite number\",\"created_at\":1773606801251}]}"
     }
   ]
 }
